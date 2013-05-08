@@ -1,14 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     4/17/2013 3:20:50 AM                         */
+/* Created on:     5/8/2013 12:01:33 AM                         */
 /*==============================================================*/
 
-
-alter table FABRICANTE_TIPO_FABRICANTE
-   drop constraint FK_FABRICAN_FABRICANT_TIPO_FAB;
-
-alter table FABRICANTE_TIPO_FABRICANTE
-   drop constraint FK_FABRICAN_FABRICANT_FABRICAN;
 
 alter table FACTURA
    drop constraint FK_FACTURA_FACTURA_P_PERSONA;
@@ -16,11 +10,17 @@ alter table FACTURA
 alter table INVETARIORPT
    drop constraint FK_INVETARI_PERSONA_I_PERSONA;
 
+alter table LOGS
+   drop constraint FK_LOGS_PERSONA_L_PERSONA;
+
+alter table MEDICAMENTO
+   drop constraint FK_MEDICAME_FABRICANT_FABRICAN;
+
 alter table MEDICAMENTO
    drop constraint FK_MEDICAME_PRESENTAC_PRESENTA;
 
 alter table MEDICAMENTO
-   drop constraint FK_MEDICAME_PRODUCTO__FABRICAN;
+   drop constraint FK_MEDICAME_PRODUCTO__PROVEEDO;
 
 alter table MEDICAMENTO
    drop constraint FK_MEDICAME_PRODUCTO__TIPO_PRO;
@@ -61,17 +61,17 @@ alter table PRODUCTO_INVENTARIO
 alter table PRODUCTO_INVENTARIO
    drop constraint FK_PRODUCTO_PRODUCTO__MEDICAME;
 
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   drop constraint FK_PROVEEDO_PROVEEDOR_TIPO_PRO;
+
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   drop constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO;
+
 drop table CARGO cascade constraints;
 
 drop table DROGUERIA cascade constraints;
 
 drop table FABRICANTE cascade constraints;
-
-drop index FABRICANTE_TIPO_FABRICANTE_FK;
-
-drop index FABRICANTE_TIPO_FABRICANTE2_FK;
-
-drop table FABRICANTE_TIPO_FABRICANTE cascade constraints;
 
 drop index FACTURA_PERSONA_FK;
 
@@ -81,9 +81,15 @@ drop index PERSONA_INVENTARIO_FK;
 
 drop table INVETARIORPT cascade constraints;
 
-drop index PRODUCTO_FABRICANTE_FK;
+drop index PERSONA_LOG_FK;
+
+drop table LOGS cascade constraints;
+
+drop index PRODUCTO_PROVEEDOR_FK;
 
 drop index PRODUCTO_TIPO_PRODUCTO_FK;
+
+drop index FABRICANTE_PRODUCTO_FK;
 
 drop index PRESENTACION_PRODUCTO_FK;
 
@@ -127,9 +133,17 @@ drop index PRODUCTO_INVENTARIO_FK;
 
 drop table PRODUCTO_INVENTARIO cascade constraints;
 
-drop table TIPO_FABRICANTE cascade constraints;
+drop table PROVEEDOR cascade constraints;
+
+drop index PROVEEDOR_TIPO_PROVEEDOR_FK;
+
+drop index PROVEEDOR_TIPO_PROVEEDOR2_FK;
+
+drop table PROVEEDOR_TIPO_PROVEEDOR cascade constraints;
 
 drop table TIPO_PRODUCTO cascade constraints;
+
+drop table TIPO_PROVEEDOR cascade constraints;
 
 drop table USO_MEDICAMENTO cascade constraints;
 
@@ -182,58 +196,19 @@ comment on column DROGUERIA.DIRECCION_DROGUERIA is
 /*==============================================================*/
 create table FABRICANTE  (
    ID_FABRICANTE        INTEGER                         not null,
-   NOMBRE_FABRICANTE    VARCHAR2(20)                    not null,
-   TELEFONO_FABRICANTE  VARCHAR2(12)                    not null,
-   DIRECCION_FABRICANTE VARCHAR2(25)                    not null,
+   NOMBRE_FABRICANTE    VARCHAR2(20),
    constraint PK_FABRICANTE primary key (ID_FABRICANTE)
 );
 
 comment on table FABRICANTE is
-'La tabla FABRICANTE hace referencia a la entidad que fabrica los productos vendidos en la farmacia. Cada PRODUCTO tendra asociado un registro de la tabla FABRICANTE';
+'Esta Entidad va a guardar los diferentes fabricantes de los productos.';
 
 comment on column FABRICANTE.ID_FABRICANTE is
-'Identificador de la entidad fabricante';
+'Es el identificador de el fabricante';
 
 comment on column FABRICANTE.NOMBRE_FABRICANTE is
-'Razon social de la empresa que comercializa dicho producto';
-
-comment on column FABRICANTE.TELEFONO_FABRICANTE is
-'Telefono de contacto del fabricante del producto';
-
-comment on column FABRICANTE.DIRECCION_FABRICANTE is
-'Direccion de la empresa u oficina de la empresa que comercializa el producto.';
-
-/*==============================================================*/
-/* Table: FABRICANTE_TIPO_FABRICANTE                            */
-/*==============================================================*/
-create table FABRICANTE_TIPO_FABRICANTE  (
-   ID_TIPO_FABRICANTE   INTEGER                         not null,
-   ID_FABRICANTE        INTEGER                         not null,
-   constraint PK_FABRICANTE_TIPO_FABRICANTE primary key (ID_TIPO_FABRICANTE, ID_FABRICANTE)
-);
-
-comment on table FABRICANTE_TIPO_FABRICANTE is
-'relaciona las entidades FABRICANTE y Tipo_Fabricante';
-
-comment on column FABRICANTE_TIPO_FABRICANTE.ID_TIPO_FABRICANTE is
-'Identificador de Tipo Fabricante';
-
-comment on column FABRICANTE_TIPO_FABRICANTE.ID_FABRICANTE is
-'Identificador del fabricante';
-
-/*==============================================================*/
-/* Index: FABRICANTE_TIPO_FABRICANTE2_FK                        */
-/*==============================================================*/
-create index FABRICANTE_TIPO_FABRICANTE2_FK on FABRICANTE_TIPO_FABRICANTE (
-   ID_FABRICANTE ASC
-);
-
-/*==============================================================*/
-/* Index: FABRICANTE_TIPO_FABRICANTE_FK                         */
-/*==============================================================*/
-create index FABRICANTE_TIPO_FABRICANTE_FK on FABRICANTE_TIPO_FABRICANTE (
-   ID_TIPO_FABRICANTE ASC
-);
+'Este atributo va a guardar el nombre del fabricante
+';
 
 /*==============================================================*/
 /* Table: FACTURA                                               */
@@ -270,18 +245,44 @@ create index PERSONA_INVENTARIO_FK on INVETARIORPT (
 );
 
 /*==============================================================*/
+/* Table: LOGS                                                  */
+/*==============================================================*/
+create table LOGS  (
+   ID_LOG               INTEGER                         not null,
+   ID_PERSONA           INTEGER                         not null,
+   FECHA                DATE                            not null,
+   TIPO_ACCION          CHAR(20)                        not null,
+   DESCRIPCION          CHAR(50),
+   constraint PK_LOGS primary key (ID_LOG)
+);
+
+comment on table LOGS is
+'Tabla que guarda la información de las actividades que realizan los usuarios del sistema.';
+
+comment on column LOGS.ID_PERSONA is
+'Este es el número de identificación de la persona';
+
+/*==============================================================*/
+/* Index: PERSONA_LOG_FK                                        */
+/*==============================================================*/
+create index PERSONA_LOG_FK on LOGS (
+   ID_PERSONA ASC
+);
+
+/*==============================================================*/
 /* Table: MEDICAMENTO                                           */
 /*==============================================================*/
 create table MEDICAMENTO  (
    ID_PRODUCTO          INTEGER                         not null,
    ID_PRESENTACION      INTEGER                         not null,
+   FAB_ID_FABRICANTE    INTEGER,
    ID_USO_MEDICAMENTO   INTEGER,
    NOMBRE_PRODUCTO      VARCHAR2(25),
    PRECIO_PRODUCTO      FLOAT(7),
    CANTIDAD_PRODUCTO    INTEGER,
-   POSOLOGIA_PRODUCTO   INTEGER,
+   POSOLOGIA_PRODUCTO   VARCHAR2(25),
    ID_TIPO_PRODUCTO     INTEGER                         not null,
-   ID_FABRICANTE        INTEGER                         not null,
+   ID_PROVEEDOR         INTEGER                         not null,
    VENTA_LIBRE          SMALLINT                        not null,
    constraint PK_MEDICAMENTO primary key (ID_PRODUCTO)
 );
@@ -301,6 +302,13 @@ create index PRESENTACION_PRODUCTO_FK on MEDICAMENTO (
 );
 
 /*==============================================================*/
+/* Index: FABRICANTE_PRODUCTO_FK                                */
+/*==============================================================*/
+create index FABRICANTE_PRODUCTO_FK on MEDICAMENTO (
+   FAB_ID_FABRICANTE ASC
+);
+
+/*==============================================================*/
 /* Index: PRODUCTO_TIPO_PRODUCTO_FK                             */
 /*==============================================================*/
 create index PRODUCTO_TIPO_PRODUCTO_FK on MEDICAMENTO (
@@ -308,10 +316,10 @@ create index PRODUCTO_TIPO_PRODUCTO_FK on MEDICAMENTO (
 );
 
 /*==============================================================*/
-/* Index: PRODUCTO_FABRICANTE_FK                                */
+/* Index: PRODUCTO_PROVEEDOR_FK                                 */
 /*==============================================================*/
-create index PRODUCTO_FABRICANTE_FK on MEDICAMENTO (
-   ID_FABRICANTE ASC
+create index PRODUCTO_PROVEEDOR_FK on MEDICAMENTO (
+   ID_PROVEEDOR ASC
 );
 
 /*==============================================================*/
@@ -411,6 +419,7 @@ create table PERSONA  (
    TELEFONO_PERSONA     INTEGER                         not null
       constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 999999999 and 000000000),
    DIRECCION_PERSONA    VARCHAR2(25)                    not null,
+   PASSWORD             CLOB                            not null,
    constraint PK_PERSONA primary key (ID_PERSONA)
 );
 
@@ -437,6 +446,9 @@ comment on column PERSONA.TELEFONO_PERSONA is
 
 comment on column PERSONA.DIRECCION_PERSONA is
 'Este atributo va a contener la dirección de vivienda de la persona.';
+
+comment on column PERSONA.PASSWORD is
+'Atributo que va a guardar la contrase;a de el usuario para entrar al sistema';
 
 /*==============================================================*/
 /* Index: PERSONA_CARGO_FK                                      */
@@ -546,22 +558,62 @@ create index PRODUCTO_INVENTARIO2_FK on PRODUCTO_INVENTARIO (
 );
 
 /*==============================================================*/
-/* Table: TIPO_FABRICANTE                                       */
+/* Table: PROVEEDOR                                             */
 /*==============================================================*/
-create table TIPO_FABRICANTE  (
-   ID_TIPO_FABRICANTE   INTEGER                         not null,
-   TIPO_FABRICANTE      VARCHAR2(25)                    not null,
-   constraint PK_TIPO_FABRICANTE primary key (ID_TIPO_FABRICANTE)
+create table PROVEEDOR  (
+   ID_PROVEEDOR         INTEGER                         not null,
+   NOMBRE_PROVEEDOR     VARCHAR2(20)                    not null,
+   TELEFONO_PROVEEDOR   VARCHAR2(12)                    not null,
+   DIRECCION_PROVEEDOR  VARCHAR2(25)                    not null,
+   constraint PK_PROVEEDOR primary key (ID_PROVEEDOR)
 );
 
-comment on table TIPO_FABRICANTE is
-'Entidad que registra los diferentes tipos de fabricante segun su actividad.';
+comment on table PROVEEDOR is
+'La tablap PROVEEDOR hace referencia a la entidad que surte de productos a la farmacia. Cada PRODUCTO tendra asociado un registro de la tabla PROVEEDOR';
 
-comment on column TIPO_FABRICANTE.ID_TIPO_FABRICANTE is
-'Identificador de la entidad Tipo_Fabricante';
+comment on column PROVEEDOR.ID_PROVEEDOR is
+'Identificador de la entidad fabricante';
 
-comment on column TIPO_FABRICANTE.TIPO_FABRICANTE is
-'nombre del tipo de fabricante.';
+comment on column PROVEEDOR.NOMBRE_PROVEEDOR is
+'Razon social de la empresa que comercializa dicho producto';
+
+comment on column PROVEEDOR.TELEFONO_PROVEEDOR is
+'Telefono de contacto del proveedor del producto';
+
+comment on column PROVEEDOR.DIRECCION_PROVEEDOR is
+'Direccion de la empresa u oficina de la empresa que comercializa el producto.';
+
+/*==============================================================*/
+/* Table: PROVEEDOR_TIPO_PROVEEDOR                              */
+/*==============================================================*/
+create table PROVEEDOR_TIPO_PROVEEDOR  (
+   ID_TIPO_PROVEEDOR    INTEGER                         not null,
+   ID_PROVEEDOR         INTEGER                         not null,
+   constraint PK_PROVEEDOR_TIPO_PROVEEDOR primary key (ID_TIPO_PROVEEDOR, ID_PROVEEDOR)
+);
+
+comment on table PROVEEDOR_TIPO_PROVEEDOR is
+'relaciona las entidades PROVEEDOR y TIPO-PROVEEDOR';
+
+comment on column PROVEEDOR_TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
+'Identificador de Tipo Proveedor';
+
+comment on column PROVEEDOR_TIPO_PROVEEDOR.ID_PROVEEDOR is
+'Identificador del proveedor';
+
+/*==============================================================*/
+/* Index: PROVEEDOR_TIPO_PROVEEDOR2_FK                          */
+/*==============================================================*/
+create index PROVEEDOR_TIPO_PROVEEDOR2_FK on PROVEEDOR_TIPO_PROVEEDOR (
+   ID_PROVEEDOR ASC
+);
+
+/*==============================================================*/
+/* Index: PROVEEDOR_TIPO_PROVEEDOR_FK                           */
+/*==============================================================*/
+create index PROVEEDOR_TIPO_PROVEEDOR_FK on PROVEEDOR_TIPO_PROVEEDOR (
+   ID_TIPO_PROVEEDOR ASC
+);
 
 /*==============================================================*/
 /* Table: TIPO_PRODUCTO                                         */
@@ -571,6 +623,25 @@ create table TIPO_PRODUCTO  (
    TIPO                 VARCHAR2(20)                    not null,
    constraint PK_TIPO_PRODUCTO primary key (ID_TIPO_PRODUCTO)
 );
+
+/*==============================================================*/
+/* Table: TIPO_PROVEEDOR                                        */
+/*==============================================================*/
+create table TIPO_PROVEEDOR  (
+   ID_TIPO_PROVEEDOR    INTEGER                         not null,
+   TIPO_PROVEEDOR       VARCHAR2(25)                    not null,
+   constraint PK_TIPO_PROVEEDOR primary key (ID_TIPO_PROVEEDOR)
+);
+
+comment on table TIPO_PROVEEDOR is
+'Entidad que registra los diferentes tipos de proveedor según su actividad.';
+
+comment on column TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
+'Identificador de la entidad Tipo_Proveedor
+';
+
+comment on column TIPO_PROVEEDOR.TIPO_PROVEEDOR is
+'nombre del tipo de proveedor.';
 
 /*==============================================================*/
 /* Table: USO_MEDICAMENTO                                       */
@@ -584,14 +655,6 @@ create table USO_MEDICAMENTO  (
 comment on table USO_MEDICAMENTO is
 'Solo va a tener relacion con producto cuando este sea un medicamento';
 
-alter table FABRICANTE_TIPO_FABRICANTE
-   add constraint FK_FABRICAN_FABRICANT_TIPO_FAB foreign key (ID_TIPO_FABRICANTE)
-      references TIPO_FABRICANTE (ID_TIPO_FABRICANTE);
-
-alter table FABRICANTE_TIPO_FABRICANTE
-   add constraint FK_FABRICAN_FABRICANT_FABRICAN foreign key (ID_FABRICANTE)
-      references FABRICANTE (ID_FABRICANTE);
-
 alter table FACTURA
    add constraint FK_FACTURA_FACTURA_P_PERSONA foreign key (ID_PERSONA)
       references PERSONA (ID_PERSONA);
@@ -600,13 +663,21 @@ alter table INVETARIORPT
    add constraint FK_INVETARI_PERSONA_I_PERSONA foreign key (ID_PERSONA)
       references PERSONA (ID_PERSONA);
 
+alter table LOGS
+   add constraint FK_LOGS_PERSONA_L_PERSONA foreign key (ID_PERSONA)
+      references PERSONA (ID_PERSONA);
+
+alter table MEDICAMENTO
+   add constraint FK_MEDICAME_FABRICANT_FABRICAN foreign key (FAB_ID_FABRICANTE)
+      references FABRICANTE (ID_FABRICANTE);
+
 alter table MEDICAMENTO
    add constraint FK_MEDICAME_PRESENTAC_PRESENTA foreign key (ID_PRESENTACION)
       references PRESENTACION (ID_PRESENTACION);
 
 alter table MEDICAMENTO
-   add constraint FK_MEDICAME_PRODUCTO__FABRICAN foreign key (ID_FABRICANTE)
-      references FABRICANTE (ID_FABRICANTE);
+   add constraint FK_MEDICAME_PRODUCTO__PROVEEDO foreign key (ID_PROVEEDOR)
+      references PROVEEDOR (ID_PROVEEDOR);
 
 alter table MEDICAMENTO
    add constraint FK_MEDICAME_PRODUCTO__TIPO_PRO foreign key (ID_TIPO_PRODUCTO)
@@ -659,4 +730,12 @@ alter table PRODUCTO_INVENTARIO
 alter table PRODUCTO_INVENTARIO
    add constraint FK_PRODUCTO_PRODUCTO__MEDICAME foreign key (ID_PRODUCTO)
       references MEDICAMENTO (ID_PRODUCTO);
+
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   add constraint FK_PROVEEDO_PROVEEDOR_TIPO_PRO foreign key (ID_TIPO_PROVEEDOR)
+      references TIPO_PROVEEDOR (ID_TIPO_PROVEEDOR);
+
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   add constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO foreign key (ID_PROVEEDOR)
+      references PROVEEDOR (ID_PROVEEDOR);
 
