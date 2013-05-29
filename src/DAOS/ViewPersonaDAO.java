@@ -140,5 +140,9 @@ public class ViewPersonaDAO implements Serializable {
             em.close();
         }
     }
+
+    public List<ViewPersona> findViewPersonaByDrogueria(BigDecimal idDrogueria) {
+        return null;
+    }
     
 }

@@ -25,7 +25,7 @@ public class LoginControl {
 
 //
     public ViewPersona getLooged(ViewPersona persona){
-        for(ViewPersona p:perS.findViewPersonaEntities(MainFrame.DrugPresent.getIdDrogueria())){
+        for(ViewPersona p:perS.findViewPersonaByDrogueria(MainFrame.DrugPresent.getIdDrogueria())){
             if(persona.getIdPersona().equals(p.getIdPersona())&& persona.getPassword().equals(p.getPassword())){
                 return p;
             }
@@ -38,7 +38,7 @@ public class LoginControl {
     // </editor-fold> 
     public String verifyLogin (ViewPersona persona) {
 
-        for(ViewPersona p:perS.ReadAll(MainFrame.DrugPresent.getIdDrogueria())){
+        for(ViewPersona p:perS.findViewPersonaByDrogueria(MainFrame.DrugPresent.getIdDrogueria())){
             
             if(persona.getIdPersona().equals(p.getIdPersona())&& persona.getPassword().equals(p.getPassword())){
                 return "Login Hecho";
@@ -54,7 +54,7 @@ public class LoginControl {
 //    // #[regen=yes,id=DCE.7DE01318-5DE0-3CFF-832B-3E01206AB0B6]
 //    // </editor-fold> 
     public boolean VerifyRol (ViewPersona p) {
-        if(p.get==1){
+        if(p.getIdCargo().intValue()==1){
              return true;
         }
         return false;

@@ -8,6 +8,7 @@ import Entities.ViewPersona;
 import utilities.helpers.RegexFormatter;
 import utilities.helpers.RegularExpression;
 import Control_Package.LoginControl;
+import java.math.BigDecimal;
 
 import javax.swing.JOptionPane;
 
@@ -133,10 +134,10 @@ public class LoginGui extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Campos vacíos", "MENSAJE", JOptionPane.OK_OPTION);  
             cleanFields();
         }else{
-             pers=new Persona(new Long(Long.parseLong(this.IdentificationTf.getText())));
-             persL=new Persona();
+             pers=new ViewPersona(new BigDecimal(Long.parseLong(this.IdentificationTf.getText())));
+             persL=new ViewPersona();
              logCon=new LoginControl(); 
-             pers.setPassPersona(this.PasswordTf.getText());
+             pers.setPassword(this.PasswordTf.getText());
              persL=logCon.getLooged(pers);//aqui esta el usuario logeado
              
              
@@ -157,10 +158,10 @@ public class LoginGui extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"Campos vacíos", "MENSAJE", JOptionPane.OK_OPTION);  
                 cleanFields();
             }else{
-                pers=new Persona(new Long(Long.parseLong(this.IdentificationTf.getText())));
-                persL=new Persona();
+                pers=new ViewPersona(new BigDecimal(Long.parseLong(this.IdentificationTf.getText())));
+                persL=new ViewPersona();
                 logCon=new LoginControl(); 
-                pers.setPassPersona(this.PasswordTf.getText());
+                pers.setPassword(this.PasswordTf.getText());
                 persL=logCon.getLooged(pers);//aqui esta el usuario logeado
                
             if(logCon.verifyLogin(pers).equals("Login Hecho")&&logCon.VerifyRol(persL)){

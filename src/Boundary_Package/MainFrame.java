@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.plaf.metal.MetalBorders;
 import DAOS.ViewDrogueriaDAO;
+import java.math.BigDecimal;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.jvnet.substance.SubstanceLookAndFeel;
@@ -359,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame {
             AdjustToCenter();
             this.pack();
         }else{
-            if(LoginGui.persL.getIdCargo()==1){
+            if(LoginGui.persL.getIdCargo().intValue()==1){
                 setToolBarAdmin(LoginGui.persL.getNombrePersona());
                 CloseSesionButton.setText("CERRAR SESION");
                 AdjustToCenter();
@@ -374,19 +375,19 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseSesionButtonActionPerformed
 
     private void inventaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventaryButtonActionPerformed
-        setMainPanel(new InvGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new InvGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_inventaryButtonActionPerformed
 
     private void balanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceButtonActionPerformed
-        setMainPanel(new BalanceGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new BalanceGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_balanceButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        DrugPresent= DrS.readById(this.headQuartersComboBox.getSelectedIndex());
+        DrugPresent= DrS.findViewDrogueria(new BigDecimal(this.headQuartersComboBox.getSelectedIndex()));
 //        this.MainPanel.setPreferredSize(log.getPreferredSize());
 //        this.MainPanel.add(log);
         this.PanelFirst.setVisible(false);
@@ -396,38 +397,38 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
-        setMainPanel(new SellGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
+//        setMainPanel(new SellGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
     }//GEN-LAST:event_sellButtonActionPerformed
 
     private void QueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryButtonActionPerformed
-       setMainPanel(new QueryGui());
-       CloseSesionButton.setText("MENU PRINCIPAL");
-       AdjustToCenter();
+//       setMainPanel(new QueryGui());
+//       CloseSesionButton.setText("MENU PRINCIPAL");
+//       AdjustToCenter();
     }//GEN-LAST:event_QueryButtonActionPerformed
 
     private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
-        setMainPanel(new OrderGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new OrderGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_orderButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
-        setMainPanel(new ModifyDataGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new ModifyDataGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        setMainPanel(new RegisterGui(this));
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new RegisterGui(this));
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
-        setMainPanel(new AboutGui());
-        CloseSesionButton.setText("MENU PRINCIPAL");
-        AdjustToCenter();
+//        setMainPanel(new AboutGui());
+//        CloseSesionButton.setText("MENU PRINCIPAL");
+//        AdjustToCenter();
     }//GEN-LAST:event_aboutButtonActionPerformed
      
     
@@ -593,7 +594,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void fillHeadQBox() {
         this.headQModel.addElement("Seleccione: ");
-        for(Drogueria dru: DrS.readAll()){
+        for(ViewDrogueria dru: DrS.findViewDrogueriaEntities()){
         this.headQModel.addElement(dru.getNombreDrogueria());
         }
         this.headQuartersComboBox.setModel(headQModel);

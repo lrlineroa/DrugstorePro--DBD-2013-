@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ViewPersona.findAll", query = "SELECT v FROM ViewPersona v"),
     @NamedQuery(name = "ViewPersona.findByIdPersona", query = "SELECT v FROM ViewPersona v WHERE v.idPersona = :idPersona"),
+    @NamedQuery(name = "ViewPersona.findByIdDrogueria", query = "SELECT v FROM ViewPersona v WHERE v.idDrogueria = :idDrogueria"),
     @NamedQuery(name = "ViewPersona.findByNombrePersona", query = "SELECT v FROM ViewPersona v WHERE v.nombrePersona = :nombrePersona"),
     @NamedQuery(name = "ViewPersona.findByApellidoPersona", query = "SELECT v FROM ViewPersona v WHERE v.apellidoPersona = :apellidoPersona"),
     @NamedQuery(name = "ViewPersona.findByTelefonoPersona", query = "SELECT v FROM ViewPersona v WHERE v.telefonoPersona = :telefonoPersona"),
@@ -38,6 +39,12 @@ public class ViewPersona implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_PERSONA")
     private BigDecimal idPersona;
+    @Basic(optional = false)
+    @Column(name = "ID_CARGO")
+    private BigDecimal idCargo;
+    @Basic(optional = false)
+    @Column(name = "ID_DROGUERIA")
+    private BigDecimal idDrogueria;
     @Basic(optional = false)
     @Column(name = "NOMBRE_PERSONA")
     private String nombrePersona;
@@ -142,6 +149,34 @@ public class ViewPersona implements Serializable {
     @Override
     public String toString() {
         return "Entities.ViewPersona[ idPersona=" + idPersona + " ]";
+    }
+
+    /**
+     * @return the idCargo
+     */
+    public BigDecimal getIdCargo() {
+        return idCargo;
+    }
+
+    /**
+     * @param idCargo the idCargo to set
+     */
+    public void setIdCargo(BigDecimal idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    /**
+     * @return the idDrogueria
+     */
+    public BigDecimal getIdDrogueria() {
+        return idDrogueria;
+    }
+
+    /**
+     * @param idDrogueria the idDrogueria to set
+     */
+    public void setIdDrogueria(BigDecimal idDrogueria) {
+        this.idDrogueria = idDrogueria;
     }
     
 }
