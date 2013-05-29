@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase AS Enterprise 15.0                    */
-/* Created on:     28/05/2013 20:11:19                          */
+/* Created on:     28/05/2013 23:21:02                          */
 /*==============================================================*/
 
 
@@ -153,6 +153,27 @@ go
 
 if exists (select 1
             from  sysobjects
+            where id = object_id('TRG_DEL_PRDPROD')
+            and   type = 'TR')
+   drop trigger TRG_DEL_PRDPROD
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_INS_PRDPROD')
+            and   type = 'TR')
+   drop trigger TRG_INS_PRDPROD
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_UPD_PRDPROD')
+            and   type = 'TR')
+   drop trigger TRG_UPD_PRDPROD
+go
+
+if exists (select 1
+            from  sysobjects
             where id = object_id('TRG_DEL_PERS')
             and   type = 'TR')
    drop trigger TRG_DEL_PERS
@@ -170,6 +191,48 @@ if exists (select 1
             where id = object_id('TRG_UPD_PERS')
             and   type = 'TR')
    drop trigger TRG_UPD_PERS
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_DEL_PRES')
+            and   type = 'TR')
+   drop trigger TRG_DEL_PRES
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_INS_PRES')
+            and   type = 'TR')
+   drop trigger TRG_INS_PRES
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_UPD_PRES')
+            and   type = 'TR')
+   drop trigger TRG_UPD_PRES
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_DEL_PRODDROG')
+            and   type = 'TR')
+   drop trigger TRG_DEL_PRODDROG
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_INS_PRODDROG')
+            and   type = 'TR')
+   drop trigger TRG_INS_PRODDROG
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_UPD_PRODDROG')
+            and   type = 'TR')
+   drop trigger TRG_UPD_PRODDROG
 go
 
 if exists (select 1
@@ -275,6 +338,27 @@ if exists (select 1
             where id = object_id('TRG_UPD_TIPOPROD')
             and   type = 'TR')
    drop trigger TRG_UPD_TIPOPROD
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_DEL_TIPOPROV')
+            and   type = 'TR')
+   drop trigger TRG_DEL_TIPOPROV
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_INS_TIPOPROV')
+            and   type = 'TR')
+   drop trigger TRG_INS_TIPOPROV
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('TRG_UPD_TIPOPROV')
+            and   type = 'TR')
+   drop trigger TRG_UPD_TIPOPROV
 go
 
 if exists (select 1
@@ -1160,7 +1244,8 @@ go
 /*==============================================================*/
 create table PRODUCTO_DROGUERIA (
    ID_DROGUERIA         int                            not null,
-   ID_PRODUCTO          int                            not null
+   ID_PRODUCTO          int                            not null,
+   constraint PK_PRODUCTO_DROGUERIA primary key (ID_DROGUERIA, ID_PRODUCTO)
 )
 go
 
@@ -1185,7 +1270,8 @@ go
 /*==============================================================*/
 create table PRODUCTO_FABRICANTE (
    ID_FABRICANTE        int                            not null,
-   ID_PRODUCTO          int                            not null
+   ID_PRODUCTO          int                            not null,
+   constraint PK_PRODUCTO_FABRICANTE primary key (ID_FABRICANTE, ID_PRODUCTO)
 )
 go
 
@@ -1210,7 +1296,8 @@ go
 /*==============================================================*/
 create table PRODUCTO_FACTURA (
    ID_FACTURA           int                            not null,
-   ID_PRODUCTO          int                            not null
+   ID_PRODUCTO          int                            not null,
+   constraint PK_PRODUCTO_FACTURA primary key (ID_FACTURA, ID_PRODUCTO)
 )
 go
 
@@ -1235,7 +1322,8 @@ go
 /*==============================================================*/
 create table PRODUCTO_INVENTARIO (
    ID_INVENTARIORPT     int                            not null,
-   ID_PRODUCTO          int                            not null
+   ID_PRODUCTO          int                            not null,
+   constraint PK_PRODUCTO_INVENTARIO primary key (ID_INVENTARIORPT, ID_PRODUCTO)
 )
 go
 
@@ -1562,296 +1650,272 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
 go
 
 
-create trigger trg_del_carg AFTER DELETE ON dbd_3.Cargo
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","CARGO",USER)
+create trigger trg_del_carg on CARGO for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
 go
 
 
-create trigger trg_ins_carg AFTER INSERT ON dbd_3.Cargo
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","CARGO",USER)
+create trigger trg_ins_carg on CARGO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
 go
 
 
-create trigger trg_upd_carg AFTER UPDATE ON dbd_3.Cargo
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","CARGO",USER)
+create trigger trg_upd_carg on CARGO for update as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
 go
 
 
-create trigger trg_del_drog AFTER DELETE ON dbd_3.Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","DROGUERIA",USER)
+create trigger trg_del_drog on DROGUERIA for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","DROGUERIA",USER)
 go
 
 
-create trigger trg_ins_drog AFTER INSERT ON dbd_3.Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","DROGUERIA",USER)
+create trigger trg_ins_drog on DROGUERIA for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","DROGUERIA",USER)
 go
 
 
-create trigger trg_upd_drog AFTER UPDATE ON dbd_3.Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","DROGUERIA",USER)
+create trigger trg_upd_drog on DROGUERIA for update as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","DROGUERIA",USER)
 go
 
 
-create trigger trg_ins_fab AFTER DELETE ON dbd_3.Faricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","FABRICANTE",USER)
+create trigger trg_del_fab on FABRICANTE for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FABRICANTE",USER)
 go
 
 
-create trigger trg_ins_fab AFTER INSERT ON dbd_3.Faricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","FABRICANTE",USER)
+create trigger trg_ins_fab on FABRICANTE for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FABRICANTE",USER)
 go
 
 
-create trigger trg_upd_fab AFTER UPDATE ON dbd_3.Faricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","FABRICANTE",USER)
+create trigger trg_upd_fab on FABRICANTE for update as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FABRICANTE",USER)
 go
 
 
-create trigger trg_del_factu AFTER DELETE ON dbd_3.Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","FACTURA",USER)
+create trigger trg_del_factu on FACTURA for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FACTURA",USER)
 go
 
 
-create trigger trg_ins_factu AFTER INSERT ON dbd_3.Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","FACTURA",USER)
+create trigger trg_ins_factu on FACTURA for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FACTURA",USER)
 go
 
 
-create trigger trg_upd_factu AFTER UPDATE ON dbd_3.Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","FACTURA",USER)
+create trigger trg_upd_factu on FACTURA for update as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","FACTURA",USER)
 go
 
 
-create trigger trg_del_invent AFTER DELETE ON dbd_3.InventarioRPT
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","INVENTARIORPT",USER)
+create trigger trg_del_invent on INVENTARIO_RPT for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","INVENTARIO_RPT",USER)
 go
 
 
-create trigger trg_ins_invent AFTER INSERT ON dbd_3.InventarioRPT
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","INVENTARIORPT",USER)
+create trigger trg_ins_invent on INVENTARIO_RPT for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","INVENTARIO_RPT",USER)
 go
 
 
-create trigger trg_upd_invent AFTER UPDATE ON dbd_3.InventarioRPT
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","INVENTARIORPT",USER)
+create trigger trg_upd_invent on INVENTARIO_RPT for update as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","INVENTARIO_RPT",USER)
 go
 
 
-create trigger trg_del_medic AFTER DELETE ON dbd_3.Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","MEDICAMENTO",USER)
+create trigger trg_del_medic on MEDICAMENTO for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","MEDICAMENTO",USER)
 go
 
 
-create trigger trg_ins_medic AFTER INSERT ON dbd_3.Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","MEDICAMENTO",USER)
+create trigger trg_ins_medic on MEDICAMENTO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","MEDICAMENTO",USER)
 go
 
 
-create trigger trg_upd_medic AFTER UPDATE ON dbd_3.Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","MEDICAMENTO",USER)
+create trigger trg_upd_medic on MEDICAMENTO for delete as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","MEDICAMENTO",USER)
 go
 
 
-reate trigger trg_del_ped AFTER DELETE ON dbd_3.Pedido
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PEDIDO",USER)
+create trigger trg_del_ped on PEDIDO for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PEDIDO",USER)
 go
 
 
-create trigger trg_ins_ped AFTER INSERT ON dbd_3.Pedido
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PEDIDO",USER)
+create trigger trg_ins_ped on PEDIDO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PEDIDO",USER)
 go
 
 
-reate trigger trg_upd_ped AFTER UPDATE ON dbd_3.Pedido
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PEDIDO",USER)
+create trigger trg_upd_ped on PEDIDO for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PEDIDO",USER)
 go
 
 
-create trigger trg_del_pers AFTER DELETE ON dbd_3.Persona
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PERSONA",USER)
+create trigger trg_del_prdProd on PEDIDO_PRODUCTO for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PEDIDO_PRODUCTO",USER)
 go
 
 
-create trigger trg_ins_pers AFTER INSERT ON dbd_3.Persona
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PERSONA",USER)
+create trigger trg_ins_prdProd on PEDIDO_PRODUCTO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PEDIDO_PRODUCTO",USER)
 go
 
 
-create trigger trg_del_pers AFTER UPDATE ON dbd_3.Persona
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PERSONA",USER)
+create trigger trg_upd_prdProd on PEDIDO_PRODUCTO for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PEDIDO_PRODUCTO",USER)
 go
 
 
-create trigger trg_del_pordFab AFTER DELETE ON dbd_3.Producto_Fabricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PRODUCTO_FABRICANTE",USER)
+create trigger trg_del_pers on PERSONA for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PERSONA",USER)
 go
 
 
-create trigger trg_ins_pordFab AFTER INSERT ON dbd_3.Producto_Fabricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PRODUCTO_FABRICANTE",USER)
+create trigger trg_ins_pers on PERSONA for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PERSONA",USER)
 go
 
 
-create trigger trg_upd_pordFab AFTER UPDATE ON dbd_3.Producto_Fabricante
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PRODUCTO_FABRICANTE",USER)
+create trigger trg_upd_pers on PERSONA for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PERSONA",USER)
 go
 
 
-create trigger trg_del_prodFac AFTER DELETE ON dbd_3.Producto_Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PRODUCTO_FACTURA",USER)
+create trigger trg_del_pres on PRESENTACION for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRESENTACION",USER)
 go
 
 
-create trigger trg_ins_prodFac AFTER INSERT ON dbd_3.Producto_Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PRODUCTO_FACTURA",USER)
+create trigger trg_ins_pres on PRESENTACION for INSERT as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRESENTACION",USER)
 go
 
 
-create trigger trg_upd_prodFac AFTER UPDATE ON dbd_3.Producto_Factura
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PRODUCTO_FACTURA",USER)
+create trigger trg_upd_pres on PRESENTACION for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRESENTACION",USER)
 go
 
 
-create trigger trg_del_prodInv AFTER DELETE ON dbd_3.Producto_Inventario
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PRODUCTO_INVENTARIO",USER)
+create trigger trg_del_prodDrog on PRODUCTO_DROGUERIA for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_DROGUERIA",USER)
 go
 
 
-create trigger trg_ins_prodInv AFTER INSERT ON dbd_3.Producto_Inventario
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PRODUCTO_INVENTARIO",USER)
+create trigger trg_ins_prodDrog on PRODUCTO_DROGUERIA for INSERT as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_DROGUERIA",USER)
 go
 
 
-create trigger trg_upd_prodInv AFTER UPDATE ON dbd_3.Producto_Inventario
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PRODUCTO_INVENTARIO",USER)
+create trigger trg_upd_prodDrog on PRODUCTO_DROGUERIA for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_DROGUERIA",USER)
 go
 
 
-create trigger trg_del_prove AFTER DELETE ON dbd_3.Proveedor
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","PROVEEDOR",USER)
+create trigger trg_del_pordFab on PRODUCTO_FABRICANTE for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FABRICANTE",USER)
 go
 
 
-create trigger trg_ins_prove AFTER INSERT ON dbd_3.Proveedor
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","PROVEEDOR",USER)
+create trigger trg_ins_pordFab on PRODUCTO_FABRICANTE for INSERT as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FABRICANTE",USER)
 go
 
 
-create trigger trg_upd_prove AFTER UPDATE ON dbd_3.Proveedor
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","PROVEEDOR",USER)
+create trigger trg_upd_pordFab on PRODUCTO_FABRICANTE for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_FABRICANTE",USER)
 go
 
 
-create trigger trg_del_tipoProd AFTER DELETE ON dbd_3.Tipo_Producto
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","TIPO_PRODUCTO",USER)
+create trigger trg_del_prodFac on PRODUCTO_FACTURA for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FACTURA",USER)
 go
 
 
-create trigger trg_ins_tipoProd AFTER INSERT ON dbd_3.Tipo_Producto
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","TIPO_PRODUCTO",USER)
+create trigger trg_ins_prodFac on PRODUCTO_FACTURA for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FACTURA",USER)
 go
 
 
-create trigger trg_upd_tipoProd AFTER UPDATE ON dbd_3.Tipo_Producto
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","TIPO_PRODUCTO",USER)
+create trigger trg_upd_prodFac on PRODUCTO_FACTURA for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_FACTURA",USER)
 go
 
 
-create trigger trg_del_usoMedic AFTER DELETE ON dbd_3.Uso_Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","USO_MEDIC",USER)
+create trigger trg_del_prodInv on PRODUCTO_INVENTARIO for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_INVENTARIO",USER)
 go
 
 
-create trigger trg_ins_usoMedic AFTER INSERT ON dbd_3.Uso_Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","USO_MEDIC",USER)
+create trigger trg_ins_prodInv on PRODUCTO_INVENTARIO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_INVENTARIO",USER)
 go
 
 
-create trigger trg_upd_usoMedic AFTER UPDATE ON dbd_3.Uso_Medicamento
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","USO_MEDIC",USER)
+create trigger trg_upd_prodInv on PRODUCTO_INVENTARIO for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_INVENTARIO",USER)
+go
+
+
+create trigger trg_del_prove on PROVEEDOR for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PROVEEDOR",USER)
+go
+
+
+create trigger trg_ins_prove on PROVEEDOR for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PROVEEDOR",USER)
+go
+
+
+create trigger trg_upd_prove on PROVEEDOR for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PROVEEDOR",USER)
+go
+
+
+create trigger trg_del_tipoProd on TIPO_PRODUCTO for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","TIPO_PRODUCTO",USER)
+go
+
+
+create trigger trg_ins_tipoProd on TIPO_PRODUCTO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","TIPO_PRODUCTO",USER)
+go
+
+
+create trigger trg_upd_tipoProd on TIPO_PRODUCTO for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","TIPO_PRODUCTO",USER)
+go
+
+
+create trigger trg_del_tipoProv on TIPO_PROVEEDOR for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","TIPO_PROVEEDOR",USER)
+go
+
+
+create trigger trg_ins_tipoProv on TIPO_PROVEEDOR for INSERT as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","TIPO_PROVEEDOR",USER)
+go
+
+
+create trigger trg_upd_tipoProv on TIPO_PROVEEDOR for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","TIPO_PROVEEDOR",USER)
+go
+
+
+create trigger trg_del_usoMedic on USO_MEDICAMENTO for DELETE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","USO_MEDICAMENTO",USER)
+go
+
+
+create trigger trg_ins_usoMedic on USO_MEDICAMENTO for insert as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","USO_MEDICAMENTO",USER)
+go
+
+
+create trigger trg_upd_usoMedic on USO_MEDICAMENTO for UPDATE as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","USO_MEDICAMENTO",USER)
 go
 
