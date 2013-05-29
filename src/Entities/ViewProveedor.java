@@ -6,36 +6,29 @@ package Entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "PROVEEDOR")
+@Table(name = "VIEW_PROVEEDOR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Proveedor.findAll", query = "SELECT p FROM Proveedor p"),
-    @NamedQuery(name = "Proveedor.findByIdProveedor", query = "SELECT p FROM Proveedor p WHERE p.idProveedor = :idProveedor"),
-    @NamedQuery(name = "Proveedor.findByNombreProveedor", query = "SELECT p FROM Proveedor p WHERE p.nombreProveedor = :nombreProveedor"),
-    @NamedQuery(name = "Proveedor.findByTelefonoProveedor", query = "SELECT p FROM Proveedor p WHERE p.telefonoProveedor = :telefonoProveedor"),
-    @NamedQuery(name = "Proveedor.findByDireccionProveedor", query = "SELECT p FROM Proveedor p WHERE p.direccionProveedor = :direccionProveedor")})
-public class Proveedor implements Serializable {
+    @NamedQuery(name = "ViewProveedor.findAll", query = "SELECT v FROM ViewProveedor v"),
+    @NamedQuery(name = "ViewProveedor.findByIdProveedor", query = "SELECT v FROM ViewProveedor v WHERE v.idProveedor = :idProveedor"),
+    @NamedQuery(name = "ViewProveedor.findByNombreProveedor", query = "SELECT v FROM ViewProveedor v WHERE v.nombreProveedor = :nombreProveedor"),
+    @NamedQuery(name = "ViewProveedor.findByTelefonoProveedor", query = "SELECT v FROM ViewProveedor v WHERE v.telefonoProveedor = :telefonoProveedor"),
+    @NamedQuery(name = "ViewProveedor.findByDireccionProveedor", query = "SELECT v FROM ViewProveedor v WHERE v.direccionProveedor = :direccionProveedor")})
+public class ViewProveedor implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -51,22 +44,15 @@ public class Proveedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "DIRECCION_PROVEEDOR")
     private String direccionProveedor;
-    @JoinTable(name = "PROVEEDOR_TIPO_PROVEEDOR", joinColumns = {
-        @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_TIPO_PROVEEDOR", referencedColumnName = "ID_TIPO_PROVEEDOR")})
-    @ManyToMany
-    private List<TipoProveedor> tipoProveedorList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProveedor")
-    private List<Medicamento> medicamentoList;
 
-    public Proveedor() {
+    public ViewProveedor() {
     }
 
-    public Proveedor(BigDecimal idProveedor) {
+    public ViewProveedor(BigDecimal idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public Proveedor(BigDecimal idProveedor, String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
+    public ViewProveedor(BigDecimal idProveedor, String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         this.idProveedor = idProveedor;
         this.nombreProveedor = nombreProveedor;
         this.telefonoProveedor = telefonoProveedor;
@@ -105,24 +91,6 @@ public class Proveedor implements Serializable {
         this.direccionProveedor = direccionProveedor;
     }
 
-    @XmlTransient
-    public List<TipoProveedor> getTipoProveedorList() {
-        return tipoProveedorList;
-    }
-
-    public void setTipoProveedorList(List<TipoProveedor> tipoProveedorList) {
-        this.tipoProveedorList = tipoProveedorList;
-    }
-
-    @XmlTransient
-    public List<Medicamento> getMedicamentoList() {
-        return medicamentoList;
-    }
-
-    public void setMedicamentoList(List<Medicamento> medicamentoList) {
-        this.medicamentoList = medicamentoList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,10 +101,10 @@ public class Proveedor implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Proveedor)) {
+        if (!(object instanceof ViewProveedor)) {
             return false;
         }
-        Proveedor other = (Proveedor) object;
+        ViewProveedor other = (ViewProveedor) object;
         if ((this.idProveedor == null && other.idProveedor != null) || (this.idProveedor != null && !this.idProveedor.equals(other.idProveedor))) {
             return false;
         }
@@ -145,7 +113,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Proveedor[ idProveedor=" + idProveedor + " ]";
+        return "Entities.ViewProveedor[ idProveedor=" + idProveedor + " ]";
     }
     
 }

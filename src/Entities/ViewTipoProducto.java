@@ -6,31 +6,27 @@ package Entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "TIPO_PRODUCTO")
+@Table(name = "VIEW_TIPO_PRODUCTO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoProducto.findAll", query = "SELECT t FROM TipoProducto t"),
-    @NamedQuery(name = "TipoProducto.findByIdTipoProducto", query = "SELECT t FROM TipoProducto t WHERE t.idTipoProducto = :idTipoProducto"),
-    @NamedQuery(name = "TipoProducto.findByTipo", query = "SELECT t FROM TipoProducto t WHERE t.tipo = :tipo")})
-public class TipoProducto implements Serializable {
+    @NamedQuery(name = "ViewTipoProducto.findAll", query = "SELECT v FROM ViewTipoProducto v"),
+    @NamedQuery(name = "ViewTipoProducto.findByIdTipoProducto", query = "SELECT v FROM ViewTipoProducto v WHERE v.idTipoProducto = :idTipoProducto"),
+    @NamedQuery(name = "ViewTipoProducto.findByTipo", query = "SELECT v FROM ViewTipoProducto v WHERE v.tipo = :tipo")})
+public class ViewTipoProducto implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -40,17 +36,15 @@ public class TipoProducto implements Serializable {
     @Basic(optional = false)
     @Column(name = "TIPO")
     private String tipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoProducto")
-    private List<Medicamento> medicamentoList;
 
-    public TipoProducto() {
+    public ViewTipoProducto() {
     }
 
-    public TipoProducto(BigDecimal idTipoProducto) {
+    public ViewTipoProducto(BigDecimal idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
     }
 
-    public TipoProducto(BigDecimal idTipoProducto, String tipo) {
+    public ViewTipoProducto(BigDecimal idTipoProducto, String tipo) {
         this.idTipoProducto = idTipoProducto;
         this.tipo = tipo;
     }
@@ -71,15 +65,6 @@ public class TipoProducto implements Serializable {
         this.tipo = tipo;
     }
 
-    @XmlTransient
-    public List<Medicamento> getMedicamentoList() {
-        return medicamentoList;
-    }
-
-    public void setMedicamentoList(List<Medicamento> medicamentoList) {
-        this.medicamentoList = medicamentoList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -90,10 +75,10 @@ public class TipoProducto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoProducto)) {
+        if (!(object instanceof ViewTipoProducto)) {
             return false;
         }
-        TipoProducto other = (TipoProducto) object;
+        ViewTipoProducto other = (ViewTipoProducto) object;
         if ((this.idTipoProducto == null && other.idTipoProducto != null) || (this.idTipoProducto != null && !this.idTipoProducto.equals(other.idTipoProducto))) {
             return false;
         }
@@ -102,7 +87,7 @@ public class TipoProducto implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.TipoProducto[ idTipoProducto=" + idTipoProducto + " ]";
+        return "Entities.ViewTipoProducto[ idTipoProducto=" + idTipoProducto + " ]";
     }
     
 }

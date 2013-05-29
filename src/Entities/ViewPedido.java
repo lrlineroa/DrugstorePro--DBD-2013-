@@ -8,40 +8,35 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "PEDIDO")
+@Table(name = "VIEW_PEDIDO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
-    @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido"),
-    @NamedQuery(name = "Pedido.findByFechaPedido", query = "SELECT p FROM Pedido p WHERE p.fechaPedido = :fechaPedido"),
-    @NamedQuery(name = "Pedido.findByHoraPedido", query = "SELECT p FROM Pedido p WHERE p.horaPedido = :horaPedido"),
-    @NamedQuery(name = "Pedido.findByNombreClientePed", query = "SELECT p FROM Pedido p WHERE p.nombreClientePed = :nombreClientePed"),
-    @NamedQuery(name = "Pedido.findByDireccionClienPedido", query = "SELECT p FROM Pedido p WHERE p.direccionClienPedido = :direccionClienPedido"),
-    @NamedQuery(name = "Pedido.findByTelefonoClientePed", query = "SELECT p FROM Pedido p WHERE p.telefonoClientePed = :telefonoClientePed"),
-    @NamedQuery(name = "Pedido.findBySolicitudEnCurso", query = "SELECT p FROM Pedido p WHERE p.solicitudEnCurso = :solicitudEnCurso"),
-    @NamedQuery(name = "Pedido.findBySolicitudFinalizada", query = "SELECT p FROM Pedido p WHERE p.solicitudFinalizada = :solicitudFinalizada")})
-public class Pedido implements Serializable {
+    @NamedQuery(name = "ViewPedido.findAll", query = "SELECT v FROM ViewPedido v"),
+    @NamedQuery(name = "ViewPedido.findByIdPedido", query = "SELECT v FROM ViewPedido v WHERE v.idPedido = :idPedido"),
+    @NamedQuery(name = "ViewPedido.findByFechaPedido", query = "SELECT v FROM ViewPedido v WHERE v.fechaPedido = :fechaPedido"),
+    @NamedQuery(name = "ViewPedido.findByHoraPedido", query = "SELECT v FROM ViewPedido v WHERE v.horaPedido = :horaPedido"),
+    @NamedQuery(name = "ViewPedido.findByNombreClientePed", query = "SELECT v FROM ViewPedido v WHERE v.nombreClientePed = :nombreClientePed"),
+    @NamedQuery(name = "ViewPedido.findByDireccionClienPedido", query = "SELECT v FROM ViewPedido v WHERE v.direccionClienPedido = :direccionClienPedido"),
+    @NamedQuery(name = "ViewPedido.findByTelefonoClientePed", query = "SELECT v FROM ViewPedido v WHERE v.telefonoClientePed = :telefonoClientePed"),
+    @NamedQuery(name = "ViewPedido.findBySolicitudEnCurso", query = "SELECT v FROM ViewPedido v WHERE v.solicitudEnCurso = :solicitudEnCurso"),
+    @NamedQuery(name = "ViewPedido.findBySolicitudFinalizada", query = "SELECT v FROM ViewPedido v WHERE v.solicitudFinalizada = :solicitudFinalizada")})
+public class ViewPedido implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -71,20 +66,15 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "SOLICITUD_FINALIZADA")
     private BigInteger solicitudFinalizada;
-    @ManyToMany(mappedBy = "pedidoList")
-    private List<Medicamento> medicamentoList;
-    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
-    @ManyToOne(optional = false)
-    private Drogueria idDrogueria;
 
-    public Pedido() {
+    public ViewPedido() {
     }
 
-    public Pedido(BigDecimal idPedido) {
+    public ViewPedido(BigDecimal idPedido) {
         this.idPedido = idPedido;
     }
 
-    public Pedido(BigDecimal idPedido, Date fechaPedido, Date horaPedido, String nombreClientePed, String direccionClienPedido, String telefonoClientePed, BigInteger solicitudEnCurso, BigInteger solicitudFinalizada) {
+    public ViewPedido(BigDecimal idPedido, Date fechaPedido, Date horaPedido, String nombreClientePed, String direccionClienPedido, String telefonoClientePed, BigInteger solicitudEnCurso, BigInteger solicitudFinalizada) {
         this.idPedido = idPedido;
         this.fechaPedido = fechaPedido;
         this.horaPedido = horaPedido;
@@ -159,23 +149,6 @@ public class Pedido implements Serializable {
         this.solicitudFinalizada = solicitudFinalizada;
     }
 
-    @XmlTransient
-    public List<Medicamento> getMedicamentoList() {
-        return medicamentoList;
-    }
-
-    public void setMedicamentoList(List<Medicamento> medicamentoList) {
-        this.medicamentoList = medicamentoList;
-    }
-
-    public Drogueria getIdDrogueria() {
-        return idDrogueria;
-    }
-
-    public void setIdDrogueria(Drogueria idDrogueria) {
-        this.idDrogueria = idDrogueria;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,10 +159,10 @@ public class Pedido implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pedido)) {
+        if (!(object instanceof ViewPedido)) {
             return false;
         }
-        Pedido other = (Pedido) object;
+        ViewPedido other = (ViewPedido) object;
         if ((this.idPedido == null && other.idPedido != null) || (this.idPedido != null && !this.idPedido.equals(other.idPedido))) {
             return false;
         }
@@ -198,7 +171,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Pedido[ idPedido=" + idPedido + " ]";
+        return "Entities.ViewPedido[ idPedido=" + idPedido + " ]";
     }
     
 }

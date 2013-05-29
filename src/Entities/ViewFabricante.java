@@ -6,30 +6,27 @@ package Entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "FABRICANTE")
+@Table(name = "VIEW_FABRICANTE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f"),
-    @NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante"),
-    @NamedQuery(name = "Fabricante.findByNombreFabricante", query = "SELECT f FROM Fabricante f WHERE f.nombreFabricante = :nombreFabricante")})
-public class Fabricante implements Serializable {
+    @NamedQuery(name = "ViewFabricante.findAll", query = "SELECT v FROM ViewFabricante v"),
+    @NamedQuery(name = "ViewFabricante.findByIdFabricante", query = "SELECT v FROM ViewFabricante v WHERE v.idFabricante = :idFabricante"),
+    @NamedQuery(name = "ViewFabricante.findByNombreFabricante", query = "SELECT v FROM ViewFabricante v WHERE v.nombreFabricante = :nombreFabricante")})
+public class ViewFabricante implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -38,13 +35,11 @@ public class Fabricante implements Serializable {
     private BigDecimal idFabricante;
     @Column(name = "NOMBRE_FABRICANTE")
     private String nombreFabricante;
-    @OneToMany(mappedBy = "fabIdFabricante")
-    private List<Medicamento> medicamentoList;
 
-    public Fabricante() {
+    public ViewFabricante() {
     }
 
-    public Fabricante(BigDecimal idFabricante) {
+    public ViewFabricante(BigDecimal idFabricante) {
         this.idFabricante = idFabricante;
     }
 
@@ -64,15 +59,6 @@ public class Fabricante implements Serializable {
         this.nombreFabricante = nombreFabricante;
     }
 
-    @XmlTransient
-    public List<Medicamento> getMedicamentoList() {
-        return medicamentoList;
-    }
-
-    public void setMedicamentoList(List<Medicamento> medicamentoList) {
-        this.medicamentoList = medicamentoList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -83,10 +69,10 @@ public class Fabricante implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fabricante)) {
+        if (!(object instanceof ViewFabricante)) {
             return false;
         }
-        Fabricante other = (Fabricante) object;
+        ViewFabricante other = (ViewFabricante) object;
         if ((this.idFabricante == null && other.idFabricante != null) || (this.idFabricante != null && !this.idFabricante.equals(other.idFabricante))) {
             return false;
         }
@@ -95,7 +81,7 @@ public class Fabricante implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Fabricante[ idFabricante=" + idFabricante + " ]";
+        return "Entities.ViewFabricante[ idFabricante=" + idFabricante + " ]";
     }
     
 }

@@ -7,37 +7,31 @@ package Entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "PERSONA")
+@Table(name = "VIEW_PERSONA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
-    @NamedQuery(name = "Persona.findByNombrePersona", query = "SELECT p FROM Persona p WHERE p.nombrePersona = :nombrePersona"),
-    @NamedQuery(name = "Persona.findByApellidoPersona", query = "SELECT p FROM Persona p WHERE p.apellidoPersona = :apellidoPersona"),
-    @NamedQuery(name = "Persona.findByTelefonoPersona", query = "SELECT p FROM Persona p WHERE p.telefonoPersona = :telefonoPersona"),
-    @NamedQuery(name = "Persona.findByDireccionPersona", query = "SELECT p FROM Persona p WHERE p.direccionPersona = :direccionPersona")})
-public class Persona implements Serializable {
+    @NamedQuery(name = "ViewPersona.findAll", query = "SELECT v FROM ViewPersona v"),
+    @NamedQuery(name = "ViewPersona.findByIdPersona", query = "SELECT v FROM ViewPersona v WHERE v.idPersona = :idPersona"),
+    @NamedQuery(name = "ViewPersona.findByNombrePersona", query = "SELECT v FROM ViewPersona v WHERE v.nombrePersona = :nombrePersona"),
+    @NamedQuery(name = "ViewPersona.findByApellidoPersona", query = "SELECT v FROM ViewPersona v WHERE v.apellidoPersona = :apellidoPersona"),
+    @NamedQuery(name = "ViewPersona.findByTelefonoPersona", query = "SELECT v FROM ViewPersona v WHERE v.telefonoPersona = :telefonoPersona"),
+    @NamedQuery(name = "ViewPersona.findByDireccionPersona", query = "SELECT v FROM ViewPersona v WHERE v.direccionPersona = :direccionPersona")})
+public class ViewPersona implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -60,27 +54,15 @@ public class Persona implements Serializable {
     @Lob
     @Column(name = "PASSWORD")
     private String password;
-    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
-    @ManyToOne(optional = false)
-    private Drogueria idDrogueria;
-    @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
-    @ManyToOne(optional = false)
-    private Cargo idCargo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private List<Invetariorpt> invetariorptList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private List<Factura> facturaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private List<Logs> logsList;
 
-    public Persona() {
+    public ViewPersona() {
     }
 
-    public Persona(BigDecimal idPersona) {
+    public ViewPersona(BigDecimal idPersona) {
         this.idPersona = idPersona;
     }
 
-    public Persona(BigDecimal idPersona, String nombrePersona, String apellidoPersona, BigInteger telefonoPersona, String direccionPersona, String password) {
+    public ViewPersona(BigDecimal idPersona, String nombrePersona, String apellidoPersona, BigInteger telefonoPersona, String direccionPersona, String password) {
         this.idPersona = idPersona;
         this.nombrePersona = nombrePersona;
         this.apellidoPersona = apellidoPersona;
@@ -137,49 +119,6 @@ public class Persona implements Serializable {
         this.password = password;
     }
 
-    public Drogueria getIdDrogueria() {
-        return idDrogueria;
-    }
-
-    public void setIdDrogueria(Drogueria idDrogueria) {
-        this.idDrogueria = idDrogueria;
-    }
-
-    public Cargo getIdCargo() {
-        return idCargo;
-    }
-
-    public void setIdCargo(Cargo idCargo) {
-        this.idCargo = idCargo;
-    }
-
-    @XmlTransient
-    public List<Invetariorpt> getInvetariorptList() {
-        return invetariorptList;
-    }
-
-    public void setInvetariorptList(List<Invetariorpt> invetariorptList) {
-        this.invetariorptList = invetariorptList;
-    }
-
-    @XmlTransient
-    public List<Factura> getFacturaList() {
-        return facturaList;
-    }
-
-    public void setFacturaList(List<Factura> facturaList) {
-        this.facturaList = facturaList;
-    }
-
-    @XmlTransient
-    public List<Logs> getLogsList() {
-        return logsList;
-    }
-
-    public void setLogsList(List<Logs> logsList) {
-        this.logsList = logsList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -190,10 +129,10 @@ public class Persona implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Persona)) {
+        if (!(object instanceof ViewPersona)) {
             return false;
         }
-        Persona other = (Persona) object;
+        ViewPersona other = (ViewPersona) object;
         if ((this.idPersona == null && other.idPersona != null) || (this.idPersona != null && !this.idPersona.equals(other.idPersona))) {
             return false;
         }
@@ -202,7 +141,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Persona[ idPersona=" + idPersona + " ]";
+        return "Entities.ViewPersona[ idPersona=" + idPersona + " ]";
     }
     
 }
