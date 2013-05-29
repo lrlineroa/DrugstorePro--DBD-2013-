@@ -16,6 +16,19 @@
     <class>Entities.Presentacion</class>
     <class>Entities.Cargo</class>
     <class>Entities.Factura</class>
+    <class>Entities.ViewFabricante</class>
+    <class>Entities.ViewMedicamento</class>
+    <class>Entities.ViewPedido</class>
+    <class>Entities.ViewCargo</class>
+    <class>Entities.ViewPresentacion</class>
+    <class>Entities.ViewTipoProducto</class>
+    <class>Entities.ViewUsoMedic</class>
+    <class>Entities.ViewInventariorpt</class>
+    <class>Entities.ViewPersona</class>
+    <class>Entities.ViewBitacora</class>
+    <class>Entities.ViewDrogueria</class>
+    <class>Entities.ViewProveedor</class>
+    <class>Entities.ViewFactura</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@168.176.36.14:1521:UNBDS7"/>
       <property name="javax.persistence.jdbc.password" value="s02258001"/>
