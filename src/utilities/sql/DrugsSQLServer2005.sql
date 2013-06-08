@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     29/05/2013 01:44:52                          */
+/* Created on:     08/06/2013 11:31:05 p. m.                    */
 /*==============================================================*/
 
 
@@ -911,7 +911,7 @@ go
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA (
-   ID_BITACORA          int                  not null,
+   ID_BITACORA          int                  identity,
    FECHA                datetime             not null,
    TIPO_ACCION          char(20)             not null,
    TABLA                char(50)             null,

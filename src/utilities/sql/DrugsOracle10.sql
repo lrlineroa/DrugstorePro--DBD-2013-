@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     29/05/2013 01:47:16                          */
+/* Created on:     08/06/2013 11:27:44 p. m.                    */
 /*==============================================================*/
 
 
@@ -66,6 +66,9 @@ drop trigger TRG_INS_DROG
 /
 
 drop trigger TRG_UPD_DROG
+/
+
+drop trigger TIB_BITACORA
 /
 
 drop trigger TRG_DEL_CARG
@@ -456,6 +459,14 @@ drop table TIPO_PROVEEDOR cascade constraints
 /
 
 drop table USO_MEDICAMENTO cascade constraints
+/
+
+drop sequence SEQUENCE
+/
+
+create sequence SEQUENCE
+increment by 1
+start with 1
 /
 
 /*==============================================================*/
@@ -1387,6 +1398,27 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
 alter table PROVEEDOR_TIPO_PROVEEDOR
    add constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO foreign key (ID_PROVEEDOR)
       references PROVEEDOR (ID_PROVEEDOR)
+/
+
+
+create trigger TIB_BITACORA before insert
+on BITACORA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "ID_BITACORA" uses sequence SEQUENCE
+    select SEQUENCE.NEXTVAL INTO :new.ID_BITACORA from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
 /
 
 

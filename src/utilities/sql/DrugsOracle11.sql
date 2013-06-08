@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     28/05/2013 20:10:10                          */
+/* Created on:     08/06/2013 11:30:24 p. m.                    */
 /*==============================================================*/
 
 
@@ -183,6 +183,18 @@ drop trigger TRG_INS_USOMEDIC
 /
 
 drop trigger TRG_UPD_USOMEDIC
+/
+
+drop trigger COMPOUNDDELETETRIGGER_BITACORA
+/
+
+drop trigger COMPOUNDINSERTTRIGGER_BITACORA
+/
+
+drop trigger COMPOUNDUPDATETRIGGER_BITACORA
+/
+
+drop trigger TIB_BITACORA
 /
 
 drop trigger TRG_DEL_CARG
@@ -573,6 +585,14 @@ drop table TIPO_PROVEEDOR cascade constraints
 /
 
 drop table USO_MEDICAMENTO cascade constraints
+/
+
+drop sequence SEQUENCE
+/
+
+create sequence SEQUENCE
+increment by 1
+start with 1
 /
 
 /*==============================================================*/
@@ -1520,6 +1540,111 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
 alter table PROVEEDOR_TIPO_PROVEEDOR
    add constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO foreign key (ID_PROVEEDOR)
       references PROVEEDOR (ID_PROVEEDOR)
+/
+
+
+create or replace trigger COMPOUNDDELETETRIGGER_BITACORA
+for delete on BITACORA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDINSERTTRIGGER_BITACORA
+for insert on BITACORA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDUPDATETRIGGER_BITACORA
+for update on BITACORA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create trigger TIB_BITACORA before insert
+on BITACORA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "ID_BITACORA" uses sequence SEQUENCE
+    select SEQUENCE.NEXTVAL INTO :new.ID_BITACORA from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
 /
 
 

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase AS Enterprise 15.0                    */
-/* Created on:     28/05/2013 23:21:02                          */
+/* Created on:     08/06/2013 11:26:28 p. m.                    */
 /*==============================================================*/
 
 
@@ -1016,7 +1016,7 @@ go
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA (
-   ID_BITACORA          int                            not null,
+   ID_BITACORA          int                            identity,
    FECHA                datetime                       not null,
    TIPO_ACCION          char(20)                       not null,
    TABLA                char(50)                       null,
@@ -1206,7 +1206,7 @@ create table PERSONA (
    NOMBRE_PERSONA       varchar(15)                    not null,
    APELLIDO_PERSONA     varchar(15)                    not null,
    TELEFONO_PERSONA     int                            not null
-         constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 999999999 and 000000000),
+         constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 000000000 and 999999999),
    DIRECCION_PERSONA    varchar(25)                    not null,
    PASSWORD             text                           not null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
@@ -1656,12 +1656,12 @@ go
 
 
 create trigger trg_ins_carg on CARGO for insert as
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","CARGO",USER)
 go
 
 
 create trigger trg_upd_carg on CARGO for update as
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","CARGO",USER)
 go
 
 
