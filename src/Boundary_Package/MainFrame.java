@@ -30,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
     private DefaultComboBoxModel headQModel = new DefaultComboBoxModel();
     public static ViewDrogueria DrugPresent;
     private LoginGui log = new LoginGui(this);
+    
     //private RegisterGui reg=new RegisterGui(this);
 
     /**
@@ -39,8 +40,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         initComponents();
         initialitation();
-        d = new Dimension(PanelFirst.getPreferredSize().width + 65, PanelFirst.getPreferredSize().height + 100);
-        this.setPreferredSize(d);
         this.LoggedLabel1.setLayout(new BorderLayout());
         AdjustToCenter();
         this.pack();
@@ -56,14 +55,11 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         MainPanel = new javax.swing.JPanel();
         CloseSesionButton = new javax.swing.JButton();
         LoggedLabel1 = new javax.swing.JLabel();
-        PanelFirst = new javax.swing.JPanel();
-        headQuartersComboBox = new javax.swing.JComboBox();
-        ImageArea = new javax.swing.JLabel();
-        loginButton = new javax.swing.JButton();
-        HeadQLabel = new javax.swing.JLabel();
         panelRolSellAndAdmin = new javax.swing.JPanel();
         inventaryButton = new javax.swing.JButton();
         QueryButton = new javax.swing.JButton();
@@ -74,6 +70,10 @@ public class MainFrame extends javax.swing.JFrame {
         balanceButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -93,58 +93,6 @@ public class MainFrame extends javax.swing.JFrame {
         LoggedLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LoggedLabel1.setBorder(new javax.swing.border.MatteBorder(null));
         LoggedLabel1.setPreferredSize(new java.awt.Dimension(315, 41));
-
-        headQuartersComboBox.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        headQuartersComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        ImageArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ima.jpg"))); // NOI18N
-        ImageArea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        loginButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/login.png"))); // NOI18N
-        loginButton.setText("INGRESAR");
-        loginButton.setBorder(new javax.swing.border.MatteBorder(null));
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-
-        HeadQLabel.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        HeadQLabel.setText("Que sede es esta?");
-
-        javax.swing.GroupLayout PanelFirstLayout = new javax.swing.GroupLayout(PanelFirst);
-        PanelFirst.setLayout(PanelFirstLayout);
-        PanelFirstLayout.setHorizontalGroup(
-            PanelFirstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelFirstLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ImageArea)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelFirstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headQuartersComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(PanelFirstLayout.createSequentialGroup()
-                        .addComponent(HeadQLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFirstLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        PanelFirstLayout.setVerticalGroup(
-            PanelFirstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelFirstLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelFirstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelFirstLayout.createSequentialGroup()
-                        .addComponent(HeadQLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(headQuartersComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ImageArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
 
         panelRolSellAndAdmin.setPreferredSize(new java.awt.Dimension(553, 300));
 
@@ -303,16 +251,15 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(CloseSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(LoggedLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(LoggedLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PanelFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelRolSellAndAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelRolAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(90, Short.MAX_VALUE))
@@ -325,10 +272,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(CloseSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoggedLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(247, 247, 247)
                 .addComponent(panelRolSellAndAdmin, 296, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,12 +288,8 @@ public class MainFrame extends javax.swing.JFrame {
             this.LoggedLabel1.setVisible(false);
             CloseSesionButton.setVisible(false);
             this.MainPanel.removeAll();
-            this.MainPanel.setVisible(false);
-            this.PanelFirst.setVisible(true);
-            this.loginButton.setVisible(true);
             LoginControl.usuarioActivo = null;
-            d = new Dimension(PanelFirst.getPreferredSize().width + 65, PanelFirst.getPreferredSize().height + 100);
-            this.setPreferredSize(d);
+            setMainPanel(log);
             AdjustToCenter();
             this.pack();
         } else {
@@ -377,16 +318,6 @@ public class MainFrame extends javax.swing.JFrame {
 //        CloseSesionButton.setText("MENU PRINCIPAL");
 //        AdjustToCenter();
     }//GEN-LAST:event_balanceButtonActionPerformed
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-//        DrugPresent= DrS.findViewDrogueria(new BigDecimal(this.headQuartersComboBox.getSelectedIndex()));
-//        this.MainPanel.setPreferredSize(log.getPreferredSize());
-//        this.MainPanel.add(log);
-        this.PanelFirst.setVisible(false);
-        setMainPanel(log);
-        AdjustToCenter();
-        this.pack();
-    }//GEN-LAST:event_loginButtonActionPerformed
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
 //        setMainPanel(new SellGui());
@@ -431,11 +362,11 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.setSize(panel.getPreferredSize());
         MainPanel.setVisible(true);
         log.cleanFields();
-        d = new Dimension(MainPanel.getPreferredSize().width + 20, MainPanel.getPreferredSize().height + 100);
+        d = new Dimension(panel.getPreferredSize().width, panel.getPreferredSize().height + 100);
         this.setMinimumSize(d);
+        this.setPreferredSize(d);
         AdjustToCenter();
         this.pack();
-
     }
 
     public void setMainPanel(JPanel panel1, JPanel panel2) {
@@ -502,17 +433,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseSesionButton;
-    private javax.swing.JLabel HeadQLabel;
-    private javax.swing.JLabel ImageArea;
     private javax.swing.JLabel LoggedLabel1;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JPanel PanelFirst;
     private javax.swing.JButton QueryButton;
     private javax.swing.JButton aboutButton;
     private javax.swing.JButton balanceButton;
-    private javax.swing.JComboBox headQuartersComboBox;
     private javax.swing.JButton inventaryButton;
-    private javax.swing.JButton loginButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton modifyButton;
     private javax.swing.JButton orderButton;
     private javax.swing.JPanel panelRolAdmin;
@@ -522,22 +450,18 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void initialitation() {
-//        d= new Dimension(250,200);
-//        this.setLayout(new BorderLayout());
-
         this.panelRolAdmin.setVisible(false);
         this.panelRolSellAndAdmin.setVisible(false);
+        setMainPanel(log);
         this.setMinimumSize(new Dimension(270, 200));
         this.repaint();
         this.setTitle("DrugStorePro- bienvenido");
         this.CloseSesionButton.setVisible(false);
-        fillHeadQBox();
         this.pack();
     }
 
     public void setToolBarSeller(String n) {
         d = new Dimension(70, 23);
-        this.loginButton.setVisible(false);
         this.MainPanel.setVisible(false);
         MainPanel.setBorder(new MetalBorders.Flush3DBorder());
         this.LoggedLabel1.setLayout(new BorderLayout());
@@ -558,7 +482,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void setToolBarAdmin(String n) {
         d = new Dimension(70, 23);
-        this.loginButton.setVisible(false);
         this.MainPanel.setVisible(false);
         MainPanel.setBorder(new MetalBorders.Flush3DBorder());
         this.LoggedLabel1.setLayout(new BorderLayout());
@@ -573,14 +496,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.pack();
 
 
-    }
-
-    private void fillHeadQBox() {
-        this.headQModel.addElement("Seleccione: ");
-//        for(ViewDrogueria dru: DrS.findViewDrogueriaEntities()){
-//        this.headQModel.addElement(dru.getNombreDrogueria());
-//        }
-        this.headQuartersComboBox.setModel(headQModel);
     }
 
     private void AdjustToCenter() {
