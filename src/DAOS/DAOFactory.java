@@ -30,6 +30,46 @@ public class DAOFactory {
         return new ViewPersonaDAO(emf);
     }
 
+    public ViewDrogueriaDAO getViewDrogueriaDAO() {
+        return new ViewDrogueriaDAO(emf);
+    }
+
+    public ViewFabricanteDAO getViewFabricanteDAO() {
+        return new ViewFabricanteDAO(emf);
+    }
+
+    public ViewFacturaDAO getViewFacturaDAO() {
+        return new ViewFacturaDAO(emf);
+    }
+
+    public ViewInventariorptDAO getViewInventariorptDAO() {
+        return new ViewInventariorptDAO(emf);
+    }
+
+    public ViewMedicamentoDAO getViewMedicamentoDAO() {
+        return new ViewMedicamentoDAO(emf);
+    }
+    
+    public ViewPedidoDAO getViewPedidoDAO() {
+        return new ViewPedidoDAO(emf);
+    }
+    
+    public ViewPresentacionDAO getViewPresentacionDAO() {
+        return new ViewPresentacionDAO(emf);
+    }
+    
+    public ViewProveedorDAO getViewProveedorDAO() {
+        return new ViewProveedorDAO(emf);
+    }
+    
+    public ViewTipoProductoDAO getViewTipoProductoDAO() {
+        return new ViewTipoProductoDAO(emf);
+    }
+    
+    public ViewUsoMedicDAO getViewUsoMedicDAO() {
+        return new ViewUsoMedicDAO(emf);
+    }
+
     public void newConection(String rdbms, String user, String pass) throws DataBaseException {
         String PU = "DrugstorePro--DBD-2013-PU";
         Map properties = new HashMap();
