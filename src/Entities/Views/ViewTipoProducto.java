@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_TIPO_PRODUCTO")
+@Table(name = "dbd_3.lrlineroa.VIEW_TIPO_PRODUCTO")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewTipoProducto.findAll", query = "SELECT v FROM ViewTipoProducto v"),
@@ -28,11 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewTipoProducto.findByTipo", query = "SELECT v FROM ViewTipoProducto v WHERE v.tipo = :tipo")})
 public class ViewTipoProducto implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_TIPO_PRODUCTO")
-    private BigDecimal idTipoProducto;
+    private Integer idTipoProducto;
     @Basic(optional = false)
     @Column(name = "TIPO")
     private String tipo;
@@ -40,20 +38,20 @@ public class ViewTipoProducto implements Serializable {
     public ViewTipoProducto() {
     }
 
-    public ViewTipoProducto(BigDecimal idTipoProducto) {
+    public ViewTipoProducto(Integer idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
     }
 
-    public ViewTipoProducto(BigDecimal idTipoProducto, String tipo) {
+    public ViewTipoProducto(Integer idTipoProducto, String tipo) {
         this.idTipoProducto = idTipoProducto;
         this.tipo = tipo;
     }
 
-    public BigDecimal getIdTipoProducto() {
+    public Integer getIdTipoProducto() {
         return idTipoProducto;
     }
 
-    public void setIdTipoProducto(BigDecimal idTipoProducto) {
+    public void setIdTipoProducto(Integer idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
     }
 

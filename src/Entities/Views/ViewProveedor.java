@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_PROVEEDOR")
+@Table(name = "dbd_3.lrlineroa.VIEW_PROVEEDOR")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewProveedor.findAll", query = "SELECT v FROM ViewProveedor v"),
@@ -30,11 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewProveedor.findByDireccionProveedor", query = "SELECT v FROM ViewProveedor v WHERE v.direccionProveedor = :direccionProveedor")})
 public class ViewProveedor implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_PROVEEDOR")
-    private BigDecimal idProveedor;
+    private Integer idProveedor;
     @Basic(optional = false)
     @Column(name = "NOMBRE_PROVEEDOR")
     private String nombreProveedor;
@@ -48,22 +46,22 @@ public class ViewProveedor implements Serializable {
     public ViewProveedor() {
     }
 
-    public ViewProveedor(BigDecimal idProveedor) {
+    public ViewProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public ViewProveedor(BigDecimal idProveedor, String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
+    public ViewProveedor(Integer idProveedor, String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         this.idProveedor = idProveedor;
         this.nombreProveedor = nombreProveedor;
         this.telefonoProveedor = telefonoProveedor;
         this.direccionProveedor = direccionProveedor;
     }
 
-    public BigDecimal getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(BigDecimal idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 

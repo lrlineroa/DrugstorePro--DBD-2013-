@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_FABRICANTE")
+@Table(name = "dbd_3.lrlineroa.VIEW_FABRICANTE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewFabricante.findAll", query = "SELECT v FROM ViewFabricante v"),
@@ -28,26 +27,25 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewFabricante.findByNombreFabricante", query = "SELECT v FROM ViewFabricante v WHERE v.nombreFabricante = :nombreFabricante")})
 public class ViewFabricante implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_FABRICANTE")
-    private BigDecimal idFabricante;
+    private Integer idFabricante;
     @Column(name = "NOMBRE_FABRICANTE")
     private String nombreFabricante;
 
     public ViewFabricante() {
     }
 
-    public ViewFabricante(BigDecimal idFabricante) {
+    public ViewFabricante(Integer idFabricante) {
         this.idFabricante = idFabricante;
     }
 
-    public BigDecimal getIdFabricante() {
+    public Integer getIdFabricante() {
         return idFabricante;
     }
 
-    public void setIdFabricante(BigDecimal idFabricante) {
+    public void setIdFabricante(Integer idFabricante) {
         this.idFabricante = idFabricante;
     }
 

@@ -4,10 +4,8 @@
  */
 package Boundary_Package;
 
-
-
-import Entities.ViewDrogueria;
-import Entities.ViewPersona;
+import Control_Package.LoginControl;
+import Entities.Views.ViewDrogueria;
 import utilities.helpers.VentaTableModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,43 +13,38 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.plaf.metal.MetalBorders;
-import DAOS.ViewDrogueriaDAO;
-import java.math.BigDecimal;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.jvnet.substance.SubstanceLookAndFeel;
-
-
 
 /**
  *
  * @author Administrador
  */
 public class MainFrame extends javax.swing.JFrame {
-    public static EntityManagerFactory emf=Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
-    private ViewDrogueriaDAO DrS= new ViewDrogueriaDAO(MainFrame.emf);
+
+    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
+//    private ViewDrogueriaDAO DrS= new ViewDrogueriaDAO(MainFrame.emf);
     private Dimension d;
-    private VentaTableModel vTbM=new VentaTableModel();
-    private DefaultComboBoxModel  headQModel=new DefaultComboBoxModel();
+    private VentaTableModel vTbM = new VentaTableModel();
+    private DefaultComboBoxModel headQModel = new DefaultComboBoxModel();
     public static ViewDrogueria DrugPresent;
-  
-     
-    private LoginGui log= new LoginGui(this);
+    private LoginGui log = new LoginGui(this);
     //private RegisterGui reg=new RegisterGui(this);
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
-        
+
         initComponents();
         initialitation();
-        createObjectProofs();
-        d=new Dimension(PanelFirst.getPreferredSize().width+65,PanelFirst.getPreferredSize().height+100);
+        d = new Dimension(PanelFirst.getPreferredSize().width + 65, PanelFirst.getPreferredSize().height + 100);
         this.setPreferredSize(d);
         this.LoggedLabel1.setLayout(new BorderLayout());
         AdjustToCenter();
         this.pack();
-     
+
     }
 
     /**
@@ -345,33 +338,32 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
     private void CloseSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseSesionButtonActionPerformed
-        if(CloseSesionButton.getText().equals("CERRAR SESION")){
+        if (CloseSesionButton.getText().equals("CERRAR SESION")) {
             this.LoggedLabel1.setVisible(false);
             CloseSesionButton.setVisible(false);
             this.MainPanel.removeAll();
             this.MainPanel.setVisible(false);
             this.PanelFirst.setVisible(true);
             this.loginButton.setVisible(true);
-            LoginGui.persL=null;
-            d=new Dimension(PanelFirst.getPreferredSize().width+65,PanelFirst.getPreferredSize().height+100);
+            LoginControl.usuarioActivo = null;
+            d = new Dimension(PanelFirst.getPreferredSize().width + 65, PanelFirst.getPreferredSize().height + 100);
             this.setPreferredSize(d);
             AdjustToCenter();
             this.pack();
-        }else{
-            if(LoginGui.persL.getIdCargo().intValue()==1){
-                setToolBarAdmin(LoginGui.persL.getNombrePersona());
+        } else {
+            if (LoginControl.usuarioActivo.getIdCargo().getIdCargo() == 1) {
+                setToolBarAdmin(LoginControl.usuarioActivo.getNombrePersona());
                 CloseSesionButton.setText("CERRAR SESION");
                 AdjustToCenter();
-            }else{
-                setToolBarSeller(LoginGui.persL.getNombrePersona());
+            } else {
+                setToolBarSeller(LoginControl.usuarioActivo.getNombrePersona());
                 CloseSesionButton.setText("CERRAR SESION");
                 AdjustToCenter();
             }
-        
+
         }
-        
+
     }//GEN-LAST:event_CloseSesionButtonActionPerformed
 
     private void inventaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventaryButtonActionPerformed
@@ -387,7 +379,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_balanceButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        DrugPresent= DrS.findViewDrogueria(new BigDecimal(this.headQuartersComboBox.getSelectedIndex()));
+//        DrugPresent= DrS.findViewDrogueria(new BigDecimal(this.headQuartersComboBox.getSelectedIndex()));
 //        this.MainPanel.setPreferredSize(log.getPreferredSize());
 //        this.MainPanel.add(log);
         this.PanelFirst.setVisible(false);
@@ -430,10 +422,8 @@ public class MainFrame extends javax.swing.JFrame {
 //        CloseSesionButton.setText("MENU PRINCIPAL");
 //        AdjustToCenter();
     }//GEN-LAST:event_aboutButtonActionPerformed
-     
-    
-    
-    public void setMainPanel(JPanel panel){
+
+    public void setMainPanel(JPanel panel) {
         panel.setVisible(true);
         MainPanel.removeAll();
         MainPanel.setVisible(false);
@@ -441,17 +431,17 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.setSize(panel.getPreferredSize());
         MainPanel.setVisible(true);
         log.cleanFields();
-        d=new Dimension(MainPanel.getPreferredSize().width+20, MainPanel.getPreferredSize().height+100);
+        d = new Dimension(MainPanel.getPreferredSize().width + 20, MainPanel.getPreferredSize().height + 100);
         this.setMinimumSize(d);
         AdjustToCenter();
         this.pack();
-        
+
     }
-    
-    public void setMainPanel(JPanel panel1,JPanel panel2){
+
+    public void setMainPanel(JPanel panel1, JPanel panel2) {
         MainPanel.removeAll();
-        int totalHeight= panel1.getPreferredSize().height+panel2.getPreferredSize().height;
-        d=new Dimension(panel1.getPreferredSize().width, totalHeight);
+        int totalHeight = panel1.getPreferredSize().height + panel2.getPreferredSize().height;
+        d = new Dimension(panel1.getPreferredSize().width, totalHeight);
         MainPanel.setSize(d);
         panel1.setVisible(true);
         panel2.setVisible(true);
@@ -461,11 +451,12 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.add(panel2, BorderLayout.SOUTH);
         MainPanel.setVisible(true);
         log.cleanFields();
-        d=new Dimension(panel1.getPreferredSize().width+20, totalHeight+100);
+        d = new Dimension(panel1.getPreferredSize().width + 20, totalHeight + 100);
         this.setMinimumSize(d);
         AdjustToCenter();
         this.pack();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -502,9 +493,8 @@ public class MainFrame extends javax.swing.JFrame {
          */
         JFrame.setDefaultLookAndFeelDecorated(true);
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenGraphiteGlassSkin");
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
 
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
             }
@@ -534,78 +524,67 @@ public class MainFrame extends javax.swing.JFrame {
     public void initialitation() {
 //        d= new Dimension(250,200);
 //        this.setLayout(new BorderLayout());
-        
+
         this.panelRolAdmin.setVisible(false);
         this.panelRolSellAndAdmin.setVisible(false);
-        this.setMinimumSize(new Dimension(270,200));
+        this.setMinimumSize(new Dimension(270, 200));
         this.repaint();
         this.setTitle("DrugStorePro- bienvenido");
         this.CloseSesionButton.setVisible(false);
         fillHeadQBox();
         this.pack();
     }
-     public void setToolBarSeller(String n) {
-            d=new Dimension(70, 23);
-            this.loginButton.setVisible(false);
-            this.MainPanel.setVisible(false);
-            MainPanel.setBorder(new MetalBorders.Flush3DBorder());
-            this.LoggedLabel1.setLayout(new BorderLayout());
-            this.LoggedLabel1.setVisible(false);
-            this.LoggedLabel1.setSize(d);
-            this.LoggedLabel1.setVisible(true);           
-            this.LoggedLabel1.setLocation(200,1);
-            this.add(LoggedLabel1);
-            
+
+    public void setToolBarSeller(String n) {
+        d = new Dimension(70, 23);
+        this.loginButton.setVisible(false);
+        this.MainPanel.setVisible(false);
+        MainPanel.setBorder(new MetalBorders.Flush3DBorder());
+        this.LoggedLabel1.setLayout(new BorderLayout());
+        this.LoggedLabel1.setVisible(false);
+        this.LoggedLabel1.setSize(d);
+        this.LoggedLabel1.setVisible(true);
+        this.LoggedLabel1.setLocation(200, 1);
+        this.add(LoggedLabel1);
+
 //            CloseSesionButton.setLocation(44,1);
-            this.CloseSesionButton.setVisible(true);
-            this.LoggedLabel1.setText(n);   
-            setMainPanel(this.panelRolSellAndAdmin);
-           
-            this.pack();
-             
-    }
-    public void setToolBarAdmin(String n) {
-            d=new Dimension(70, 23);
-            this.loginButton.setVisible(false);
-            this.MainPanel.setVisible(false);
-            MainPanel.setBorder(new MetalBorders.Flush3DBorder());
-            this.LoggedLabel1.setLayout(new BorderLayout());
-            this.LoggedLabel1.setVisible(false);
-            this.LoggedLabel1.setSize(d);
-            this.LoggedLabel1.setVisible(true);           
-            this.LoggedLabel1.setLocation(200,1);
-            this.add(LoggedLabel1);
-            this.CloseSesionButton.setVisible(true);
-            this.LoggedLabel1.setText(n);  
-            setMainPanel(this.panelRolSellAndAdmin,this.panelRolAdmin);
-            this.pack();
-            
-             
+        this.CloseSesionButton.setVisible(true);
+        this.LoggedLabel1.setText(n);
+        setMainPanel(this.panelRolSellAndAdmin);
+
+        this.pack();
+
     }
 
-    private void createObjectProofs() {
-//       PersonServices ps=new PersonServices(); 
-//       Persona p =new Persona(new Long(123), 1, 1, "juanito", "Alimaña", "mima", "321654", "cll26no50-38", "juanitoRata@hotmail.com");
-////       ps.create(p);
-//       ps.delete(p.getIdPersona()); 
-//       CargoServices carS=new CargoServices();
-//        System.out.println(carS.readById(new Integer(1)).getTipoCargo());
+    public void setToolBarAdmin(String n) {
+        d = new Dimension(70, 23);
+        this.loginButton.setVisible(false);
+        this.MainPanel.setVisible(false);
+        MainPanel.setBorder(new MetalBorders.Flush3DBorder());
+        this.LoggedLabel1.setLayout(new BorderLayout());
+        this.LoggedLabel1.setVisible(false);
+        this.LoggedLabel1.setSize(d);
+        this.LoggedLabel1.setVisible(true);
+        this.LoggedLabel1.setLocation(200, 1);
+        this.add(LoggedLabel1);
+        this.CloseSesionButton.setVisible(true);
+        this.LoggedLabel1.setText(n);
+        setMainPanel(this.panelRolSellAndAdmin, this.panelRolAdmin);
+        this.pack();
+
+
     }
 
     private void fillHeadQBox() {
         this.headQModel.addElement("Seleccione: ");
-        for(ViewDrogueria dru: DrS.findViewDrogueriaEntities()){
-        this.headQModel.addElement(dru.getNombreDrogueria());
-        }
+//        for(ViewDrogueria dru: DrS.findViewDrogueriaEntities()){
+//        this.headQModel.addElement(dru.getNombreDrogueria());
+//        }
         this.headQuartersComboBox.setModel(headQModel);
     }
 
     private void AdjustToCenter() {
         this.setLocationRelativeTo(null);
-        
-    }
 
-   
-    
-    
+    }
 }

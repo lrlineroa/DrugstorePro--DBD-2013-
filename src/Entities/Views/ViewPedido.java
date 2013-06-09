@@ -2,16 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
+import Entities.Drogueria;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,10 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_PEDIDO")
+@Table(name = "dbd_3.lrlineroa.VIEW_PEDIDO")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewPedido.findAll", query = "SELECT v FROM ViewPedido v"),
@@ -38,11 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewPedido.findBySolicitudFinalizada", query = "SELECT v FROM ViewPedido v WHERE v.solicitudFinalizada = :solicitudFinalizada")})
 public class ViewPedido implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_PEDIDO")
-    private BigDecimal idPedido;
+    private Integer idPedido;
     @Basic(optional = false)
     @Column(name = "FECHA_PEDIDO")
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,19 +62,22 @@ public class ViewPedido implements Serializable {
     private String telefonoClientePed;
     @Basic(optional = false)
     @Column(name = "SOLICITUD_EN_CURSO")
-    private BigInteger solicitudEnCurso;
+    private short solicitudEnCurso;
     @Basic(optional = false)
     @Column(name = "SOLICITUD_FINALIZADA")
-    private BigInteger solicitudFinalizada;
+    private short solicitudFinalizada;
+    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
+    @ManyToOne(optional = false)
+    private Drogueria idDrogueria;
 
     public ViewPedido() {
     }
 
-    public ViewPedido(BigDecimal idPedido) {
+    public ViewPedido(Integer idPedido) {
         this.idPedido = idPedido;
     }
 
-    public ViewPedido(BigDecimal idPedido, Date fechaPedido, Date horaPedido, String nombreClientePed, String direccionClienPedido, String telefonoClientePed, BigInteger solicitudEnCurso, BigInteger solicitudFinalizada) {
+    public ViewPedido(Integer idPedido, Date fechaPedido, Date horaPedido, String nombreClientePed, String direccionClienPedido, String telefonoClientePed, short solicitudEnCurso, short solicitudFinalizada) {
         this.idPedido = idPedido;
         this.fechaPedido = fechaPedido;
         this.horaPedido = horaPedido;
@@ -85,11 +88,11 @@ public class ViewPedido implements Serializable {
         this.solicitudFinalizada = solicitudFinalizada;
     }
 
-    public BigDecimal getIdPedido() {
+    public Integer getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(BigDecimal idPedido) {
+    public void setIdPedido(Integer idPedido) {
         this.idPedido = idPedido;
     }
 
@@ -133,20 +136,28 @@ public class ViewPedido implements Serializable {
         this.telefonoClientePed = telefonoClientePed;
     }
 
-    public BigInteger getSolicitudEnCurso() {
+    public short getSolicitudEnCurso() {
         return solicitudEnCurso;
     }
 
-    public void setSolicitudEnCurso(BigInteger solicitudEnCurso) {
+    public void setSolicitudEnCurso(short solicitudEnCurso) {
         this.solicitudEnCurso = solicitudEnCurso;
     }
 
-    public BigInteger getSolicitudFinalizada() {
+    public short getSolicitudFinalizada() {
         return solicitudFinalizada;
     }
 
-    public void setSolicitudFinalizada(BigInteger solicitudFinalizada) {
+    public void setSolicitudFinalizada(short solicitudFinalizada) {
         this.solicitudFinalizada = solicitudFinalizada;
+    }
+
+    public Drogueria getIdDrogueria() {
+        return idDrogueria;
+    }
+
+    public void setIdDrogueria(Drogueria idDrogueria) {
+        this.idDrogueria = idDrogueria;
     }
 
     @Override

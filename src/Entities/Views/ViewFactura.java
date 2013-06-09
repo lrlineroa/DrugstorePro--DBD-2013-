@@ -2,14 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
+import Entities.Persona;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,10 +19,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_FACTURA")
+@Table(name = "dbd_3.lrlineroa.VIEW_FACTURA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewFactura.findAll", query = "SELECT v FROM ViewFactura v"),
@@ -28,41 +30,51 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewFactura.findByTotal", query = "SELECT v FROM ViewFactura v WHERE v.total = :total")})
 public class ViewFactura implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_FACTURA")
-    private BigDecimal idFactura;
+    private Integer idFactura;
     @Basic(optional = false)
     @Column(name = "TOTAL")
-    private double total;
+    private float total;
+    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
+    @ManyToOne(optional = false)
+    private Persona idPersona;
 
     public ViewFactura() {
     }
 
-    public ViewFactura(BigDecimal idFactura) {
+    public ViewFactura(Integer idFactura) {
         this.idFactura = idFactura;
     }
 
-    public ViewFactura(BigDecimal idFactura, double total) {
+    public ViewFactura(Integer idFactura, float total) {
         this.idFactura = idFactura;
         this.total = total;
     }
 
-    public BigDecimal getIdFactura() {
+    public Integer getIdFactura() {
         return idFactura;
     }
 
-    public void setIdFactura(BigDecimal idFactura) {
+    public void setIdFactura(Integer idFactura) {
         this.idFactura = idFactura;
     }
 
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(float total) {
         this.total = total;
+    }
+
+    public Persona getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Persona idPersona) {
+        this.idPersona = idPersona;
     }
 
     @Override

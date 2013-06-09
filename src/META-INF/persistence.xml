@@ -2,24 +2,38 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="DrugstorePro--DBD-2013-PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Entities.ViewBitacora</class>
-    <class>Entities.ViewCargo</class>
-    <class>Entities.ViewDrogueria</class>
-    <class>Entities.ViewFabricante</class>
-    <class>Entities.ViewFactura</class>
-    <class>Entities.ViewInventariorpt</class>
-    <class>Entities.ViewMedicamento</class>
-    <class>Entities.ViewPedido</class>
-    <class>Entities.ViewPersona</class>
-    <class>Entities.ViewPresentacion</class>
-    <class>Entities.ViewProveedor</class>
-    <class>Entities.ViewTipoProducto</class>
-    <class>Entities.ViewUsoMedic</class>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@168.176.36.14:1521:UNBDS7"/>
-      <property name="javax.persistence.jdbc.password" value="s02258001"/>
-      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.user" value="lrlineroa"/>
-    </properties>
+    <class>Entities.Bitacora</class>
+    <class>Entities.Cargo</class>
+    <class>Entities.Drogueria</class>
+    <class>Entities.Fabricante</class>
+    <class>Entities.Factura</class>
+    <class>Entities.InventarioRpt</class>
+    <class>Entities.Medicamento</class>
+    <class>Entities.Pedido</class>
+    <class>Entities.Persona</class>
+    <class>Entities.Presentacion</class>
+    <class>Entities.Proveedor</class>
+    <class>Entities.TipoProducto</class>
+    <class>Entities.TipoProveedor</class>
+    <class>Entities.UsoMedicamento</class>
+    <class>Entities.ViewPedidoProducto</class>
+    <class>Entities.ViewProductoDrogueria</class>
+    <class>Entities.ViewProductoFabricante</class>
+    <class>Entities.ViewProductoFactura</class>
+    <class>Entities.ViewProductoInventario</class>
+    <class>Entities.ViewProveedorTipoProv</class>
+    <class>Entities.Views.ViewProveedor</class>
+    <class>Entities.Views.ViewUsoMedic</class>
+    <class>Entities.Views.ViewCargo</class>
+    <class>Entities.Views.ViewFabricante</class>
+    <class>Entities.Views.ViewPresentacion</class>
+    <class>Entities.Views.ViewPersona</class>
+    <class>Entities.Views.ViewDrogueria</class>
+    <class>Entities.Views.ViewFactura</class>
+    <class>Entities.Views.ViewPedido</class>
+    <class>Entities.Views.ViewBitacora</class>
+    <class>Entities.Views.ViewTipoProducto</class>
+    <class>Entities.Views.ViewMedicamento</class>
+    <class>Entities.Views.ViewInventariorpt</class>
   </persistence-unit>
 </persistence>

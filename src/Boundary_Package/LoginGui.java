@@ -4,11 +4,14 @@
  */
 package Boundary_Package;
 
-import Entities.ViewPersona;
+import Entities.Views.ViewPersona;
 import utilities.helpers.RegexFormatter;
 import utilities.helpers.RegularExpression;
 import Control_Package.LoginControl;
-import java.math.BigDecimal;
+import DAOS.exceptions.DataBaseException;
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -17,19 +20,18 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class LoginGui extends javax.swing.JPanel {
-     private ViewPersona pers;  
-     public static ViewPersona persL;
-     private LoginControl logCon; 
-     
-     private MainFrame frame;
+
+    private LoginControl logCon = new LoginControl();
+    private MainFrame frame;
+
     /**
      * Creates new form LoginGui
      */
     public LoginGui(MainFrame frame) {
-        this.setSize(350,175);
+        this.setSize(350, 175);
         initComponents();
-        this.frame=frame;
-        new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install(IdentificationTf);
+        this.frame = frame;
+//        new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install(IdentificationTf);
         this.IdentificationTf.getCursor();
     }
 
@@ -49,7 +51,7 @@ public class LoginGui extends javax.swing.JPanel {
         Contraseña = new javax.swing.JLabel();
         IdentificationTf = new javax.swing.JFormattedTextField();
         Contraseña1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        rdbmsCombo = new javax.swing.JComboBox();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INGRESAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
 
@@ -81,8 +83,8 @@ public class LoginGui extends javax.swing.JPanel {
         Contraseña1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         Contraseña1.setText("Base de Datos");
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SyBase", "MS SQL Server", "Oracle" }));
+        rdbmsCombo.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        rdbmsCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SyBase", "MS SQL Server", "Oracle" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,7 +102,7 @@ public class LoginGui extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rdbmsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +128,7 @@ public class LoginGui extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Contraseña1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rdbmsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(AceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -150,56 +152,47 @@ public class LoginGui extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
-        if(this.IdentificationTf.getText().equals("")||this.PasswordTf.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Campos vacíos", "MENSAJE", JOptionPane.OK_OPTION);  
-            cleanFields();
-        }else{
-             pers=new ViewPersona(new BigDecimal(Long.parseLong(this.IdentificationTf.getText())));
-             persL=new ViewPersona();
-             logCon=new LoginControl(); 
-             pers.setPassword(this.PasswordTf.getText());
-             persL=logCon.getLooged(pers);//aqui esta el usuario logeado
-             
-             
-            if(logCon.verifyLogin(pers).equals("Login Hecho")&&logCon.VerifyRol(persL)){
-                frame.setToolBarAdmin(persL.getNombrePersona()); 
-            }else if(logCon.verifyLogin(pers).equals("Login Hecho")&&!logCon.VerifyRol(persL)){
-                frame.setToolBarSeller(persL.getNombrePersona());
-            }else{
-                JOptionPane.showMessageDialog(null,logCon.verifyLogin(pers) , "MENSAJE", JOptionPane.OK_OPTION);  
-                 cleanFields();
-            }
-        }
+        login();
     }//GEN-LAST:event_AceptarButtonActionPerformed
 
     private void PasswordTfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordTfKeyPressed
-        if(evt.getKeyCode()==10){
-            if(this.IdentificationTf.getText().equals("")||this.PasswordTf.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Campos vacíos", "MENSAJE", JOptionPane.OK_OPTION);  
-                cleanFields();
-            }else{
-                pers=new ViewPersona(new BigDecimal(Long.parseLong(this.IdentificationTf.getText())));
-                persL=new ViewPersona();
-                logCon=new LoginControl(); 
-                pers.setPassword(this.PasswordTf.getText());
-                persL=logCon.getLooged(pers);//aqui esta el usuario logeado
-               
-            if(logCon.verifyLogin(pers).equals("Login Hecho")&&logCon.VerifyRol(persL)){
-                frame.setToolBarAdmin(persL.getNombrePersona()); 
-            }else if(logCon.verifyLogin(pers).equals("Login Hecho")&&!logCon.VerifyRol(persL)){
-                frame.setToolBarSeller(persL.getNombrePersona());
-            }else{
-                JOptionPane.showMessageDialog(null,logCon.verifyLogin(pers) , "MENSAJE", JOptionPane.OK_OPTION);  
-                 cleanFields();
-            }
-            }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
         }
     }//GEN-LAST:event_PasswordTfKeyPressed
 
-    public void cleanFields(){
-     this.IdentificationTf.setText("");
-     this.PasswordTf.setText("");
-    
+    private void login() {
+        if (IdentificationTf.getText().equals("") || new String(PasswordTf.getPassword()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campos vacíos", "MENSAJE", JOptionPane.ERROR_MESSAGE);
+            cleanFields();
+        } else {
+            ViewPersona login = null;
+            try {
+                login = logCon.login(rdbmsCombo.getSelectedItem().toString(),
+                        IdentificationTf.getText(),
+                        new String(PasswordTf.getPassword()));
+            } catch (DataBaseException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            if (login != null) {
+                JOptionPane.showMessageDialog(null, "Login Exitoso", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
+
+                if (login.getIdCargo().getIdCargo() == 1) {
+                    frame.setToolBarAdmin(login.getNombrePersona());
+                } else if (login.getIdCargo().getIdCargo() == 2) {
+                    frame.setToolBarSeller(login.getNombrePersona());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Combinación Usuario/Contraseña Errados", "ERROR", JOptionPane.ERROR_MESSAGE);
+                cleanFields();
+            }
+        }
+    }
+
+    public void cleanFields() {
+        this.IdentificationTf.setText("");
+        this.PasswordTf.setText("");
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarButton;
@@ -207,8 +200,8 @@ public class LoginGui extends javax.swing.JPanel {
     private javax.swing.JLabel Contraseña1;
     private javax.swing.JFormattedTextField IdentificationTf;
     private javax.swing.JPasswordField PasswordTf;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox rdbmsCombo;
     // End of variables declaration//GEN-END:variables
 }

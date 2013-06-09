@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_PRESENTACION")
+@Table(name = "dbd_3.lrlineroa.VIEW_PRESENTACION")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewPresentacion.findAll", query = "SELECT v FROM ViewPresentacion v"),
@@ -28,11 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewPresentacion.findByTipoPresentacion", query = "SELECT v FROM ViewPresentacion v WHERE v.tipoPresentacion = :tipoPresentacion")})
 public class ViewPresentacion implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_PRESENTACION")
-    private BigDecimal idPresentacion;
+    private Integer idPresentacion;
     @Basic(optional = false)
     @Column(name = "TIPO_PRESENTACION")
     private String tipoPresentacion;
@@ -40,20 +38,20 @@ public class ViewPresentacion implements Serializable {
     public ViewPresentacion() {
     }
 
-    public ViewPresentacion(BigDecimal idPresentacion) {
+    public ViewPresentacion(Integer idPresentacion) {
         this.idPresentacion = idPresentacion;
     }
 
-    public ViewPresentacion(BigDecimal idPresentacion, String tipoPresentacion) {
+    public ViewPresentacion(Integer idPresentacion, String tipoPresentacion) {
         this.idPresentacion = idPresentacion;
         this.tipoPresentacion = tipoPresentacion;
     }
 
-    public BigDecimal getIdPresentacion() {
+    public Integer getIdPresentacion() {
         return idPresentacion;
     }
 
-    public void setIdPresentacion(BigDecimal idPresentacion) {
+    public void setIdPresentacion(Integer idPresentacion) {
         this.idPresentacion = idPresentacion;
     }
 

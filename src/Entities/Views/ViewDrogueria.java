@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_DROGUERIA")
+@Table(name = "dbd_3.lrlineroa.VIEW_DROGUERIA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewDrogueria.findAll", query = "SELECT v FROM ViewDrogueria v"),
@@ -30,11 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewDrogueria.findByDireccionDrogueria", query = "SELECT v FROM ViewDrogueria v WHERE v.direccionDrogueria = :direccionDrogueria")})
 public class ViewDrogueria implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_DROGUERIA")
-    private BigDecimal idDrogueria;
+    private Integer idDrogueria;
     @Basic(optional = false)
     @Column(name = "NOMBRE_DROGUERIA")
     private String nombreDrogueria;
@@ -48,22 +46,22 @@ public class ViewDrogueria implements Serializable {
     public ViewDrogueria() {
     }
 
-    public ViewDrogueria(BigDecimal idDrogueria) {
+    public ViewDrogueria(Integer idDrogueria) {
         this.idDrogueria = idDrogueria;
     }
 
-    public ViewDrogueria(BigDecimal idDrogueria, String nombreDrogueria, String telefonoDrogueria, String direccionDrogueria) {
+    public ViewDrogueria(Integer idDrogueria, String nombreDrogueria, String telefonoDrogueria, String direccionDrogueria) {
         this.idDrogueria = idDrogueria;
         this.nombreDrogueria = nombreDrogueria;
         this.telefonoDrogueria = telefonoDrogueria;
         this.direccionDrogueria = direccionDrogueria;
     }
 
-    public BigDecimal getIdDrogueria() {
+    public Integer getIdDrogueria() {
         return idDrogueria;
     }
 
-    public void setIdDrogueria(BigDecimal idDrogueria) {
+    public void setIdDrogueria(Integer idDrogueria) {
         this.idDrogueria = idDrogueria;
     }
 

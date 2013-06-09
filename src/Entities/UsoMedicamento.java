@@ -4,56 +4,62 @@
  */
 package Entities;
 
+import Entities.Views.ViewMedicamento;
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_USO_MEDIC")
+@Table(name = "USO_MEDICAMENTO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ViewUsoMedic.findAll", query = "SELECT v FROM ViewUsoMedic v"),
-    @NamedQuery(name = "ViewUsoMedic.findByIdUsoMedicamento", query = "SELECT v FROM ViewUsoMedic v WHERE v.idUsoMedicamento = :idUsoMedicamento"),
-    @NamedQuery(name = "ViewUsoMedic.findByTipoUsoProducto", query = "SELECT v FROM ViewUsoMedic v WHERE v.tipoUsoProducto = :tipoUsoProducto")})
-public class ViewUsoMedic implements Serializable {
+    @NamedQuery(name = "UsoMedicamento.findAll", query = "SELECT u FROM UsoMedicamento u"),
+    @NamedQuery(name = "UsoMedicamento.findByIdUsoMedicamento", query = "SELECT u FROM UsoMedicamento u WHERE u.idUsoMedicamento = :idUsoMedicamento"),
+    @NamedQuery(name = "UsoMedicamento.findByTipoUsoProducto", query = "SELECT u FROM UsoMedicamento u WHERE u.tipoUsoProducto = :tipoUsoProducto")})
+public class UsoMedicamento implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_USO_MEDICAMENTO")
-    private BigDecimal idUsoMedicamento;
+    private Integer idUsoMedicamento;
     @Basic(optional = false)
     @Column(name = "TIPO_USO_PRODUCTO")
     private String tipoUsoProducto;
+    @OneToMany(mappedBy = "idUsoMedicamento")
+    private List<Medicamento> medicamentoList;
+    @OneToMany(mappedBy = "idUsoMedicamento")
+    private List<ViewMedicamento> viewMedicamentoList;
 
-    public ViewUsoMedic() {
+    public UsoMedicamento() {
     }
 
-    public ViewUsoMedic(BigDecimal idUsoMedicamento) {
+    public UsoMedicamento(Integer idUsoMedicamento) {
         this.idUsoMedicamento = idUsoMedicamento;
     }
 
-    public ViewUsoMedic(BigDecimal idUsoMedicamento, String tipoUsoProducto) {
+    public UsoMedicamento(Integer idUsoMedicamento, String tipoUsoProducto) {
         this.idUsoMedicamento = idUsoMedicamento;
         this.tipoUsoProducto = tipoUsoProducto;
     }
 
-    public BigDecimal getIdUsoMedicamento() {
+    public Integer getIdUsoMedicamento() {
         return idUsoMedicamento;
     }
 
-    public void setIdUsoMedicamento(BigDecimal idUsoMedicamento) {
+    public void setIdUsoMedicamento(Integer idUsoMedicamento) {
         this.idUsoMedicamento = idUsoMedicamento;
     }
 
@@ -63,6 +69,24 @@ public class ViewUsoMedic implements Serializable {
 
     public void setTipoUsoProducto(String tipoUsoProducto) {
         this.tipoUsoProducto = tipoUsoProducto;
+    }
+
+    @XmlTransient
+    public List<Medicamento> getMedicamentoList() {
+        return medicamentoList;
+    }
+
+    public void setMedicamentoList(List<Medicamento> medicamentoList) {
+        this.medicamentoList = medicamentoList;
+    }
+
+    @XmlTransient
+    public List<ViewMedicamento> getViewMedicamentoList() {
+        return viewMedicamentoList;
+    }
+
+    public void setViewMedicamentoList(List<ViewMedicamento> viewMedicamentoList) {
+        this.viewMedicamentoList = viewMedicamentoList;
     }
 
     @Override
@@ -75,10 +99,10 @@ public class ViewUsoMedic implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ViewUsoMedic)) {
+        if (!(object instanceof UsoMedicamento)) {
             return false;
         }
-        ViewUsoMedic other = (ViewUsoMedic) object;
+        UsoMedicamento other = (UsoMedicamento) object;
         if ((this.idUsoMedicamento == null && other.idUsoMedicamento != null) || (this.idUsoMedicamento != null && !this.idUsoMedicamento.equals(other.idUsoMedicamento))) {
             return false;
         }
@@ -87,7 +111,7 @@ public class ViewUsoMedic implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewUsoMedic[ idUsoMedicamento=" + idUsoMedicamento + " ]";
+        return "Entities.UsoMedicamento[ idUsoMedicamento=" + idUsoMedicamento + " ]";
     }
     
 }

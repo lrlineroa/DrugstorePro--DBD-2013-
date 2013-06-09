@@ -2,15 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
+import Entities.Persona;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,10 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_INVENTARIORPT")
+@Table(name = "dbd_3.lrlineroa.VIEW_INVENTARIORPT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewInventariorpt.findAll", query = "SELECT v FROM ViewInventariorpt v"),
@@ -31,33 +33,35 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewInventariorpt.findByFechaInv", query = "SELECT v FROM ViewInventariorpt v WHERE v.fechaInv = :fechaInv")})
 public class ViewInventariorpt implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_INVENTARIORPT")
-    private BigDecimal idInventariorpt;
+    private Integer idInventariorpt;
     @Basic(optional = false)
     @Column(name = "FECHA_INV")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInv;
+    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
+    @ManyToOne(optional = false)
+    private Persona idPersona;
 
     public ViewInventariorpt() {
     }
 
-    public ViewInventariorpt(BigDecimal idInventariorpt) {
+    public ViewInventariorpt(Integer idInventariorpt) {
         this.idInventariorpt = idInventariorpt;
     }
 
-    public ViewInventariorpt(BigDecimal idInventariorpt, Date fechaInv) {
+    public ViewInventariorpt(Integer idInventariorpt, Date fechaInv) {
         this.idInventariorpt = idInventariorpt;
         this.fechaInv = fechaInv;
     }
 
-    public BigDecimal getIdInventariorpt() {
+    public Integer getIdInventariorpt() {
         return idInventariorpt;
     }
 
-    public void setIdInventariorpt(BigDecimal idInventariorpt) {
+    public void setIdInventariorpt(Integer idInventariorpt) {
         this.idInventariorpt = idInventariorpt;
     }
 
@@ -67,6 +71,14 @@ public class ViewInventariorpt implements Serializable {
 
     public void setFechaInv(Date fechaInv) {
         this.fechaInv = fechaInv;
+    }
+
+    public Persona getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Persona idPersona) {
+        this.idPersona = idPersona;
     }
 
     @Override

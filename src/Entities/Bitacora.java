@@ -5,7 +5,6 @@
 package Entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -20,25 +19,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_BITACORA")
+@Table(name = "BITACORA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ViewBitacora.findAll", query = "SELECT v FROM ViewBitacora v"),
-    @NamedQuery(name = "ViewBitacora.findByIdBitacora", query = "SELECT v FROM ViewBitacora v WHERE v.idBitacora = :idBitacora"),
-    @NamedQuery(name = "ViewBitacora.findByFecha", query = "SELECT v FROM ViewBitacora v WHERE v.fecha = :fecha"),
-    @NamedQuery(name = "ViewBitacora.findByTipoAccion", query = "SELECT v FROM ViewBitacora v WHERE v.tipoAccion = :tipoAccion"),
-    @NamedQuery(name = "ViewBitacora.findByTabla", query = "SELECT v FROM ViewBitacora v WHERE v.tabla = :tabla"),
-    @NamedQuery(name = "ViewBitacora.findByUsuario", query = "SELECT v FROM ViewBitacora v WHERE v.usuario = :usuario")})
-public class ViewBitacora implements Serializable {
+    @NamedQuery(name = "Bitacora.findAll", query = "SELECT b FROM Bitacora b"),
+    @NamedQuery(name = "Bitacora.findByIdBitacora", query = "SELECT b FROM Bitacora b WHERE b.idBitacora = :idBitacora"),
+    @NamedQuery(name = "Bitacora.findByFecha", query = "SELECT b FROM Bitacora b WHERE b.fecha = :fecha"),
+    @NamedQuery(name = "Bitacora.findByTipoAccion", query = "SELECT b FROM Bitacora b WHERE b.tipoAccion = :tipoAccion"),
+    @NamedQuery(name = "Bitacora.findByTabla", query = "SELECT b FROM Bitacora b WHERE b.tabla = :tabla"),
+    @NamedQuery(name = "Bitacora.findByUsuario", query = "SELECT b FROM Bitacora b WHERE b.usuario = :usuario")})
+public class Bitacora implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_BITACORA")
-    private BigDecimal idBitacora;
+    private Integer idBitacora;
     @Basic(optional = false)
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,24 +49,24 @@ public class ViewBitacora implements Serializable {
     @Column(name = "USUARIO")
     private String usuario;
 
-    public ViewBitacora() {
+    public Bitacora() {
     }
 
-    public ViewBitacora(BigDecimal idBitacora) {
+    public Bitacora(Integer idBitacora) {
         this.idBitacora = idBitacora;
     }
 
-    public ViewBitacora(BigDecimal idBitacora, Date fecha, String tipoAccion) {
+    public Bitacora(Integer idBitacora, Date fecha, String tipoAccion) {
         this.idBitacora = idBitacora;
         this.fecha = fecha;
         this.tipoAccion = tipoAccion;
     }
 
-    public BigDecimal getIdBitacora() {
+    public Integer getIdBitacora() {
         return idBitacora;
     }
 
-    public void setIdBitacora(BigDecimal idBitacora) {
+    public void setIdBitacora(Integer idBitacora) {
         this.idBitacora = idBitacora;
     }
 
@@ -114,10 +112,10 @@ public class ViewBitacora implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ViewBitacora)) {
+        if (!(object instanceof Bitacora)) {
             return false;
         }
-        ViewBitacora other = (ViewBitacora) object;
+        Bitacora other = (Bitacora) object;
         if ((this.idBitacora == null && other.idBitacora != null) || (this.idBitacora != null && !this.idBitacora.equals(other.idBitacora))) {
             return false;
         }
@@ -126,7 +124,7 @@ public class ViewBitacora implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewBitacora[ idBitacora=" + idBitacora + " ]";
+        return "Entities.Bitacora[ idBitacora=" + idBitacora + " ]";
     }
     
 }

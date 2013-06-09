@@ -1,301 +1,406 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     08/06/2013 11:31:05 p. m.                    */
+/* Created on:     09/06/2013 12:06:11 p. m.                    */
 /*==============================================================*/
 
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_CARG2')
+          where id = object_id('TRG_DEL_CARG')
           and type = 'TR')
-   drop trigger TRG_DEL_CARG2
+   drop trigger TRG_DEL_CARG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_CARG2')
+          where id = object_id('TRG_INS_CARG')
           and type = 'TR')
-   drop trigger TRG_INS_CARG2
+   drop trigger TRG_INS_CARG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_CARG2')
+          where id = object_id('TRG_UPD_CARG')
           and type = 'TR')
-   drop trigger TRG_UPD_CARG2
+   drop trigger TRG_UPD_CARG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_DROG2')
+          where id = object_id('TRG_DEL_DROG')
           and type = 'TR')
-   drop trigger TRG_DEL_DROG2
+   drop trigger TRG_DEL_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_DROG2')
+          where id = object_id('TRG_INS_DROG')
           and type = 'TR')
-   drop trigger TRG_INS_DROG2
+   drop trigger TRG_INS_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_DROG2')
+          where id = object_id('TRG_UPD_DROG')
           and type = 'TR')
-   drop trigger TRG_UPD_DROG2
+   drop trigger TRG_UPD_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_FAB2')
+          where id = object_id('TRG_DEL_FAB')
           and type = 'TR')
-   drop trigger TRG_DEL_FAB2
+   drop trigger TRG_DEL_FAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_FAB2')
+          where id = object_id('TRG_INS_FAB')
           and type = 'TR')
-   drop trigger TRG_INS_FAB2
+   drop trigger TRG_INS_FAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_FAB2')
+          where id = object_id('TRG_UPD_FAB')
           and type = 'TR')
-   drop trigger TRG_UPD_FAB2
+   drop trigger TRG_UPD_FAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_FACTU2')
+          where id = object_id('TRG_DEL_FACTU')
           and type = 'TR')
-   drop trigger TRG_DEL_FACTU2
+   drop trigger TRG_DEL_FACTU
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_FACTU2')
+          where id = object_id('TRG_INS_FACTU')
           and type = 'TR')
-   drop trigger TRG_INS_FACTU2
+   drop trigger TRG_INS_FACTU
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_FACTU2')
+          where id = object_id('TRG_UPD_FACTU')
           and type = 'TR')
-   drop trigger TRG_UPD_FACTU2
+   drop trigger TRG_UPD_FACTU
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_INVENT2')
+          where id = object_id('TRG_DEL_INVENT')
           and type = 'TR')
-   drop trigger TRG_DEL_INVENT2
+   drop trigger TRG_DEL_INVENT
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_INVENT2')
+          where id = object_id('TRG_INS_INVENT')
           and type = 'TR')
-   drop trigger TRG_INS_INVENT2
+   drop trigger TRG_INS_INVENT
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_INVENT2')
+          where id = object_id('TRG_UPD_INVENT')
           and type = 'TR')
-   drop trigger TRG_UPD_INVENT2
+   drop trigger TRG_UPD_INVENT
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_MEDIC2')
+          where id = object_id('TRG_DEL_MEDIC')
           and type = 'TR')
-   drop trigger TRG_DEL_MEDIC2
+   drop trigger TRG_DEL_MEDIC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_MEDIC2')
+          where id = object_id('TRG_INS_MEDIC')
           and type = 'TR')
-   drop trigger TRG_INS_MEDIC2
+   drop trigger TRG_INS_MEDIC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_MEDIC2')
+          where id = object_id('TRG_UPD_MEDIC')
           and type = 'TR')
-   drop trigger TRG_UPD_MEDIC2
+   drop trigger TRG_UPD_MEDIC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PED2')
+          where id = object_id('TRG_DEL_PED')
           and type = 'TR')
-   drop trigger TRG_DEL_PED2
+   drop trigger TRG_DEL_PED
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PED2')
+          where id = object_id('TRG_INS_PED')
           and type = 'TR')
-   drop trigger TRG_INS_PED2
+   drop trigger TRG_INS_PED
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PED2')
+          where id = object_id('TRG_UPD_PED')
           and type = 'TR')
-   drop trigger TRG_UPD_PED2
+   drop trigger TRG_UPD_PED
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PERS2')
+          where id = object_id('TRG_DEL_PED_PROD')
           and type = 'TR')
-   drop trigger TRG_DEL_PERS2
+   drop trigger TRG_DEL_PED_PROD
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PERS2')
+          where id = object_id('TRG_UPD_PED_PROD')
           and type = 'TR')
-   drop trigger TRG_INS_PERS2
+   drop trigger TRG_UPD_PED_PROD
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PERS2')
+          where id = object_id('TRG_INS_PED_PROD')
           and type = 'TR')
-   drop trigger TRG_UPD_PERS2
+   drop trigger TRG_INS_PED_PROD
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PORDFAB2')
+          where id = object_id('TRG_DEL_PERS')
           and type = 'TR')
-   drop trigger TRG_DEL_PORDFAB2
+   drop trigger TRG_DEL_PERS
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PORDFAB2')
+          where id = object_id('TRG_INS_PERS')
           and type = 'TR')
-   drop trigger TRG_INS_PORDFAB2
+   drop trigger TRG_INS_PERS
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PORDFAB2')
+          where id = object_id('TRG_UPD_PERS')
           and type = 'TR')
-   drop trigger TRG_UPD_PORDFAB2
+   drop trigger TRG_UPD_PERS
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PRODFAC2')
+          where id = object_id('TRG_DEL_PRE')
           and type = 'TR')
-   drop trigger TRG_DEL_PRODFAC2
+   drop trigger TRG_DEL_PRE
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PRODFAC2')
+          where id = object_id('TRG_INS_PRE')
           and type = 'TR')
-   drop trigger TRG_INS_PRODFAC2
+   drop trigger TRG_INS_PRE
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PRODFAC2')
+          where id = object_id('TRG_UPD_PRE')
           and type = 'TR')
-   drop trigger TRG_UPD_PRODFAC2
+   drop trigger TRG_UPD_PRE
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PRODINV2')
+          where id = object_id('TRG_DEL_PRD_DROG')
           and type = 'TR')
-   drop trigger TRG_DEL_PRODINV2
+   drop trigger TRG_DEL_PRD_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PRODINV2')
+          where id = object_id('TRG_INS_PRD_DROG')
           and type = 'TR')
-   drop trigger TRG_INS_PRODINV2
+   drop trigger TRG_INS_PRD_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PRODINV2')
+          where id = object_id('TRG_UPD_PRD_DROG')
           and type = 'TR')
-   drop trigger TRG_UPD_PRODINV2
+   drop trigger TRG_UPD_PRD_DROG
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_PROVE2')
+          where id = object_id('TRG_DEL_PORDFAB')
           and type = 'TR')
-   drop trigger TRG_DEL_PROVE2
+   drop trigger TRG_DEL_PORDFAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_PROVE2')
+          where id = object_id('TRG_INS_PORDFAB')
           and type = 'TR')
-   drop trigger TRG_INS_PROVE2
+   drop trigger TRG_INS_PORDFAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_PROVE2')
+          where id = object_id('TRG_UPD_PORDFAB')
           and type = 'TR')
-   drop trigger TRG_UPD_PROVE2
+   drop trigger TRG_UPD_PORDFAB
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_TIPOPROD2')
+          where id = object_id('TRG_DEL_PRODFAC')
           and type = 'TR')
-   drop trigger TRG_DEL_TIPOPROD2
+   drop trigger TRG_DEL_PRODFAC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_TIPOPROD2')
+          where id = object_id('TRG_INS_PRODFAC')
           and type = 'TR')
-   drop trigger TRG_INS_TIPOPROD2
+   drop trigger TRG_INS_PRODFAC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_TIPOPROD2')
+          where id = object_id('TRG_UPD_PRODFAC')
           and type = 'TR')
-   drop trigger TRG_UPD_TIPOPROD2
+   drop trigger TRG_UPD_PRODFAC
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_DEL_USOMEDIC2')
+          where id = object_id('TRG_DEL_PRODINV')
           and type = 'TR')
-   drop trigger TRG_DEL_USOMEDIC2
+   drop trigger TRG_DEL_PRODINV
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_INS_USOMEDIC2')
+          where id = object_id('TRG_INS_PRODINV')
           and type = 'TR')
-   drop trigger TRG_INS_USOMEDIC2
+   drop trigger TRG_INS_PRODINV
 go
 
 if exists (select 1
           from sysobjects
-          where id = object_id('TRG_UPD_USOMEDIC2')
+          where id = object_id('TRG_UPD_PRODINV')
           and type = 'TR')
-   drop trigger TRG_UPD_USOMEDIC2
+   drop trigger TRG_UPD_PRODINV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PROVE')
+          and type = 'TR')
+   drop trigger TRG_DEL_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PROVE')
+          and type = 'TR')
+   drop trigger TRG_INS_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PROVE')
+          and type = 'TR')
+   drop trigger TRG_UPD_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_DEL_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_INS_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_UPD_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_DEL_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_INS_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_UPD_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_DEL_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_INS_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_UPD_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_DEL_USOMEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_INS_USOMEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_UPD_USOMEDIC
 go
 
 if exists (select 1
@@ -1568,6 +1673,7 @@ create table PERSONA (
       constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 000000000 and 999999999),
    DIRECCION_PERSONA    varchar(25)          not null,
    PASSWORD             text                 not null,
+   NOMBRE_DE_USUARIO    varchar(10)          not null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
 )
 go
@@ -2872,212 +2978,287 @@ go
 
 create trigger trg_del_carg ON CARGO AFTER DELETE 
 as
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','CARGO',USER)
 go
 
 
 create trigger trg_ins_carg ON CARGO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","CARGO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','CARGO',USER)
 go
 
 
 create trigger trg_upd_carg ON CARGO AFTER UPDATE AS
-   insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","CARGO",USER)
+   insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','CARGO',USER)
 go
 
 
 create trigger trg_del_drog ON DROGUERIA AFTER DELETE 
 AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","DROGUERIA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','DROGUERIA',USER)
 go
 
 
 create trigger trg_ins_drog ON DROGUERIA AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"INSERT","DROGUERIA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','DROGUERIA',USER)
 go
 
 
 create trigger trg_upd_drog ON DROGUERIA AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","DROGUERIA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','DROGUERIA',USER)
 go
 
 
-create trigger trg_ins_fab ON FABRICANTE AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FABRICANTE",USER)
+create trigger trg_del_fab ON FABRICANTE AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','FABRICANTE',USER)
 go
 
 
 create trigger trg_ins_fab ON FABRICANTE AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FABRICANTE",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','FABRICANTE',USER)
 go
 
 
 create trigger trg_upd_fab ON FABRICANTE AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","FABRICANTE",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','FABRICANTE',USER)
 go
 
 
 create trigger trg_del_factu ON FACTURA AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','FACTURA',USER)
 go
 
 
 create trigger trg_ins_factu ON FACTURA AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','FACTURA',USER)
 go
 
 
 create trigger trg_upd_factu ON FACTURA AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','FACTURA',USER)
 go
 
 
 create trigger trg_del_invent ON INVENTARIO_RPT AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","INVENTARIO_RPT",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','INVENTARIO_RPT',USER)
 go
 
 
 create trigger trg_ins_invent ON INVENTARIO_RPT AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","INVENTARIO_RPT",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','INVENTARIO_RPT',USER)
 go
 
 
 create trigger trg_upd_invent ON INVENTARIO_RPT AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","INVENTARIO_RPT",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','INVENTARIO_RPT',USER)
 go
 
 
 create trigger trg_del_medic ON MEDICAMENTO AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','MEDICAMENTO',USER)
 go
 
 
 create trigger trg_ins_medic ON MEDICAMENTO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"INSERT","MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','MEDICAMENTO',USER)
 go
 
 
 create trigger trg_upd_medic ON MEDICAMENTO AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"UPDATE","MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','MEDICAMENTO',USER)
 go
 
 
-reate trigger trg_del_ped ON PEDIDO AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"DELETE","PEDIDO",USER)
+create trigger trg_del_ped ON PEDIDO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PEDIDO',USER)
 go
 
 
 create trigger trg_ins_ped ON PEDIDO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"INSERT","PEDIDO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','PEDIDO',USER)
 go
 
 
-reate trigger trg_upd_ped ON PEDIDO AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"UPDATE","PEDIDO",USER)
+create trigger trg_upd_ped ON PEDIDO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PEDIDO',USER)
+go
+
+
+create trigger trg_del_ped_prod ON PEDIDO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PEDIDO_PRODUCTO',USER)
+go
+
+
+create trigger trg_upd_ped_prod ON PEDIDO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PEDIDO_PRODUCTO',USER)
+go
+
+
+create trigger trg_ins_ped_prod ON PEDIDO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','PEDIDO_PRODUCTO',USER)
 go
 
 
 create trigger trg_del_pers ON PERSONA AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"DELETE","PERSONA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PERSONA',USER)
 go
 
 
 create trigger trg_ins_pers ON PERSONA AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PERSONA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PERSONA',USER)
 go
 
 
-create trigger trg_del_pers ON PERSONA AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),"UPDATE","PERSONA",USER)
+create trigger trg_upd_pers ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PERSONA',USER)
+go
+
+
+create trigger trg_del_pre ON PERSONA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PRESENTACION',USER)
+go
+
+
+create trigger trg_ins_pre ON PERSONA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRESENTACION',USER)
+go
+
+
+create trigger trg_upd_pre ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PRESENTACION',USER)
+go
+
+
+create trigger trg_del_prd_drog ON PERSONA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PRODUCTO_DROGUERIA',USER)
+go
+
+
+create trigger trg_ins_prd_drog ON PERSONA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_DROGUERIA',USER)
+go
+
+
+create trigger trg_upd_prd_drog ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PRODUCTO_DROGUERIA',USER)
 go
 
 
 create trigger trg_del_pordFab ON PRODUCTO_FABRICANTE AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FABRICANTE",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_FABRICANTE',USER)
 go
 
 
 create trigger trg_ins_pordFab ON PRODUCTO_FABRICANTE AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FABRICANTE",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_FABRICANTE',USER)
 go
 
 
 create trigger trg_upd_pordFab ON PRODUCTO_FABRICANTE AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_FABRICANTE",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_FABRICANTE',USER)
 go
 
 
 create trigger trg_del_prodFac ON PRODUCTO_FACTURA AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_FACTURA',USER)
 go
 
 
 create trigger trg_ins_prodFac ON PRODUCTO_FACTURA AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_FACTURA',USER)
 go
 
 
 create trigger trg_upd_prodFac ON PRODUCTO_FACTURA AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)) values(GETDATE(),"UPDATE","PRODUCTO_FACTURA",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_FACTURA',USER)
 go
 
 
-create trigger trg_del_prodInv ON PRODUCTO_INVENTARIO AFTER DELETE ON PRODUCTO_INVENTARIO AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_INVENTARIO",USER)
+create trigger trg_del_prodInv ON PRODUCTO_INVENTARIO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_INVENTARIO',USER)
 go
 
 
 create trigger trg_ins_prodInv ON PRODUCTO_INVENTARIO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_INVENTARIO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_INVENTARIO',USER)
 go
 
 
 create trigger trg_upd_prodInv ON PRODUCTO_INVENTARIO AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_INVENTARIO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_INVENTARIO',USER)
 go
 
 
 create trigger trg_del_prove ON PROVEEDOR AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PROVEEDOR",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PROVEEDOR',USER)
 go
 
 
 create trigger trg_ins_prove ON PROVEEDOR AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PROVEEDOR",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PROVEEDOR',USER)
 go
 
 
 create trigger trg_upd_prove ON PROVEEDOR AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PROVEEDOR",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PROVEEDOR',USER)
+go
+
+
+create trigger trg_del_prov_tpr ON PROVEEDOR AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PROVEEDOR_TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_ins_prov_tpr ON PROVEEDOR AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PROVEEDOR_TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_upd_prov_tpr ON PROVEEDOR AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PROVEEDOR_TIPO_PROVEEDOR',USER)
 go
 
 
 create trigger trg_del_tipoProd ON TIPO_PRODUCTO AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","TIPO_PRODUCTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','TIPO_PRODUCTO',USER)
 go
 
 
 create trigger trg_ins_tipoProd ON TIPO_PRODUCTO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","TIPO_PRODUCTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','TIPO_PRODUCTO',USER)
 go
 
 
 create trigger trg_upd_tipoProd ON TIPO_PRODUCTO AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","TIPO_PRODUCTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','TIPO_PRODUCTO',USER)
+go
+
+
+create trigger trg_del_tipoProv ON TIPO_PRODUCTO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_ins_tipoProv ON TIPO_PRODUCTO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_upd_tipoProv ON TIPO_PRODUCTO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','TIPO_PROVEEDOR',USER)
 go
 
 
 create trigger trg_del_usoMedic ON USO_MEDICAMENTO AFTER DELETE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","USO_MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','USO_MEDICAMENTO',USER)
 go
 
 
 create trigger trg_ins_usoMedic ON USO_MEDICAMENTO AFTER INSERT AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","USO_MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','USO_MEDICAMENTO',USER)
 go
 
 
 create trigger trg_upd_usoMedic ON USO_MEDICAMENTO AFTER UPDATE AS
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","USO_MEDICAMENTO",USER)
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','USO_MEDICAMENTO',USER)
 go
 

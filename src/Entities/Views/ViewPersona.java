@@ -2,16 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
+import Entities.Cargo;
+import Entities.Drogueria;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,32 +21,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author Edward
  */
 @Entity
-@Table(name = "VIEW_PERSONA")
+@Table(name = "dbd_3.lrlineroa.VIEW_PERSONA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewPersona.findAll", query = "SELECT v FROM ViewPersona v"),
     @NamedQuery(name = "ViewPersona.findByIdPersona", query = "SELECT v FROM ViewPersona v WHERE v.idPersona = :idPersona"),
-    @NamedQuery(name = "ViewPersona.findByIdDrogueria", query = "SELECT v FROM ViewPersona v WHERE v.idDrogueria = :idDrogueria"),
     @NamedQuery(name = "ViewPersona.findByNombrePersona", query = "SELECT v FROM ViewPersona v WHERE v.nombrePersona = :nombrePersona"),
     @NamedQuery(name = "ViewPersona.findByApellidoPersona", query = "SELECT v FROM ViewPersona v WHERE v.apellidoPersona = :apellidoPersona"),
     @NamedQuery(name = "ViewPersona.findByTelefonoPersona", query = "SELECT v FROM ViewPersona v WHERE v.telefonoPersona = :telefonoPersona"),
-    @NamedQuery(name = "ViewPersona.findByDireccionPersona", query = "SELECT v FROM ViewPersona v WHERE v.direccionPersona = :direccionPersona")})
+    @NamedQuery(name = "ViewPersona.findByDireccionPersona", query = "SELECT v FROM ViewPersona v WHERE v.direccionPersona = :direccionPersona"),
+    @NamedQuery(name = "ViewPersona.findByNombreDeUsuario", query = "SELECT v FROM ViewPersona v WHERE v.nombreDeUsuario = :nombreDeUsuario")})
 public class ViewPersona implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_PERSONA")
-    private BigDecimal idPersona;
-    @Basic(optional = false)
-    @Column(name = "ID_CARGO")
-    private BigDecimal idCargo;
-    @Basic(optional = false)
-    @Column(name = "ID_DROGUERIA")
-    private BigDecimal idDrogueria;
+    private Integer idPersona;
     @Basic(optional = false)
     @Column(name = "NOMBRE_PERSONA")
     private String nombrePersona;
@@ -53,7 +48,7 @@ public class ViewPersona implements Serializable {
     private String apellidoPersona;
     @Basic(optional = false)
     @Column(name = "TELEFONO_PERSONA")
-    private BigInteger telefonoPersona;
+    private int telefonoPersona;
     @Basic(optional = false)
     @Column(name = "DIRECCION_PERSONA")
     private String direccionPersona;
@@ -61,28 +56,38 @@ public class ViewPersona implements Serializable {
     @Lob
     @Column(name = "PASSWORD")
     private String password;
+    @Basic(optional = false)
+    @Column(name = "NOMBRE_DE_USUARIO")
+    private String nombreDeUsuario;
+    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
+    @ManyToOne(optional = false)
+    private Drogueria idDrogueria;
+    @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
+    @ManyToOne(optional = false)
+    private Cargo idCargo;
 
     public ViewPersona() {
     }
 
-    public ViewPersona(BigDecimal idPersona) {
+    public ViewPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
-    public ViewPersona(BigDecimal idPersona, String nombrePersona, String apellidoPersona, BigInteger telefonoPersona, String direccionPersona, String password) {
+    public ViewPersona(Integer idPersona, String nombrePersona, String apellidoPersona, int telefonoPersona, String direccionPersona, String password, String nombreDeUsuario) {
         this.idPersona = idPersona;
         this.nombrePersona = nombrePersona;
         this.apellidoPersona = apellidoPersona;
         this.telefonoPersona = telefonoPersona;
         this.direccionPersona = direccionPersona;
         this.password = password;
+        this.nombreDeUsuario = nombreDeUsuario;
     }
 
-    public BigDecimal getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(BigDecimal idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
@@ -102,11 +107,11 @@ public class ViewPersona implements Serializable {
         this.apellidoPersona = apellidoPersona;
     }
 
-    public BigInteger getTelefonoPersona() {
+    public int getTelefonoPersona() {
         return telefonoPersona;
     }
 
-    public void setTelefonoPersona(BigInteger telefonoPersona) {
+    public void setTelefonoPersona(int telefonoPersona) {
         this.telefonoPersona = telefonoPersona;
     }
 
@@ -124,6 +129,30 @@ public class ViewPersona implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNombreDeUsuario() {
+        return nombreDeUsuario;
+    }
+
+    public void setNombreDeUsuario(String nombreDeUsuario) {
+        this.nombreDeUsuario = nombreDeUsuario;
+    }
+
+    public Drogueria getIdDrogueria() {
+        return idDrogueria;
+    }
+
+    public void setIdDrogueria(Drogueria idDrogueria) {
+        this.idDrogueria = idDrogueria;
+    }
+
+    public Cargo getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(Cargo idCargo) {
+        this.idCargo = idCargo;
     }
 
     @Override
@@ -149,34 +178,6 @@ public class ViewPersona implements Serializable {
     @Override
     public String toString() {
         return "Entities.ViewPersona[ idPersona=" + idPersona + " ]";
-    }
-
-    /**
-     * @return the idCargo
-     */
-    public BigDecimal getIdCargo() {
-        return idCargo;
-    }
-
-    /**
-     * @param idCargo the idCargo to set
-     */
-    public void setIdCargo(BigDecimal idCargo) {
-        this.idCargo = idCargo;
-    }
-
-    /**
-     * @return the idDrogueria
-     */
-    public BigDecimal getIdDrogueria() {
-        return idDrogueria;
-    }
-
-    /**
-     * @param idDrogueria the idDrogueria to set
-     */
-    public void setIdDrogueria(BigDecimal idDrogueria) {
-        this.idDrogueria = idDrogueria;
     }
     
 }
