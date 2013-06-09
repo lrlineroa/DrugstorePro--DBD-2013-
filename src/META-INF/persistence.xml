@@ -16,24 +16,18 @@
     <class>Entities.TipoProducto</class>
     <class>Entities.TipoProveedor</class>
     <class>Entities.UsoMedicamento</class>
-    <class>Entities.ViewPedidoProducto</class>
-    <class>Entities.ViewProductoDrogueria</class>
-    <class>Entities.ViewProductoFabricante</class>
-    <class>Entities.ViewProductoFactura</class>
-    <class>Entities.ViewProductoInventario</class>
-    <class>Entities.ViewProveedorTipoProv</class>
-    <class>Entities.Views.ViewProveedor</class>
-    <class>Entities.Views.ViewUsoMedic</class>
-    <class>Entities.Views.ViewCargo</class>
-    <class>Entities.Views.ViewFabricante</class>
-    <class>Entities.Views.ViewPresentacion</class>
-    <class>Entities.Views.ViewPersona</class>
-    <class>Entities.Views.ViewDrogueria</class>
-    <class>Entities.Views.ViewFactura</class>
-    <class>Entities.Views.ViewPedido</class>
     <class>Entities.Views.ViewBitacora</class>
-    <class>Entities.Views.ViewTipoProducto</class>
-    <class>Entities.Views.ViewMedicamento</class>
+    <class>Entities.Views.ViewCargo</class>
+    <class>Entities.Views.ViewDrogueria</class>
+    <class>Entities.Views.ViewFabricante</class>
+    <class>Entities.Views.ViewFactura</class>
     <class>Entities.Views.ViewInventariorpt</class>
+    <class>Entities.Views.ViewMedicamento</class>
+    <class>Entities.Views.ViewPedido</class>
+    <class>Entities.Views.ViewPersona</class>
+    <class>Entities.Views.ViewPresentacion</class>
+    <class>Entities.Views.ViewProveedor</class>
+    <class>Entities.Views.ViewTipoProducto</class>
+    <class>Entities.Views.ViewUsoMedic</class>
   </persistence-unit>
 </persistence>

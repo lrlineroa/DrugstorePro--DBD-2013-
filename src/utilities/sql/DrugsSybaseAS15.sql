@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase AS Enterprise 15.0                    */
-/* Created on:     08/06/2013 11:26:28 p. m.                    */
+/* Created on:     09/06/2013 2:22:50 p. m.                     */
 /*==============================================================*/
 
 
@@ -1209,6 +1209,7 @@ create table PERSONA (
          constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 000000000 and 999999999),
    DIRECCION_PERSONA    varchar(25)                    not null,
    PASSWORD             text                           not null,
+   NOMBRE_DE_USUARIO    varchar(15)                    null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
 )
 go

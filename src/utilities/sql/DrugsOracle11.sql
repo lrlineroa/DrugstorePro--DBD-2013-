@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     08/06/2013 11:30:24 p. m.                    */
+/* Created on:     09/06/2013 2:24:00 p. m.                     */
 /*==============================================================*/
 
 
@@ -903,6 +903,7 @@ create table PERSONA
       constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 999999999 and 000000000),
    DIRECCION_PERSONA    VARCHAR2(25)         not null,
    PASSWORD             CLOB                 not null,
+   NOMBRE_DE_USUARIO    VARCHAR2(15),
    constraint PK_PERSONA primary key (ID_PERSONA)
 )
 /

@@ -173,6 +173,7 @@ public class LoginGui extends javax.swing.JPanel {
                         new String(PasswordTf.getPassword()));
             } catch (DataBaseException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             if (login != null) {
                 JOptionPane.showMessageDialog(null, "Login Exitoso", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
