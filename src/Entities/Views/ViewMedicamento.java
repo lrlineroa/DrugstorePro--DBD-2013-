@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewMedicamento.findAll", query = "SELECT v FROM ViewMedicamento v"),
     @NamedQuery(name = "ViewMedicamento.findByIdProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto"),
+    @NamedQuery(name = "ViewMedicamento.findByIdNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto AND v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPrecioProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.precioProducto = :precioProducto"),
     @NamedQuery(name = "ViewMedicamento.findByCantidadProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.cantidadProducto = :cantidadProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),

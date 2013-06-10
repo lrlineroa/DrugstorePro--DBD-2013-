@@ -256,5 +256,65 @@ public class ViewMedicamentoDAO implements Serializable {
             em.close();
         }
     }
+
+    //this method returns a list of products such name is like the given.
+    public List<ViewMedicamento> findViewMedicamento(String name) {
+        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto");
+        try {
+           return q.getResultList();
+        } catch (javax.persistence.NoResultException e) {
+           System.out.println("datos no encontrados");
+           return null;
+        }
+    }
+    // this method returns a specific  product with a ID a name given
+    public ViewMedicamento findViewMedicamento(Integer ID,String name) {
+        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto");
+        q.setParameter("idProducto", ID);
+        q.setParameter("nombreProducto", name);
+        try {
+           return (ViewMedicamento) q.getSingleResult();
+        } catch (javax.persistence.NoResultException e) {
+           System.out.println("datos no encontrados");
+           return null;
+        }
+    }
+    
+      //this method increases or decreases  the amount in the inventary of a specific product
+         //if sum equals true the amount incremets, if false decreases
+         public int Update(Long ID, Object amount , boolean isInventary ){
+             EntityManager em=getEntityManager();
+             em.getTransaction().begin();
+            try {
+               if(isInventary){
+                    Query q=getEntityManager().createQuery("UPDATE ViewMedicamento SET cantidadProducto= cantidadProducto + "+amount+" WHERE idProducto=:idProducto");
+//                    q.setParameter(1, amount);
+                    q.setParameter("idProducto",ID);
+                    int updateCount=q.executeUpdate();
+                    em.getTransaction().commit();
+                    return 0;
+               }else{
+                    ViewMedicamento pro= em.find(ViewMedicamento.class, ID);  
+                    if (!(pro.getCantidadProducto()-Integer.parseInt(amount.toString())<0)){
+                        Query q=em.createQuery("UPDATE ProductoGeneral  SET cantidadProducto= cantidadProducto - "+amount+" WHERE idProducto=:idProducto");
+//                       q.setParameter(1, amount);
+                        q.setParameter("idProducto", ID);
+                        int updateCount=q.executeUpdate();
+                        em.getTransaction().commit();
+                        return 0;
+                       
+                    }
+               } 
+               
+             } catch (javax.persistence.PersistenceException evt) {
+                   em.getTransaction().rollback();
+             }finally{
+                em.getTransaction().commit();
+                return -1;
+             }
+             
+             
+         }
+    
     
 }
