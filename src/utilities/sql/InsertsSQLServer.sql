@@ -7,19 +7,19 @@ INSERT INTO lrlineroa.DROGUERIA (ID_DROGUERIA, NOMBRE_DROGUERIA, TELEFONO_DROGUE
 	VALUES (1, 'Drogueria Nuevo MIlenio', '5555555', 'calle falsa 123')
 	
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1055555555, 1, 1, 'Leonardo', 'Linero', '5555555', 'avenida siempre viva 2445', 's02258001', 'lrlineroa')
+	VALUES (1055555555, 1, 1, 'Leonardo', 'Linero', '5555555', 'avenida siempre viva 2445', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02258001')),3,32), 'lrlineroa')
 	
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1032333333, 1, 1, 'Edward', 'Rojas', '3333333', '345 oasis st', 's02258009', 'earojasc')
+	VALUES (1032333333, 1, 1, 'Edward', 'Rojas', '3333333', '345 oasis st', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02258009')),3,32), 'earojasc')
 	
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1032333444, 2, 1, 'Stiven', 'Gonzalez', '3333333', 'cra 123', 's02257765', 'dsgonzalezh')
+	VALUES (1032333444, 2, 1, 'Stiven', 'Gonzalez', '3333333', 'cra 123', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02257765')),3,32), 'dsgonzalezh')
 		
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1050500500, 2, 1, 'Mauricio', 'Herrera', '1111111', 'cll 9 # 98', 's02257771', 'maherrerapu')
+	VALUES (1050500500, 2, 1, 'Mauricio', 'Herrera', '1111111', 'cll 9 # 98', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02257771')),3,32), 'maherrerapu')
 	
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1060600600, 2, 1, 'Jesid', 'Mejia', '2222222', 'tr 32 # 90', 's02258258', 'jemmejiaca')
+	VALUES (1060600600, 2, 1, 'Jesid', 'Mejia', '2222222', 'tr 32 # 90', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02258258')),3,32), 'jemmejiaca')
 	
 INSERT INTO lrlineroa.PERSONA (ID_PERSONA, ID_CARGO, ID_DROGUERIA, NOMBRE_PERSONA, APELLIDO_PERSONA, TELEFONO_PERSONA, DIRECCION_PERSONA, PASSWORD, NOMBRE_DE_USUARIO)
-	VALUES (1070700700, 2, 1, 'Camilo', 'Peña', '8888888', '345 oasis st', 's02257956', 'capenap')
+	VALUES (1070700700, 2, 1, 'Camilo', 'Peña', '8888888', '345 oasis st', SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('MD5', 's02257956')),3,32), 'capenap')

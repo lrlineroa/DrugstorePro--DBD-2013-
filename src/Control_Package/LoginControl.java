@@ -3,6 +3,7 @@ package Control_Package;
 import Entities.Views.ViewPersona;
 import DAOS.DAOFactory;
 import DAOS.exceptions.DataBaseException;
+import utilities.helpers.Hash;
 
 public class LoginControl {
     
@@ -15,7 +16,7 @@ public class LoginControl {
         DAOFactory.getInstance().newConection(rdbms, user, pass);
         ViewPersona persona = new ViewPersona();
         persona.setNombreDeUsuario(user);
-        persona.setPassword(pass);
+        persona.setPassword(Hash.hashMD5(pass));
         ViewPersona login;
 
         login = DAOFactory.getInstance().getViewPersonaDAO().login(persona);
