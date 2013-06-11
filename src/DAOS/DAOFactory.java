@@ -58,6 +58,10 @@ public class DAOFactory {
         return new ViewPresentacionDAO(emf);
     }
     
+    public ViewProductosDrogueriaDAO getViewProductosDrogueriaDAO() {
+        return new ViewProductosDrogueriaDAO(emf);
+    }
+    
     public ViewProveedorDAO getViewProveedorDAO() {
         return new ViewProveedorDAO(emf);
     }

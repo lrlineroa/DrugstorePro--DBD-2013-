@@ -4,8 +4,7 @@
  */
 package Control_Package;
 
-import Entities.Views.ViewMedicamento;
-import Boundary_Package.MainFrame;
+import Entities.Views.ViewProductosDrogueria;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextField;
@@ -41,14 +40,14 @@ public class AutoCompleteControl {
     //This method returns the text of the vector when finds the most minimun coincidence with DatumtoSearch
     //if Internal is true the vector will contain the productsnames in this Drugstore, if not the vector will contains the globals products names
     public String getTextOfCoincidence(String DatumtoSearch, List<String> Vector, boolean internal) {
-        List<ViewMedicamento> productos;
+        List<ViewProductosDrogueria> productos;
         if (internal) {
             productos = pGS.searchProductsByDrogueria(LoginControl.usuarioActivo.getIdDrogueria().getIdDrogueria());
         } else {
             productos = pGS.getAllProducts();
         }
         VectorData = new ArrayList<>();
-        for (ViewMedicamento p : productos){
+        for (ViewProductosDrogueria p : productos){
             VectorData.add(p.getNombreProducto());
         }
         try {

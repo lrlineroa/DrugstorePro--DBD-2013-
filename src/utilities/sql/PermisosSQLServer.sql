@@ -11,5 +11,6 @@ GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRESENTACION TO earojasc, dsgonzalezh,
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PROVEEDOR TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_TIPO_PRODUCTO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_USO_MEDIC TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTOS_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT SELECT ON CARGO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT SELECT ON DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap

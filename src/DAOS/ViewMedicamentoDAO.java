@@ -259,66 +259,62 @@ public class ViewMedicamentoDAO implements Serializable {
 
     //this method returns a list of products such name is like the given.
     public List<ViewMedicamento> findViewMedicamentoListByName(String name) {
-        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto").setParameter("nombreProducto", name);
+        Query q = getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto").setParameter("nombreProducto", name);
         try {
-           return q.getResultList();
+            return q.getResultList();
         } catch (javax.persistence.NoResultException e) {
-           System.out.println("datos no encontrados");
-           return null;
+            System.out.println("datos no encontrados");
+            return null;
         }
     }
     // this method returns a specific  product with a ID a name given
-    public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID,String name) {
-        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto");
+
+    public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID, String name) {
+        Query q = getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto").
+                setParameter("nombreProducto", name).setParameter("idProducto", ID.toString());
         q.setParameter("idProducto", ID);
         q.setParameter("nombreProducto", name);
         try {
-           return (ViewMedicamento) q.getSingleResult();
+            return (ViewMedicamento) q.getSingleResult();
         } catch (javax.persistence.NoResultException e) {
-           System.out.println("datos no encontrados");
-           return null;
+            System.out.println("datos no encontrados");
+            return null;
         }
     }
-    
-      //this method increases or decreases  the amount in the inventary of a specific product
-         //if sum equals true the amount incremets, if false decreases
-         public int Update(Long ID, Object amount , boolean isInventary ){
-             EntityManager em=getEntityManager();
-             em.getTransaction().begin();
-            try {
-               if(isInventary){
-                    Query q=getEntityManager().createQuery("UPDATE ViewMedicamento SET cantidadProducto= cantidadProducto + "+amount+" WHERE idProducto=:idProducto");
+
+    //this method increases or decreases  the amount in the inventary of a specific product
+    //if sum equals true the amount incremets, if false decreases
+    public int Update(Long ID, Object amount, boolean isInventary) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        try {
+            if (isInventary) {
+                Query q = getEntityManager().createQuery("UPDATE ViewMedicamento SET cantidadProducto= cantidadProducto + " + amount + " WHERE idProducto=:idProducto");
 //                    q.setParameter(1, amount);
-                    q.setParameter("idProducto",ID);
-                    int updateCount=q.executeUpdate();
+                q.setParameter("idProducto", ID);
+                int updateCount = q.executeUpdate();
+                em.getTransaction().commit();
+                return 0;
+            } else {
+                ViewMedicamento pro = em.find(ViewMedicamento.class, ID);
+                if (!(pro.getCantidadProducto() - Integer.parseInt(amount.toString()) < 0)) {
+                    Query q = em.createQuery("UPDATE ProductoGeneral  SET cantidadProducto= cantidadProducto - " + amount + " WHERE idProducto=:idProducto");
+//                       q.setParameter(1, amount);
+                    q.setParameter("idProducto", ID);
+                    int updateCount = q.executeUpdate();
                     em.getTransaction().commit();
                     return 0;
-               }else{
-                    ViewMedicamento pro= em.find(ViewMedicamento.class, ID);  
-                    if (!(pro.getCantidadProducto()-Integer.parseInt(amount.toString())<0)){
-                        Query q=em.createQuery("UPDATE ProductoGeneral  SET cantidadProducto= cantidadProducto - "+amount+" WHERE idProducto=:idProducto");
-//                       q.setParameter(1, amount);
-                        q.setParameter("idProducto", ID);
-                        int updateCount=q.executeUpdate();
-                        em.getTransaction().commit();
-                        return 0;
-                       
-                    }
-               } 
-               
-             } catch (javax.persistence.PersistenceException evt) {
-                   em.getTransaction().rollback();
-             }finally{
-                em.getTransaction().commit();
-                return -1;
-             }
-             
-             
-         }
 
-    public List<ViewMedicamento> findViewMedicamentoListByDrigueria(Integer idDrogueria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            }
+
+        } catch (javax.persistence.PersistenceException evt) {
+            em.getTransaction().rollback();
+        } finally {
+            em.getTransaction().commit();
+            return -1;
+        }
+
+
     }
-    
-    
 }

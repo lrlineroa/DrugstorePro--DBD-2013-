@@ -5,14 +5,12 @@
 package Control_Package;
 
 import DAOS.DAOFactory;
-import DAOS.exceptions.PreexistingEntityException;
 import Entities.Persona;
 import Entities.Views.ViewFactura;
 import Entities.Views.ViewMedicamento;
 import Entities.Views.ViewPedido;
+import Entities.Views.ViewProductosDrogueria;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -60,12 +58,12 @@ public class BussinesControl {
         }
     }
 
-    public List<ViewMedicamento> searchProductsByDrogueria(Integer idDrogueria) {
-        return DAOFactory.getInstance().getViewMedicamentoDAO().findViewMedicamentoListByDrigueria(idDrogueria);
+    public List<ViewProductosDrogueria> searchProductsByDrogueria(Integer idDrogueria) {
+        return DAOFactory.getInstance().getViewProductosDrogueriaDAO().findViewProductosDrogueria(idDrogueria);
     }
 
-    public List<ViewMedicamento> getAllProducts() {
-        return DAOFactory.getInstance().getViewMedicamentoDAO().findViewMedicamentoEntities();
+    public List<ViewProductosDrogueria> getAllProducts() {
+        return DAOFactory.getInstance().getViewProductosDrogueriaDAO().findViewProductosDrogueriaEntities();
     }
 
     public String verifyProductToSell(Long Id, String name, int Quanty) {
