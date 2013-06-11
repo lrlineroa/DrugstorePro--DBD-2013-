@@ -28,7 +28,6 @@ public class MainFrame extends javax.swing.JFrame {
     private Dimension d;
     private VentaTableModel vTbM = new VentaTableModel();
     private DefaultComboBoxModel headQModel = new DefaultComboBoxModel();
-    public static ViewDrogueria DrugPresent;
     private LoginGui log = new LoginGui(this);
     
     //private RegisterGui reg=new RegisterGui(this);
@@ -37,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-
+        
         initComponents();
         initialitation();
         this.LoggedLabel1.setLayout(new BorderLayout());
@@ -55,8 +54,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         MainPanel = new javax.swing.JPanel();
         CloseSesionButton = new javax.swing.JButton();
         LoggedLabel1 = new javax.swing.JLabel();
@@ -70,10 +67,6 @@ public class MainFrame extends javax.swing.JFrame {
         balanceButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -271,11 +264,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(CloseSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoggedLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(247, 247, 247)
                 .addComponent(panelRolSellAndAdmin, 296, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -308,9 +301,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseSesionButtonActionPerformed
 
     private void inventaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventaryButtonActionPerformed
-//        setMainPanel(new InvGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
+        setMainPanel(new InvGui());
+        CloseSesionButton.setText("MENU PRINCIPAL");
+        AdjustToCenter();
     }//GEN-LAST:event_inventaryButtonActionPerformed
 
     private void balanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceButtonActionPerformed
@@ -320,8 +313,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_balanceButtonActionPerformed
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
-//        setMainPanel(new SellGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
+        setMainPanel(new SellGui());
+        CloseSesionButton.setText("MENU PRINCIPAL");
     }//GEN-LAST:event_sellButtonActionPerformed
 
     private void QueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryButtonActionPerformed
@@ -439,8 +432,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton aboutButton;
     private javax.swing.JButton balanceButton;
     private javax.swing.JButton inventaryButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton modifyButton;
     private javax.swing.JButton orderButton;
     private javax.swing.JPanel panelRolAdmin;

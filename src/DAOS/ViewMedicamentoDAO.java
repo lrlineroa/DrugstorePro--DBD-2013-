@@ -79,7 +79,7 @@ public class ViewMedicamentoDAO implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findViewMedicamento(viewMedicamento.getIdProducto()) != null) {
+            if (findViewMedicamentoById(viewMedicamento.getIdProducto()) != null) {
                 throw new PreexistingEntityException("ViewMedicamento " + viewMedicamento + " already exists.", ex);
             }
             throw ex;
@@ -158,7 +158,7 @@ public class ViewMedicamentoDAO implements Serializable {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Integer id = viewMedicamento.getIdProducto();
-                if (findViewMedicamento(id) == null) {
+                if (findViewMedicamentoById(id) == null) {
                     throw new NonexistentEntityException("The viewMedicamento with id " + id + " no longer exists.");
                 }
             }
@@ -235,7 +235,7 @@ public class ViewMedicamentoDAO implements Serializable {
         }
     }
 
-    public ViewMedicamento findViewMedicamento(Integer id) {
+    public ViewMedicamento findViewMedicamentoById(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(ViewMedicamento.class, id);
@@ -258,8 +258,8 @@ public class ViewMedicamentoDAO implements Serializable {
     }
 
     //this method returns a list of products such name is like the given.
-    public List<ViewMedicamento> findViewMedicamento(String name) {
-        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto");
+    public List<ViewMedicamento> findViewMedicamentoListByName(String name) {
+        Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto").setParameter("nombreProducto", name);
         try {
            return q.getResultList();
         } catch (javax.persistence.NoResultException e) {
@@ -268,7 +268,7 @@ public class ViewMedicamentoDAO implements Serializable {
         }
     }
     // this method returns a specific  product with a ID a name given
-    public ViewMedicamento findViewMedicamento(Integer ID,String name) {
+    public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID,String name) {
         Query q= getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto");
         q.setParameter("idProducto", ID);
         q.setParameter("nombreProducto", name);
@@ -315,6 +315,10 @@ public class ViewMedicamentoDAO implements Serializable {
              
              
          }
+
+    public List<ViewMedicamento> findViewMedicamentoListByDrigueria(Integer idDrogueria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

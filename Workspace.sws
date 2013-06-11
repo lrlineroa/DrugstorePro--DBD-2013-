@@ -4,10 +4,9 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model ID="{0D71F057-9F0A-404A-85B4-E89C92700219}" Name="physicalDataModelSybase" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelSybase.pdm"/>
-		<Model ID="{FA1C1EC6-40F9-4A02-A796-CECB4418406D}" Name="physicalDataModelOracle10" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelOracle10.pdm"/>
-		<Model ID="{9707E5A7-30F3-4DAD-A392-FA9F00C16476}" Name="physicalDataModelOracle11" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelOracle11.pdm"/>
-		<Model ID="{83CFFE6A-7FEC-4902-8BA3-39D1CBB1FB5A}" Name="physicalDataModelSQL2005" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelSQL2005.pdm"/>
+		<Model ID="{68391A78-8E62-4213-AB62-2BD6CA7C6342}" Name="physicalDataModelSybase" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelSybase.pdm"/>
+		<Model ID="{DEAD44E2-6094-4033-9DCC-1A6E9A053765}" Name="physicalDataModelOracle10" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelOracle10.pdm"/>
+		<Model ID="{BA74E5ED-A50F-4A6B-B29E-B10A345886FE}" Name="physicalDataModelSQL2005" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="physicalDataModelSQL2005.pdm"/>
 		<Model ID="{249F054F-B059-46C8-AE77-E062F3ECBF5C}" Loaded="No" Name="Conceptual Data_1_2" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Conceptual Data_1_2.cdm"/>
 		<Model ID="{BA40B105-CD02-479C-81A9-E2B826CB94F5}" Loaded="No" Name="Conceptual Data_1_2" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="conceptual data_1_2.ldm"/>
 	</Local>
