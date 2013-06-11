@@ -7,8 +7,8 @@ package Boundary_Package;
 
 import Boundary_Package.SellGui;
 //import Helpers.*;
-import control_package.AutoCompleteControl;
-import control_package.BussinesControl;
+import Control_Package.AutoCompleteControl;
+import Control_Package.BussinesControl;
 import java.awt.FlowLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;

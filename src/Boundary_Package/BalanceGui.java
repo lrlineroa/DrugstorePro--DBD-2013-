@@ -4,7 +4,7 @@
  */
 package Boundary_Package;
 
-import control_package.BussinesControl;
+import Control_Package.BussinesControl;
 
 /**
  *
