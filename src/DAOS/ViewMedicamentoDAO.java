@@ -271,7 +271,7 @@ public class ViewMedicamentoDAO implements Serializable {
 
     public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID, String name) {
         Query q = getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto").
-                setParameter("nombreProducto", name).setParameter("idProducto", ID.toString());
+                setParameter("nombreProducto", name).setParameter("idProducto", ID);
         q.setParameter("idProducto", ID);
         q.setParameter("nombreProducto", name);
         try {
@@ -311,7 +311,9 @@ public class ViewMedicamentoDAO implements Serializable {
         } catch (javax.persistence.PersistenceException evt) {
             em.getTransaction().rollback();
         } finally {
-            em.getTransaction().commit();
+            if (em != null) {
+                em.close();
+            }
             return -1;
         }
 

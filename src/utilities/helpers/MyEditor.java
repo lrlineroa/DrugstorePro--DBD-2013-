@@ -10,6 +10,7 @@ package utilities.helpers;
 //import control_package.BussinesControl;
 import Boundary_Package.SellGui;
 import Control_Package.BussinesControl;
+import Control_Package.LoginControl;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +44,15 @@ public class MyEditor extends AbstractCellEditor implements TableCellEditor,Acti
             public void actionPerformed(ActionEvent e) {
                 tableModel= (VentaTableModel) table.getModel();
                 producto=buscontrol.searchProductById(new Long(tableModel.getProducts().get(table.getEditingRow()).getId()));
-                JOptionPane.showMessageDialog(null,producto.toString(), "info", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/giantplaylist.png")));
+                JOptionPane.showMessageDialog(null,producto.getNombreProducto() + "\n"
+                    + " Disponible en: " + LoginControl.usuarioActivo.getIdDrogueria().getNombreDrogueria() + "\n"
+                    + "Presentación: " + producto.getIdPresentacion().getTipoPresentacion() + "\n"
+                    + "Tipo de Producto: " + producto.getIdTipoProducto().getTipo() + "\n"
+                    + "Precio: $" + producto.getPrecioProducto() + "\n"
+                    + "Posologia: " + producto.getPosologiaProducto() + "\n"
+                    + "Proveedor: " + producto.getIdProveedor().getNombreProveedor() + "\n"
+                    + "Cantidad en stock: " + producto.getCantidadProducto(), 
+                    "info", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/giantplaylist.png")));
             }
         });
         table=sel;

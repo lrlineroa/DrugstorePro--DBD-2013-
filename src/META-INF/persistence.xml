@@ -30,6 +30,6 @@
     <class>Entities.Views.ViewTipoProducto</class>
     <class>Entities.Views.ViewUsoMedic</class>
     <class>Entities.Advice</class>
-    <class>Entities.ViewProductosDrogueria</class>
+    <class>Entities.Views.ViewProductosDrogueria</class>
   </persistence-unit>
 </persistence>

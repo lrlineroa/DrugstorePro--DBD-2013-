@@ -5,7 +5,6 @@
 package Boundary_Package;
 
 import Control_Package.LoginControl;
-import Entities.Views.ViewDrogueria;
 import utilities.helpers.VentaTableModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -307,9 +306,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_inventaryButtonActionPerformed
 
     private void balanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceButtonActionPerformed
-//        setMainPanel(new BalanceGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
+        setMainPanel(new BalanceGui());
+        CloseSesionButton.setText("MENU PRINCIPAL");
+        AdjustToCenter();
     }//GEN-LAST:event_balanceButtonActionPerformed
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
@@ -318,9 +317,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sellButtonActionPerformed
 
     private void QueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryButtonActionPerformed
-//       setMainPanel(new QueryGui());
-//       CloseSesionButton.setText("MENU PRINCIPAL");
-//       AdjustToCenter();
+       setMainPanel(new QueryGui());
+       CloseSesionButton.setText("MENU PRINCIPAL");
+       AdjustToCenter();
     }//GEN-LAST:event_QueryButtonActionPerformed
 
     private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed

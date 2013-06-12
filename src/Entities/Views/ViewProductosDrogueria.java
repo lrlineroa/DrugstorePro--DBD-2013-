@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Edward
  */
 @Entity
-@Table(name = "VIEW_PRODUCTOS_DROGUERIA")
+@Table(name = "dbd_3.lrlineroa.VIEW_PRODUCTOS_DROGUERIA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewProductosDrogueria.findAll", query = "SELECT v FROM ViewProductosDrogueria v"),
@@ -51,7 +51,6 @@ public class ViewProductosDrogueria implements Serializable {
     @Basic(optional = false)
     @Column(name = "VENTA_LIBRE")
     private short ventaLibre;
-    @Id
     @Basic(optional = false)
     @Column(name = "ID_DROGUERIA")
     private int idDrogueria;

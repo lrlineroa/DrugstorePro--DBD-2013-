@@ -5,12 +5,15 @@
 package Control_Package;
 
 import DAOS.DAOFactory;
+import DAOS.exceptions.NonexistentEntityException;
 import Entities.Persona;
 import Entities.Views.ViewFactura;
 import Entities.Views.ViewMedicamento;
 import Entities.Views.ViewPedido;
 import Entities.Views.ViewProductosDrogueria;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,13 +43,29 @@ public class BussinesControl {
     }
 
     //this method make a sell of a specific product
-    public int makeSell(Long Id, Object amount) {
-        return DAOFactory.getInstance().getViewMedicamentoDAO().Update(Id, amount, false);
+    public int makeSell(Long Id, int amount) {
+        ViewMedicamento searchProductById = searchProductById(Id);
+        searchProductById.setCantidadProducto(searchProductById.getCantidadProducto() - amount);
+        try {
+            DAOFactory.getInstance().getViewMedicamentoDAO().edit(searchProductById);
+        } catch (Exception ex) {
+            Logger.getLogger(BussinesControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
+//        return DAOFactory.getInstance().getViewMedicamentoDAO().Update(Id, amount, false);
     }
 
     //this method make a inventary of a specific product
-    public int makeInventary(Long Id, Object amount) {
-        return DAOFactory.getInstance().getViewMedicamentoDAO().Update(Id, amount, true);
+    public int makeInventary(Long Id, int amount) {
+        ViewMedicamento searchProductById = searchProductById(Id);
+        searchProductById.setCantidadProducto(searchProductById.getCantidadProducto() + amount);
+        try {
+            DAOFactory.getInstance().getViewMedicamentoDAO().edit(searchProductById);
+        } catch (Exception ex) {
+            Logger.getLogger(BussinesControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
+//        return DAOFactory.getInstance().getViewMedicamentoDAO().Update(Id, amount, true);
     }
 
     public ViewMedicamento searchProductByName(String text) {
