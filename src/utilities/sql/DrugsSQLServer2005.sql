@@ -1,8 +1,407 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     6/11/2013 10:31:27 PM                        */
+/* Created on:     6/15/2013 4:04:19 PM                         */
 /*==============================================================*/
 
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_CARG')
+          and type = 'TR')
+   drop trigger TRG_DEL_CARG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_CARG')
+          and type = 'TR')
+   drop trigger TRG_INS_CARG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_CARG')
+          and type = 'TR')
+   drop trigger TRG_UPD_CARG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_DROG')
+          and type = 'TR')
+   drop trigger TRG_DEL_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_DROG')
+          and type = 'TR')
+   drop trigger TRG_INS_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_DROG')
+          and type = 'TR')
+   drop trigger TRG_UPD_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_FAB')
+          and type = 'TR')
+   drop trigger TRG_DEL_FAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_FAB')
+          and type = 'TR')
+   drop trigger TRG_INS_FAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_FAB')
+          and type = 'TR')
+   drop trigger TRG_UPD_FAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_FACTU')
+          and type = 'TR')
+   drop trigger TRG_DEL_FACTU
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_FACTU')
+          and type = 'TR')
+   drop trigger TRG_INS_FACTU
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_FACTU')
+          and type = 'TR')
+   drop trigger TRG_UPD_FACTU
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_INVENT')
+          and type = 'TR')
+   drop trigger TRG_DEL_INVENT
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_INVENT')
+          and type = 'TR')
+   drop trigger TRG_INS_INVENT
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_INVENT')
+          and type = 'TR')
+   drop trigger TRG_UPD_INVENT
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_MEDIC')
+          and type = 'TR')
+   drop trigger TRG_DEL_MEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_MEDIC')
+          and type = 'TR')
+   drop trigger TRG_INS_MEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_MEDIC')
+          and type = 'TR')
+   drop trigger TRG_UPD_MEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PED')
+          and type = 'TR')
+   drop trigger TRG_DEL_PED
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PED')
+          and type = 'TR')
+   drop trigger TRG_INS_PED
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PED')
+          and type = 'TR')
+   drop trigger TRG_UPD_PED
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PED_PROD')
+          and type = 'TR')
+   drop trigger TRG_DEL_PED_PROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PED_PROD')
+          and type = 'TR')
+   drop trigger TRG_UPD_PED_PROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PED_PROD')
+          and type = 'TR')
+   drop trigger TRG_INS_PED_PROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PERS')
+          and type = 'TR')
+   drop trigger TRG_DEL_PERS
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PERS')
+          and type = 'TR')
+   drop trigger TRG_INS_PERS
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PERS')
+          and type = 'TR')
+   drop trigger TRG_UPD_PERS
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PRE')
+          and type = 'TR')
+   drop trigger TRG_DEL_PRE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PRE')
+          and type = 'TR')
+   drop trigger TRG_INS_PRE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PRE')
+          and type = 'TR')
+   drop trigger TRG_UPD_PRE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PRD_DROG')
+          and type = 'TR')
+   drop trigger TRG_DEL_PRD_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PRD_DROG')
+          and type = 'TR')
+   drop trigger TRG_INS_PRD_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PRD_DROG')
+          and type = 'TR')
+   drop trigger TRG_UPD_PRD_DROG
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PORDFAB')
+          and type = 'TR')
+   drop trigger TRG_DEL_PORDFAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PORDFAB')
+          and type = 'TR')
+   drop trigger TRG_INS_PORDFAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PORDFAB')
+          and type = 'TR')
+   drop trigger TRG_UPD_PORDFAB
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PRODFAC')
+          and type = 'TR')
+   drop trigger TRG_DEL_PRODFAC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PRODFAC')
+          and type = 'TR')
+   drop trigger TRG_INS_PRODFAC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PRODFAC')
+          and type = 'TR')
+   drop trigger TRG_UPD_PRODFAC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PRODINV')
+          and type = 'TR')
+   drop trigger TRG_DEL_PRODINV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PRODINV')
+          and type = 'TR')
+   drop trigger TRG_INS_PRODINV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PRODINV')
+          and type = 'TR')
+   drop trigger TRG_UPD_PRODINV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PROVE')
+          and type = 'TR')
+   drop trigger TRG_DEL_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PROVE')
+          and type = 'TR')
+   drop trigger TRG_INS_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PROVE')
+          and type = 'TR')
+   drop trigger TRG_UPD_PROVE
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_DEL_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_INS_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_PROV_TPR')
+          and type = 'TR')
+   drop trigger TRG_UPD_PROV_TPR
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_DEL_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_INS_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_TIPOPROD')
+          and type = 'TR')
+   drop trigger TRG_UPD_TIPOPROD
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_DEL_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_INS_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_TIPOPROV')
+          and type = 'TR')
+   drop trigger TRG_UPD_TIPOPROV
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_DEL_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_DEL_USOMEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_INS_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_INS_USOMEDIC
+go
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('TRG_UPD_USOMEDIC')
+          and type = 'TR')
+   drop trigger TRG_UPD_USOMEDIC
+go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -13,9 +412,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('INVETARIORPT') and o.name = 'FK_INVETARI_PERSONA_I_PERSONA')
-alter table INVETARIORPT
-   drop constraint FK_INVETARI_PERSONA_I_PERSONA
+   where r.fkeyid = object_id('INVENTARIO_RPT') and o.name = 'FK_INVENTAR_PERSONA_I_PERSONA')
+alter table INVENTARIO_RPT
+   drop constraint FK_INVENTAR_PERSONA_I_PERSONA
 go
 
 if exists (select 1
@@ -55,16 +454,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PEDIDO_PRODUCTO') and o.name = 'FK_PEDIDO_P_PEDIDO_PR_MEDICAME')
+   where r.fkeyid = object_id('PEDIDO_PRODUCTO') and o.name = 'FK_PEDIDO_P_PEDIDO_PR_PEDIDO')
 alter table PEDIDO_PRODUCTO
-   drop constraint FK_PEDIDO_P_PEDIDO_PR_MEDICAME
+   drop constraint FK_PEDIDO_P_PEDIDO_PR_PEDIDO
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PEDIDO_PRODUCTO') and o.name = 'FK_PEDIDO_P_PEDIDO_PR_PEDIDO')
+   where r.fkeyid = object_id('PEDIDO_PRODUCTO') and o.name = 'FK_PEDIDO_P_PEDIDO_PR_MEDICAME')
 alter table PEDIDO_PRODUCTO
-   drop constraint FK_PEDIDO_P_PEDIDO_PR_PEDIDO
+   drop constraint FK_PEDIDO_P_PEDIDO_PR_MEDICAME
 go
 
 if exists (select 1
@@ -83,16 +482,23 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTODROGUERIA') and o.name = 'FK_PRODUCTO_PRODUCTOD_DROGUERI')
-alter table PRODUCTODROGUERIA
-   drop constraint FK_PRODUCTO_PRODUCTOD_DROGUERI
+   where r.fkeyid = object_id('PRODUCTO_DROGUERIA') and o.name = 'FK_PRODUCTO_PRODUCTO__DROGUERI')
+alter table PRODUCTO_DROGUERIA
+   drop constraint FK_PRODUCTO_PRODUCTO__DROGUERI
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTODROGUERIA') and o.name = 'FK_PRODUCTO_PRODUCTOD_MEDICAME')
-alter table PRODUCTODROGUERIA
-   drop constraint FK_PRODUCTO_PRODUCTOD_MEDICAME
+   where r.fkeyid = object_id('PRODUCTO_DROGUERIA') and o.name = 'FK_PRODUCTO_PRODUCTO__MEDICAM2')
+alter table PRODUCTO_DROGUERIA
+   drop constraint FK_PRODUCTO_PRODUCTO__MEDICAM2
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRODUCTO_FABRICANTE') and o.name = 'FK_PRODUCTO_FABRICANT_FABRICAN')
+alter table PRODUCTO_FABRICANTE
+   drop constraint FK_PRODUCTO_FABRICANT_FABRICAN
 go
 
 if exists (select 1
@@ -104,20 +510,6 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTO_FABRICANTE') and o.name = 'FK_PRODUCTO_PRODUCTO__FABRICAN')
-alter table PRODUCTO_FABRICANTE
-   drop constraint FK_PRODUCTO_PRODUCTO__FABRICAN
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTO_FACTURA') and o.name = 'FK_PRODUCTO_PRODUCTO__MEDICAME2')
-alter table PRODUCTO_FACTURA
-   drop constraint FK_PRODUCTO_PRODUCTO__MEDICAME2
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('PRODUCTO_FACTURA') and o.name = 'FK_PRODUCTO_PRODUCTO__FACTURA')
 alter table PRODUCTO_FACTURA
    drop constraint FK_PRODUCTO_PRODUCTO__FACTURA
@@ -125,23 +517,23 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTO_INVENTARIO') and o.name = 'FK_PRODUCTO_PRODUCTO__MEDICAME3')
-alter table PRODUCTO_INVENTARIO
-   drop constraint FK_PRODUCTO_PRODUCTO__MEDICAME3
+   where r.fkeyid = object_id('PRODUCTO_FACTURA') and o.name = 'FK_PRODUCTO_PRODUCTO__MEDICAM3')
+alter table PRODUCTO_FACTURA
+   drop constraint FK_PRODUCTO_PRODUCTO__MEDICAM3
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRODUCTO_INVENTARIO') and o.name = 'FK_PRODUCTO_PRODUCTO__INVETARI')
+   where r.fkeyid = object_id('PRODUCTO_INVENTARIO') and o.name = 'FK_PRODUCTO_PRODUCTO__INVENTAR')
 alter table PRODUCTO_INVENTARIO
-   drop constraint FK_PRODUCTO_PRODUCTO__INVETARI
+   drop constraint FK_PRODUCTO_PRODUCTO__INVENTAR
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PROVEEDOR_TIPO_PROVEEDOR') and o.name = 'FK_PROVEEDO_PROVEEDOR_PROVEEDO')
-alter table PROVEEDOR_TIPO_PROVEEDOR
-   drop constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO
+   where r.fkeyid = object_id('PRODUCTO_INVENTARIO') and o.name = 'FK_PRODUCTO_PRODUCTO__MEDICAM4')
+alter table PRODUCTO_INVENTARIO
+   drop constraint FK_PRODUCTO_PRODUCTO__MEDICAM4
 go
 
 if exists (select 1
@@ -152,10 +544,10 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
 go
 
 if exists (select 1
-            from  sysobjects
-           where  id = object_id('VIEW_ADVICE')
-            and   type = 'V')
-   drop view VIEW_ADVICE
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PROVEEDOR_TIPO_PROVEEDOR') and o.name = 'FK_PROVEEDO_PROVEEDOR_PROVEEDO')
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   drop constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO
 go
 
 if exists (select 1
@@ -237,9 +629,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('VIEW_PRODUCTOS_DROGUERIA')
+           where  id = object_id('VIEW_PRODUCTO_DROGUERIA')
             and   type = 'V')
-   drop view VIEW_PRODUCTOS_DROGUERIA
+   drop view VIEW_PRODUCTO_DROGUERIA
 go
 
 if exists (select 1
@@ -293,13 +685,6 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('ADVICE')
-            and   type = 'U')
-   drop table ADVICE
-go
-
-if exists (select 1
-            from  sysobjects
            where  id = object_id('BITACORA')
             and   type = 'U')
    drop table BITACORA
@@ -344,18 +729,18 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('INVETARIORPT')
+           where  id    = object_id('INVENTARIO_RPT')
             and   name  = 'PERSONA_INVENTARIO_FK'
             and   indid > 0
             and   indid < 255)
-   drop index INVETARIORPT.PERSONA_INVENTARIO_FK
+   drop index INVENTARIO_RPT.PERSONA_INVENTARIO_FK
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('INVETARIORPT')
+           where  id = object_id('INVENTARIO_RPT')
             and   type = 'U')
-   drop table INVETARIORPT
+   drop table INVENTARIO_RPT
 go
 
 if exists (select 1
@@ -476,36 +861,27 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('PRODUCTODROGUERIA')
-            and   name  = 'PRODUCTODROGUERIA_FK'
+           where  id    = object_id('PRODUCTO_DROGUERIA')
+            and   name  = 'PRODUCTO_DROGUERIA2_FK'
             and   indid > 0
             and   indid < 255)
-   drop index PRODUCTODROGUERIA.PRODUCTODROGUERIA_FK
+   drop index PRODUCTO_DROGUERIA.PRODUCTO_DROGUERIA2_FK
 go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('PRODUCTODROGUERIA')
-            and   name  = 'PRODUCTODROGUERIA2_FK'
+           where  id    = object_id('PRODUCTO_DROGUERIA')
+            and   name  = 'PRODUCTO_DROGUERIA_FK'
             and   indid > 0
             and   indid < 255)
-   drop index PRODUCTODROGUERIA.PRODUCTODROGUERIA2_FK
+   drop index PRODUCTO_DROGUERIA.PRODUCTO_DROGUERIA_FK
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('PRODUCTODROGUERIA')
+           where  id = object_id('PRODUCTO_DROGUERIA')
             and   type = 'U')
-   drop table PRODUCTODROGUERIA
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('PRODUCTO_FABRICANTE')
-            and   name  = 'PRODUCTO_FABRICANTE2_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index PRODUCTO_FABRICANTE.PRODUCTO_FABRICANTE2_FK
+   drop table PRODUCTO_DROGUERIA
 go
 
 if exists (select 1
@@ -515,6 +891,15 @@ if exists (select 1
             and   indid > 0
             and   indid < 255)
    drop index PRODUCTO_FABRICANTE.PRODUCTO_FABRICANTE_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('PRODUCTO_FABRICANTE')
+            and   name  = 'FABRICANTE_PRODUCTO_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index PRODUCTO_FABRICANTE.FABRICANTE_PRODUCTO_FK
 go
 
 if exists (select 1
@@ -584,19 +969,19 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('PROVEEDOR_TIPO_PROVEEDOR')
-            and   name  = 'PROVEEDOR_TIPO_PROVEEDOR2_FK'
+            and   name  = 'PROVEEDOR_TIPO_PROVEEDOR_FK'
             and   indid > 0
             and   indid < 255)
-   drop index PROVEEDOR_TIPO_PROVEEDOR.PROVEEDOR_TIPO_PROVEEDOR2_FK
+   drop index PROVEEDOR_TIPO_PROVEEDOR.PROVEEDOR_TIPO_PROVEEDOR_FK
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('PROVEEDOR_TIPO_PROVEEDOR')
-            and   name  = 'PROVEEDOR_TIPO_PROVEEDOR_FK'
+            and   name  = 'PROVEEDOR_TIPO_PROVEEDOR2_FK'
             and   indid > 0
             and   indid < 255)
-   drop index PROVEEDOR_TIPO_PROVEEDOR.PROVEEDOR_TIPO_PROVEEDOR_FK
+   drop index PROVEEDOR_TIPO_PROVEEDOR.PROVEEDOR_TIPO_PROVEEDOR2_FK
 go
 
 if exists (select 1
@@ -628,35 +1013,6 @@ if exists (select 1
 go
 
 /*==============================================================*/
-/* Table: ADVICE                                                */
-/*==============================================================*/
-create table ADVICE (
-   ID_ADVICE            int                  not null,
-   ID_PROD_RELACIONADO  int                  not null,
-   TIPO_O_NOTA          text                 null,
-   CANT_REGISTRADA      int                  not null,
-   constraint PK_ADVICE primary key nonclustered (ID_ADVICE)
-)
-go
-
-if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('ADVICE') and minor_id = 0)
-begin 
-   declare @CurrentUser sysname 
-select @CurrentUser = user_name() 
-execute sp_dropextendedproperty 'MS_Description',  
-   'user', @CurrentUser, 'table', 'ADVICE' 
- 
-end 
-
-
-select @CurrentUser = user_name() 
-execute sp_addextendedproperty 'MS_Description',  
-   'ESTA TABLA CONTENDRÁ EL REGISTRO DE CUANDO UN MEDICAMENTO LLEGA A ESTADO CRÍTICO (MENOS DE 5 UNIDADES EN EL INVENTARIO)', 
-   'user', @CurrentUser, 'table', 'ADVICE'
-go
-
-/*==============================================================*/
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA (
@@ -664,7 +1020,7 @@ create table BITACORA (
    FECHA                datetime             not null,
    TIPO_ACCION          char(20)             not null,
    TABLA                char(50)             null,
-   USUARIO              char(25)             null,
+   USUARIO              varchar(25)          null,
    constraint PK_BITACORA primary key nonclustered (ID_BITACORA)
 )
 go
@@ -927,30 +1283,10 @@ go
 /*==============================================================*/
 create table FACTURA (
    ID_FACTURA           int                  not null,
-   ID_PERSONA           bigint               not null,
-   FECHA_FACTURA        timestamp            not null,
-   TOTAL                float(10)            null,
+   ID_PERSONA           int                  not null,
+   TOTAL                float(10)            not null,
    constraint PK_FACTURA primary key nonclustered (ID_FACTURA)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('FACTURA')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PERSONA')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'FACTURA', 'column', 'ID_PERSONA'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Este es el número de identificación de la persona',
-   'user', @CurrentUser, 'table', 'FACTURA', 'column', 'ID_PERSONA'
 go
 
 /*==============================================================*/
@@ -962,39 +1298,20 @@ ID_PERSONA ASC
 go
 
 /*==============================================================*/
-/* Table: INVETARIORPT                                          */
+/* Table: INVENTARIO_RPT                                        */
 /*==============================================================*/
-create table INVETARIORPT (
+create table INVENTARIO_RPT (
    ID_INVENTARIORPT     int                  not null,
-   ID_PERSONA           bigint               not null,
+   ID_PERSONA           int                  not null,
    FECHA_INV            datetime             not null,
-   constraint PK_INVETARIORPT primary key nonclustered (ID_INVENTARIORPT)
+   constraint PK_INVENTARIO_RPT primary key nonclustered (ID_INVENTARIORPT)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('INVETARIORPT')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PERSONA')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'INVETARIORPT', 'column', 'ID_PERSONA'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Este es el número de identificación de la persona',
-   'user', @CurrentUser, 'table', 'INVETARIORPT', 'column', 'ID_PERSONA'
 go
 
 /*==============================================================*/
 /* Index: PERSONA_INVENTARIO_FK                                 */
 /*==============================================================*/
-create index PERSONA_INVENTARIO_FK on INVETARIORPT (
+create index PERSONA_INVENTARIO_FK on INVENTARIO_RPT (
 ID_PERSONA ASC
 )
 go
@@ -1003,151 +1320,18 @@ go
 /* Table: MEDICAMENTO                                           */
 /*==============================================================*/
 create table MEDICAMENTO (
-   ID_PRODUCTO          bigint               not null,
-   ID_USO_MEDICAMENTO   int                  null,
-   ID_TIPO_PRODUCTO     int                  not null,
+   ID_PRODUCTO          int                  not null,
    ID_PRESENTACION      int                  not null,
+   ID_USO_MEDICAMENTO   int                  null,
+   NOMBRE_PRODUCTO      varchar(25)          null,
+   PRECIO_PRODUCTO      float(7)             null,
+   CANTIDAD_PRODUCTO    int                  null,
+   POSOLOGIA_PRODUCTO   varchar(25)          null,
+   ID_TIPO_PRODUCTO     int                  not null,
    ID_PROVEEDOR         int                  not null,
-   NOMBRE_PRODUCTO      varchar(25)          not null,
-   PRECIO_PRODUCTO      float(7)             not null,
-   CANTIDAD_PRODUCTO    int                  not null,
-   POSOLOGIA_PRODUCTO   varchar(12)          not null,
-   VENTA_LIBRE          bit                  not null,
-   constraint PK_MEDICAMENTO primary key (ID_PRODUCTO)
+   VENTA_LIBRE          smallint             not null,
+   constraint PK_MEDICAMENTO primary key nonclustered (ID_PRODUCTO)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PRODUCTO'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRESENTACION')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PRESENTACION'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'identificador primario para esta entidad. ',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PRESENTACION'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PROVEEDOR')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PROVEEDOR'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Identificador de la entidad fabricante',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'ID_PROVEEDOR'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'NOMBRE_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'NOMBRE_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Atributo que contiene el nombre del producto',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'NOMBRE_PRODUCTO'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'PRECIO_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'PRECIO_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Atributo en el cual se especifica el precio del producto. Es de tipo Float porque puede contener decimales.',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'PRECIO_PRODUCTO'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'CANTIDAD_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'CANTIDAD_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Atributo en el que se especifica la cantidad del producto',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'CANTIDAD_PRODUCTO'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('MEDICAMENTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'POSOLOGIA_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'POSOLOGIA_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Atributo en el cual se especifica la dosis recomendada del producto',
-   'user', @CurrentUser, 'table', 'MEDICAMENTO', 'column', 'POSOLOGIA_PRODUCTO'
 go
 
 /*==============================================================*/
@@ -1193,8 +1377,8 @@ create table PEDIDO (
    NOMBRE_CLIENTE_PED   varchar(35)          not null,
    DIRECCION_CLIEN_PEDIDO varchar(50)          not null,
    TELEFONO_CLIENTE_PED varchar(12)          not null,
-   SOLICITUD_EN_CURSO   bit                  not null,
-   SOLICITUD_FINALIZADA bit                  not null,
+   SOLICITUD_EN_CURSO   smallint             not null,
+   SOLICITUD_FINALIZADA smallint             not null,
    constraint PK_PEDIDO primary key nonclustered (ID_PEDIDO)
 )
 go
@@ -1250,7 +1434,7 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'identificador primario de esta entidad. ',
+   'Este atributo relacionara a la entidad PEDIDO con la entidad DROGUERIA, y señalara cual sede es la que esta realizando el pedido. Es de tipo integer porque el identificador Id_Drogueria en la entidad DROGUERIA es de este tipo.',
    'user', @CurrentUser, 'table', 'PEDIDO', 'column', 'ID_DROGUERIA'
 go
 
@@ -1399,9 +1583,9 @@ go
 /* Table: PEDIDO_PRODUCTO                                       */
 /*==============================================================*/
 create table PEDIDO_PRODUCTO (
-   ID_PRODUCTO          bigint               not null,
    ID_PEDIDO            int                  not null,
-   constraint PK_PEDIDO_PRODUCTO primary key (ID_PRODUCTO, ID_PEDIDO)
+   ID_PRODUCTO          int                  not null,
+   constraint PK_PEDIDO_PRODUCTO primary key nonclustered (ID_PEDIDO, ID_PRODUCTO)
 )
 go
 
@@ -1424,25 +1608,6 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('PEDIDO_PRODUCTO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PEDIDO_PRODUCTO', 'column', 'ID_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'PEDIDO_PRODUCTO', 'column', 'ID_PRODUCTO'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PEDIDO_PRODUCTO')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PEDIDO')
 )
 begin
@@ -1456,15 +1621,34 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'Este atributo identificara a la entidad con un codigo numerico irrepetible, es tipo integer debido a que solo nos interesa el numero como identificador para lo cual no es necesario exactitud decimal.',
+   'Este atributo referenciara un pedido realizado para relacionarlo con un producto. Conserva el mismo tipo de dato del atributo Id_Pedido de la entidad PEDIDO',
    'user', @CurrentUser, 'table', 'PEDIDO_PRODUCTO', 'column', 'ID_PEDIDO'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('PEDIDO_PRODUCTO')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'PEDIDO_PRODUCTO', 'column', 'ID_PRODUCTO'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Este atributo referenciara un producto para relacionarlo con un pedido realizado. Conserva el mismo tipo de dato del atributo Id_Producto de la entidad PRODUCTO',
+   'user', @CurrentUser, 'table', 'PEDIDO_PRODUCTO', 'column', 'ID_PRODUCTO'
 go
 
 /*==============================================================*/
 /* Index: PEDIDO_PRODUCTO_FK                                    */
 /*==============================================================*/
 create index PEDIDO_PRODUCTO_FK on PEDIDO_PRODUCTO (
-ID_PRODUCTO ASC
+ID_PEDIDO ASC
 )
 go
 
@@ -1472,7 +1656,7 @@ go
 /* Index: PEDIDO_PRODUCTO2_FK                                   */
 /*==============================================================*/
 create index PEDIDO_PRODUCTO2_FK on PEDIDO_PRODUCTO (
-ID_PEDIDO ASC
+ID_PRODUCTO ASC
 )
 go
 
@@ -1480,7 +1664,7 @@ go
 /* Table: PERSONA                                               */
 /*==============================================================*/
 create table PERSONA (
-   ID_PERSONA           bigint               not null,
+   ID_PERSONA           int                  not null,
    ID_CARGO             int                  not null,
    ID_DROGUERIA         int                  not null,
    NOMBRE_PERSONA       varchar(15)          not null,
@@ -1488,8 +1672,8 @@ create table PERSONA (
    TELEFONO_PERSONA     int                  not null
       constraint CKC_TELEFONO_PERSONA_PERSONA check (TELEFONO_PERSONA between 000000000 and 999999999),
    DIRECCION_PERSONA    varchar(25)          not null,
-   PASSWORD             varchar(30)          not null,
-   NOMBRE_DE_USUARIO    varchar(10)          not null,
+   PASSWORD             text                 not null,
+   NOMBRE_DE_USUARIO    varchar(15)          not null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
 )
 go
@@ -1545,7 +1729,7 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'Este es el identificador de los cargos puede ser un autonumérico',
+   'este atributo va a guardar el número del cargo de la persona ',
    'user', @CurrentUser, 'table', 'PERSONA', 'column', 'ID_CARGO'
 go
 
@@ -1564,7 +1748,7 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'identificador primario de esta entidad. ',
+   'Este atributo va a guardar el número de la sede en el cual tiene vinculación la persona',
    'user', @CurrentUser, 'table', 'PERSONA', 'column', 'ID_DROGUERIA'
 go
 
@@ -1702,7 +1886,7 @@ end
 
 select @CurrentUser = user_name() 
 execute sp_addextendedproperty 'MS_Description',  
-   'esta entidad recojera la informacion de cada una de las distintas presentaciones, formas, envases o maneras de comercializar los productos. eje: gel, pildora, jarabe, etc', 
+   'Esta entidad recogera la informacion de cada una de las distintas presentaciones, formas, envases o maneras de comercializar los productos. eje: gel, pildora, jarabe, etc', 
    'user', @CurrentUser, 'table', 'PRESENTACION'
 go
 
@@ -1745,66 +1929,83 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: PRODUCTODROGUERIA                                     */
+/* Table: PRODUCTO_DROGUERIA                                    */
 /*==============================================================*/
-create table PRODUCTODROGUERIA (
-   ID_PRODUCTO          bigint               not null,
+create table PRODUCTO_DROGUERIA (
    ID_DROGUERIA         int                  not null,
-   constraint PK_PRODUCTODROGUERIA primary key (ID_PRODUCTO, ID_DROGUERIA)
+   ID_PRODUCTO          int                  not null,
+   constraint PK_PRODUCTO_DROGUERIA primary key (ID_DROGUERIA, ID_PRODUCTO)
 )
 go
 
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PRODUCTODROGUERIA')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PRODUCTODROGUERIA', 'column', 'ID_PRODUCTO'
-
-end
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('PRODUCTO_DROGUERIA') and minor_id = 0)
+begin 
+   declare @CurrentUser sysname 
+select @CurrentUser = user_name() 
+execute sp_dropextendedproperty 'MS_Description',  
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA' 
+ 
+end 
 
 
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'PRODUCTODROGUERIA', 'column', 'ID_PRODUCTO'
+select @CurrentUser = user_name() 
+execute sp_addextendedproperty 'MS_Description',  
+   'entidad debil resultante de la relacion n-n. ', 
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PRODUCTODROGUERIA')
+      p.major_id = object_id('PRODUCTO_DROGUERIA')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_DROGUERIA')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PRODUCTODROGUERIA', 'column', 'ID_DROGUERIA'
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA', 'column', 'ID_DROGUERIA'
 
 end
 
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'identificador primario de esta entidad. ',
-   'user', @CurrentUser, 'table', 'PRODUCTODROGUERIA', 'column', 'ID_DROGUERIA'
+   'identificador heredado de la entidad DROGUERIA',
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA', 'column', 'ID_DROGUERIA'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('PRODUCTO_DROGUERIA')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA', 'column', 'ID_PRODUCTO'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'identificador heredado de la entidad PRODUCTO',
+   'user', @CurrentUser, 'table', 'PRODUCTO_DROGUERIA', 'column', 'ID_PRODUCTO'
 go
 
 /*==============================================================*/
-/* Index: PRODUCTODROGUERIA2_FK                                 */
+/* Index: PRODUCTO_DROGUERIA_FK                                 */
 /*==============================================================*/
-create index PRODUCTODROGUERIA2_FK on PRODUCTODROGUERIA (
-ID_PRODUCTO ASC
+create index PRODUCTO_DROGUERIA_FK on PRODUCTO_DROGUERIA (
+ID_DROGUERIA ASC
 )
 go
 
 /*==============================================================*/
-/* Index: PRODUCTODROGUERIA_FK                                  */
+/* Index: PRODUCTO_DROGUERIA2_FK                                */
 /*==============================================================*/
-create index PRODUCTODROGUERIA_FK on PRODUCTODROGUERIA (
-ID_DROGUERIA ASC
+create index PRODUCTO_DROGUERIA2_FK on PRODUCTO_DROGUERIA (
+ID_PRODUCTO ASC
 )
 go
 
@@ -1812,29 +2013,10 @@ go
 /* Table: PRODUCTO_FABRICANTE                                   */
 /*==============================================================*/
 create table PRODUCTO_FABRICANTE (
-   ID_PRODUCTO          bigint               not null,
    ID_FABRICANTE        int                  not null,
-   constraint PK_PRODUCTO_FABRICANTE primary key (ID_PRODUCTO, ID_FABRICANTE)
+   ID_PRODUCTO          int                  not null,
+   constraint PK_PRODUCTO_FABRICANTE primary key (ID_FABRICANTE, ID_PRODUCTO)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PRODUCTO_FABRICANTE')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PRODUCTO_FABRICANTE', 'column', 'ID_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'PRODUCTO_FABRICANTE', 'column', 'ID_PRODUCTO'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -1856,6 +2038,33 @@ execute sp_addextendedproperty 'MS_Description',
    'user', @CurrentUser, 'table', 'PRODUCTO_FABRICANTE', 'column', 'ID_FABRICANTE'
 go
 
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('PRODUCTO_FABRICANTE')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'PRODUCTO_FABRICANTE', 'column', 'ID_PRODUCTO'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Numero que identifica de forma unica el producto',
+   'user', @CurrentUser, 'table', 'PRODUCTO_FABRICANTE', 'column', 'ID_PRODUCTO'
+go
+
+/*==============================================================*/
+/* Index: FABRICANTE_PRODUCTO_FK                                */
+/*==============================================================*/
+create index FABRICANTE_PRODUCTO_FK on PRODUCTO_FABRICANTE (
+ID_FABRICANTE ASC
+)
+go
+
 /*==============================================================*/
 /* Index: PRODUCTO_FABRICANTE_FK                                */
 /*==============================================================*/
@@ -1865,47 +2074,20 @@ ID_PRODUCTO ASC
 go
 
 /*==============================================================*/
-/* Index: PRODUCTO_FABRICANTE2_FK                               */
-/*==============================================================*/
-create index PRODUCTO_FABRICANTE2_FK on PRODUCTO_FABRICANTE (
-ID_FABRICANTE ASC
-)
-go
-
-/*==============================================================*/
 /* Table: PRODUCTO_FACTURA                                      */
 /*==============================================================*/
 create table PRODUCTO_FACTURA (
-   ID_PRODUCTO          bigint               not null,
    ID_FACTURA           int                  not null,
-   constraint PK_PRODUCTO_FACTURA primary key (ID_PRODUCTO, ID_FACTURA)
+   ID_PRODUCTO          int                  not null,
+   constraint PK_PRODUCTO_FACTURA primary key (ID_FACTURA, ID_PRODUCTO)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PRODUCTO_FACTURA')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PRODUCTO_FACTURA', 'column', 'ID_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'PRODUCTO_FACTURA', 'column', 'ID_PRODUCTO'
 go
 
 /*==============================================================*/
 /* Index: PRODUCTO_FACTURA_FK                                   */
 /*==============================================================*/
 create index PRODUCTO_FACTURA_FK on PRODUCTO_FACTURA (
-ID_PRODUCTO ASC
+ID_FACTURA ASC
 )
 go
 
@@ -1913,7 +2095,7 @@ go
 /* Index: PRODUCTO_FACTURA2_FK                                  */
 /*==============================================================*/
 create index PRODUCTO_FACTURA2_FK on PRODUCTO_FACTURA (
-ID_FACTURA ASC
+ID_PRODUCTO ASC
 )
 go
 
@@ -1921,36 +2103,17 @@ go
 /* Table: PRODUCTO_INVENTARIO                                   */
 /*==============================================================*/
 create table PRODUCTO_INVENTARIO (
-   ID_PRODUCTO          bigint               not null,
    ID_INVENTARIORPT     int                  not null,
-   constraint PK_PRODUCTO_INVENTARIO primary key (ID_PRODUCTO, ID_INVENTARIORPT)
+   ID_PRODUCTO          int                  not null,
+   constraint PK_PRODUCTO_INVENTARIO primary key (ID_INVENTARIORPT, ID_PRODUCTO)
 )
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PRODUCTO_INVENTARIO')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PRODUCTO')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PRODUCTO_INVENTARIO', 'column', 'ID_PRODUCTO'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Numero que identifica de forma unica el producto',
-   'user', @CurrentUser, 'table', 'PRODUCTO_INVENTARIO', 'column', 'ID_PRODUCTO'
 go
 
 /*==============================================================*/
 /* Index: PRODUCTO_INVENTARIO_FK                                */
 /*==============================================================*/
 create index PRODUCTO_INVENTARIO_FK on PRODUCTO_INVENTARIO (
-ID_PRODUCTO ASC
+ID_INVENTARIORPT ASC
 )
 go
 
@@ -1958,7 +2121,7 @@ go
 /* Index: PRODUCTO_INVENTARIO2_FK                               */
 /*==============================================================*/
 create index PRODUCTO_INVENTARIO2_FK on PRODUCTO_INVENTARIO (
-ID_INVENTARIORPT ASC
+ID_PRODUCTO ASC
 )
 go
 
@@ -2071,9 +2234,9 @@ go
 /* Table: PROVEEDOR_TIPO_PROVEEDOR                              */
 /*==============================================================*/
 create table PROVEEDOR_TIPO_PROVEEDOR (
-   ID_PROVEEDOR         int                  not null,
    ID_TIPO_PROVEEDOR    int                  not null,
-   constraint PK_PROVEEDOR_TIPO_PROVEEDOR primary key (ID_PROVEEDOR, ID_TIPO_PROVEEDOR)
+   ID_PROVEEDOR         int                  not null,
+   constraint PK_PROVEEDOR_TIPO_PROVEEDOR primary key nonclustered (ID_TIPO_PROVEEDOR, ID_PROVEEDOR)
 )
 go
 
@@ -2096,25 +2259,6 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('PROVEEDOR_TIPO_PROVEEDOR')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PROVEEDOR')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'PROVEEDOR_TIPO_PROVEEDOR', 'column', 'ID_PROVEEDOR'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Identificador de la entidad fabricante',
-   'user', @CurrentUser, 'table', 'PROVEEDOR_TIPO_PROVEEDOR', 'column', 'ID_PROVEEDOR'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('PROVEEDOR_TIPO_PROVEEDOR')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_TIPO_PROVEEDOR')
 )
 begin
@@ -2128,23 +2272,41 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   'Identificador de la entidad Tipo_Proveedor
-   ',
+   'Identificador de Tipo Proveedor',
    'user', @CurrentUser, 'table', 'PROVEEDOR_TIPO_PROVEEDOR', 'column', 'ID_TIPO_PROVEEDOR'
 go
 
-/*==============================================================*/
-/* Index: PROVEEDOR_TIPO_PROVEEDOR_FK                           */
-/*==============================================================*/
-create index PROVEEDOR_TIPO_PROVEEDOR_FK on PROVEEDOR_TIPO_PROVEEDOR (
-ID_PROVEEDOR ASC
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('PROVEEDOR_TIPO_PROVEEDOR')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'ID_PROVEEDOR')
 )
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'PROVEEDOR_TIPO_PROVEEDOR', 'column', 'ID_PROVEEDOR'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Identificador del proveedor',
+   'user', @CurrentUser, 'table', 'PROVEEDOR_TIPO_PROVEEDOR', 'column', 'ID_PROVEEDOR'
 go
 
 /*==============================================================*/
 /* Index: PROVEEDOR_TIPO_PROVEEDOR2_FK                          */
 /*==============================================================*/
 create index PROVEEDOR_TIPO_PROVEEDOR2_FK on PROVEEDOR_TIPO_PROVEEDOR (
+ID_PROVEEDOR ASC
+)
+go
+
+/*==============================================================*/
+/* Index: PROVEEDOR_TIPO_PROVEEDOR_FK                           */
+/*==============================================================*/
+create index PROVEEDOR_TIPO_PROVEEDOR_FK on PROVEEDOR_TIPO_PROVEEDOR (
 ID_TIPO_PROVEEDOR ASC
 )
 go
@@ -2253,18 +2415,10 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* View: VIEW_ADVICE                                            */
-/*==============================================================*/
-create view VIEW_ADVICE as
-select * from ADVICE
-go
-
-/*==============================================================*/
 /* View: VIEW_BITACORA                                          */
 /*==============================================================*/
 create view VIEW_BITACORA as
-select
-   *
+select * from BITACORA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2288,8 +2442,7 @@ go
 /* View: VIEW_CARGO                                             */
 /*==============================================================*/
 create view VIEW_CARGO as
-select
-   *
+select * from CARGO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2313,8 +2466,7 @@ go
 /* View: VIEW_DROGUERIA                                         */
 /*==============================================================*/
 create view VIEW_DROGUERIA as
-select
-   *
+select * from DROGUERIA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2338,8 +2490,7 @@ go
 /* View: VIEW_FABRICANTE                                        */
 /*==============================================================*/
 create view VIEW_FABRICANTE as
-select
-   *
+select * from FABRICANTE
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2363,8 +2514,7 @@ go
 /* View: VIEW_FACTURA                                           */
 /*==============================================================*/
 create view VIEW_FACTURA as
-select
-   *
+select * from FACTURA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2388,8 +2538,7 @@ go
 /* View: VIEW_INVENTARIORPT                                     */
 /*==============================================================*/
 create view VIEW_INVENTARIORPT as
-select
-   *
+select * from INVENTARIO_RPT
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2413,8 +2562,7 @@ go
 /* View: VIEW_MEDICAMENTO                                       */
 /*==============================================================*/
 create view VIEW_MEDICAMENTO as
-select
-   *
+select * from MEDICAMENTO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2438,8 +2586,7 @@ go
 /* View: VIEW_PEDIDO                                            */
 /*==============================================================*/
 create view VIEW_PEDIDO as
-select
-   *
+select * from PEDIDO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2463,8 +2610,7 @@ go
 /* View: VIEW_PEDIDO_PRODUCTO                                   */
 /*==============================================================*/
 create view VIEW_PEDIDO_PRODUCTO as
-select
-   *
+select * from PEDIDO_PRODUCTO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2488,8 +2634,7 @@ go
 /* View: VIEW_PERSONA                                           */
 /*==============================================================*/
 create view VIEW_PERSONA as
-select
-   *
+select * from PERSONA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2513,8 +2658,7 @@ go
 /* View: VIEW_PRESENTACION                                      */
 /*==============================================================*/
 create view VIEW_PRESENTACION as
-select
-   *
+select * from PRESENTACION
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2535,35 +2679,34 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* View: VIEW_PRODUCTOS_DROGUERIA                               */
+/* View: VIEW_PRODUCTO_DROGUERIA                                */
 /*==============================================================*/
-create view VIEW_PRODUCTOS_DROGUERIA as
-select
-   MEDICAMENTO.ID_PRODUCTO,
-   MEDICAMENTO.ID_USO_MEDICAMENTO,
-   MEDICAMENTO.ID_TIPO_PRODUCTO,
-   MEDICAMENTO.ID_PRESENTACION,
-   MEDICAMENTO.ID_PROVEEDOR,
-   MEDICAMENTO.NOMBRE_PRODUCTO,
-   MEDICAMENTO.PRECIO_PRODUCTO,
-   MEDICAMENTO.CANTIDAD_PRODUCTO,
-   MEDICAMENTO.POSOLOGIA_PRODUCTO,
-   MEDICAMENTO.VENTA_LIBRE,
-   DROGUERIA.ID_DROGUERIA,
-   DROGUERIA.NOMBRE_DROGUERIA,
-   DROGUERIA.TELEFONO_DROGUERIA,
-   DROGUERIA.DIRECCION_DROGUERIA
-from
-   MEDICAMENTO,
-   DROGUERIA
+create view VIEW_PRODUCTO_DROGUERIA as
+select * from PRODUCTO_DROGUERIA
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('VIEW_PRODUCTO_DROGUERIA') and minor_id = 0)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_DROGUERIA'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Esta vista muestra informacion acerca de los productos que ofrece una drogueria',
+   'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_DROGUERIA'
 go
 
 /*==============================================================*/
 /* View: VIEW_PRODUCTO_FABRICANTE                               */
 /*==============================================================*/
 create view VIEW_PRODUCTO_FABRICANTE as
-select
-   *
+select * from PRODUCTO_FABRICANTE
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2587,8 +2730,7 @@ go
 /* View: VIEW_PRODUCTO_FACTURA                                  */
 /*==============================================================*/
 create view VIEW_PRODUCTO_FACTURA as
-select
-   *
+select * from PRODUCTO_FACTURA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2612,8 +2754,7 @@ go
 /* View: VIEW_PRODUCTO_INVENTARIO                               */
 /*==============================================================*/
 create view VIEW_PRODUCTO_INVENTARIO as
-select
-   *
+select * from PRODUCTO_INVENTARIO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2637,8 +2778,7 @@ go
 /* View: VIEW_PROVEEDOR                                         */
 /*==============================================================*/
 create view VIEW_PROVEEDOR as
-select
-   *
+select * from PROVEEDOR
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2662,8 +2802,7 @@ go
 /* View: VIEW_PROVEEDOR_TIPO_PROV                               */
 /*==============================================================*/
 create view VIEW_PROVEEDOR_TIPO_PROV as
-select
-   *
+select * from PROVEEDOR_TIPO_PROVEEDOR
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2687,8 +2826,7 @@ go
 /* View: VIEW_TIPO_PRODUCTO                                     */
 /*==============================================================*/
 create view VIEW_TIPO_PRODUCTO as
-select
-   *
+select * from TIPO_PRODUCTO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2712,8 +2850,7 @@ go
 /* View: VIEW_USO_MEDIC                                         */
 /*==============================================================*/
 create view VIEW_USO_MEDIC as
-select
-   *
+select * from USO_MEDICAMENTO
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2738,8 +2875,8 @@ alter table FACTURA
       references PERSONA (ID_PERSONA)
 go
 
-alter table INVETARIORPT
-   add constraint FK_INVETARI_PERSONA_I_PERSONA foreign key (ID_PERSONA)
+alter table INVENTARIO_RPT
+   add constraint FK_INVENTAR_PERSONA_I_PERSONA foreign key (ID_PERSONA)
       references PERSONA (ID_PERSONA)
 go
 
@@ -2769,13 +2906,13 @@ alter table PEDIDO
 go
 
 alter table PEDIDO_PRODUCTO
-   add constraint FK_PEDIDO_P_PEDIDO_PR_MEDICAME foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
+   add constraint FK_PEDIDO_P_PEDIDO_PR_PEDIDO foreign key (ID_PEDIDO)
+      references PEDIDO (ID_PEDIDO)
 go
 
 alter table PEDIDO_PRODUCTO
-   add constraint FK_PEDIDO_P_PEDIDO_PR_PEDIDO foreign key (ID_PEDIDO)
-      references PEDIDO (ID_PEDIDO)
+   add constraint FK_PEDIDO_P_PEDIDO_PR_MEDICAME foreign key (ID_PRODUCTO)
+      references MEDICAMENTO (ID_PRODUCTO)
 go
 
 alter table PERSONA
@@ -2788,28 +2925,23 @@ alter table PERSONA
       references DROGUERIA (ID_DROGUERIA)
 go
 
-alter table PRODUCTODROGUERIA
-   add constraint FK_PRODUCTO_PRODUCTOD_DROGUERI foreign key (ID_DROGUERIA)
+alter table PRODUCTO_DROGUERIA
+   add constraint FK_PRODUCTO_PRODUCTO__DROGUERI foreign key (ID_DROGUERIA)
       references DROGUERIA (ID_DROGUERIA)
 go
 
-alter table PRODUCTODROGUERIA
-   add constraint FK_PRODUCTO_PRODUCTOD_MEDICAME foreign key (ID_PRODUCTO)
+alter table PRODUCTO_DROGUERIA
+   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM2 foreign key (ID_PRODUCTO)
       references MEDICAMENTO (ID_PRODUCTO)
+go
+
+alter table PRODUCTO_FABRICANTE
+   add constraint FK_PRODUCTO_FABRICANT_FABRICAN foreign key (ID_FABRICANTE)
+      references FABRICANTE (ID_FABRICANTE)
 go
 
 alter table PRODUCTO_FABRICANTE
    add constraint FK_PRODUCTO_PRODUCTO__MEDICAME foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-go
-
-alter table PRODUCTO_FABRICANTE
-   add constraint FK_PRODUCTO_PRODUCTO__FABRICAN foreign key (ID_FABRICANTE)
-      references FABRICANTE (ID_FABRICANTE)
-go
-
-alter table PRODUCTO_FACTURA
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAME2 foreign key (ID_PRODUCTO)
       references MEDICAMENTO (ID_PRODUCTO)
 go
 
@@ -2818,14 +2950,24 @@ alter table PRODUCTO_FACTURA
       references FACTURA (ID_FACTURA)
 go
 
-alter table PRODUCTO_INVENTARIO
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAME3 foreign key (ID_PRODUCTO)
+alter table PRODUCTO_FACTURA
+   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM3 foreign key (ID_PRODUCTO)
       references MEDICAMENTO (ID_PRODUCTO)
 go
 
 alter table PRODUCTO_INVENTARIO
-   add constraint FK_PRODUCTO_PRODUCTO__INVETARI foreign key (ID_INVENTARIORPT)
-      references INVETARIORPT (ID_INVENTARIORPT)
+   add constraint FK_PRODUCTO_PRODUCTO__INVENTAR foreign key (ID_INVENTARIORPT)
+      references INVENTARIO_RPT (ID_INVENTARIORPT)
+go
+
+alter table PRODUCTO_INVENTARIO
+   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM4 foreign key (ID_PRODUCTO)
+      references MEDICAMENTO (ID_PRODUCTO)
+go
+
+alter table PROVEEDOR_TIPO_PROVEEDOR
+   add constraint FK_PROVEEDO_PROVEEDOR_TIPO_PRO foreign key (ID_TIPO_PROVEEDOR)
+      references TIPO_PROVEEDOR (ID_TIPO_PROVEEDOR)
 go
 
 alter table PROVEEDOR_TIPO_PROVEEDOR
@@ -2833,8 +2975,290 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
       references PROVEEDOR (ID_PROVEEDOR)
 go
 
-alter table PROVEEDOR_TIPO_PROVEEDOR
-   add constraint FK_PROVEEDO_PROVEEDOR_TIPO_PRO foreign key (ID_TIPO_PROVEEDOR)
-      references TIPO_PROVEEDOR (ID_TIPO_PROVEEDOR)
+
+create trigger trg_del_carg ON CARGO AFTER DELETE 
+as
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','CARGO',USER)
+go
+
+
+create trigger trg_ins_carg ON CARGO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','CARGO',USER)
+go
+
+
+create trigger trg_upd_carg ON CARGO AFTER UPDATE AS
+   insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','CARGO',USER)
+go
+
+
+create trigger trg_del_drog ON DROGUERIA AFTER DELETE 
+AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','DROGUERIA',USER)
+go
+
+
+create trigger trg_ins_drog ON DROGUERIA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','DROGUERIA',USER)
+go
+
+
+create trigger trg_upd_drog ON DROGUERIA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','DROGUERIA',USER)
+go
+
+
+create trigger trg_del_fab ON FABRICANTE AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','FABRICANTE',USER)
+go
+
+
+create trigger trg_ins_fab ON FABRICANTE AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','FABRICANTE',USER)
+go
+
+
+create trigger trg_upd_fab ON FABRICANTE AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','FABRICANTE',USER)
+go
+
+
+create trigger trg_del_factu ON FACTURA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','FACTURA',USER)
+go
+
+
+create trigger trg_ins_factu ON FACTURA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','FACTURA',USER)
+go
+
+
+create trigger trg_upd_factu ON FACTURA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','FACTURA',USER)
+go
+
+
+create trigger trg_del_invent ON INVENTARIO_RPT AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','INVENTARIO_RPT',USER)
+go
+
+
+create trigger trg_ins_invent ON INVENTARIO_RPT AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','INVENTARIO_RPT',USER)
+go
+
+
+create trigger trg_upd_invent ON INVENTARIO_RPT AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','INVENTARIO_RPT',USER)
+go
+
+
+create trigger trg_del_medic ON MEDICAMENTO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','MEDICAMENTO',USER)
+go
+
+
+create trigger trg_ins_medic ON MEDICAMENTO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','MEDICAMENTO',USER)
+go
+
+
+create trigger trg_upd_medic ON MEDICAMENTO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','MEDICAMENTO',USER)
+go
+
+
+create trigger trg_del_ped ON PEDIDO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PEDIDO',USER)
+go
+
+
+create trigger trg_ins_ped ON PEDIDO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','PEDIDO',USER)
+go
+
+
+create trigger trg_upd_ped ON PEDIDO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PEDIDO',USER)
+go
+
+
+create trigger trg_del_ped_prod ON PEDIDO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PEDIDO_PRODUCTO',USER)
+go
+
+
+create trigger trg_upd_ped_prod ON PEDIDO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PEDIDO_PRODUCTO',USER)
+go
+
+
+create trigger trg_ins_ped_prod ON PEDIDO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'INSERT','PEDIDO_PRODUCTO',USER)
+go
+
+
+create trigger trg_del_pers ON PERSONA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PERSONA',USER)
+go
+
+
+create trigger trg_ins_pers ON PERSONA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PERSONA',USER)
+go
+
+
+create trigger trg_upd_pers ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PERSONA',USER)
+go
+
+
+create trigger trg_del_pre ON PERSONA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PRESENTACION',USER)
+go
+
+
+create trigger trg_ins_pre ON PERSONA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRESENTACION',USER)
+go
+
+
+create trigger trg_upd_pre ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PRESENTACION',USER)
+go
+
+
+create trigger trg_del_prd_drog ON PERSONA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'DELETE','PRODUCTO_DROGUERIA',USER)
+go
+
+
+create trigger trg_ins_prd_drog ON PERSONA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_DROGUERIA',USER)
+go
+
+
+create trigger trg_upd_prd_drog ON PERSONA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO)values(GETDATE(),'UPDATE','PRODUCTO_DROGUERIA',USER)
+go
+
+
+create trigger trg_del_pordFab ON PRODUCTO_FABRICANTE AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_FABRICANTE',USER)
+go
+
+
+create trigger trg_ins_pordFab ON PRODUCTO_FABRICANTE AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_FABRICANTE',USER)
+go
+
+
+create trigger trg_upd_pordFab ON PRODUCTO_FABRICANTE AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_FABRICANTE',USER)
+go
+
+
+create trigger trg_del_prodFac ON PRODUCTO_FACTURA AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_FACTURA',USER)
+go
+
+
+create trigger trg_ins_prodFac ON PRODUCTO_FACTURA AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_FACTURA',USER)
+go
+
+
+create trigger trg_upd_prodFac ON PRODUCTO_FACTURA AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_FACTURA',USER)
+go
+
+
+create trigger trg_del_prodInv ON PRODUCTO_INVENTARIO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PRODUCTO_INVENTARIO',USER)
+go
+
+
+create trigger trg_ins_prodInv ON PRODUCTO_INVENTARIO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PRODUCTO_INVENTARIO',USER)
+go
+
+
+create trigger trg_upd_prodInv ON PRODUCTO_INVENTARIO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PRODUCTO_INVENTARIO',USER)
+go
+
+
+create trigger trg_del_prove ON PROVEEDOR AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PROVEEDOR',USER)
+go
+
+
+create trigger trg_ins_prove ON PROVEEDOR AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PROVEEDOR',USER)
+go
+
+
+create trigger trg_upd_prove ON PROVEEDOR AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PROVEEDOR',USER)
+go
+
+
+create trigger trg_del_prov_tpr ON PROVEEDOR AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','PROVEEDOR_TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_ins_prov_tpr ON PROVEEDOR AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','PROVEEDOR_TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_upd_prov_tpr ON PROVEEDOR AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','PROVEEDOR_TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_del_tipoProd ON TIPO_PRODUCTO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','TIPO_PRODUCTO',USER)
+go
+
+
+create trigger trg_ins_tipoProd ON TIPO_PRODUCTO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','TIPO_PRODUCTO',USER)
+go
+
+
+create trigger trg_upd_tipoProd ON TIPO_PRODUCTO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','TIPO_PRODUCTO',USER)
+go
+
+
+create trigger trg_del_tipoProv ON TIPO_PRODUCTO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_ins_tipoProv ON TIPO_PRODUCTO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_upd_tipoProv ON TIPO_PRODUCTO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','TIPO_PROVEEDOR',USER)
+go
+
+
+create trigger trg_del_usoMedic ON USO_MEDICAMENTO AFTER DELETE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'DELETE','USO_MEDICAMENTO',USER)
+go
+
+
+create trigger trg_ins_usoMedic ON USO_MEDICAMENTO AFTER INSERT AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'INSERT','USO_MEDICAMENTO',USER)
+go
+
+
+create trigger trg_upd_usoMedic ON USO_MEDICAMENTO AFTER UPDATE AS
+    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','USO_MEDICAMENTO',USER)
 go
 
