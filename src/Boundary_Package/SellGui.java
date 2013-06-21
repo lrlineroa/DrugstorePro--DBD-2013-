@@ -395,7 +395,8 @@ public class SellGui extends javax.swing.JPanel {
             try {
                 buscon.makeSell(Id, quantity);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al hacer la venta del producto con id " + Id + "\n\n"
+                        + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
                 bandera = false;
             }
         }
@@ -412,13 +413,13 @@ public class SellGui extends javax.swing.JPanel {
         this.IVATextField.setText("0");
         this.SubTotalTextField.setText("0");
         this.TotalTextField.setText("0");
-        try {
-            buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), Float.parseFloat(TotalTextField.getText()));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
-        }
 
         if (bandera) {
+            try {
+                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), Float.parseFloat(TotalTextField.getText()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al generar la Factura\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
+            }
             JOptionPane.showMessageDialog(null, "VENTA EXITOSA", "URRA!!!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
         }
     }//GEN-LAST:event_MakeSellButtonActionPerformed
@@ -439,7 +440,6 @@ public class SellGui extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_IdFormattedTextFieldFocusLost
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
     private javax.swing.JFormattedTextField IVATextField;

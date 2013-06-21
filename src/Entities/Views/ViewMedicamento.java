@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.Direction;
 import org.eclipse.persistence.annotations.NamedStoredProcedureQueries;
 import org.eclipse.persistence.annotations.NamedStoredProcedureQuery;
 import org.eclipse.persistence.annotations.StoredProcedureParameter;
@@ -40,17 +41,18 @@ import org.eclipse.persistence.annotations.StoredProcedureParameter;
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),
     @NamedQuery(name = "ViewMedicamento.findByVentaLibre", query = "SELECT v FROM ViewMedicamento v WHERE v.ventaLibre = :ventaLibre")})
 @NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "HACER_INVENTARIO",
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "dbd_3.lrlineroa.HACER_INVENTARIO",
             resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
             parameters = {
         @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
         @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
     }),
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "HACER_VENTA",
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "dbd_3.lrlineroa.HACER_VENTA",
             resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
             parameters = {
-        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
-        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
+        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount", direction=Direction.IN, type=Integer.class),
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id", direction=Direction.IN,type=Integer.class),
+        @StoredProcedureParameter(name = "succes", queryParameter = "succes", direction=Direction.OUT,type=Integer.class)
     })
 })
 public class ViewMedicamento implements Serializable {

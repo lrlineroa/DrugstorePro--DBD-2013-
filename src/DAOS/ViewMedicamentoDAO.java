@@ -237,8 +237,8 @@ public class ViewMedicamentoDAO implements Serializable {
     }
 
     public ViewMedicamento findViewMedicamentoById(Integer id) {
-        EntityManager em =getEntityManager();
-        EntityManager em2 =getEntityManager();
+        EntityManager em = getEntityManager();
+        EntityManager em2 = getEntityManager();
         try {
             em2.getTransaction().begin();
             em2.flush();
@@ -299,27 +299,33 @@ public class ViewMedicamentoDAO implements Serializable {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
 //        Integer find;
+        Integer succes = 0;
         try {
             if (isInventary) {
                 Query q = em.createNamedQuery("ViewMedicamento.hacerInventario");
-                q.setParameter("id", ID).setParameter("amount", amount);
+                q.setParameter("id", ID).setParameter("amount", new Integer(amount));
                 int updateCount = q.executeUpdate();
                 em.getTransaction().commit();
                 return updateCount;
             } else {
 //                if (!((find - amount) < 0)) {
-                    Query q = em.createQuery("ViewMedicamento.hacerInventario");
-                    q.setParameter("id", ID).setParameter("amount", amount);
-                    int updateCount = q.executeUpdate();
-                    em.getTransaction().commit();
-                    return updateCount;
+                
+                Query q = em.createNamedQuery("ViewMedicamento.hacerVenta");
+                q.setParameter("id", ID).setParameter("amount", new Integer(amount)).setParameter("succes", succes);
+                succes = (Integer) q.getSingleResult();
+                em.getTransaction().commit();
+                if (succes == 0){
+                    throw (new DataBaseException("No hay prodcutos suficientes en inventario."));
+                }
+                return succes;
 //                } else {
 //                    return -1;
 //                }
             }
         } catch (Exception evt) {
-            em.getTransaction().rollback();
-            evt.printStackTrace();
+            if (em.getTransaction() != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw (new DataBaseException(evt.getMessage(), evt));
         } finally {
             if (em != null) {
