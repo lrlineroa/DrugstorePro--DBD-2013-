@@ -298,29 +298,24 @@ public class ViewMedicamentoDAO implements Serializable {
     public int Update(Integer ID, int amount, boolean isInventary) throws DataBaseException {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        Integer find;
+//        Integer find;
         try {
-            find = (Integer) em.createQuery("SELECT v.cantidadProducto FROM ViewMedicamento v WHERE v.idProducto = :idProducto").setParameter("idProducto", ID).getSingleResult();
-            em = getEntityManager();
-            em.getTransaction().begin();
             if (isInventary) {
-                Query q = em.createQuery("UPDATE ViewMedicamento m SET m.cantidadProducto = :newInventory"
-                        + " WHERE m.idProducto = :idProducto");
-                q.setParameter("idProducto", ID).setParameter("newInventory", new Integer(find + amount));
+                Query q = em.createNamedQuery("ViewMedicamento.hacerInventario");
+                q.setParameter("id", ID).setParameter("amount", amount);
                 int updateCount = q.executeUpdate();
                 em.getTransaction().commit();
                 return updateCount;
             } else {
-                if (!((find - amount) < 0)) {
-                    Query q = em.createQuery("UPDATE ViewMedicamento m  SET m.cantidadProducto= :newInventory"
-                            + " WHERE m.idProducto=:idProducto");
-                    q.setParameter("idProducto", ID).setParameter("newInventory", new Integer(find - amount));;
+//                if (!((find - amount) < 0)) {
+                    Query q = em.createQuery("ViewMedicamento.hacerInventario");
+                    q.setParameter("id", ID).setParameter("amount", amount);
                     int updateCount = q.executeUpdate();
                     em.getTransaction().commit();
                     return updateCount;
-                } else {
-                    return -1;
-                }
+//                } else {
+//                    return -1;
+//                }
             }
         } catch (Exception evt) {
             em.getTransaction().rollback();

@@ -19,6 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQueries;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQuery;
+import org.eclipse.persistence.annotations.StoredProcedureParameter;
 
 /**
  *
@@ -36,7 +39,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewMedicamento.findByCantidadProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.cantidadProducto = :cantidadProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),
     @NamedQuery(name = "ViewMedicamento.findByVentaLibre", query = "SELECT v FROM ViewMedicamento v WHERE v.ventaLibre = :ventaLibre")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "HACER_INVENTARIO",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
+            parameters = {
+        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
+    }),
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "HACER_VENTA",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
+            parameters = {
+        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
+    })
+})
 public class ViewMedicamento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -183,5 +201,4 @@ public class ViewMedicamento implements Serializable {
     public String toString() {
         return "Entities.ViewMedicamento[ idProducto=" + idProducto + " ]";
     }
-    
 }
