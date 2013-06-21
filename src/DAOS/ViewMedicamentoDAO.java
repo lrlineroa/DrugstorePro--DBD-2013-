@@ -4,6 +4,7 @@
  */
 package DAOS;
 
+import DAOS.exceptions.DataBaseException;
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -236,8 +237,13 @@ public class ViewMedicamentoDAO implements Serializable {
     }
 
     public ViewMedicamento findViewMedicamentoById(Integer id) {
-        EntityManager em = getEntityManager();
+        EntityManager em =getEntityManager();
+        EntityManager em2 =getEntityManager();
         try {
+            em2.getTransaction().begin();
+            em2.flush();
+            em2.getTransaction().commit();
+            em = getEntityManager();
             return em.find(ViewMedicamento.class, id);
         } finally {
             em.close();
@@ -270,11 +276,16 @@ public class ViewMedicamentoDAO implements Serializable {
     // this method returns a specific  product with a ID a name given
 
     public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID, String name) {
-        Query q = getEntityManager().createNamedQuery("ViewMedicamento.findByIdNombreProducto").
+        EntityManager em = getEntityManager();
+        EntityManager em2 = getEntityManager();
+        Query q = em.createNamedQuery("ViewMedicamento.findByIdNombreProducto").
                 setParameter("nombreProducto", name).setParameter("idProducto", ID);
         q.setParameter("idProducto", ID);
         q.setParameter("nombreProducto", name);
         try {
+            em2.getTransaction().begin();
+            em2.flush();
+            em2.getTransaction().commit();
             return (ViewMedicamento) q.getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             System.out.println("datos no encontrados");
@@ -284,39 +295,41 @@ public class ViewMedicamentoDAO implements Serializable {
 
     //this method increases or decreases  the amount in the inventary of a specific product
     //if sum equals true the amount incremets, if false decreases
-    public int Update(Long ID, Object amount, boolean isInventary) {
+    public int Update(Integer ID, int amount, boolean isInventary) throws DataBaseException {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
+        Integer find;
         try {
+            find = (Integer) em.createQuery("SELECT v.cantidadProducto FROM ViewMedicamento v WHERE v.idProducto = :idProducto").setParameter("idProducto", ID).getSingleResult();
+            em = getEntityManager();
+            em.getTransaction().begin();
             if (isInventary) {
-                Query q = getEntityManager().createQuery("UPDATE ViewMedicamento SET cantidadProducto= cantidadProducto + " + amount + " WHERE idProducto=:idProducto");
-//                    q.setParameter(1, amount);
-                q.setParameter("idProducto", ID);
+                Query q = em.createQuery("UPDATE ViewMedicamento m SET m.cantidadProducto = :newInventory"
+                        + " WHERE m.idProducto = :idProducto");
+                q.setParameter("idProducto", ID).setParameter("newInventory", new Integer(find + amount));
                 int updateCount = q.executeUpdate();
                 em.getTransaction().commit();
-                return 0;
+                return updateCount;
             } else {
-                ViewMedicamento pro = em.find(ViewMedicamento.class, ID);
-                if (!(pro.getCantidadProducto() - Integer.parseInt(amount.toString()) < 0)) {
-                    Query q = em.createQuery("UPDATE ProductoGeneral  SET cantidadProducto= cantidadProducto - " + amount + " WHERE idProducto=:idProducto");
-//                       q.setParameter(1, amount);
-                    q.setParameter("idProducto", ID);
+                if (!((find - amount) < 0)) {
+                    Query q = em.createQuery("UPDATE ViewMedicamento m  SET m.cantidadProducto= :newInventory"
+                            + " WHERE m.idProducto=:idProducto");
+                    q.setParameter("idProducto", ID).setParameter("newInventory", new Integer(find - amount));;
                     int updateCount = q.executeUpdate();
                     em.getTransaction().commit();
-                    return 0;
-
+                    return updateCount;
+                } else {
+                    return -1;
                 }
             }
-
-        } catch (javax.persistence.PersistenceException evt) {
+        } catch (Exception evt) {
             em.getTransaction().rollback();
+            evt.printStackTrace();
+            throw (new DataBaseException(evt.getMessage(), evt));
         } finally {
             if (em != null) {
                 em.close();
             }
-            return -1;
         }
-
-
     }
 }

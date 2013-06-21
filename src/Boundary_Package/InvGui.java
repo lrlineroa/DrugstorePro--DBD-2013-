@@ -263,30 +263,30 @@ public class InvGui extends javax.swing.JPanel {
     }//GEN-LAST:event_OkjButtonActionPerformed
 
     private void NextjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextjButtonActionPerformed
-        boolean bandera = false;
+        boolean bandera = true;
         for (RegInventary ri : tableModel.getProducts()) {
             Long Id = ri.getId();
             int quantity = ri.getQuantity();
-            buscon.makeInventary(Id, quantity);
-
-
+            try {
+                buscon.makeInventary(Id, quantity);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
+                bandera = false;
+            }
         }
         for (int i = 0; i <= tableModel.getRowCount(); i++) {
-            tableModel.delete(i);
+            tableModel.delete(0);
             TableInv.updateUI();
-            bandera = true;
-
         }
         if (!tableModel.getProducts().isEmpty()) {
             tableModel.delete(0);
             TableInv.updateUI();
-            bandera = true;
         }
 
         if (bandera) {
-            JOptionPane.showMessageDialog(null, "INVENTARIO EXITOSO", "URRA!!!", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
+            JOptionPane.showMessageDialog(null, "INVENTARIO EXITOSO", "URRA!!!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
         } else {
-            JOptionPane.showMessageDialog(null, "INVENTARIO FRACASO", "URRA!!!", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/triste.png")));
+            JOptionPane.showMessageDialog(null, "INVENTARIO FRACASO", "OOPS!!!", JOptionPane.ERROR_MESSAGE, new ImageIcon(getClass().getResource("/Icons/triste.png")));
         }
     }//GEN-LAST:event_NextjButtonActionPerformed
 

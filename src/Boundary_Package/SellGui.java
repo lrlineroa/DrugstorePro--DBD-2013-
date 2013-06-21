@@ -388,23 +388,24 @@ public class SellGui extends javax.swing.JPanel {
     }//GEN-LAST:event_TotalTextFieldActionPerformed
 
     private void MakeSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MakeSellButtonActionPerformed
-        boolean bandera = false;
+        boolean bandera = true;
         for (RegVenta rv : tableModel.getProducts()) {
             Long Id = rv.getId();
             int quantity = rv.getQuantity();
-            buscon.makeSell(Id, quantity);
-
+            try {
+                buscon.makeSell(Id, quantity);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
+                bandera = false;
+            }
         }
         for (int i = 0; i <= tableModel.getRowCount(); i++) {
             tableModel.delete(0);
             TableProducts.updateUI();
-            bandera = true;
-
         }
         if (!tableModel.getProducts().isEmpty()) {
             tableModel.delete(0);
             TableProducts.updateUI();
-            bandera = true;
         }
 
 
@@ -418,7 +419,7 @@ public class SellGui extends javax.swing.JPanel {
         }
 
         if (bandera) {
-            JOptionPane.showMessageDialog(null, "VENTA EXITOSA", "URRA!!!", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
+            JOptionPane.showMessageDialog(null, "VENTA EXITOSA", "URRA!!!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
         }
     }//GEN-LAST:event_MakeSellButtonActionPerformed
 
