@@ -218,7 +218,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(modifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(balanceButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aboutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,7 +353,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.add(panel, BorderLayout.CENTER);
         MainPanel.setSize(panel.getPreferredSize());
         MainPanel.setVisible(true);
-        log.cleanFields();
+        log.cleanFields(true);
         d = new Dimension(panel.getPreferredSize().width, panel.getPreferredSize().height + 100);
         this.setMinimumSize(d);
         this.setPreferredSize(d);
@@ -373,7 +373,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.add(panel1, BorderLayout.NORTH);
         MainPanel.add(panel2, BorderLayout.SOUTH);
         MainPanel.setVisible(true);
-        log.cleanFields();
+        log.cleanFields(true);
         d = new Dimension(panel1.getPreferredSize().width + 20, totalHeight + 100);
         this.setMinimumSize(d);
         AdjustToCenter();

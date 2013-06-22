@@ -25,4 +25,17 @@ public class LoginControl {
         return login;
 
     }
+
+    public ViewPersona login(String rdbms, String userBD, String passBD, String userAPP, String passAPP) throws DataBaseException {
+        DAOFactory.getInstance().newConection(rdbms, userBD, passBD);
+        ViewPersona persona = new ViewPersona();
+        persona.setNombreDeUsuario(userAPP);
+        persona.setPassword(Hash.hashMD5(passAPP));
+        ViewPersona login;
+
+        login = DAOFactory.getInstance().getViewPersonaDAO().login(persona);
+        usuarioActivo = login;
+
+        return login;
+    }
 }
