@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     6/21/2013 9:48:38 PM                         */
+/* Created on:     6/22/2013 1:24:41 PM                         */
 /*==============================================================*/
 
 
@@ -281,6 +281,9 @@ alter table PROVEEDOR_TIPO_PROVEEDOR
    drop constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO
 /
 
+drop view VIEW_ADVICE
+/
+
 drop view VIEW_BITACORA
 /
 
@@ -314,10 +317,10 @@ drop view VIEW_PERSONA
 drop view VIEW_PRESENTACION
 /
 
-drop view VIEW_PRODUCTOS_VENDIDOS
+drop view VIEW_PRODUCTOS_DROGUERIA
 /
 
-drop view VIEW_PRODUCTO_DROGUERIA
+drop view VIEW_PRODUCTOS_VENDIDOS
 /
 
 drop view VIEW_PRODUCTO_FABRICANTE

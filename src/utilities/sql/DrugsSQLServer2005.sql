@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     6/21/2013 9:47:06 PM                         */
+/* Created on:     6/22/2013 1:25:27 PM                         */
 /*==============================================================*/
 
 
@@ -552,6 +552,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('VIEW_ADVICE')
+            and   type = 'V')
+   drop view VIEW_ADVICE
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('VIEW_BITACORA')
             and   type = 'V')
    drop view VIEW_BITACORA
@@ -629,16 +636,16 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('VIEW_PRODUCTOS_VENDIDOS')
+           where  id = object_id('VIEW_PRODUCTOS_DROGUERIA')
             and   type = 'V')
-   drop view VIEW_PRODUCTOS_VENDIDOS
+   drop view VIEW_PRODUCTOS_DROGUERIA
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('VIEW_PRODUCTO_DROGUERIA')
+           where  id = object_id('VIEW_PRODUCTOS_VENDIDOS')
             and   type = 'V')
-   drop view VIEW_PRODUCTO_DROGUERIA
+   drop view VIEW_PRODUCTOS_VENDIDOS
 go
 
 if exists (select 1
@@ -2467,6 +2474,13 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* View: VIEW_ADVICE                                            */
+/*==============================================================*/
+create view VIEW_ADVICE as
+select * from ADVICE
+go
+
+/*==============================================================*/
 /* View: VIEW_BITACORA                                          */
 /*==============================================================*/
 create view VIEW_BITACORA as
@@ -2731,6 +2745,30 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* View: VIEW_PRODUCTOS_DROGUERIA                               */
+/*==============================================================*/
+create view VIEW_PRODUCTOS_DROGUERIA as
+select
+   MEDICAMENTO.ID_PRODUCTO,
+   MEDICAMENTO.ID_USO_MEDICAMENTO,
+   MEDICAMENTO.ID_TIPO_PRODUCTO,
+   MEDICAMENTO.ID_PRESENTACION,
+   MEDICAMENTO.ID_PROVEEDOR,
+   MEDICAMENTO.NOMBRE_PRODUCTO,
+   MEDICAMENTO.PRECIO_PRODUCTO,
+   MEDICAMENTO.CANTIDAD_PRODUCTO,
+   MEDICAMENTO.POSOLOGIA_PRODUCTO,
+   MEDICAMENTO.VENTA_LIBRE,
+   DROGUERIA.ID_DROGUERIA,
+   DROGUERIA.NOMBRE_DROGUERIA,
+   DROGUERIA.TELEFONO_DROGUERIA,
+   DROGUERIA.DIRECCION_DROGUERIA
+from
+   MEDICAMENTO,
+   DROGUERIA
+go
+
+/*==============================================================*/
 /* View: VIEW_PRODUCTOS_VENDIDOS                                */
 /*==============================================================*/
 create view VIEW_PRODUCTOS_VENDIDOS as
@@ -2739,30 +2777,6 @@ select
    count(ID_PRODUCTO) as conteo
 group by
    ID_PRODUCTO
-go
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_DROGUERIA                                */
-/*==============================================================*/
-create view VIEW_PRODUCTO_DROGUERIA as
-select * from PRODUCTO_DROGUERIA
-go
-
-if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('VIEW_PRODUCTO_DROGUERIA') and minor_id = 0)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_DROGUERIA'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Esta vista muestra informacion acerca de los productos que ofrece una drogueria',
-   'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_DROGUERIA'
 go
 
 /*==============================================================*/
