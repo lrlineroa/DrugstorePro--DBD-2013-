@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase AS Enterprise 15.0                    */
-/* Created on:     6/22/2013 1:25:59 PM                         */
+/* Created on:     22/06/2013 3:34:40 p. m.                     */
 /*==============================================================*/
 
 
@@ -667,13 +667,6 @@ if exists (select 1
             where  id = object_id('VIEW_PRODUCTO_INVENTARIO')
             and   type = 'V')
    drop view VIEW_PRODUCTO_INVENTARIO
-go
-
-if exists (select 1
-            from  sysobjects
-            where  id = object_id('VIEW_PRODUCTO_MAS_VENDIDO')
-            and   type = 'V')
-   drop view VIEW_PRODUCTO_MAS_VENDIDO
 go
 
 if exists (select 1
@@ -1569,6 +1562,8 @@ create view VIEW_PRODUCTOS_VENDIDOS as
 select
    ID_PRODUCTO,
    count(ID_PRODUCTO) as conteo
+FROM
+    PRODUCTO_FACTURA   
 group by
    ID_PRODUCTO
 go
@@ -1586,6 +1581,8 @@ go
 create view VIEW_PRODUCTO_FACTURA as
 select
    *
+from
+    PRODUCTO_FACTURA
 go
 
 /*==============================================================*/
@@ -1593,13 +1590,6 @@ go
 /*==============================================================*/
 create view VIEW_PRODUCTO_INVENTARIO as
 select * from PRODUCTO_INVENTARIO
-go
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_MAS_VENDIDO                              */
-/*==============================================================*/
-create view VIEW_PRODUCTO_MAS_VENDIDO as
-select ID_PRODUCTO from VIEW_PRODUCTOS_VENDIDOS having conteo=max(conteo)
 go
 
 /*==============================================================*/

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     6/22/2013 1:24:41 PM                         */
+/* Created on:     22/06/2013 3:51:08 p. m.                     */
 /*==============================================================*/
 
 
@@ -330,9 +330,6 @@ drop view VIEW_PRODUCTO_FACTURA
 /
 
 drop view VIEW_PRODUCTO_INVENTARIO
-/
-
-drop view VIEW_PRODUCTO_MAS_VENDIDO
 /
 
 drop view VIEW_PROVEEDOR
@@ -1007,95 +1004,4 @@ create table PROVEEDOR  (
    ID_PROVEEDOR         INTEGER                         not null,
    NOMBRE_PROVEEDOR     VARCHAR2(20)                    not null,
    TELEFONO_PROVEEDOR   VARCHAR2(12)                    not null,
-   DIRECCION_PROVEEDOR  VARCHAR2(25)                    not null,
-   constraint PK_PROVEEDOR primary key (ID_PROVEEDOR)
-)
-/
-
-comment on table PROVEEDOR is
-'La tablap PROVEEDOR hace referencia a la entidad que surte de productos a la farmacia. Cada PRODUCTO tendra asociado un registro de la tabla PROVEEDOR'
-/
-
-comment on column PROVEEDOR.ID_PROVEEDOR is
-'Identificador de la entidad fabricante'
-/
-
-comment on column PROVEEDOR.NOMBRE_PROVEEDOR is
-'Razon social de la empresa que comercializa dicho producto'
-/
-
-comment on column PROVEEDOR.TELEFONO_PROVEEDOR is
-'Telefono de contacto del proveedor del producto'
-/
-
-comment on column PROVEEDOR.DIRECCION_PROVEEDOR is
-'Direccion de la empresa u oficina de la empresa que comercializa el producto.'
-/
-
-/*==============================================================*/
-/* Table: PROVEEDOR_TIPO_PROVEEDOR                              */
-/*==============================================================*/
-create table PROVEEDOR_TIPO_PROVEEDOR  (
-   ID_TIPO_PROVEEDOR    INTEGER                         not null,
-   ID_PROVEEDOR         INTEGER                         not null,
-   constraint PK_PROVEEDOR_TIPO_PROVEEDOR primary key (ID_TIPO_PROVEEDOR, ID_PROVEEDOR)
-)
-/
-
-comment on table PROVEEDOR_TIPO_PROVEEDOR is
-'relaciona las entidades PROVEEDOR y TIPO-PROVEEDOR'
-/
-
-comment on column PROVEEDOR_TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
-'Identificador de Tipo Proveedor'
-/
-
-comment on column PROVEEDOR_TIPO_PROVEEDOR.ID_PROVEEDOR is
-'Identificador del proveedor'
-/
-
-/*==============================================================*/
-/* Index: PROVEEDOR_TIPO_PROVEEDOR2_FK                          */
-/*==============================================================*/
-create index PROVEEDOR_TIPO_PROVEEDOR2_FK on PROVEEDOR_TIPO_PROVEEDOR (
-   ID_PROVEEDOR ASC
-)
-/
-
-/*==============================================================*/
-/* Index: PROVEEDOR_TIPO_PROVEEDOR_FK                           */
-/*==============================================================*/
-create index PROVEEDOR_TIPO_PROVEEDOR_FK on PROVEEDOR_TIPO_PROVEEDOR (
-   ID_TIPO_PROVEEDOR ASC
-)
-/
-
-/*==============================================================*/
-/* Table: TIPO_PRODUCTO                                         */
-/*==============================================================*/
-create table TIPO_PRODUCTO  (
-   ID_TIPO_PRODUCTO     INTEGER                         not null,
-   TIPO                 VARCHAR2(20)                    not null,
-   constraint PK_TIPO_PRODUCTO primary key (ID_TIPO_PRODUCTO)
-)
-/
-
-/*==============================================================*/
-/* Table: TIPO_PROVEEDOR                                        */
-/*==============================================================*/
-create table TIPO_PROVEEDOR  (
-   ID_TIPO_PROVEEDOR    INTEGER                         not null,
-   TIPO_PROVEEDOR       VARCHAR2(25)                    not null,
-   constraint PK_TIPO_PROVEEDOR primary key (ID_TIPO_PROVEEDOR)
-)
-/
-
-comment on table TIPO_PROVEEDOR is
-'Entidad que registra los diferentes tipos de proveedor según su actividad.'
-/
-
-comment on column TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
-'Identificador de la entidad Tipo_Proveedor
-'
-/
-
+   DIRECCION_PROVEEDOR  VARCHAR2(25)                    not null
