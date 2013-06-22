@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     6/15/2013 4:03:18 PM                         */
+/* Created on:     6/21/2013 9:48:38 PM                         */
 /*==============================================================*/
 
 
@@ -314,6 +314,9 @@ drop view VIEW_PERSONA
 drop view VIEW_PRESENTACION
 /
 
+drop view VIEW_PRODUCTOS_VENDIDOS
+/
+
 drop view VIEW_PRODUCTO_DROGUERIA
 /
 
@@ -326,6 +329,9 @@ drop view VIEW_PRODUCTO_FACTURA
 drop view VIEW_PRODUCTO_INVENTARIO
 /
 
+drop view VIEW_PRODUCTO_MAS_VENDIDO
+/
+
 drop view VIEW_PROVEEDOR
 /
 
@@ -336,6 +342,9 @@ drop view VIEW_TIPO_PRODUCTO
 /
 
 drop view VIEW_USO_MEDIC
+/
+
+drop table ADVICE cascade constraints
 /
 
 drop table BITACORA cascade constraints
@@ -470,6 +479,22 @@ start with 1
 /
 
 /*==============================================================*/
+/* Table: ADVICE                                                */
+/*==============================================================*/
+create table ADVICE  (
+   ID_ADVICE            INTEGER                         not null,
+   ID_PROD_RELACIONADO  INTEGER                         not null,
+   TIPO_O_NOTA          CLOB,
+   CANT_REGISTRADA      INTEGER                         not null,
+   constraint PK_ADVICE primary key (ID_ADVICE)
+)
+/
+
+comment on table ADVICE is
+'ESTA TABLA CONTENDRÁ EL REGISTRO DE CUANDO UN MEDICAMENTO LLEGA A ESTADO CRÍTICO (MENOS DE 5 UNIDADES EN EL INVENTARIO)'
+/
+
+/*==============================================================*/
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA  (
@@ -570,6 +595,7 @@ create table FACTURA  (
    ID_FACTURA           INTEGER                         not null,
    ID_PERSONA           INTEGER                         not null,
    TOTAL                FLOAT(10)                       not null,
+   FECHA_FACTURA        TIMESTAMP                       not null,
    constraint PK_FACTURA primary key (ID_FACTURA)
 )
 /
@@ -924,6 +950,7 @@ create index PRODUCTO_FABRICANTE_FK on PRODUCTO_FABRICANTE (
 create table PRODUCTO_FACTURA  (
    ID_FACTURA           INTEGER                         not null,
    ID_PRODUCTO          INTEGER                         not null,
+   CANTIDAD_VENDIDA     INTEGER,
    constraint PK_PRODUCTO_FACTURA primary key (ID_FACTURA, ID_PRODUCTO)
 )
 /
@@ -1067,673 +1094,5 @@ comment on table TIPO_PROVEEDOR is
 comment on column TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
 'Identificador de la entidad Tipo_Proveedor
 '
-/
-
-comment on column TIPO_PROVEEDOR.TIPO_PROVEEDOR is
-'nombre del tipo de proveedor.'
-/
-
-/*==============================================================*/
-/* Table: USO_MEDICAMENTO                                       */
-/*==============================================================*/
-create table USO_MEDICAMENTO  (
-   ID_USO_MEDICAMENTO   INTEGER                         not null,
-   TIPO_USO_PRODUCTO    VARCHAR2(25)                    not null,
-   constraint PK_USO_MEDICAMENTO primary key (ID_USO_MEDICAMENTO)
-)
-/
-
-comment on table USO_MEDICAMENTO is
-'Solo va a tener relacion con producto cuando este sea un medicamento'
-/
-
-/*==============================================================*/
-/* View: VIEW_BITACORA                                          */
-/*==============================================================*/
-create or replace view VIEW_BITACORA as
-select * from BITACORA
-/
-
- comment on table VIEW_BITACORA is
-'Esta vista muestra informacion acerca de los Logs del sistema'
-/
-
-/*==============================================================*/
-/* View: VIEW_CARGO                                             */
-/*==============================================================*/
-create or replace view VIEW_CARGO as
-select * from CARGO
-/
-
- comment on table VIEW_CARGO is
-'Esta vista muestra la información acerca de los cargos ocupables en la drogueria'
-/
-
-/*==============================================================*/
-/* View: VIEW_DROGUERIA                                         */
-/*==============================================================*/
-create or replace view VIEW_DROGUERIA as
-select * from DROGUERIA
-/
-
- comment on table VIEW_DROGUERIA is
-'Esta vista muestra informacion acerca de las droguerias'
-/
-
-/*==============================================================*/
-/* View: VIEW_FABRICANTE                                        */
-/*==============================================================*/
-create or replace view VIEW_FABRICANTE as
-select * from FABRICANTE
-/
-
- comment on table VIEW_FABRICANTE is
-'Esta vista muestra informacion acerca del Fabricante de medicamentos'
-/
-
-/*==============================================================*/
-/* View: VIEW_FACTURA                                           */
-/*==============================================================*/
-create or replace view VIEW_FACTURA as
-select * from FACTURA
-/
-
- comment on table VIEW_FACTURA is
-'Esta vista muestra informacion acerca de las facturas'
-/
-
-/*==============================================================*/
-/* View: VIEW_INVENTARIORPT                                     */
-/*==============================================================*/
-create or replace view VIEW_INVENTARIORPT as
-select * from INVENTARIO_RPT
-/
-
- comment on table VIEW_INVENTARIORPT is
-'Esta vista muestra informacion acerca de los inventarios'
-/
-
-/*==============================================================*/
-/* View: VIEW_MEDICAMENTO                                       */
-/*==============================================================*/
-create or replace view VIEW_MEDICAMENTO as
-select * from MEDICAMENTO
-/
-
- comment on table VIEW_MEDICAMENTO is
-'Esta vista muestra infromación acerca de los mediacamentos que se ofertan en la Drogueria'
-/
-
-/*==============================================================*/
-/* View: VIEW_PEDIDO                                            */
-/*==============================================================*/
-create or replace view VIEW_PEDIDO as
-select * from PEDIDO
-/
-
- comment on table VIEW_PEDIDO is
-'Esta vista muestra informacion acerca de los pedidos'
-/
-
-/*==============================================================*/
-/* View: VIEW_PEDIDO_PRODUCTO                                   */
-/*==============================================================*/
-create or replace view VIEW_PEDIDO_PRODUCTO as
-select * from PEDIDO_PRODUCTO
-/
-
- comment on table VIEW_PEDIDO_PRODUCTO is
-'Esta vista muestra informacion acerca de los pedidos de productos'
-/
-
-/*==============================================================*/
-/* View: VIEW_PERSONA                                           */
-/*==============================================================*/
-create or replace view VIEW_PERSONA as
-select * from PERSONA
-/
-
- comment on table VIEW_PERSONA is
-'Esta vista muestra las caracteristicas mas importantes relacionadas con la tabla Persona'
-/
-
-/*==============================================================*/
-/* View: VIEW_PRESENTACION                                      */
-/*==============================================================*/
-create or replace view VIEW_PRESENTACION as
-select * from PRESENTACION
-/
-
- comment on table VIEW_PRESENTACION is
-'Esta vista muestra informacion acerca de la presentacion de los productos'
-/
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_DROGUERIA                                */
-/*==============================================================*/
-create or replace view VIEW_PRODUCTO_DROGUERIA as
-select * from PRODUCTO_DROGUERIA
-/
-
- comment on table VIEW_PRODUCTO_DROGUERIA is
-'Esta vista muestra informacion acerca de los productos que ofrece una drogueria'
-/
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_FABRICANTE                               */
-/*==============================================================*/
-create or replace view VIEW_PRODUCTO_FABRICANTE as
-select * from PRODUCTO_FABRICANTE
-/
-
- comment on table VIEW_PRODUCTO_FABRICANTE is
-'Esta vista muestra informacion acerca de Fabrcinate y los productos que fabrica'
-/
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_FACTURA                                  */
-/*==============================================================*/
-create or replace view VIEW_PRODUCTO_FACTURA as
-select * from PRODUCTO_FACTURA
-/
-
- comment on table VIEW_PRODUCTO_FACTURA is
-'Esta vista muestra informacion acerca de la factura de compra de un producto'
-/
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_INVENTARIO                               */
-/*==============================================================*/
-create or replace view VIEW_PRODUCTO_INVENTARIO as
-select * from PRODUCTO_INVENTARIO
-/
-
- comment on table VIEW_PRODUCTO_INVENTARIO is
-'Esta vista muestra informacion acerca de los productos que estan en inventario'
-/
-
-/*==============================================================*/
-/* View: VIEW_PROVEEDOR                                         */
-/*==============================================================*/
-create or replace view VIEW_PROVEEDOR as
-select * from PROVEEDOR
-/
-
- comment on table VIEW_PROVEEDOR is
-'Esta vista muestra infromación de los proveedores de productos de la empresa'
-/
-
-/*==============================================================*/
-/* View: VIEW_PROVEEDOR_TIPO_PROV                               */
-/*==============================================================*/
-create or replace view VIEW_PROVEEDOR_TIPO_PROV as
-select * from PROVEEDOR_TIPO_PROVEEDOR
-/
-
- comment on table VIEW_PROVEEDOR_TIPO_PROV is
-'Esta vista muestra informacion acerca del proveedor y su tipo de distribucion'
-/
-
-/*==============================================================*/
-/* View: VIEW_TIPO_PRODUCTO                                     */
-/*==============================================================*/
-create or replace view VIEW_TIPO_PRODUCTO as
-select * from TIPO_PRODUCTO
-/
-
- comment on table VIEW_TIPO_PRODUCTO is
-'Esta vista muestra informacion acerca de los tipos de productos'
-/
-
-/*==============================================================*/
-/* View: VIEW_USO_MEDIC                                         */
-/*==============================================================*/
-create or replace view VIEW_USO_MEDIC as
-select * from USO_MEDICAMENTO
-/
-
- comment on table VIEW_USO_MEDIC is
-'Esta vista muestra informacion acerca del uso que tienen los diferntes medicamentos'
-/
-
-alter table FACTURA
-   add constraint FK_FACTURA_FACTURA_P_PERSONA foreign key (ID_PERSONA)
-      references PERSONA (ID_PERSONA)
-/
-
-alter table INVENTARIO_RPT
-   add constraint FK_INVENTAR_PERSONA_I_PERSONA foreign key (ID_PERSONA)
-      references PERSONA (ID_PERSONA)
-/
-
-alter table MEDICAMENTO
-   add constraint FK_MEDICAME_PRESENTAC_PRESENTA foreign key (ID_PRESENTACION)
-      references PRESENTACION (ID_PRESENTACION)
-/
-
-alter table MEDICAMENTO
-   add constraint FK_MEDICAME_PRODUCTO__PROVEEDO foreign key (ID_PROVEEDOR)
-      references PROVEEDOR (ID_PROVEEDOR)
-/
-
-alter table MEDICAMENTO
-   add constraint FK_MEDICAME_PRODUCTO__TIPO_PRO foreign key (ID_TIPO_PRODUCTO)
-      references TIPO_PRODUCTO (ID_TIPO_PRODUCTO)
-/
-
-alter table MEDICAMENTO
-   add constraint FK_MEDICAME_USO_MEDIC_USO_MEDI foreign key (ID_USO_MEDICAMENTO)
-      references USO_MEDICAMENTO (ID_USO_MEDICAMENTO)
-/
-
-alter table PEDIDO
-   add constraint FK_PEDIDO_PEDIDO_DR_DROGUERI foreign key (ID_DROGUERIA)
-      references DROGUERIA (ID_DROGUERIA)
-/
-
-alter table PEDIDO_PRODUCTO
-   add constraint FK_PEDIDO_P_PEDIDO_PR_PEDIDO foreign key (ID_PEDIDO)
-      references PEDIDO (ID_PEDIDO)
-/
-
-alter table PEDIDO_PRODUCTO
-   add constraint FK_PEDIDO_P_PEDIDO_PR_MEDICAME foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-/
-
-alter table PERSONA
-   add constraint FK_PERSONA_PERSONA_C_CARGO foreign key (ID_CARGO)
-      references CARGO (ID_CARGO)
-/
-
-alter table PERSONA
-   add constraint FK_PERSONA_PERSONA_D_DROGUERI foreign key (ID_DROGUERIA)
-      references DROGUERIA (ID_DROGUERIA)
-/
-
-alter table PRODUCTO_DROGUERIA
-   add constraint FK_PRODUCTO_PRODUCTO__DROGUERI foreign key (ID_DROGUERIA)
-      references DROGUERIA (ID_DROGUERIA)
-/
-
-alter table PRODUCTO_DROGUERIA
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM2 foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-/
-
-alter table PRODUCTO_FABRICANTE
-   add constraint FK_PRODUCTO_FABRICANT_FABRICAN foreign key (ID_FABRICANTE)
-      references FABRICANTE (ID_FABRICANTE)
-/
-
-alter table PRODUCTO_FABRICANTE
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAME foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-/
-
-alter table PRODUCTO_FACTURA
-   add constraint FK_PRODUCTO_PRODUCTO__FACTURA foreign key (ID_FACTURA)
-      references FACTURA (ID_FACTURA)
-/
-
-alter table PRODUCTO_FACTURA
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM3 foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-/
-
-alter table PRODUCTO_INVENTARIO
-   add constraint FK_PRODUCTO_PRODUCTO__INVENTAR foreign key (ID_INVENTARIORPT)
-      references INVENTARIO_RPT (ID_INVENTARIORPT)
-/
-
-alter table PRODUCTO_INVENTARIO
-   add constraint FK_PRODUCTO_PRODUCTO__MEDICAM4 foreign key (ID_PRODUCTO)
-      references MEDICAMENTO (ID_PRODUCTO)
-/
-
-alter table PROVEEDOR_TIPO_PROVEEDOR
-   add constraint FK_PROVEEDO_PROVEEDOR_TIPO_PRO foreign key (ID_TIPO_PROVEEDOR)
-      references TIPO_PROVEEDOR (ID_TIPO_PROVEEDOR)
-/
-
-alter table PROVEEDOR_TIPO_PROVEEDOR
-   add constraint FK_PROVEEDO_PROVEEDOR_PROVEEDO foreign key (ID_PROVEEDOR)
-      references PROVEEDOR (ID_PROVEEDOR)
-/
-
-
-create trigger TIB_BITACORA before insert
-on BITACORA for each row
-declare
-    integrity_error  exception;
-    errno            integer;
-    errmsg           char(200);
-    dummy            integer;
-    found            boolean;
-
-begin
-    --  Column "ID_BITACORA" uses sequence SEQUENCE
-    select SEQUENCE.NEXTVAL INTO :new.ID_BITACORA from dual;
-
---  Errors handling
-exception
-    when integrity_error then
-       raise_application_error(errno, errmsg);
-end;
-/
-
-
-create trigger trg_del_carg AFTER DELETE ON CARGO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","CARGO",USER)
-end;
-/
-
-
-create trigger trg_ins_carg AFTER INSERT ON CARGO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","CARGO",USER);
-end;
-/
-
-
-create trigger trg_upd_carg AFTER UPDATE ON CARGO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","CARGO",USER);
-end;
-/
-
-
-create trigger trg_del_drog AFTER DELETE ON DROGUERIA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","DROGUERIA",USER);
-end;
-/
-
-
-create trigger trg_ins_drog AFTER INSERT ON DROGUERIA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","DROGUERIA",USER);
-end;
-/
-
-
-create trigger trg_upd_drog AFTER UPDATE ON DROGUERIA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","DROGUERIA",USER);
-end;
-/
-
-
-create trigger trg_ins_fab AFTER DELETE ON FABRICANTE
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FABRICANTE",USER);
-end;
-/
-
-
-create trigger trg_ins_fab AFTER INSERT ON FABRICANTE
-begin
-insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FABRICANTE",USER);
-end;
-/
-
-
-create trigger trg_upd_fab AFTER UPDATE ON FABRICANTE
-begin
-   insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","FABRICANTE",USER);
-end;
-/
-
-
-create trigger trg_del_factu AFTER DELETE ON FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_ins_factu AFTER INSERT ON FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_upd_factu AFTER UPDATE ON FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_del_invent AFTER DELETE ON INVENTARIO_RPT
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","INVENTARIO_RPT",USER);
-    end;
-/
-
-
-create trigger trg_ins_invent AFTER INSERT ON INVENTARIO_RPT
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","INVENTARIO_RPT",USER);
-    end;
-/
-
-
-create trigger trg_upd_invent AFTER UPDATE ON INVENTARIO_RPT
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","INVENTARIO_RPT",USER);
-    end;
-/
-
-
-create trigger trg_del_medic AFTER DELETE ON MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_ins_medic AFTER INSERT ON MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_upd_medic AFTER UPDATE ON MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_del_ped AFTER DELETE ON PEDIDO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PEDIDO",USER);
-    end;
-/
-
-
-create trigger trg_ins_ped AFTER INSERT ON PEDIDO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PEDIDO",USER);
-    end;
-/
-
-
-reate trigger trg_upd_ped AFTER UPDATE ON PEDIDO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PEDIDO",USER);
-    end;
-/
-
-
-create trigger trg_del_pers AFTER DELETE ON PERSONA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PERSONA",USER);
-    end;
-/
-
-
-create trigger trg_ins_pers AFTER INSERT ON PERSONA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PERSONA",USER);
-    end;
-/
-
-
-create trigger trg_del_pers AFTER UPDATE ON PERSONA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PERSONA",USER);
-    end;
-/
-
-
-create trigger trg_del_pordFab AFTER DELETE ON PRODUCTO_FABRICANTE
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FABRICANTE",USER);
-    end;
-/
-
-
-create trigger trg_ins_pordFab AFTER INSERT ON PRODUCTO_FABRICANTE
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FABRICANTE",USER);
-    end;
-/
-
-
-create trigger trg_upd_pordFab AFTER UPDATE ON dbd_3.Producto_Fabricante
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_FABRICANTE",USER);
-    end;
-/
-
-
-create trigger trg_del_prodFac AFTER DELETE ON PRODUCTO_FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_ins_prodFac AFTER INSERT ON PRODUCTO_FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_upd_prodFac AFTER UPDATE ON PRODUCTO_FACTURA
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_FACTURA",USER);
-    end;
-/
-
-
-create trigger trg_del_prodInv AFTER DELETE ON PRODUCTO_INVENTARIO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PRODUCTO_INVENTARIO",USER);
-    end;
-/
-
-
-create trigger trg_ins_prodInv AFTER INSERT ON PRODUCTO_INVENTARIO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PRODUCTO_INVENTARIO",USER);
-    end;
-/
-
-
-create trigger trg_upd_prodInv AFTER UPDATE ON PRODUCTO_INVENTARIO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PRODUCTO_INVENTARIO",USER);
-    end;
-/
-
-
-create trigger trg_del_prove AFTER DELETE ON PROVEEDOR
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","PROVEEDOR",USER);
-    end;
-/
-
-
-create trigger trg_ins_prove AFTER INSERT ON PROVEEDOR
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","PROVEEDOR",USER);
-    end;
-/
-
-
-create trigger trg_upd_prove AFTER UPDATE ON PROVEEDOR
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","PROVEEDOR",USER);
-    end;
-/
-
-
-create trigger trg_del_tipoProd AFTER DELETE ON TIPO_PRODUCTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","TIPO_PRODUCTO",USER);
-    end;
-/
-
-
-create trigger trg_ins_tipoProd AFTER INSERT ON TIPO_PRODUCTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","TIPO_PRODUCTO",USER);
-    end;
-/
-
-
-create trigger trg_upd_tipoProd AFTER UPDATE ON TIPO_PRODUCTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","TIPO_PRODUCTO",USER);
-    end;
-/
-
-
-create trigger trg_del_usoMedic AFTER DELETE ON USO_MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"DELETE","USO_MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_ins_usoMedic AFTER INSERT ON USO_MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"INSERT","USO_MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_upd_usoMedic AFTER UPDATE ON USO_MEDICAMENTO
-begin
-    insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),"UPDATE","USO_MEDICAMENTO",USER);
-    end;
-/
-
-
-create trigger trg_del_drog AFTER DELETE ON dbd_3.View_Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"DELETE","DROGUERIA",USER)
-/
-
-
-create trigger trg_ins_drog AFTER INSERT ON dbd_3.View_Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"INSERT","DROGUERIA",USER)
-/
-
-
-create trigger trg_upd_drog AFTER UPDATE ON dbd_3.View_Drogueria
-begin
-as
-    insert into dbd_3.BITACORA(fecha,tipo__accion,tabla,usuario) values(GETDATE(),"UPDATE","DROGUERIA",USER)
 /
 

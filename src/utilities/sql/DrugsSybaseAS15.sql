@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase AS Enterprise 15.0                    */
-/* Created on:     6/15/2013 4:04:51 PM                         */
+/* Created on:     6/21/2013 9:50:22 PM                         */
 /*==============================================================*/
 
 
@@ -629,6 +629,13 @@ go
 
 if exists (select 1
             from  sysobjects
+            where  id = object_id('VIEW_PRODUCTOS_VENDIDOS')
+            and   type = 'V')
+   drop view VIEW_PRODUCTOS_VENDIDOS
+go
+
+if exists (select 1
+            from  sysobjects
             where  id = object_id('VIEW_PRODUCTO_DROGUERIA')
             and   type = 'V')
    drop view VIEW_PRODUCTO_DROGUERIA
@@ -657,6 +664,13 @@ go
 
 if exists (select 1
             from  sysobjects
+            where  id = object_id('VIEW_PRODUCTO_MAS_VENDIDO')
+            and   type = 'V')
+   drop view VIEW_PRODUCTO_MAS_VENDIDO
+go
+
+if exists (select 1
+            from  sysobjects
             where  id = object_id('VIEW_PROVEEDOR')
             and   type = 'V')
    drop view VIEW_PROVEEDOR
@@ -681,6 +695,13 @@ if exists (select 1
             where  id = object_id('VIEW_USO_MEDIC')
             and   type = 'V')
    drop view VIEW_USO_MEDIC
+go
+
+if exists (select 1
+            from  sysobjects
+            where id = object_id('ADVICE')
+            and   type = 'U')
+   drop table ADVICE
 go
 
 if exists (select 1
@@ -1013,6 +1034,18 @@ if exists (select 1
 go
 
 /*==============================================================*/
+/* Table: ADVICE                                                */
+/*==============================================================*/
+create table ADVICE (
+   ID_ADVICE            int                            not null,
+   ID_PROD_RELACIONADO  int                            not null,
+   TIPO_O_NOTA          text                           null,
+   CANT_REGISTRADA      int                            not null,
+   constraint PK_ADVICE primary key nonclustered (ID_ADVICE)
+)
+go
+
+/*==============================================================*/
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA (
@@ -1064,6 +1097,7 @@ create table FACTURA (
    ID_FACTURA           int                            not null,
    ID_PERSONA           int                            not null,
    TOTAL                float(10)                      not null,
+   FECHA_FACTURA        timestamp                      not null,
    constraint PK_FACTURA primary key nonclustered (ID_FACTURA)
 )
 go
@@ -1298,6 +1332,7 @@ go
 create table PRODUCTO_FACTURA (
    ID_FACTURA           int                            not null,
    ID_PRODUCTO          int                            not null,
+   CANTIDAD_VENDIDA     int                            null,
    constraint PK_PRODUCTO_FACTURA primary key (ID_FACTURA, ID_PRODUCTO)
 )
 go
@@ -1490,6 +1525,17 @@ select * from PRESENTACION
 go
 
 /*==============================================================*/
+/* View: VIEW_PRODUCTOS_VENDIDOS                                */
+/*==============================================================*/
+create view VIEW_PRODUCTOS_VENDIDOS as
+select
+   ID_PRODUCTO,
+   count(ID_PRODUCTO) as conteo
+group by
+   ID_PRODUCTO
+go
+
+/*==============================================================*/
 /* View: VIEW_PRODUCTO_DROGUERIA                                */
 /*==============================================================*/
 create view VIEW_PRODUCTO_DROGUERIA as
@@ -1507,7 +1553,8 @@ go
 /* View: VIEW_PRODUCTO_FACTURA                                  */
 /*==============================================================*/
 create view VIEW_PRODUCTO_FACTURA as
-select * from PRODUCTO_FACTURA
+select
+   *
 go
 
 /*==============================================================*/
@@ -1515,6 +1562,13 @@ go
 /*==============================================================*/
 create view VIEW_PRODUCTO_INVENTARIO as
 select * from PRODUCTO_INVENTARIO
+go
+
+/*==============================================================*/
+/* View: VIEW_PRODUCTO_MAS_VENDIDO                              */
+/*==============================================================*/
+create view VIEW_PRODUCTO_MAS_VENDIDO as
+select ID_PRODUCTO from VIEW_PRODUCTOS_VENDIDOS having conteo=max(conteo)
 go
 
 /*==============================================================*/

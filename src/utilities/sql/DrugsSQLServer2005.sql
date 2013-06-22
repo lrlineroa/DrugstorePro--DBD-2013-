@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     6/15/2013 4:04:19 PM                         */
+/* Created on:     6/21/2013 9:47:06 PM                         */
 /*==============================================================*/
 
 
@@ -629,6 +629,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('VIEW_PRODUCTOS_VENDIDOS')
+            and   type = 'V')
+   drop view VIEW_PRODUCTOS_VENDIDOS
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('VIEW_PRODUCTO_DROGUERIA')
             and   type = 'V')
    drop view VIEW_PRODUCTO_DROGUERIA
@@ -657,6 +664,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('VIEW_PRODUCTO_MAS_VENDIDO')
+            and   type = 'V')
+   drop view VIEW_PRODUCTO_MAS_VENDIDO
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('VIEW_PROVEEDOR')
             and   type = 'V')
    drop view VIEW_PROVEEDOR
@@ -681,6 +695,13 @@ if exists (select 1
            where  id = object_id('VIEW_USO_MEDIC')
             and   type = 'V')
    drop view VIEW_USO_MEDIC
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('ADVICE')
+            and   type = 'U')
+   drop table ADVICE
 go
 
 if exists (select 1
@@ -1013,6 +1034,35 @@ if exists (select 1
 go
 
 /*==============================================================*/
+/* Table: ADVICE                                                */
+/*==============================================================*/
+create table ADVICE (
+   ID_ADVICE            int                  not null,
+   ID_PROD_RELACIONADO  int                  not null,
+   TIPO_O_NOTA          text                 null,
+   CANT_REGISTRADA      int                  not null,
+   constraint PK_ADVICE primary key nonclustered (ID_ADVICE)
+)
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('ADVICE') and minor_id = 0)
+begin 
+   declare @CurrentUser sysname 
+select @CurrentUser = user_name() 
+execute sp_dropextendedproperty 'MS_Description',  
+   'user', @CurrentUser, 'table', 'ADVICE' 
+ 
+end 
+
+
+select @CurrentUser = user_name() 
+execute sp_addextendedproperty 'MS_Description',  
+   'ESTA TABLA CONTENDRÁ EL REGISTRO DE CUANDO UN MEDICAMENTO LLEGA A ESTADO CRÍTICO (MENOS DE 5 UNIDADES EN EL INVENTARIO)', 
+   'user', @CurrentUser, 'table', 'ADVICE'
+go
+
+/*==============================================================*/
 /* Table: BITACORA                                              */
 /*==============================================================*/
 create table BITACORA (
@@ -1285,6 +1335,7 @@ create table FACTURA (
    ID_FACTURA           int                  not null,
    ID_PERSONA           int                  not null,
    TOTAL                float(10)            not null,
+   FECHA_FACTURA        timestamp            not null,
    constraint PK_FACTURA primary key nonclustered (ID_FACTURA)
 )
 go
@@ -2079,6 +2130,7 @@ go
 create table PRODUCTO_FACTURA (
    ID_FACTURA           int                  not null,
    ID_PRODUCTO          int                  not null,
+   CANTIDAD_VENDIDA     int                  null,
    constraint PK_PRODUCTO_FACTURA primary key (ID_FACTURA, ID_PRODUCTO)
 )
 go
@@ -2679,6 +2731,17 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* View: VIEW_PRODUCTOS_VENDIDOS                                */
+/*==============================================================*/
+create view VIEW_PRODUCTOS_VENDIDOS as
+select
+   ID_PRODUCTO,
+   count(ID_PRODUCTO) as conteo
+group by
+   ID_PRODUCTO
+go
+
+/*==============================================================*/
 /* View: VIEW_PRODUCTO_DROGUERIA                                */
 /*==============================================================*/
 create view VIEW_PRODUCTO_DROGUERIA as
@@ -2730,7 +2793,8 @@ go
 /* View: VIEW_PRODUCTO_FACTURA                                  */
 /*==============================================================*/
 create view VIEW_PRODUCTO_FACTURA as
-select * from PRODUCTO_FACTURA
+select
+   *
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2772,6 +2836,13 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    'Esta vista muestra informacion acerca de los productos que estan en inventario',
    'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_INVENTARIO'
+go
+
+/*==============================================================*/
+/* View: VIEW_PRODUCTO_MAS_VENDIDO                              */
+/*==============================================================*/
+create view VIEW_PRODUCTO_MAS_VENDIDO as
+select ID_PRODUCTO from VIEW_PRODUCTOS_VENDIDOS having conteo=max(conteo)
 go
 
 /*==============================================================*/
