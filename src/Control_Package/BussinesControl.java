@@ -5,11 +5,11 @@
 package Control_Package;
 
 import DAOS.DAOFactory;
-import Entities.Persona;
 import Entities.Views.ViewFactura;
 import Entities.Views.ViewMedicamento;
 import Entities.Views.ViewPedido;
 import Entities.Views.ViewProductosDrogueria;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -104,10 +104,9 @@ public class BussinesControl {
 
     public void newFactura(Integer idPersona, float total) throws Exception {
         ViewFactura factura = new ViewFactura();
-        Persona persona = new Persona(idPersona);
-        factura.setIdPersona(persona);
+        factura.setIdPersona(idPersona);
         factura.setTotal(total);
-//        factura.setFecha(new Date());
+        factura.setFechaFactura(new Date());
 
         DAOFactory.getInstance().getViewFacturaDAO().create(factura);
 

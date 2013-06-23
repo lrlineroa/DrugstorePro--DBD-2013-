@@ -42,7 +42,7 @@ public class AutoCompleteControl {
     public String getTextOfCoincidence(String DatumtoSearch, List<String> Vector, boolean internal) {
         List<ViewProductosDrogueria> productos;
         if (internal) {
-            productos = pGS.searchProductsByDrogueria(LoginControl.usuarioActivo.getIdDrogueria().getIdDrogueria());
+            productos = pGS.searchProductsByDrogueria(LoginControl.usuarioActivo.getIdDrogueria());
         } else {
             productos = pGS.getAllProducts();
         }

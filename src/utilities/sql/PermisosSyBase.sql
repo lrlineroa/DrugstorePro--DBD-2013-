@@ -1,3 +1,4 @@
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_ADVICE TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_BITACORA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_CARGO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
@@ -6,9 +7,16 @@ GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_FACTURA TO earojasc, dsgonzalezh, mahe
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_INVENTARIORPT TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_MEDICAMENTO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PEDIDO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PEDIDO_PRODUCTO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PERSONA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRESENTACION TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTO_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTO_FABRICANTE TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTO_FACTURA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTO_INVENTARIO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTOS_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTOS_VENDIDOS TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PROVEEDOR TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PROVEEDOR_TIPO_PROV TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_TIPO_PRODUCTO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_USO_MEDIC TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap
-GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PRODUCTOS_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap

@@ -226,7 +226,9 @@ public class LoginGui extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordAPPTfKeyPressed
 
     private void passwordBDTfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordBDTfKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
+        }
     }//GEN-LAST:event_passwordBDTfKeyPressed
 
     private void checkBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkBoxItemStateChanged

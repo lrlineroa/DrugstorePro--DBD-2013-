@@ -126,6 +126,16 @@ public class ViewProductosDrogueriaDAO implements Serializable {
             em.close();
         }
     }
+    
+    public List<ViewProductosDrogueria> findViewProductosDrogueria(Integer idDrogueria) {
+        Query q = getEntityManager().createNamedQuery("ViewProductosDrogueria.findByIdDrogueria").setParameter("idDrogueria", idDrogueria);
+        try {
+            return q.getResultList();
+        } catch (javax.persistence.NoResultException e) {
+            System.out.println("datos no encontrados");
+            return null;
+        }
+    }
 
     public int getViewProductosDrogueriaCount() {
         EntityManager em = getEntityManager();

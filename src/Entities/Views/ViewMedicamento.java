@@ -13,6 +13,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.Direction;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQueries;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQuery;
+import org.eclipse.persistence.annotations.StoredProcedureParameter;
 
 /**
  *
@@ -25,11 +29,28 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewMedicamento.findAll", query = "SELECT v FROM ViewMedicamento v"),
     @NamedQuery(name = "ViewMedicamento.findByIdProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto"),
+    @NamedQuery(name = "ViewMedicamento.findByIdNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto AND v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPrecioProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.precioProducto = :precioProducto"),
     @NamedQuery(name = "ViewMedicamento.findByCantidadProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.cantidadProducto = :cantidadProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),
     @NamedQuery(name = "ViewMedicamento.findByVentaLibre", query = "SELECT v FROM ViewMedicamento v WHERE v.ventaLibre = :ventaLibre")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "dbd_3.lrlineroa.HACER_INVENTARIO",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
+            parameters = {
+        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
+    }),
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "dbd_3.lrlineroa.HACER_VENTA",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
+            parameters = {
+        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount", direction = Direction.IN, type = Integer.class),
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id", direction = Direction.IN, type = Integer.class),
+        @StoredProcedureParameter(name = "succes", queryParameter = "succes", direction = Direction.OUT, type = Integer.class)
+    })
+})
 public class ViewMedicamento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -50,10 +71,10 @@ public class ViewMedicamento implements Serializable {
     private Integer cantidadProducto;
     @Column(name = "POSOLOGIA_PRODUCTO")
     private String posologiaProducto;
-    @Basic(optional=false)
+    @Basic(optional = false)
     @Column(name = "ID_TIPO_PRODUCTO")
     private Integer IdTipoProducto;
-    @Basic(optional=false)
+    @Basic(optional = false)
     @Column(name = "ID_PROVEEDOR")
     private Integer IdProveedor;
     @Basic(optional = false)
@@ -200,5 +221,4 @@ public class ViewMedicamento implements Serializable {
     public void setIdUsoMedicamento(Integer idUsoMedicamento) {
         this.idUsoMedicamento = idUsoMedicamento;
     }
-    
 }

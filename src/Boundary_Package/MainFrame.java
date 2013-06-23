@@ -12,8 +12,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.plaf.metal.MetalBorders;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**

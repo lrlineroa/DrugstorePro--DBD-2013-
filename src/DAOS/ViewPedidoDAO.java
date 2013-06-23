@@ -39,7 +39,7 @@ public class ViewPedidoDAO implements Serializable {
             em.persist(viewPedido);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findViewPedido(viewPedido.getIdPedido()) != null) {
+            if (findViewPedidoById(viewPedido.getIdPedido()) != null) {
                 throw new PreexistingEntityException("ViewPedido " + viewPedido + " already exists.", ex);
             }
             throw ex;
@@ -61,7 +61,7 @@ public class ViewPedidoDAO implements Serializable {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Integer id = viewPedido.getIdPedido();
-                if (findViewPedido(id) == null) {
+                if (findViewPedidoById(id) == null) {
                     throw new NonexistentEntityException("The viewPedido with id " + id + " no longer exists.");
                 }
             }
@@ -118,7 +118,7 @@ public class ViewPedidoDAO implements Serializable {
         }
     }
 
-    public ViewPedido findViewPedido(Integer id) {
+    public ViewPedido findViewPedidoById(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(ViewPedido.class, id);
