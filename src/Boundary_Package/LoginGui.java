@@ -282,9 +282,9 @@ public class LoginGui extends javax.swing.JPanel {
         if (login != null) {
             JOptionPane.showMessageDialog(null, "Login Exitoso", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
 
-            if (login.getIdCargo().getIdCargo() == 1) {
+            if (login.getIdCargo() == 1) {
                 frame.setToolBarAdmin(login.getNombrePersona());
-            } else if (login.getIdCargo().getIdCargo() == 2) {
+            } else if (login.getIdCargo() == 2) {
                 frame.setToolBarSeller(login.getNombrePersona());
             }
         } else {

@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 public class ViewPresentacionDAO implements Serializable {
 

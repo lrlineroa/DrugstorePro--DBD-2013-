@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_BITACORA")
@@ -124,7 +124,7 @@ public class ViewBitacora implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewBitacora[ idBitacora=" + idBitacora + " ]";
+        return "Entities.Views.ViewBitacora[ idBitacora=" + idBitacora + " ]";
     }
     
 }

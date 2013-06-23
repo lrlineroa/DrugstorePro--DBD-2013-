@@ -4,17 +4,15 @@
  */
 package DAOS;
 
-import DAOS.exceptions.DataBaseException;
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
-import Entities.Views.ViewPersona;
+import Entities.Views.ViewAdvice;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -22,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author User
  */
-public class ViewPersonaDAO implements Serializable {
+public class ViewAdviceDAO implements Serializable {
 
-    public ViewPersonaDAO(EntityManagerFactory emf) {
+    public ViewAdviceDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -33,16 +31,16 @@ public class ViewPersonaDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(ViewPersona viewPersona) throws PreexistingEntityException, Exception {
+    public void create(ViewAdvice viewAdvice) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(viewPersona);
+            em.persist(viewAdvice);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findViewPersona(viewPersona.getIdPersona()) != null) {
-                throw new PreexistingEntityException("ViewPersona " + viewPersona + " already exists.", ex);
+            if (findViewAdvice(viewAdvice.getIdAdvice()) != null) {
+                throw new PreexistingEntityException("ViewAdvice " + viewAdvice + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -52,19 +50,19 @@ public class ViewPersonaDAO implements Serializable {
         }
     }
 
-    public void edit(ViewPersona viewPersona) throws NonexistentEntityException, Exception {
+    public void edit(ViewAdvice viewAdvice) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            viewPersona = em.merge(viewPersona);
+            viewAdvice = em.merge(viewAdvice);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = viewPersona.getIdPersona();
-                if (findViewPersona(id) == null) {
-                    throw new NonexistentEntityException("The viewPersona with id " + id + " no longer exists.");
+                Integer id = viewAdvice.getIdAdvice();
+                if (findViewAdvice(id) == null) {
+                    throw new NonexistentEntityException("The viewAdvice with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -80,14 +78,14 @@ public class ViewPersonaDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewPersona viewPersona;
+            ViewAdvice viewAdvice;
             try {
-                viewPersona = em.getReference(ViewPersona.class, id);
-                viewPersona.getIdPersona();
+                viewAdvice = em.getReference(ViewAdvice.class, id);
+                viewAdvice.getIdAdvice();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The viewPersona with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The viewAdvice with id " + id + " no longer exists.", enfe);
             }
-            em.remove(viewPersona);
+            em.remove(viewAdvice);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -96,19 +94,19 @@ public class ViewPersonaDAO implements Serializable {
         }
     }
 
-    public List<ViewPersona> findViewPersonaEntities() {
-        return findViewPersonaEntities(true, -1, -1);
+    public List<ViewAdvice> findViewAdviceEntities() {
+        return findViewAdviceEntities(true, -1, -1);
     }
 
-    public List<ViewPersona> findViewPersonaEntities(int maxResults, int firstResult) {
-        return findViewPersonaEntities(false, maxResults, firstResult);
+    public List<ViewAdvice> findViewAdviceEntities(int maxResults, int firstResult) {
+        return findViewAdviceEntities(false, maxResults, firstResult);
     }
 
-    private List<ViewPersona> findViewPersonaEntities(boolean all, int maxResults, int firstResult) {
+    private List<ViewAdvice> findViewAdviceEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(ViewPersona.class));
+            cq.select(cq.from(ViewAdvice.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -120,51 +118,25 @@ public class ViewPersonaDAO implements Serializable {
         }
     }
 
-    public ViewPersona findViewPersona(Integer id) {
+    public ViewAdvice findViewAdvice(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(ViewPersona.class, id);
+            return em.find(ViewAdvice.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getViewPersonaCount() {
+    public int getViewAdviceCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<ViewPersona> rt = cq.from(ViewPersona.class);
+            Root<ViewAdvice> rt = cq.from(ViewAdvice.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();
-        }
-    }
-    
-    public ViewPersona login(ViewPersona entity) throws DataBaseException {
-        EntityManager entityManager = null;
-        try {
-            entityManager = getEntityManager();
-            ViewPersona usuario;
-            Query q = entityManager.createQuery("SELECT u FROM ViewPersona u "
-                    + "WHERE u.nombreDeUsuario LIKE :username "
-                    + "AND u.password LIKE :password")
-                    .setParameter("username", entity.getNombreDeUsuario())
-                    .setParameter("password", entity.getPassword());
-            try {
-                usuario = (ViewPersona) q.getSingleResult();
-            } catch (NoResultException e) {
-                usuario = null;
-            }
-            return usuario;
-        } catch (Exception e) {
-            throw new DataBaseException("Error de Conexion a la Base de Datos", e);
-        } finally {
-            if (entityManager != null) {
-                entityManager.clear();
-                entityManager.close();
-            }
         }
     }
     

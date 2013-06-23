@@ -4,15 +4,12 @@
  */
 package Entities.Views;
 
-import Entities.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_INVENTARIORPT")
@@ -38,12 +35,12 @@ public class ViewInventariorpt implements Serializable {
     @Column(name = "ID_INVENTARIORPT")
     private Integer idInventariorpt;
     @Basic(optional = false)
+    @Column(name = "ID_PERSONA")
+    private Integer idPersona;
+    @Basic(optional = false)
     @Column(name = "FECHA_INV")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInv;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne(optional = false)
-    private Persona idPersona;
 
     public ViewInventariorpt() {
     }
@@ -73,14 +70,6 @@ public class ViewInventariorpt implements Serializable {
         this.fechaInv = fechaInv;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,7 +92,7 @@ public class ViewInventariorpt implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewInventariorpt[ idInventariorpt=" + idInventariorpt + " ]";
+        return "Entities.Views.ViewInventariorpt[ idInventariorpt=" + idInventariorpt + " ]";
     }
     
 }

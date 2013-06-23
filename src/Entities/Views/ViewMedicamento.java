@@ -4,29 +4,19 @@
  */
 package Entities.Views;
 
-import Entities.Presentacion;
-import Entities.Proveedor;
-import Entities.TipoProducto;
-import Entities.UsoMedicamento;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.eclipse.persistence.annotations.Direction;
-import org.eclipse.persistence.annotations.NamedStoredProcedureQueries;
-import org.eclipse.persistence.annotations.NamedStoredProcedureQuery;
-import org.eclipse.persistence.annotations.StoredProcedureParameter;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_MEDICAMENTO")
@@ -35,33 +25,22 @@ import org.eclipse.persistence.annotations.StoredProcedureParameter;
     @NamedQuery(name = "ViewMedicamento.findAll", query = "SELECT v FROM ViewMedicamento v"),
     @NamedQuery(name = "ViewMedicamento.findByIdProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto"),
-    @NamedQuery(name = "ViewMedicamento.findByIdNombreProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.nombreProducto = :nombreProducto AND v.idProducto = :idProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPrecioProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.precioProducto = :precioProducto"),
     @NamedQuery(name = "ViewMedicamento.findByCantidadProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.cantidadProducto = :cantidadProducto"),
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),
     @NamedQuery(name = "ViewMedicamento.findByVentaLibre", query = "SELECT v FROM ViewMedicamento v WHERE v.ventaLibre = :ventaLibre")})
-@NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "dbd_3.lrlineroa.HACER_INVENTARIO",
-            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
-            parameters = {
-        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
-        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
-    }),
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "dbd_3.lrlineroa.HACER_VENTA",
-            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
-            parameters = {
-        @StoredProcedureParameter(name = "cantidad", queryParameter = "amount", direction=Direction.IN, type=Integer.class),
-        @StoredProcedureParameter(name = "idProducto", queryParameter = "id", direction=Direction.IN,type=Integer.class),
-        @StoredProcedureParameter(name = "succes", queryParameter = "succes", direction=Direction.OUT,type=Integer.class)
-    })
-})
 public class ViewMedicamento implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID_PRODUCTO")
     private Integer idProducto;
+    @Basic(optional = false)
+    @Column(name = "ID_PRESENTACION")
+    private Integer idPresentacion;
+    @Basic(optional = false)
+    @Column(name = "ID_USO_MEDICAMENTO")
+    private Integer idUsoMedicamento;
     @Column(name = "NOMBRE_PRODUCTO")
     private String nombreProducto;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -71,21 +50,15 @@ public class ViewMedicamento implements Serializable {
     private Integer cantidadProducto;
     @Column(name = "POSOLOGIA_PRODUCTO")
     private String posologiaProducto;
+    @Basic(optional=false)
+    @Column(name = "ID_TIPO_PRODUCTO")
+    private Integer IdTipoProducto;
+    @Basic(optional=false)
+    @Column(name = "ID_PROVEEDOR")
+    private Integer IdProveedor;
     @Basic(optional = false)
     @Column(name = "VENTA_LIBRE")
     private short ventaLibre;
-    @JoinColumn(name = "ID_USO_MEDICAMENTO", referencedColumnName = "ID_USO_MEDICAMENTO")
-    @ManyToOne
-    private UsoMedicamento idUsoMedicamento;
-    @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
-    @ManyToOne(optional = false)
-    private TipoProducto idTipoProducto;
-    @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
-    @ManyToOne(optional = false)
-    private Proveedor idProveedor;
-    @JoinColumn(name = "ID_PRESENTACION", referencedColumnName = "ID_PRESENTACION")
-    @ManyToOne(optional = false)
-    private Presentacion idPresentacion;
 
     public ViewMedicamento() {
     }
@@ -147,38 +120,6 @@ public class ViewMedicamento implements Serializable {
         this.ventaLibre = ventaLibre;
     }
 
-    public UsoMedicamento getIdUsoMedicamento() {
-        return idUsoMedicamento;
-    }
-
-    public void setIdUsoMedicamento(UsoMedicamento idUsoMedicamento) {
-        this.idUsoMedicamento = idUsoMedicamento;
-    }
-
-    public TipoProducto getIdTipoProducto() {
-        return idTipoProducto;
-    }
-
-    public void setIdTipoProducto(TipoProducto idTipoProducto) {
-        this.idTipoProducto = idTipoProducto;
-    }
-
-    public Proveedor getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Proveedor idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
-    public Presentacion getIdPresentacion() {
-        return idPresentacion;
-    }
-
-    public void setIdPresentacion(Presentacion idPresentacion) {
-        this.idPresentacion = idPresentacion;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -201,6 +142,63 @@ public class ViewMedicamento implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewMedicamento[ idProducto=" + idProducto + " ]";
+        return "Entities.Views.ViewMedicamento[ idProducto=" + idProducto + " ]";
     }
+
+    /**
+     * @return the IdTipoProducto
+     */
+    public Integer getIdTipoProducto() {
+        return IdTipoProducto;
+    }
+
+    /**
+     * @param IdTipoProducto the IdTipoProducto to set
+     */
+    public void setIdTipoProducto(Integer IdTipoProducto) {
+        this.IdTipoProducto = IdTipoProducto;
+    }
+
+    /**
+     * @return the IdProveedor
+     */
+    public Integer getIdProveedor() {
+        return IdProveedor;
+    }
+
+    /**
+     * @param IdProveedor the IdProveedor to set
+     */
+    public void setIdProveedor(Integer IdProveedor) {
+        this.IdProveedor = IdProveedor;
+    }
+
+    /**
+     * @return the idPresentacion
+     */
+    public Integer getIdPresentacion() {
+        return idPresentacion;
+    }
+
+    /**
+     * @param idPresentacion the idPresentacion to set
+     */
+    public void setIdPresentacion(Integer idPresentacion) {
+        this.idPresentacion = idPresentacion;
+    }
+
+    /**
+     * @return the idUsoMedicamento
+     */
+    public Integer getIdUsoMedicamento() {
+        return idUsoMedicamento;
+    }
+
+    /**
+     * @param idUsoMedicamento the idUsoMedicamento to set
+     */
+    public void setIdUsoMedicamento(Integer idUsoMedicamento) {
+        this.idUsoMedicamento = idUsoMedicamento;
+    }
+    
 }

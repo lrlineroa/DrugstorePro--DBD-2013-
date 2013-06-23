@@ -22,7 +22,7 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
+    //public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
 //    private ViewDrogueriaDAO DrS= new ViewDrogueriaDAO(MainFrame.emf);
     private Dimension d;
     private VentaTableModel vTbM = new VentaTableModel();
@@ -285,7 +285,7 @@ public class MainFrame extends javax.swing.JFrame {
             AdjustToCenter();
             this.pack();
         } else {
-            if (LoginControl.usuarioActivo.getIdCargo().getIdCargo() == 1) {
+            if (LoginControl.usuarioActivo.getIdCargo() == 1) {
                 setToolBarAdmin(LoginControl.usuarioActivo.getNombrePersona());
                 CloseSesionButton.setText("CERRAR SESION");
                 AdjustToCenter();

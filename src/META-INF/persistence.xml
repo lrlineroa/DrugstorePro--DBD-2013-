@@ -31,6 +31,10 @@
     <class>Entities.Views.ViewUsoMedic</class>
     <class>Entities.Advice</class>
     <class>Entities.Views.ViewProductosDrogueria</class>
+    <class>Entities.Views.ViewProductoFactura</class>
+    <class>Entities.Views.ViewAdvice</class>
+    <class>Entities.Views.ViewProductoDrogueria</class>
+    <class>Entities.Views.ViewProductosVendidos</class>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
   </persistence-unit>
 </persistence>

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Entities.Views;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -17,17 +17,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
-@Table(name = "ADVICE")
+@Table(name = "dbd_3.lrlineroa.IEW_ADVICE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Advice.findAll", query = "SELECT a FROM Advice a"),
-    @NamedQuery(name = "Advice.findByIdAdvice", query = "SELECT a FROM Advice a WHERE a.idAdvice = :idAdvice"),
-    @NamedQuery(name = "Advice.findByIdProdRelacionado", query = "SELECT a FROM Advice a WHERE a.idProdRelacionado = :idProdRelacionado"),
-    @NamedQuery(name = "Advice.findByCantRegistrada", query = "SELECT a FROM Advice a WHERE a.cantRegistrada = :cantRegistrada")})
-public class Advice implements Serializable {
+    @NamedQuery(name = "ViewAdvice.findAll", query = "SELECT v FROM ViewAdvice v"),
+    @NamedQuery(name = "ViewAdvice.findByIdAdvice", query = "SELECT v FROM ViewAdvice v WHERE v.idAdvice = :idAdvice"),
+    @NamedQuery(name = "ViewAdvice.findByIdProdRelacionado", query = "SELECT v FROM ViewAdvice v WHERE v.idProdRelacionado = :idProdRelacionado"),
+    @NamedQuery(name = "ViewAdvice.findByCantRegistrada", query = "SELECT v FROM ViewAdvice v WHERE v.cantRegistrada = :cantRegistrada")})
+public class ViewAdvice implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -43,14 +43,14 @@ public class Advice implements Serializable {
     @Column(name = "CANT_REGISTRADA")
     private int cantRegistrada;
 
-    public Advice() {
+    public ViewAdvice() {
     }
 
-    public Advice(Integer idAdvice) {
+    public ViewAdvice(Integer idAdvice) {
         this.idAdvice = idAdvice;
     }
 
-    public Advice(Integer idAdvice, int idProdRelacionado, int cantRegistrada) {
+    public ViewAdvice(Integer idAdvice, int idProdRelacionado, int cantRegistrada) {
         this.idAdvice = idAdvice;
         this.idProdRelacionado = idProdRelacionado;
         this.cantRegistrada = cantRegistrada;
@@ -98,10 +98,10 @@ public class Advice implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Advice)) {
+        if (!(object instanceof ViewAdvice)) {
             return false;
         }
-        Advice other = (Advice) object;
+        ViewAdvice other = (ViewAdvice) object;
         if ((this.idAdvice == null && other.idAdvice != null) || (this.idAdvice != null && !this.idAdvice.equals(other.idAdvice))) {
             return false;
         }
@@ -110,7 +110,7 @@ public class Advice implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Advice[ idAdvice=" + idAdvice + " ]";
+        return "Entities.Views.ViewAdvice[ idAdvice=" + idAdvice + " ]";
     }
     
 }

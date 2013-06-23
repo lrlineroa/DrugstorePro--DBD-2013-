@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_FABRICANTE")
@@ -79,7 +79,7 @@ public class ViewFabricante implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewFabricante[ idFabricante=" + idFabricante + " ]";
+        return "Entities.Views.ViewFabricante[ idFabricante=" + idFabricante + " ]";
     }
     
 }

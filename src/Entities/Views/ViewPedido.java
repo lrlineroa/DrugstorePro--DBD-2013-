@@ -4,15 +4,12 @@
  */
 package Entities.Views;
 
-import Entities.Drogueria;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_PEDIDO")
@@ -43,6 +40,9 @@ public class ViewPedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_PEDIDO")
     private Integer idPedido;
+    @Basic(optional = false)
+    @Column(name = "ID_DROGUERIA")
+    private Integer idDrogueria;
     @Basic(optional = false)
     @Column(name = "FECHA_PEDIDO")
     @Temporal(TemporalType.TIMESTAMP)
@@ -66,9 +66,6 @@ public class ViewPedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "SOLICITUD_FINALIZADA")
     private short solicitudFinalizada;
-    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
-    @ManyToOne(optional = false)
-    private Drogueria idDrogueria;
 
     public ViewPedido() {
     }
@@ -152,14 +149,6 @@ public class ViewPedido implements Serializable {
         this.solicitudFinalizada = solicitudFinalizada;
     }
 
-    public Drogueria getIdDrogueria() {
-        return idDrogueria;
-    }
-
-    public void setIdDrogueria(Drogueria idDrogueria) {
-        this.idDrogueria = idDrogueria;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -182,7 +171,7 @@ public class ViewPedido implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewPedido[ idPedido=" + idPedido + " ]";
+        return "Entities.Views.ViewPedido[ idPedido=" + idPedido + " ]";
     }
     
 }
