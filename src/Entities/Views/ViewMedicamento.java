@@ -76,16 +76,16 @@ public class ViewMedicamento implements Serializable {
     private short ventaLibre;
     @JoinColumn(name = "ID_USO_MEDICAMENTO", referencedColumnName = "ID_USO_MEDICAMENTO")
     @ManyToOne
-    private UsoMedicamento idUsoMedicamento;
+    private int idUsoMedicamento;
     @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
     @ManyToOne(optional = false)
-    private TipoProducto idTipoProducto;
+    private int idTipoProducto;
     @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
     @ManyToOne(optional = false)
-    private Proveedor idProveedor;
+    private int idProveedor;
     @JoinColumn(name = "ID_PRESENTACION", referencedColumnName = "ID_PRESENTACION")
     @ManyToOne(optional = false)
-    private Presentacion idPresentacion;
+    private Integer idPresentacion;
 
     public ViewMedicamento() {
     }
@@ -147,35 +147,35 @@ public class ViewMedicamento implements Serializable {
         this.ventaLibre = ventaLibre;
     }
 
-    public UsoMedicamento getIdUsoMedicamento() {
+    public Integer getIdUsoMedicamento() {
         return idUsoMedicamento;
     }
 
-    public void setIdUsoMedicamento(UsoMedicamento idUsoMedicamento) {
+    public void setIdUsoMedicamento(Integer idUsoMedicamento) {
         this.idUsoMedicamento = idUsoMedicamento;
     }
 
-    public TipoProducto getIdTipoProducto() {
+    public Integer getIdTipoProducto() {
         return idTipoProducto;
     }
 
-    public void setIdTipoProducto(TipoProducto idTipoProducto) {
+    public void setIdTipoProducto(Integer idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
     }
 
-    public Proveedor getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public Presentacion getIdPresentacion() {
+    public Integer getIdPresentacion() {
         return idPresentacion;
     }
 
-    public void setIdPresentacion(Presentacion idPresentacion) {
+    public void setIdPresentacion(Integer idPresentacion) {
         this.idPresentacion = idPresentacion;
     }
 

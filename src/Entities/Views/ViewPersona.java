@@ -61,10 +61,10 @@ public class ViewPersona implements Serializable {
     private String nombreDeUsuario;
     @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
     @ManyToOne(optional = false)
-    private Drogueria idDrogueria;
+    private int idDrogueria;
     @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
     @ManyToOne(optional = false)
-    private Cargo idCargo;
+    private int idCargo;
 
     public ViewPersona() {
     }
@@ -139,19 +139,19 @@ public class ViewPersona implements Serializable {
         this.nombreDeUsuario = nombreDeUsuario;
     }
 
-    public Drogueria getIdDrogueria() {
+    public int getIdDrogueria() {
         return idDrogueria;
     }
 
-    public void setIdDrogueria(Drogueria idDrogueria) {
+    public void setIdDrogueria(int idDrogueria) {
         this.idDrogueria = idDrogueria;
     }
 
-    public Cargo getIdCargo() {
+    public int getIdCargo() {
         return idCargo;
     }
 
-    public void setIdCargo(Cargo idCargo) {
+    public void setIdCargo(int idCargo) {
         this.idCargo = idCargo;
     }
 

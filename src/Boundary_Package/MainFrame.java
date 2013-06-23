@@ -285,7 +285,7 @@ public class MainFrame extends javax.swing.JFrame {
             AdjustToCenter();
             this.pack();
         } else {
-            if (LoginControl.usuarioActivo.getIdCargo().getIdCargo() == 1) {
+            if (LoginControl.usuarioActivo.getIdCargo() == 1) {
                 setToolBarAdmin(LoginControl.usuarioActivo.getNombrePersona());
                 CloseSesionButton.setText("CERRAR SESION");
                 AdjustToCenter();

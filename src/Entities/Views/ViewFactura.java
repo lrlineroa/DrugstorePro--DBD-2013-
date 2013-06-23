@@ -39,7 +39,7 @@ public class ViewFactura implements Serializable {
     private float total;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
     @ManyToOne(optional = false)
-    private Persona idPersona;
+    private int idPersona;
 
     public ViewFactura() {
     }
@@ -69,11 +69,11 @@ public class ViewFactura implements Serializable {
         this.total = total;
     }
 
-    public Persona getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(Persona idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 

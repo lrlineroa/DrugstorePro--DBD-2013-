@@ -7,22 +7,20 @@ package DAOS;
 import DAOS.exceptions.DataBaseException;
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
-import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import Entities.Drogueria;
-import Entities.Cargo;
 import Entities.Views.ViewPersona;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 public class ViewPersonaDAO implements Serializable {
 
@@ -40,25 +38,7 @@ public class ViewPersonaDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Drogueria idDrogueria = viewPersona.getIdDrogueria();
-            if (idDrogueria != null) {
-                idDrogueria = em.getReference(idDrogueria.getClass(), idDrogueria.getIdDrogueria());
-                viewPersona.setIdDrogueria(idDrogueria);
-            }
-            Cargo idCargo = viewPersona.getIdCargo();
-            if (idCargo != null) {
-                idCargo = em.getReference(idCargo.getClass(), idCargo.getIdCargo());
-                viewPersona.setIdCargo(idCargo);
-            }
             em.persist(viewPersona);
-            if (idDrogueria != null) {
-                idDrogueria.getViewPersonaList().add(viewPersona);
-                idDrogueria = em.merge(idDrogueria);
-            }
-            if (idCargo != null) {
-                idCargo.getViewPersonaList().add(viewPersona);
-                idCargo = em.merge(idCargo);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findViewPersona(viewPersona.getIdPersona()) != null) {
@@ -77,36 +57,7 @@ public class ViewPersonaDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewPersona persistentViewPersona = em.find(ViewPersona.class, viewPersona.getIdPersona());
-            Drogueria idDrogueriaOld = persistentViewPersona.getIdDrogueria();
-            Drogueria idDrogueriaNew = viewPersona.getIdDrogueria();
-            Cargo idCargoOld = persistentViewPersona.getIdCargo();
-            Cargo idCargoNew = viewPersona.getIdCargo();
-            if (idDrogueriaNew != null) {
-                idDrogueriaNew = em.getReference(idDrogueriaNew.getClass(), idDrogueriaNew.getIdDrogueria());
-                viewPersona.setIdDrogueria(idDrogueriaNew);
-            }
-            if (idCargoNew != null) {
-                idCargoNew = em.getReference(idCargoNew.getClass(), idCargoNew.getIdCargo());
-                viewPersona.setIdCargo(idCargoNew);
-            }
             viewPersona = em.merge(viewPersona);
-            if (idDrogueriaOld != null && !idDrogueriaOld.equals(idDrogueriaNew)) {
-                idDrogueriaOld.getViewPersonaList().remove(viewPersona);
-                idDrogueriaOld = em.merge(idDrogueriaOld);
-            }
-            if (idDrogueriaNew != null && !idDrogueriaNew.equals(idDrogueriaOld)) {
-                idDrogueriaNew.getViewPersonaList().add(viewPersona);
-                idDrogueriaNew = em.merge(idDrogueriaNew);
-            }
-            if (idCargoOld != null && !idCargoOld.equals(idCargoNew)) {
-                idCargoOld.getViewPersonaList().remove(viewPersona);
-                idCargoOld = em.merge(idCargoOld);
-            }
-            if (idCargoNew != null && !idCargoNew.equals(idCargoOld)) {
-                idCargoNew.getViewPersonaList().add(viewPersona);
-                idCargoNew = em.merge(idCargoNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -135,16 +86,6 @@ public class ViewPersonaDAO implements Serializable {
                 viewPersona.getIdPersona();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The viewPersona with id " + id + " no longer exists.", enfe);
-            }
-            Drogueria idDrogueria = viewPersona.getIdDrogueria();
-            if (idDrogueria != null) {
-                idDrogueria.getViewPersonaList().remove(viewPersona);
-                idDrogueria = em.merge(idDrogueria);
-            }
-            Cargo idCargo = viewPersona.getIdCargo();
-            if (idCargo != null) {
-                idCargo.getViewPersonaList().remove(viewPersona);
-                idCargo = em.merge(idCargo);
             }
             em.remove(viewPersona);
             em.getTransaction().commit();

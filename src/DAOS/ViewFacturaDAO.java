@@ -6,20 +6,19 @@ package DAOS;
 
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
+import Entities.Views.ViewFactura;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Persona;
-import Entities.Views.ViewFactura;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 public class ViewFacturaDAO implements Serializable {
 
@@ -37,16 +36,7 @@ public class ViewFacturaDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Persona idPersona = viewFactura.getIdPersona();
-            if (idPersona != null) {
-                idPersona = em.getReference(idPersona.getClass(), idPersona.getIdPersona());
-                viewFactura.setIdPersona(idPersona);
-            }
             em.persist(viewFactura);
-            if (idPersona != null) {
-                idPersona.getViewFacturaList().add(viewFactura);
-                idPersona = em.merge(idPersona);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findViewFactura(viewFactura.getIdFactura()) != null) {
@@ -65,22 +55,7 @@ public class ViewFacturaDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewFactura persistentViewFactura = em.find(ViewFactura.class, viewFactura.getIdFactura());
-            Persona idPersonaOld = persistentViewFactura.getIdPersona();
-            Persona idPersonaNew = viewFactura.getIdPersona();
-            if (idPersonaNew != null) {
-                idPersonaNew = em.getReference(idPersonaNew.getClass(), idPersonaNew.getIdPersona());
-                viewFactura.setIdPersona(idPersonaNew);
-            }
             viewFactura = em.merge(viewFactura);
-            if (idPersonaOld != null && !idPersonaOld.equals(idPersonaNew)) {
-                idPersonaOld.getViewFacturaList().remove(viewFactura);
-                idPersonaOld = em.merge(idPersonaOld);
-            }
-            if (idPersonaNew != null && !idPersonaNew.equals(idPersonaOld)) {
-                idPersonaNew.getViewFacturaList().add(viewFactura);
-                idPersonaNew = em.merge(idPersonaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -109,11 +84,6 @@ public class ViewFacturaDAO implements Serializable {
                 viewFactura.getIdFactura();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The viewFactura with id " + id + " no longer exists.", enfe);
-            }
-            Persona idPersona = viewFactura.getIdPersona();
-            if (idPersona != null) {
-                idPersona.getViewFacturaList().remove(viewFactura);
-                idPersona = em.merge(idPersona);
             }
             em.remove(viewFactura);
             em.getTransaction().commit();
