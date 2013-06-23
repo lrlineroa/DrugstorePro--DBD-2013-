@@ -5,6 +5,7 @@
 package Entities.Views;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,9 +42,9 @@ public class ViewFactura implements Serializable {
     @Column(name = "TOTAL")
     private float total;
     @Basic(optional = false)
-    @Lob
     @Column(name = "FECHA_FACTURA")
-    private byte[] fechaFactura;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaFactura;
 
     public ViewFactura() {
     }
@@ -50,7 +53,7 @@ public class ViewFactura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public ViewFactura(Integer idFactura, float total, byte[] fechaFactura) {
+    public ViewFactura(Integer idFactura, float total, Date fechaFactura) {
         this.idFactura = idFactura;
         this.total = total;
         this.fechaFactura = fechaFactura;
@@ -72,11 +75,11 @@ public class ViewFactura implements Serializable {
         this.total = total;
     }
 
-    public byte[] getFechaFactura() {
+    public Date getFechaFactura() {
         return fechaFactura;
     }
 
-    public void setFechaFactura(byte[] fechaFactura) {
+    public void setFechaFactura(Date fechaFactura) {
         this.fechaFactura = fechaFactura;
     }
 
