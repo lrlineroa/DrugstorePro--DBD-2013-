@@ -1335,7 +1335,7 @@ create table FACTURA (
    ID_FACTURA           int                  not null,
    ID_PERSONA           int                  not null,
    TOTAL                float(10)            not null,
-   FECHA_FACTURA        timestamp            not null,
+   FECHA_FACTURA        datetime            not null,
    constraint PK_FACTURA primary key nonclustered (ID_FACTURA)
 )
 go
