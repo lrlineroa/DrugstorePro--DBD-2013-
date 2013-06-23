@@ -4,16 +4,12 @@
  */
 package Entities.Views;
 
-import Entities.Cargo;
-import Entities.Drogueria;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_PERSONA")
@@ -41,6 +37,12 @@ public class ViewPersona implements Serializable {
     @Column(name = "ID_PERSONA")
     private Integer idPersona;
     @Basic(optional = false)
+    @Column(name = "ID_CARGO")
+    private Integer idCargo;
+    @Basic(optional = false)
+    @Column(name = "ID_DROGUERIA")
+    private Integer idDrogueria;
+    @Basic(optional = false)
     @Column(name = "NOMBRE_PERSONA")
     private String nombrePersona;
     @Basic(optional = false)
@@ -59,12 +61,6 @@ public class ViewPersona implements Serializable {
     @Basic(optional = false)
     @Column(name = "NOMBRE_DE_USUARIO")
     private String nombreDeUsuario;
-    @JoinColumn(name = "ID_DROGUERIA", referencedColumnName = "ID_DROGUERIA")
-    @ManyToOne(optional = false)
-    private int idDrogueria;
-    @JoinColumn(name = "ID_CARGO", referencedColumnName = "ID_CARGO")
-    @ManyToOne(optional = false)
-    private int idCargo;
 
     public ViewPersona() {
     }
@@ -139,22 +135,6 @@ public class ViewPersona implements Serializable {
         this.nombreDeUsuario = nombreDeUsuario;
     }
 
-    public int getIdDrogueria() {
-        return idDrogueria;
-    }
-
-    public void setIdDrogueria(int idDrogueria) {
-        this.idDrogueria = idDrogueria;
-    }
-
-    public int getIdCargo() {
-        return idCargo;
-    }
-
-    public void setIdCargo(int idCargo) {
-        this.idCargo = idCargo;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -177,7 +157,35 @@ public class ViewPersona implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewPersona[ idPersona=" + idPersona + " ]";
+        return "Entities.Views.ViewPersona[ idPersona=" + idPersona + " ]";
+    }
+
+    /**
+     * @return the idCargo
+     */
+    public Integer getIdCargo() {
+        return idCargo;
+    }
+
+    /**
+     * @param idCargo the idCargo to set
+     */
+    public void setIdCargo(Integer idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    /**
+     * @return the idDrogueria
+     */
+    public Integer getIdDrogueria() {
+        return idDrogueria;
+    }
+
+    /**
+     * @param idDrogueria the idDrogueria to set
+     */
+    public void setIdDrogueria(Integer idDrogueria) {
+        this.idDrogueria = idDrogueria;
     }
     
 }

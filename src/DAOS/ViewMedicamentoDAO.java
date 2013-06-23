@@ -4,7 +4,6 @@
  */
 package DAOS;
 
-import DAOS.exceptions.DataBaseException;
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
 import Entities.Views.ViewMedicamento;
@@ -138,77 +137,6 @@ public class ViewMedicamentoDAO implements Serializable {
             return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();
-        }
-    }
-    
-     //this method returns a list of products such name is like the given.
-    public List<ViewMedicamento> findViewMedicamentoListByName(String name) {
-        Query q = getEntityManager().createNamedQuery("ViewMedicamento.findByNombreProducto").setParameter("nombreProducto", name);
-        try {
-            return q.getResultList();
-        } catch (javax.persistence.NoResultException e) {
-            System.out.println("datos no encontrados");
-            return null;
-        }
-    }
-    // this method returns a specific  product with a ID a name given
-
-    public ViewMedicamento findViewMedicamentoByIdAndName(Integer ID, String name) {
-        EntityManager em = getEntityManager();
-        EntityManager em2 = getEntityManager();
-        Query q = em.createNamedQuery("ViewMedicamento.findByIdNombreProducto").
-                setParameter("nombreProducto", name).setParameter("idProducto", ID);
-        q.setParameter("idProducto", ID);
-        q.setParameter("nombreProducto", name);
-        try {
-            em2.getTransaction().begin();
-            em2.flush();
-            em2.getTransaction().commit();
-            return (ViewMedicamento) q.getSingleResult();
-        } catch (javax.persistence.NoResultException e) {
-            System.out.println("datos no encontrados");
-            return null;
-        }
-    }
-
-    //this method increases or decreases  the amount in the inventary of a specific product
-    //if sum equals true the amount incremets, if false decreases
-    public int Update(Integer ID, int amount, boolean isInventary) throws DataBaseException {
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
-//        Integer find;
-        Integer succes = 0;
-        try {
-            if (isInventary) {
-                Query q = em.createNamedQuery("ViewMedicamento.hacerInventario");
-                q.setParameter("id", ID).setParameter("amount", new Integer(amount));
-                int updateCount = q.executeUpdate();
-                em.getTransaction().commit();
-                return updateCount;
-            } else {
-//                if (!((find - amount) < 0)) {
-                
-                Query q = em.createNamedQuery("ViewMedicamento.hacerVenta");
-                q.setParameter("id", ID).setParameter("amount", new Integer(amount)).setParameter("succes", succes);
-                succes = (Integer) q.getSingleResult();
-                em.getTransaction().commit();
-                if (succes == 0){
-                    throw (new DataBaseException("No hay prodcutos suficientes en inventario."));
-                }
-                return succes;
-//                } else {
-//                    return -1;
-//                }
-            }
-        } catch (Exception evt) {
-            if (em.getTransaction() != null && em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-            throw (new DataBaseException(evt.getMessage(), evt));
-        } finally {
-            if (em != null) {
-                em.close();
-            }
         }
     }
     

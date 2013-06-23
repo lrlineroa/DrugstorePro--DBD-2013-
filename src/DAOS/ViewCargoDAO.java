@@ -6,7 +6,7 @@ package DAOS;
 
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
-import Entities.Views.ViewFabricante;
+import Entities.Views.ViewCargo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author User
  */
-public class ViewFabricanteDAO implements Serializable {
+public class ViewCargoDAO implements Serializable {
 
-    public ViewFabricanteDAO(EntityManagerFactory emf) {
+    public ViewCargoDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,16 +31,16 @@ public class ViewFabricanteDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(ViewFabricante viewFabricante) throws PreexistingEntityException, Exception {
+    public void create(ViewCargo viewCargo) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(viewFabricante);
+            em.persist(viewCargo);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findViewFabricante(viewFabricante.getIdFabricante()) != null) {
-                throw new PreexistingEntityException("ViewFabricante " + viewFabricante + " already exists.", ex);
+            if (findViewCargo(viewCargo.getIdCargo()) != null) {
+                throw new PreexistingEntityException("ViewCargo " + viewCargo + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -50,19 +50,19 @@ public class ViewFabricanteDAO implements Serializable {
         }
     }
 
-    public void edit(ViewFabricante viewFabricante) throws NonexistentEntityException, Exception {
+    public void edit(ViewCargo viewCargo) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            viewFabricante = em.merge(viewFabricante);
+            viewCargo = em.merge(viewCargo);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = viewFabricante.getIdFabricante();
-                if (findViewFabricante(id) == null) {
-                    throw new NonexistentEntityException("The viewFabricante with id " + id + " no longer exists.");
+                Integer id = viewCargo.getIdCargo();
+                if (findViewCargo(id) == null) {
+                    throw new NonexistentEntityException("The viewCargo with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -78,14 +78,14 @@ public class ViewFabricanteDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewFabricante viewFabricante;
+            ViewCargo viewCargo;
             try {
-                viewFabricante = em.getReference(ViewFabricante.class, id);
-                viewFabricante.getIdFabricante();
+                viewCargo = em.getReference(ViewCargo.class, id);
+                viewCargo.getIdCargo();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The viewFabricante with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The viewCargo with id " + id + " no longer exists.", enfe);
             }
-            em.remove(viewFabricante);
+            em.remove(viewCargo);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +94,19 @@ public class ViewFabricanteDAO implements Serializable {
         }
     }
 
-    public List<ViewFabricante> findViewFabricanteEntities() {
-        return findViewFabricanteEntities(true, -1, -1);
+    public List<ViewCargo> findViewCargoEntities() {
+        return findViewCargoEntities(true, -1, -1);
     }
 
-    public List<ViewFabricante> findViewFabricanteEntities(int maxResults, int firstResult) {
-        return findViewFabricanteEntities(false, maxResults, firstResult);
+    public List<ViewCargo> findViewCargoEntities(int maxResults, int firstResult) {
+        return findViewCargoEntities(false, maxResults, firstResult);
     }
 
-    private List<ViewFabricante> findViewFabricanteEntities(boolean all, int maxResults, int firstResult) {
+    private List<ViewCargo> findViewCargoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(ViewFabricante.class));
+            cq.select(cq.from(ViewCargo.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,20 +118,20 @@ public class ViewFabricanteDAO implements Serializable {
         }
     }
 
-    public ViewFabricante findViewFabricante(Integer id) {
+    public ViewCargo findViewCargo(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(ViewFabricante.class, id);
+            return em.find(ViewCargo.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getViewFabricanteCount() {
+    public int getViewCargoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<ViewFabricante> rt = cq.from(ViewFabricante.class);
+            Root<ViewCargo> rt = cq.from(ViewCargo.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

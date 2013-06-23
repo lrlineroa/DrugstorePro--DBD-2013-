@@ -6,20 +6,19 @@ package DAOS;
 
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
+import Entities.Views.ViewPedido;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Drogueria;
-import Entities.Views.ViewPedido;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 public class ViewPedidoDAO implements Serializable {
 
@@ -37,19 +36,10 @@ public class ViewPedidoDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Drogueria idDrogueria = viewPedido.getIdDrogueria();
-            if (idDrogueria != null) {
-                idDrogueria = em.getReference(idDrogueria.getClass(), idDrogueria.getIdDrogueria());
-                viewPedido.setIdDrogueria(idDrogueria);
-            }
             em.persist(viewPedido);
-            if (idDrogueria != null) {
-                idDrogueria.getViewPedidoList().add(viewPedido);
-                idDrogueria = em.merge(idDrogueria);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findViewPedidoById(viewPedido.getIdPedido()) != null) {
+            if (findViewPedido(viewPedido.getIdPedido()) != null) {
                 throw new PreexistingEntityException("ViewPedido " + viewPedido + " already exists.", ex);
             }
             throw ex;
@@ -65,28 +55,13 @@ public class ViewPedidoDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewPedido persistentViewPedido = em.find(ViewPedido.class, viewPedido.getIdPedido());
-            Drogueria idDrogueriaOld = persistentViewPedido.getIdDrogueria();
-            Drogueria idDrogueriaNew = viewPedido.getIdDrogueria();
-            if (idDrogueriaNew != null) {
-                idDrogueriaNew = em.getReference(idDrogueriaNew.getClass(), idDrogueriaNew.getIdDrogueria());
-                viewPedido.setIdDrogueria(idDrogueriaNew);
-            }
             viewPedido = em.merge(viewPedido);
-            if (idDrogueriaOld != null && !idDrogueriaOld.equals(idDrogueriaNew)) {
-                idDrogueriaOld.getViewPedidoList().remove(viewPedido);
-                idDrogueriaOld = em.merge(idDrogueriaOld);
-            }
-            if (idDrogueriaNew != null && !idDrogueriaNew.equals(idDrogueriaOld)) {
-                idDrogueriaNew.getViewPedidoList().add(viewPedido);
-                idDrogueriaNew = em.merge(idDrogueriaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Integer id = viewPedido.getIdPedido();
-                if (findViewPedidoById(id) == null) {
+                if (findViewPedido(id) == null) {
                     throw new NonexistentEntityException("The viewPedido with id " + id + " no longer exists.");
                 }
             }
@@ -109,11 +84,6 @@ public class ViewPedidoDAO implements Serializable {
                 viewPedido.getIdPedido();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The viewPedido with id " + id + " no longer exists.", enfe);
-            }
-            Drogueria idDrogueria = viewPedido.getIdDrogueria();
-            if (idDrogueria != null) {
-                idDrogueria.getViewPedidoList().remove(viewPedido);
-                idDrogueria = em.merge(idDrogueria);
             }
             em.remove(viewPedido);
             em.getTransaction().commit();
@@ -148,7 +118,7 @@ public class ViewPedidoDAO implements Serializable {
         }
     }
 
-    public ViewPedido findViewPedidoById(Integer id) {
+    public ViewPedido findViewPedido(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(ViewPedido.class, id);

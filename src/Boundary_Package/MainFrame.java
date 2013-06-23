@@ -22,7 +22,7 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
+    //public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DrugstorePro--DBD-2013-PU");
 //    private ViewDrogueriaDAO DrS= new ViewDrogueriaDAO(MainFrame.emf);
     private Dimension d;
     private VentaTableModel vTbM = new VentaTableModel();

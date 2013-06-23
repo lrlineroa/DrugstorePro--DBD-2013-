@@ -6,20 +6,19 @@ package DAOS;
 
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
+import Entities.Views.ViewInventariorpt;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Persona;
-import Entities.Views.ViewInventariorpt;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 public class ViewInventariorptDAO implements Serializable {
 
@@ -37,16 +36,7 @@ public class ViewInventariorptDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Persona idPersona = viewInventariorpt.getIdPersona();
-            if (idPersona != null) {
-                idPersona = em.getReference(idPersona.getClass(), idPersona.getIdPersona());
-                viewInventariorpt.setIdPersona(idPersona);
-            }
             em.persist(viewInventariorpt);
-            if (idPersona != null) {
-                idPersona.getViewInventariorptList().add(viewInventariorpt);
-                idPersona = em.merge(idPersona);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findViewInventariorpt(viewInventariorpt.getIdInventariorpt()) != null) {
@@ -65,22 +55,7 @@ public class ViewInventariorptDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ViewInventariorpt persistentViewInventariorpt = em.find(ViewInventariorpt.class, viewInventariorpt.getIdInventariorpt());
-            Persona idPersonaOld = persistentViewInventariorpt.getIdPersona();
-            Persona idPersonaNew = viewInventariorpt.getIdPersona();
-            if (idPersonaNew != null) {
-                idPersonaNew = em.getReference(idPersonaNew.getClass(), idPersonaNew.getIdPersona());
-                viewInventariorpt.setIdPersona(idPersonaNew);
-            }
             viewInventariorpt = em.merge(viewInventariorpt);
-            if (idPersonaOld != null && !idPersonaOld.equals(idPersonaNew)) {
-                idPersonaOld.getViewInventariorptList().remove(viewInventariorpt);
-                idPersonaOld = em.merge(idPersonaOld);
-            }
-            if (idPersonaNew != null && !idPersonaNew.equals(idPersonaOld)) {
-                idPersonaNew.getViewInventariorptList().add(viewInventariorpt);
-                idPersonaNew = em.merge(idPersonaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -109,11 +84,6 @@ public class ViewInventariorptDAO implements Serializable {
                 viewInventariorpt.getIdInventariorpt();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The viewInventariorpt with id " + id + " no longer exists.", enfe);
-            }
-            Persona idPersona = viewInventariorpt.getIdPersona();
-            if (idPersona != null) {
-                idPersona.getViewInventariorptList().remove(viewInventariorpt);
-                idPersona = em.merge(idPersona);
             }
             em.remove(viewInventariorpt);
             em.getTransaction().commit();

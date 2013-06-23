@@ -4,14 +4,12 @@
  */
 package Entities.Views;
 
-import Entities.Persona;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Edward
+ * @author User
  */
 @Entity
 @Table(name = "dbd_3.lrlineroa.VIEW_FACTURA")
@@ -35,11 +33,15 @@ public class ViewFactura implements Serializable {
     @Column(name = "ID_FACTURA")
     private Integer idFactura;
     @Basic(optional = false)
+    @Column(name = "ID_PERSONA")
+    private Integer idPersona;
+    @Basic(optional = false)
     @Column(name = "TOTAL")
     private float total;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne(optional = false)
-    private int idPersona;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "FECHA_FACTURA")
+    private byte[] fechaFactura;
 
     public ViewFactura() {
     }
@@ -48,9 +50,10 @@ public class ViewFactura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public ViewFactura(Integer idFactura, float total) {
+    public ViewFactura(Integer idFactura, float total, byte[] fechaFactura) {
         this.idFactura = idFactura;
         this.total = total;
+        this.fechaFactura = fechaFactura;
     }
 
     public Integer getIdFactura() {
@@ -69,12 +72,12 @@ public class ViewFactura implements Serializable {
         this.total = total;
     }
 
-    public Integer getIdPersona() {
-        return idPersona;
+    public byte[] getFechaFactura() {
+        return fechaFactura;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setFechaFactura(byte[] fechaFactura) {
+        this.fechaFactura = fechaFactura;
     }
 
     @Override
@@ -99,7 +102,21 @@ public class ViewFactura implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ViewFactura[ idFactura=" + idFactura + " ]";
+        return "Entities.Views.ViewFactura[ idFactura=" + idFactura + " ]";
+    }
+
+    /**
+     * @return the idPersona
+     */
+    public Integer getIdPersona() {
+        return idPersona;
+    }
+
+    /**
+     * @param idPersona the idPersona to set
+     */
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
     }
     
 }

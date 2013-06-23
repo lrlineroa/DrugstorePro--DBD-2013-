@@ -45,12 +45,12 @@ public class MyEditor extends AbstractCellEditor implements TableCellEditor,Acti
                 tableModel= (VentaTableModel) table.getModel();
                 producto=buscontrol.searchProductById(new Long(tableModel.getProducts().get(table.getEditingRow()).getId()));
                 JOptionPane.showMessageDialog(null,producto.getNombreProducto() + "\n"
-                    + " Disponible en: " + LoginControl.usuarioActivo.getIdDrogueria().getNombreDrogueria() + "\n"
-                    + "Presentación: " + producto.getIdPresentacion().getTipoPresentacion() + "\n"
-                    + "Tipo de Producto: " + producto.getIdTipoProducto().getTipo() + "\n"
+                    + " Disponible en: " + LoginControl.usuarioActivo.getIdDrogueria() + "\n"
+                    + "Presentación: " + producto.getIdPresentacion() + "\n"
+                    + "Tipo de Producto: " + producto.getIdTipoProducto() + "\n"
                     + "Precio: $" + producto.getPrecioProducto() + "\n"
                     + "Posologia: " + producto.getPosologiaProducto() + "\n"
-                    + "Proveedor: " + producto.getIdProveedor().getNombreProveedor() + "\n"
+                    + "Proveedor: " + producto.getIdProveedor()+ "\n"
                     + "Cantidad en stock: " + producto.getCantidadProducto(), 
                     "info", JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/Icons/giantplaylist.png")));
             }
