@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     6/22/2013 1:25:27 PM                         */
+/* Created on:     22/06/2013 3:01:21 p. m.                     */
 /*==============================================================*/
 
 
@@ -667,13 +667,6 @@ if exists (select 1
            where  id = object_id('VIEW_PRODUCTO_INVENTARIO')
             and   type = 'V')
    drop view VIEW_PRODUCTO_INVENTARIO
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('VIEW_PRODUCTO_MAS_VENDIDO')
-            and   type = 'V')
-   drop view VIEW_PRODUCTO_MAS_VENDIDO
 go
 
 if exists (select 1
@@ -2775,6 +2768,8 @@ create view VIEW_PRODUCTOS_VENDIDOS as
 select
    ID_PRODUCTO,
    count(ID_PRODUCTO) as conteo
+from
+    PRODUCTO_FACTURA
 group by
    ID_PRODUCTO
 go
@@ -2809,6 +2804,8 @@ go
 create view VIEW_PRODUCTO_FACTURA as
 select
    *
+from
+    PRODUCTO_FACTURA
 go
 
 if exists (select 1 from  sys.extended_properties
@@ -2850,13 +2847,6 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    'Esta vista muestra informacion acerca de los productos que estan en inventario',
    'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_INVENTARIO'
-go
-
-/*==============================================================*/
-/* View: VIEW_PRODUCTO_MAS_VENDIDO                              */
-/*==============================================================*/
-create view VIEW_PRODUCTO_MAS_VENDIDO as
-select ID_PRODUCTO from VIEW_PRODUCTOS_VENDIDOS having conteo=max(conteo)
 go
 
 /*==============================================================*/
