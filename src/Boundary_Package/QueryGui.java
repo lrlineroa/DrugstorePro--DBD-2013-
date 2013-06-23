@@ -63,13 +63,12 @@ public class QueryGui extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TextPane = new javax.swing.JTextPane();
-        GeneratejButton = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
         setPreferredSize(new java.awt.Dimension(1240, 675));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1240, 640));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -119,42 +118,29 @@ public class QueryGui extends javax.swing.JPanel {
         TextPane.setFont(new java.awt.Font("Verdana", 0, 32)); // NOI18N
         jScrollPane3.setViewportView(TextPane);
 
-        GeneratejButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        GeneratejButton.setText("<html><p>Generar</p><p>Reporte</p></html>");
-        GeneratejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GeneratejButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(IdProJFTF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(0, 862, Short.MAX_VALUE))
-                                    .addComponent(NameProFTF, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE))))
-                        .addGap(36, 36, 36))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(GeneratejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(IdProJFTF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 862, Short.MAX_VALUE))
+                            .addComponent(NameProFTF, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE))))
+                .addGap(36, 36, 36))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,9 +159,7 @@ public class QueryGui extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GeneratejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(102, 102, 102))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -241,10 +225,6 @@ public class QueryGui extends javax.swing.JPanel {
 
     }//GEN-LAST:event_SearchButtonActionPerformed
 
-    private void GeneratejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneratejButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GeneratejButtonActionPerformed
-
     private void NameProFTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameProFTFKeyPressed
 //          List<String> noms;
 //          LisProductsModel.removeAllElements();
@@ -301,7 +281,6 @@ public class QueryGui extends javax.swing.JPanel {
     }//GEN-LAST:event_IdProJFTFFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton GeneratejButton;
     private javax.swing.JFormattedTextField IdProJFTF;
     private javax.swing.JFormattedTextField NameProFTF;
     private javax.swing.JButton SearchButton;

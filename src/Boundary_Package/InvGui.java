@@ -65,8 +65,9 @@ public class InvGui extends javax.swing.JPanel {
         CantjFormattedTextField = new javax.swing.JFormattedTextField();
         IdjFormattedTextField = new javax.swing.JFormattedTextField();
         ProductNamejFormattedTextField = new javax.swing.JFormattedTextField();
+        ReportjButton = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
         setPreferredSize(new java.awt.Dimension(1240, 640));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -142,6 +143,15 @@ public class InvGui extends javax.swing.JPanel {
             }
         });
 
+        ReportjButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        ReportjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/playlist.png"))); // NOI18N
+        ReportjButton.setText("REPORTE");
+        ReportjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,9 +181,12 @@ public class InvGui extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NextjButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ReportjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NextjButton)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,9 +205,11 @@ public class InvGui extends javax.swing.JPanel {
                 .addComponent(OkjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NextjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NextjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReportjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -305,12 +320,18 @@ public class InvGui extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_IdjFormattedTextFieldFocusLost
 
+    private void ReportjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportjButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ReportjButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantjFormattedTextField;
     private javax.swing.JFormattedTextField IdjFormattedTextField;
     private javax.swing.JButton NextjButton;
     private javax.swing.JButton OkjButton;
     private javax.swing.JFormattedTextField ProductNamejFormattedTextField;
+    private javax.swing.JButton ReportjButton;
     private javax.swing.JTable TableInv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -341,6 +362,8 @@ public class InvGui extends javax.swing.JPanel {
         tablecol.setPreferredWidth(40);
 
     }
+    
+    
 
     private void cleanFields() {
         this.IdjFormattedTextField.setText("");
