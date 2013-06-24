@@ -61,7 +61,7 @@ public class LoginGui extends javax.swing.JPanel {
         usuarioAPPTf = new javax.swing.JFormattedTextField();
         AceptarButton = new javax.swing.JButton();
 
-        panelAccesoBDS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION BASE DE DATOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        panelAccesoBDS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION BASE DE DATOS", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel3.setText("Usuario");
@@ -135,7 +135,7 @@ public class LoginGui extends javax.swing.JPanel {
                 .addComponent(checkBox))
         );
 
-        panelAccesoAPP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION APLICACIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        panelAccesoAPP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION APLICACIÓN", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel1.setText("Usuario");
@@ -151,6 +151,11 @@ public class LoginGui extends javax.swing.JPanel {
         Contraseña.setText("Contraseña");
 
         usuarioAPPTf.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        usuarioAPPTf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioAPPTfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAccesoAPPLayout = new javax.swing.GroupLayout(panelAccesoAPP);
         panelAccesoAPP.setLayout(panelAccesoAPPLayout);
@@ -243,6 +248,10 @@ public class LoginGui extends javax.swing.JPanel {
         this.repaint();
     }//GEN-LAST:event_checkBoxItemStateChanged
 
+    private void usuarioAPPTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAPPTfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioAPPTfActionPerformed
+
     private void login() {
         if (checkBox.isSelected()) {
             if (usuarioBDTf.getText().equals("") || new String(passwordBDTf.getPassword()).equals("")) {
@@ -310,24 +319,16 @@ public class LoginGui extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarButton;
     private javax.swing.JLabel Contraseña;
-    private javax.swing.JLabel Contraseña2;
-    private javax.swing.JLabel Contraseña3;
     private javax.swing.JLabel Contraseña4;
     private javax.swing.JLabel Contraseña5;
-    private javax.swing.JFormattedTextField IdentificationTf1;
-    private javax.swing.JPasswordField PasswordTf1;
     private javax.swing.JCheckBox checkBox;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel panelAccesoAPP;
-    private javax.swing.JPanel panelAccesoBD1;
     private javax.swing.JPanel panelAccesoBDS;
     private javax.swing.JPasswordField passwordAPPTf;
     private javax.swing.JPasswordField passwordBDTf;
     private javax.swing.JComboBox rdbmsCombo;
-    private javax.swing.JComboBox rdbmsCombo1;
     private javax.swing.JFormattedTextField usuarioAPPTf;
     private javax.swing.JFormattedTextField usuarioBDTf;
     // End of variables declaration//GEN-END:variables
