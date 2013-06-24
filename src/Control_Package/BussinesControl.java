@@ -110,8 +110,9 @@ public class BussinesControl {
         factura.setTotal(total);
         Calendar d = Calendar.getInstance();
         factura.setFechaFactura(d.getTime());
-        String s = String.valueOf(d.get(Calendar.DAY_OF_MONTH)) + String.valueOf(d.get(Calendar.MONTH)+1) + String.valueOf(d.get(Calendar.YEAR)).substring(2);
-        s = s.concat(String.valueOf(idPersona).substring(String.valueOf(idPersona).length()-4));
+        String s = String.valueOf(d.get(Calendar.DAY_OF_MONTH)) + String.valueOf(d.get(Calendar.MONTH)+1)
+                + String.valueOf(d.get(Calendar.HOUR_OF_DAY)) + String.valueOf(d.get(Calendar.MINUTE));
+        s = s.concat(String.valueOf(idPersona).substring(String.valueOf(idPersona).length()-2));
         factura.setIdFactura(new Integer(s));
 
         DAOFactory.getInstance().getViewFacturaDAO().create(factura);
