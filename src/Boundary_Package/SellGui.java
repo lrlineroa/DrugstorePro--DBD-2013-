@@ -8,7 +8,10 @@ import Control_Package.BussinesControl;
 import Control_Package.LoginControl;
 import Control_Package.AutoCompleteControl;
 import Entities.Views.ViewMedicamento;
+import Entities.Views.ViewProductoFactura;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -389,11 +392,13 @@ public class SellGui extends javax.swing.JPanel {
 
     private void MakeSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MakeSellButtonActionPerformed
         boolean bandera = true;
+        List<ViewProductoFactura> productos = new ArrayList<>();
         for (RegVenta rv : tableModel.getProducts()) {
             Long Id = rv.getId();
             int quantity = rv.getQuantity();
             try {
                 buscon.makeSell(Id, quantity);
+                productos.add(new ViewProductoFactura(rv.getId().intValue(), rv.getQuantity()));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al hacer la venta del producto con id " + Id + "\n\n"
                         + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
@@ -416,7 +421,7 @@ public class SellGui extends javax.swing.JPanel {
 
         if (bandera) {
             try {
-                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), Float.parseFloat(TotalTextField.getText()));
+                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), Float.parseFloat(TotalTextField.getText()), productos);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al generar la Factura\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
             }
