@@ -181,7 +181,7 @@ public class ViewMedicamentoDAO implements Serializable {
         try {
             if (isInventary) {
                 Query q = em.createNamedQuery("ViewMedicamento.hacerInventario");
-                q.setParameter("id", ID).setParameter("amount", new Integer(amount));
+                q.setParameter("id", ID).setParameter("amount", new Integer(amount)).setParameter("succes", succes);
                 int updateCount = q.executeUpdate();
                 em.getTransaction().commit();
                 return updateCount;

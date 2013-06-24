@@ -35,13 +35,14 @@ import org.eclipse.persistence.annotations.StoredProcedureParameter;
     @NamedQuery(name = "ViewMedicamento.findByPosologiaProducto", query = "SELECT v FROM ViewMedicamento v WHERE v.posologiaProducto = :posologiaProducto"),
     @NamedQuery(name = "ViewMedicamento.findByVentaLibre", query = "SELECT v FROM ViewMedicamento v WHERE v.ventaLibre = :ventaLibre")})
 @NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "dbd_3.lrlineroa.HACER_INVENTARIO",
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerInventario", procedureName = "lrlineroa.HACER_INVENTARIO",
             resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
             parameters = {
         @StoredProcedureParameter(name = "cantidad", queryParameter = "amount"),
-        @StoredProcedureParameter(name = "idProducto", queryParameter = "id")
+        @StoredProcedureParameter(name = "idProducto", queryParameter = "id"),
+        @StoredProcedureParameter(name = "succes", queryParameter = "succes", direction = Direction.OUT, type = Integer.class)
     }),
-    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "dbd_3.lrlineroa.HACER_VENTA",
+    @NamedStoredProcedureQuery(name = "ViewMedicamento.hacerVenta", procedureName = "lrlineroa.HACER_VENTA",
             resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
             parameters = {
         @StoredProcedureParameter(name = "cantidad", queryParameter = "amount", direction = Direction.IN, type = Integer.class),

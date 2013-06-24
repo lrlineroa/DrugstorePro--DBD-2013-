@@ -1,4 +1,4 @@
-CREATE PROCEDURE HACER_INVENTARIO (@cantidad INT, @idProducto INT)
+CREATE PROCEDURE HACER_INVENTARIO (@cantidad INT, @idProducto INT, @succes INT OUT)
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -9,6 +9,7 @@ BEGIN
 	WHERE 
 		id_Producto = @idProducto
 	COMMIT
+	SET @succes = 1
 END 
 go
 

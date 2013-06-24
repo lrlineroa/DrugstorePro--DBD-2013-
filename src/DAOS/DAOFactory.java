@@ -98,7 +98,6 @@ public class DAOFactory {
         try {
             emf.createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new DataBaseException("Error al conectarse a la Base de Datos\n\n" + e.getMessage(), e);
         }
     }
