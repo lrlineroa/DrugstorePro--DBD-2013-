@@ -18,15 +18,18 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import javax.swing.text.BadLocationException;
 import utilities.helpers.InventaryTableModel;
+import utilities.helpers.ReportTableModel;
 import utilities.helpers.MyEditor;
 import utilities.helpers.MyRender;
 import utilities.helpers.RegInventary;
+import utilities.helpers.RegReport;
 import utilities.helpers.RegexFormatter;
 import utilities.helpers.RegularExpression;
 
 public class InvGui extends javax.swing.JPanel {
 
     private InventaryTableModel tableModel = new InventaryTableModel();
+    private ReportTableModel tablereport = new ReportTableModel();
     private BussinesControl buscon = new BussinesControl();
     private AutoCompleteControl aCControl = new AutoCompleteControl();
     private String resultado;
@@ -40,6 +43,7 @@ public class InvGui extends javax.swing.JPanel {
      */
     public InvGui() {
         initComponents();
+        
         this.TableInv.setModel(tableModel);
         fillButtons();
         Integrity();
@@ -55,6 +59,11 @@ public class InvGui extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        reportjDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        reportjTable = new javax.swing.JTable();
+        acceptjButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +75,69 @@ public class InvGui extends javax.swing.JPanel {
         IdjFormattedTextField = new javax.swing.JFormattedTextField();
         ProductNamejFormattedTextField = new javax.swing.JFormattedTextField();
         ReportjButton = new javax.swing.JButton();
+
+        reportjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Cantid"
+            }
+        ));
+        jScrollPane2.setViewportView(reportjTable);
+
+        acceptjButton.setText("ACEPTAR");
+        acceptjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(482, 482, 482)
+                        .addComponent(acceptjButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(97, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(acceptjButton)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout reportjDialogLayout = new javax.swing.GroupLayout(reportjDialog.getContentPane());
+        reportjDialog.getContentPane().setLayout(reportjDialogLayout);
+        reportjDialogLayout.setHorizontalGroup(
+            reportjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportjDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        reportjDialogLayout.setVerticalGroup(
+            reportjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportjDialogLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
         setPreferredSize(new java.awt.Dimension(1240, 640));
@@ -322,8 +394,18 @@ public class InvGui extends javax.swing.JPanel {
 
     private void ReportjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportjButtonActionPerformed
         // TODO add your handling code here:
+        this.reportjTable.setModel(tablereport);
+        reportjDialog.setVisible(true);
+        reportjDialog.setTitle("reporte-inventario");
+        reportjDialog.setBounds(100, 100, 650, 429);
+        
         
     }//GEN-LAST:event_ReportjButtonActionPerformed
+
+    private void acceptjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptjButtonActionPerformed
+        // TODO add your handling code here:
+        reportjDialog.setVisible(false);
+    }//GEN-LAST:event_acceptjButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantjFormattedTextField;
@@ -333,10 +415,15 @@ public class InvGui extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField ProductNamejFormattedTextField;
     private javax.swing.JButton ReportjButton;
     private javax.swing.JTable TableInv;
+    private javax.swing.JButton acceptjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDialog reportjDialog;
+    private javax.swing.JTable reportjTable;
     // End of variables declaration//GEN-END:variables
 
     private void Integrity() {
