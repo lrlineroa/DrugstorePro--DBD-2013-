@@ -414,6 +414,7 @@ public class SellGui extends javax.swing.JPanel {
             TableProducts.updateUI();
         }
 
+        float total = Float.parseFloat(TotalTextField.getText());
 
         this.IVATextField.setText("0");
         this.SubTotalTextField.setText("0");
@@ -421,7 +422,7 @@ public class SellGui extends javax.swing.JPanel {
 
         if (bandera) {
             try {
-                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), Float.parseFloat(TotalTextField.getText()), productos);
+                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), total, productos);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al generar la Factura\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
             }
