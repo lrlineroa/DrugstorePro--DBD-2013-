@@ -1,4 +1,4 @@
-/*==============================================================*/
+F/*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
 /* Created on:     22/06/2013 10:50:28 p. m.                    */
 /*==============================================================*/
@@ -574,7 +574,7 @@ create table ADVICE  (
 /
 
 comment on table ADVICE is
-'ESTA TABLA CONTENDRÁ EL REGISTRO DE CUANDO UN MEDICAMENTO LLEGA A ESTADO CRÍTICO (MENOS DE 5 UNIDADES EN EL INVENTARIO)'
+'ESTA TABLA CONTENDRï¿½ EL REGISTRO DE CUANDO UN MEDICAMENTO LLEGA A ESTADO CRï¿½TICO (MENOS DE 5 UNIDADES EN EL INVENTARIO)'
 /
 
 alter table ADVICE
@@ -594,7 +594,7 @@ create table BITACORA  (
 /
 
 comment on table BITACORA is
-'Tabla que guarda la información de las actividades que realizan los usuarios del sistema.'
+'Tabla que guarda la informaciï¿½n de las actividades que realizan los usuarios del sistema.'
 /
 
 alter table BITACORA
@@ -611,15 +611,15 @@ create table CARGO  (
 /
 
 comment on table CARGO is
-'Esta entidad va a tener los distinitos cargos en la droguería vendedor, administrador etc...'
+'Esta entidad va a tener los distinitos cargos en la droguerï¿½a vendedor, administrador etc...'
 /
 
 comment on column CARGO.ID_CARGO is
-'Este es el identificador de los cargos puede ser un autonumérico'
+'Este es el identificador de los cargos puede ser un autonumï¿½rico'
 /
 
 comment on column CARGO.TIPO_CARGO is
-'Este atributo va a guardar los tipos de cargos que hay en la droguería (administrador vendedor etc...'
+'Este atributo va a guardar los tipos de cargos que hay en la droguerï¿½a (administrador vendedor etc...'
 /
 
 alter table CARGO
@@ -810,7 +810,7 @@ comment on column PEDIDO.ID_PEDIDO is
 /
 
 comment on column PEDIDO.ID_DROGUERIA is
-'Este atributo relacionara a la entidad PEDIDO con la entidad DROGUERIA, y señalara cual sede es la que esta realizando el pedido. Es de tipo integer porque el identificador Id_Drogueria en la entidad DROGUERIA es de este tipo.'
+'Este atributo relacionara a la entidad PEDIDO con la entidad DROGUERIA, y seï¿½alara cual sede es la que esta realizando el pedido. Es de tipo integer porque el identificador Id_Drogueria en la entidad DROGUERIA es de este tipo.'
 /
 
 comment on column PEDIDO.FECHA_PEDIDO is
@@ -822,7 +822,7 @@ comment on column PEDIDO.HORA_PEDIDO is
 /
 
 comment on column PEDIDO.NOMBRE_CLIENTE_PED is
-'En este atributo se guardara el nombre y apellido del cliente. Se definio un tamaño de 35 caracteres los cuales consideramos suficientes para guardar un nombre y los apellidos. Es de tipo varchar el cual maneja mejor el espacio cuando el tamaño de las entradas varia mucho.'
+'En este atributo se guardara el nombre y apellido del cliente. Se definio un tamaï¿½o de 35 caracteres los cuales consideramos suficientes para guardar un nombre y los apellidos. Es de tipo varchar el cual maneja mejor el espacio cuando el tamaï¿½o de las entradas varia mucho.'
 /
 
 comment on column PEDIDO.DIRECCION_CLIEN_PEDIDO is
@@ -863,7 +863,7 @@ create table PEDIDO_PRODUCTO  (
 /
 
 comment on table PEDIDO_PRODUCTO is
-'Esta entidad nacio de la relacion n-m entre PEDIDO y PRODUCTO, y guardara información en donde se relacionaran los pedidos con los productos, es decir que producto fue pedido.'
+'Esta entidad nacio de la relacion n-m entre PEDIDO y PRODUCTO, y guardara informaciï¿½n en donde se relacionaran los pedidos con los productos, es decir que producto fue pedido.'
 /
 
 comment on column PEDIDO_PRODUCTO.ID_PEDIDO is
@@ -905,25 +905,25 @@ create table PERSONA  (
    APELLIDO_PERSONA     VARCHAR2(15)                    not null,
    TELEFONO_PERSONA     INTEGER                         not null,
    DIRECCION_PERSONA    VARCHAR2(25)                    not null,
-   PASSWORD             CLOB                            not null,
+   PASSWORD             VARCHAR2(32)                    not null,
    NOMBRE_DE_USUARIO    VARCHAR2(15)
 )
 /
 
 comment on table PERSONA is
-'Esta entidad va a guardar la información de la persona que tiene alguna vinculación con la droguería, como administradores y vendedores.'
+'Esta entidad va a guardar la informaciï¿½n de la persona que tiene alguna vinculaciï¿½n con la droguerï¿½a, como administradores y vendedores.'
 /
 
 comment on column PERSONA.ID_PERSONA is
-'Este es el número de identificación de la persona'
+'Este es el nï¿½mero de identificaciï¿½n de la persona'
 /
 
 comment on column PERSONA.ID_CARGO is
-'este atributo va a guardar el número del cargo de la persona '
+'este atributo va a guardar el nï¿½mero del cargo de la persona '
 /
 
 comment on column PERSONA.ID_DROGUERIA is
-'Este atributo va a guardar el número de la sede en el cual tiene vinculación la persona'
+'Este atributo va a guardar el nï¿½mero de la sede en el cual tiene vinculaciï¿½n la persona'
 /
 
 comment on column PERSONA.NOMBRE_PERSONA is
@@ -935,11 +935,11 @@ comment on column PERSONA.APELLIDO_PERSONA is
 /
 
 comment on column PERSONA.TELEFONO_PERSONA is
-'Este atributo va a contener el teléfono de la persona que corresponda.'
+'Este atributo va a contener el telï¿½fono de la persona que corresponda.'
 /
 
 comment on column PERSONA.DIRECCION_PERSONA is
-'Este atributo va a contener la dirección de vivienda de la persona.'
+'Este atributo va a contener la direcciï¿½n de vivienda de la persona.'
 /
 
 comment on column PERSONA.PASSWORD is
@@ -988,7 +988,7 @@ comment on column PRESENTACION.ID_PRESENTACION is
 /
 
 comment on column PRESENTACION.TIPO_PRESENTACION is
-'atributo que almacenará las distintas presentaciones en las que son vendidos los productos'
+'atributo que almacenarï¿½ las distintas presentaciones en las que son vendidos los productos'
 /
 
 alter table PRESENTACION
@@ -1220,7 +1220,7 @@ create table TIPO_PROVEEDOR  (
 /
 
 comment on table TIPO_PROVEEDOR is
-'Entidad que registra los diferentes tipos de proveedor según su actividad.'
+'Entidad que registra los diferentes tipos de proveedor segï¿½n su actividad.'
 /
 
 comment on column TIPO_PROVEEDOR.ID_TIPO_PROVEEDOR is
@@ -1275,7 +1275,7 @@ select * from CARGO
 /
 
  comment on table VIEW_CARGO is
-'Esta vista muestra la información acerca de los cargos ocupables en la drogueria'
+'Esta vista muestra la informaciï¿½n acerca de los cargos ocupables en la drogueria'
 /
 
 /*==============================================================*/
@@ -1330,7 +1330,7 @@ select * from MEDICAMENTO
 /
 
  comment on table VIEW_MEDICAMENTO is
-'Esta vista muestra infromación acerca de los mediacamentos que se ofertan en la Drogueria'
+'Esta vista muestra infromaciï¿½n acerca de los mediacamentos que se ofertan en la Drogueria'
 /
 
 /*==============================================================*/
@@ -1466,7 +1466,7 @@ select * from PROVEEDOR
 /
 
  comment on table VIEW_PROVEEDOR is
-'Esta vista muestra infromación de los proveedores de productos de la empresa'
+'Esta vista muestra infromaciï¿½n de los proveedores de productos de la empresa'
 /
 
 /*==============================================================*/

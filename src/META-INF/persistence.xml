@@ -2,20 +2,7 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="DrugstorePro--DBD-2013-PU">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Entities.Bitacora</class>
-    <class>Entities.Cargo</class>
-    <class>Entities.Drogueria</class>
-    <class>Entities.Fabricante</class>
-    <class>Entities.Factura</class>
-    <class>Entities.InventarioRpt</class>
-    <class>Entities.Medicamento</class>
-    <class>Entities.Pedido</class>
-    <class>Entities.Persona</class>
-    <class>Entities.Presentacion</class>
-    <class>Entities.Proveedor</class>
-    <class>Entities.TipoProducto</class>
-    <class>Entities.TipoProveedor</class>
-    <class>Entities.UsoMedicamento</class>
+    <class>Entities.Views.ViewAdvice</class>
     <class>Entities.Views.ViewBitacora</class>
     <class>Entities.Views.ViewCargo</class>
     <class>Entities.Views.ViewDrogueria</class>
@@ -26,15 +13,11 @@
     <class>Entities.Views.ViewPedido</class>
     <class>Entities.Views.ViewPersona</class>
     <class>Entities.Views.ViewPresentacion</class>
+    <class>Entities.Views.ViewProductoFactura</class>
+    <class>Entities.Views.ViewProductosDrogueria</class>
     <class>Entities.Views.ViewProveedor</class>
     <class>Entities.Views.ViewTipoProducto</class>
     <class>Entities.Views.ViewUsoMedic</class>
-    <class>Entities.Advice</class>
-    <class>Entities.Views.ViewProductosDrogueria</class>
-    <class>Entities.Views.ViewProductoFactura</class>
-    <class>Entities.Views.ViewAdvice</class>
-    <class>Entities.Views.ViewProductoDrogueria</class>
-    <class>Entities.Views.ViewProductosVendidos</class>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
   </persistence-unit>
 </persistence>

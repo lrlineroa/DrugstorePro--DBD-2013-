@@ -23,7 +23,7 @@ import org.eclipse.persistence.annotations.StoredProcedureParameter;
  * @author User
  */
 @Entity
-@Table(name = "dbd_3.lrlineroa.VIEW_MEDICAMENTO")
+@Table(name = "lrlineroa.VIEW_MEDICAMENTO")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewMedicamento.findAll", query = "SELECT v FROM ViewMedicamento v"),

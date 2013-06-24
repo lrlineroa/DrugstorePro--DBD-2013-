@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author User
  */
 @Entity
-@Table(name = "dbd_3.lrlineroa.VIEW_FACTURA")
+@Table(name = "lrlineroa.VIEW_FACTURA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ViewFactura.findAll", query = "SELECT v FROM ViewFactura v"),
