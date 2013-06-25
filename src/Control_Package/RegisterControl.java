@@ -4,7 +4,10 @@ import Entities.Views.ViewPersona;
 import Boundary_Package.MainFrame;
 import DAOS.DAOFactory;
 import DAOS.ViewPersonaDAO;
+import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
+import Entities.Views.ViewCargo;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,6 +96,50 @@ public class RegisterControl {
     public boolean verifyPassword(String pass){
         if(pass.length()>5 && pass.length()<=12){
           return true;
+        }
+        return false;
+    }
+    
+    public int traerCargo(String nombre) {
+        
+        List<ViewCargo> ListaCargos = DAOFactory.getInstance().getViewCargoDAO().findViewCargoEntities();
+        int idCargo = 0;
+        for(ViewCargo c: ListaCargos){
+            if(c.getTipoCargo().equals(nombre)) return c.getIdCargo();
+        }
+        
+        return idCargo;
+        
+    }
+    
+    public List<ViewCargo> ListaCargos(){
+        return DAOFactory.getInstance().getViewCargoDAO().findViewCargoEntities();
+        
+    }
+    
+    public ViewPersona searchById(int id){
+        return DAOFactory.getInstance().getViewPersonaDAO().findViewPersona(id);
+    }
+    
+    public boolean DeletePerson(ViewPersona person) throws NonexistentEntityException{
+        if(person != null){
+            DAOFactory.getInstance().getViewPersonaDAO().destroy(person.getIdPersona());
+            return true;
+        }
+        return false;
+        
+        
+    }
+    
+    public boolean UpdatePerson(ViewPersona person) {
+        if(person != null){
+            try {
+                DAOFactory.getInstance().getViewPersonaDAO().edit(person);
+                return true;
+            } catch (Exception ex) {
+                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         return false;
     }
