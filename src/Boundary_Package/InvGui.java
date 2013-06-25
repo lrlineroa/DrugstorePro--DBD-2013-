@@ -91,6 +91,8 @@ public class InvGui extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(reportjTable);
 
+        acceptjButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        acceptjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Copia de icon_check.png"))); // NOI18N
         acceptjButton.setText("ACEPTAR");
         acceptjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,20 +105,21 @@ public class InvGui extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(482, 482, 482)
-                        .addComponent(acceptjButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(378, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(acceptjButton)
+                        .addGap(116, 116, 116))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(acceptjButton)
                 .addContainerGap())
@@ -129,7 +132,7 @@ public class InvGui extends javax.swing.JPanel {
             .addGroup(reportjDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         reportjDialogLayout.setVerticalGroup(
             reportjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,9 +398,12 @@ public class InvGui extends javax.swing.JPanel {
     private void ReportjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportjButtonActionPerformed
         // TODO add your handling code here:
         this.reportjTable.setModel(tablereport);
+        
+       //tablereport.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
+         //reportjTable.updateUI();
         reportjDialog.setVisible(true);
         reportjDialog.setTitle("reporte-inventario");
-        reportjDialog.setBounds(100, 100, 650, 429);
+        reportjDialog.setBounds(100, 100, 750, 429);
         
         
     }//GEN-LAST:event_ReportjButtonActionPerformed
