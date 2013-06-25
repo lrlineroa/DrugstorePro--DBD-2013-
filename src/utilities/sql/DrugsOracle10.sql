@@ -909,7 +909,8 @@ create table PERSONA  (
    TELEFONO_PERSONA     INTEGER                         not null,
    DIRECCION_PERSONA    VARCHAR2(25)                    not null,
    PASSWORD             VARCHAR2(32)                    not null,
-   NOMBRE_DE_USUARIO    VARCHAR2(15)
+   NOMBRE_DE_USUARIO    VARCHAR2(15)                    not null,
+   CORREO_PERSONA       VARCHAR2(30)                    not null
 )
 /
 
@@ -1314,18 +1315,6 @@ select * from FACTURA
 'Esta vista muestra informacion acerca de las facturas'
 /
 
-/*==============================================================*/
-/* View: VIEW_FACTURA_TOTAL                                     */
-/*==============================================================*/
-create or replace view VIEW_FACTURA_TOTAL as
-SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*pf.cantidad_vendida AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
-FROM view_factura F, view_producto_factura PF, view_medicamento P
-WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
-/
-
- comment on table VIEW_FACTURA is
-'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.'
-/
 
 /*==============================================================*/
 /* View: VIEW_INVENTARIORPT                                     */
@@ -1424,6 +1413,19 @@ select * from PRODUCTO_FACTURA
 
  comment on table VIEW_PRODUCTO_FACTURA is
 'Esta vista muestra informacion acerca de la factura de compra de un producto'
+/
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                     */
+/*==============================================================*/
+create or replace view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*pf.cantidad_vendida AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM VIEW_FACTURA F, VIEW_PRODUCTO_FACTURA PF, VIEW_MEDICAMENTO P
+WHERE F.ID_FACTURA = PF.ID_FACTURA AND PF.ID_PRODUCTO = P.ID_PRODUCTO
+/
+
+ comment on table VIEW_FACTURA is
+'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.'
 /
 
 /*==============================================================*/

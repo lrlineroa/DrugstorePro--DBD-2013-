@@ -57,7 +57,6 @@ public class MainFrame extends javax.swing.JFrame {
         panelRolSellAndAdmin = new javax.swing.JPanel();
         inventaryButton = new javax.swing.JButton();
         QueryButton = new javax.swing.JButton();
-        orderButton = new javax.swing.JButton();
         sellButton = new javax.swing.JButton();
         panelRolAdmin = new javax.swing.JPanel();
         modifyButton = new javax.swing.JButton();
@@ -106,18 +105,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        orderButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/carrito.png"))); // NOI18N
-        orderButton.setText("PEDIDOS      ");
-        orderButton.setBorder(new javax.swing.border.MatteBorder(null));
-        orderButton.setMaximumSize(new java.awt.Dimension(111, 45));
-        orderButton.setMinimumSize(new java.awt.Dimension(111, 45));
-        orderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderButtonActionPerformed(evt);
-            }
-        });
-
         sellButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         sellButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/dinero.png"))); // NOI18N
         sellButton.setText("VENTA           ");
@@ -134,14 +121,14 @@ public class MainFrame extends javax.swing.JFrame {
             panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRolSellAndAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(QueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(orderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inventaryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(inventaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRolSellAndAdminLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(QueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
         panelRolSellAndAdminLayout.setVerticalGroup(
             panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,11 +137,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inventaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(panelRolSellAndAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(QueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(QueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         panelRolAdmin.setPreferredSize(new java.awt.Dimension(553, 300));
@@ -252,12 +237,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelRolSellAndAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelRolAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(CloseSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoggedLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,9 +250,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(247, 247, 247)
                 .addComponent(panelRolSellAndAdmin, 296, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18)
+                .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -320,12 +304,6 @@ public class MainFrame extends javax.swing.JFrame {
        AdjustToCenter();
     }//GEN-LAST:event_QueryButtonActionPerformed
 
-    private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
-//        setMainPanel(new OrderGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
-    }//GEN-LAST:event_orderButtonActionPerformed
-
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
 //        setMainPanel(new ModifyDataGui());
 //        CloseSesionButton.setText("MENU PRINCIPAL");
@@ -333,15 +311,15 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-//        setMainPanel(new RegisterGui(this));
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
+        setMainPanel(new RegisterGui(this));
+        CloseSesionButton.setText("MENU PRINCIPAL");
+        AdjustToCenter();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
-//        setMainPanel(new AboutGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
+        //        setMainPanel(new AboutGui());
+        //        CloseSesionButton.setText("MENU PRINCIPAL");
+        //        AdjustToCenter();
     }//GEN-LAST:event_aboutButtonActionPerformed
 
     public void setMainPanel(JPanel panel) {
@@ -430,7 +408,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton balanceButton;
     private javax.swing.JButton inventaryButton;
     private javax.swing.JButton modifyButton;
-    private javax.swing.JButton orderButton;
     private javax.swing.JPanel panelRolAdmin;
     private javax.swing.JPanel panelRolSellAndAdmin;
     private javax.swing.JButton registerButton;

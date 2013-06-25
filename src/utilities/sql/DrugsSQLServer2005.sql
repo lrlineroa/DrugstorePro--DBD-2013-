@@ -1732,6 +1732,7 @@ create table PERSONA (
    DIRECCION_PERSONA    varchar(25)          not null,
    PASSWORD             text                 not null,
    NOMBRE_DE_USUARIO    varchar(15)          not null,
+   CORREO_PERSONA       varchar(30)          not null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
 )
 go
@@ -2600,33 +2601,6 @@ execute sp_addextendedproperty 'MS_Description',
    'user', @CurrentUser, 'view', 'VIEW_FACTURA'
 go
 
-
-/*==============================================================*/
-/* View: VIEW_FACTURA_TOTAL                                           */
-/*==============================================================*/
-create view VIEW_FACTURA_TOTAL as
-SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
-FROM view_factura F, view_producto_factura PF, view_medicamento P
-WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
-go
-
-if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('VIEW_FACTURA_TOTAL') and minor_id = 0)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.',
-   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
-go
-
 /*==============================================================*/
 /* View: VIEW_INVENTARIORPT                                     */
 /*==============================================================*/
@@ -2857,6 +2831,32 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    'Esta vista muestra informacion acerca de la factura de compra de un producto',
    'user', @CurrentUser, 'view', 'VIEW_PRODUCTO_FACTURA'
+go
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                           */
+/*==============================================================*/
+create view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM VIEW_FACTURA F, VIEW_PRODUCTO_FACTURA PF, VIEW_MEDICAMENTO P
+WHERE F.ID_FACTURA = PF.ID_FACTURA AND PF.ID_PRODUCTO = P.ID_PRODUCTO
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('VIEW_FACTURA_TOTAL') and minor_id = 0)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.',
+   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
 go
 
 /*==============================================================*/

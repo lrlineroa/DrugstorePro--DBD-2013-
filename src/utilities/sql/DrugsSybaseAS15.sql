@@ -1251,6 +1251,7 @@ create table PERSONA (
    DIRECCION_PERSONA    varchar(25)                    not null,
    PASSWORD             text                           not null,
    NOMBRE_DE_USUARIO    varchar(15)                    null,
+   CORREO_PERSONA       varchar(30)                    not null,
    constraint PK_PERSONA primary key nonclustered (ID_PERSONA)
 )
 go
@@ -1497,15 +1498,6 @@ select * from FACTURA
 go
 
 /*==============================================================*/
-/* View: VIEW_FACTURA_TOTAL                                           */
-/*==============================================================*/
-create view VIEW_FACTURA_TOTAL as
-SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
-FROM view_factura F, view_producto_factura PF, view_medicamento P
-WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
-go
-
-/*==============================================================*/
 /* View: VIEW_INVENTARIORPT                                     */
 /*==============================================================*/
 create view VIEW_INVENTARIORPT as
@@ -1599,6 +1591,15 @@ select
    *
 from
     PRODUCTO_FACTURA
+go
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                           */
+/*==============================================================*/
+create view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM view_factura F, view_producto_factura PF, view_medicamento P
+WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
 go
 
 /*==============================================================*/
