@@ -5,16 +5,20 @@
 package Boundary_Package;
 
 
-import Entitys.Persona;
-import Entitys.Cargo;
-import Helpers.RegexFormatter;
-import Helpers.RegularExpression;
+
+
+import Entities.Views.ViewCargo;
+import utilities.helpers.RegexFormatter;
+import utilities.helpers.RegularExpression;
+import Entities.Views.ViewCargo;
+import Entities.Views.ViewPersona;
 import Control_Package.RegisterControl;
-import boundary_package.MainFrame;
+import Boundary_Package.MainFrame;
+import utilities.helpers.Hash;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import services.CargoServices;
+//import services.CargoServices;
 
 /**
  *
@@ -24,7 +28,7 @@ public class RegisterGui extends javax.swing.JPanel {
     private RegisterControl regcon;
     private DefaultComboBoxModel RolComboboxModel=new DefaultComboBoxModel();
     private MainFrame frame;
-    CargoServices carS=new CargoServices(); 
+    //CargoServices carS=new CargoServices(); 
     /**
      * Creates new form RegisterGui
      */
@@ -277,17 +281,17 @@ public class RegisterGui extends javax.swing.JPanel {
         regcon=new RegisterControl();
           
           
-          Persona pers= new Persona(new Long(Long.parseLong(this.IdentificationJTFField.getText())));
+          ViewPersona pers= new ViewPersona(Integer.parseInt(this.IdentificationJTFField.getText()));
           pers.setNombrePersona(this.nameFormattedTextField.getText());
-          pers.setIdDrogueria(MainFrame.DrugPresent.getIdDrogueria());
+          pers.setIdDrogueria(1);
           pers.setApellidoPersona(this.LNameFormattedTextField.getText());
-          pers.setTelefonoPersona(this.PhoneJTF.getText());
+          pers.setTelefonoPersona(Integer.parseInt((this.PhoneJTF.getText())));
           pers.setMailPersona(this.mailNameFormattedTextField.getText()+"@"+this.mailHostFormattedTextField.getText());
           pers.setDireccionPersona(this.AdressJTFField.getText());
-          pers.setPassPersona(this.passwordJTFField.getText());
+          pers.setPassword(Hash.hashMD5(this.passwordJTFField.getText()));
           String cargo=(String) this.RolComboBox.getSelectedItem();
           System.out.println(RolComboBox.getSelectedItem());
-          pers.setIdCargo(carS.ReadByType(cargo).getIdCargo());
+          pers.setIdCargo(regcon.traerCargo(cargo));
           JOptionPane.showMessageDialog(null, regcon.makeRegister(pers),"Mensaje", JOptionPane.OK_OPTION);
           cleanFields();
             
@@ -314,7 +318,7 @@ public class RegisterGui extends javax.swing.JPanel {
     public void RolComboBoxModelFill(){
         
            this.RolComboboxModel.addElement("Seleccione");
-           for(Cargo car:carS.readAll()){
+           for(ViewCargo car:regcon.ListaCargos()){
            this.RolComboboxModel.addElement(car.getTipoCargo());
            }
            RolComboBox.setModel(RolComboboxModel);

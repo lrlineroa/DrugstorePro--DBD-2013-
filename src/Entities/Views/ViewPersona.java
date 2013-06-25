@@ -46,6 +46,9 @@ public class ViewPersona implements Serializable {
     @Column(name = "NOMBRE_PERSONA")
     private String nombrePersona;
     @Basic(optional = false)
+    @Column(name = "CORREO_PERSONA")
+    private String mailPersona;
+    @Basic(optional = false)
     @Column(name = "APELLIDO_PERSONA")
     private String apellidoPersona;
     @Basic(optional = false)
@@ -98,6 +101,16 @@ public class ViewPersona implements Serializable {
     public String getApellidoPersona() {
         return apellidoPersona;
     }
+
+    public String getMailPersona() {
+        return mailPersona;
+    }
+
+    public void setMailPersona(String mailPersona) {
+        this.mailPersona = mailPersona;
+    }
+    
+    
 
     public void setApellidoPersona(String apellidoPersona) {
         this.apellidoPersona = apellidoPersona;
