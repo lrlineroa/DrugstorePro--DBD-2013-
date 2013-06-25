@@ -7,6 +7,7 @@ package Boundary_Package;
 import Control_Package.BussinesControl;
 import Control_Package.LoginControl;
 import Control_Package.AutoCompleteControl;
+import Control_Package.ControlReporteFactura;
 import Entities.Views.ViewMedicamento;
 import Entities.Views.ViewProductoFactura;
 import java.awt.FlowLayout;
@@ -421,12 +422,20 @@ public class SellGui extends javax.swing.JPanel {
         this.TotalTextField.setText("0");
 
         if (bandera) {
+            Integer idFactura = null;
             try {
-                buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), total, productos);
+                idFactura = buscon.newFactura(LoginControl.usuarioActivo.getIdPersona(), total, productos);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error de conexion a la Base de Datos\n\n" + "Error al generar la Factura\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
             }
             JOptionPane.showMessageDialog(null, "VENTA EXITOSA", "URRA!!!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/Icons/happyFace.png")));
+            if (idFactura != null) {
+                try {
+                    new ControlReporteFactura().generarFactura(idFactura);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al generar el pdf\n\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, null);
+                } 
+            }
         }
     }//GEN-LAST:event_MakeSellButtonActionPerformed
 

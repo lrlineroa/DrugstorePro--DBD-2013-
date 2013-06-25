@@ -107,7 +107,7 @@ public class BussinesControl {
         return "0";
     }
 
-    public void newFactura(Integer idPersona, float total, List<ViewProductoFactura> productos) throws Exception {
+    public Integer newFactura(Integer idPersona, float total, List<ViewProductoFactura> productos) throws Exception {
         ViewFactura factura = new ViewFactura();
         factura.setIdPersona(idPersona);
         factura.setTotal(total);
@@ -124,6 +124,8 @@ public class BussinesControl {
             vpf.setIdFactura(factura.getIdFactura());
             DAOFactory.getInstance().getViewProductoFacturaDAO().create(vpf);
         }
+
+        return factura.getIdFactura();
 
     }
 

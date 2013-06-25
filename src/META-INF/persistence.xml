@@ -18,6 +18,7 @@
     <class>Entities.Views.ViewProveedor</class>
     <class>Entities.Views.ViewTipoProducto</class>
     <class>Entities.Views.ViewUsoMedic</class>
+    <class>Entities.Views.ViewFacturaTotal</class>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
   </persistence-unit>
 </persistence>

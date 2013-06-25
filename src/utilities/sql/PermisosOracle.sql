@@ -4,6 +4,7 @@ GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_CARGO TO earojasc, dsgonzalezh, maherr
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_DROGUERIA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_FABRICANTE TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_FACTURA TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
+GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_FACTURA_TOTAL TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_INVENTARIORPT TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_MEDICAMENTO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
 GRANT DELETE,INSERT,SELECT,UPDATE ON VIEW_PEDIDO TO earojasc, dsgonzalezh, maherrerapu, jemmejiaca, capenap;
