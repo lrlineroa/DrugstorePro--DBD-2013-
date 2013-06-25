@@ -61,7 +61,7 @@ public class LoginGui extends javax.swing.JPanel {
         usuarioAPPTf = new javax.swing.JFormattedTextField();
         AceptarButton = new javax.swing.JButton();
 
-        panelAccesoBDS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION BASE DE DATOS", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        panelAccesoBDS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION BASE DE DATOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel3.setText("Usuario");
@@ -83,6 +83,11 @@ public class LoginGui extends javax.swing.JPanel {
 
         rdbmsCombo.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         rdbmsCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MS SQL Server", "SyBase", "Oracle" }));
+        rdbmsCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbmsComboActionPerformed(evt);
+            }
+        });
 
         checkBox.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         checkBox.setSelected(true);
@@ -135,7 +140,7 @@ public class LoginGui extends javax.swing.JPanel {
                 .addComponent(checkBox))
         );
 
-        panelAccesoAPP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION APLICACIÓN", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        panelAccesoAPP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IDENTIFICACION APLICACIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel1.setText("Usuario");
@@ -251,6 +256,10 @@ public class LoginGui extends javax.swing.JPanel {
     private void usuarioAPPTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAPPTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usuarioAPPTfActionPerformed
+
+    private void rdbmsComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbmsComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbmsComboActionPerformed
 
     private void login() {
         if (checkBox.isSelected()) {

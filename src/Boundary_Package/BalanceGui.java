@@ -32,6 +32,11 @@ public class BalanceGui extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        panelRolAdmin = new javax.swing.JPanel();
+        SalesButton = new javax.swing.JButton();
+        TopProductsButton = new javax.swing.JButton();
+        aboutButton = new javax.swing.JButton();
+        progressButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -47,21 +52,134 @@ public class BalanceGui extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("BALANCE"));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Dibujo.JPG"))); // NOI18N
+        panelRolAdmin.setPreferredSize(new java.awt.Dimension(553, 300));
+
+        SalesButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        SalesButton.setText("VENTAS");
+        SalesButton.setBorder(new javax.swing.border.MatteBorder(null));
+        SalesButton.setMaximumSize(new java.awt.Dimension(111, 45));
+        SalesButton.setMinimumSize(new java.awt.Dimension(111, 45));
+        SalesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalesButtonActionPerformed(evt);
+            }
+        });
+
+        TopProductsButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        TopProductsButton.setText("USUARIOS");
+        TopProductsButton.setBorder(new javax.swing.border.MatteBorder(null));
+        TopProductsButton.setMaximumSize(new java.awt.Dimension(111, 45));
+        TopProductsButton.setMinimumSize(new java.awt.Dimension(111, 45));
+        TopProductsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TopProductsButtonActionPerformed(evt);
+            }
+        });
+
+        aboutButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        aboutButton.setText("PRODUCTOS");
+        aboutButton.setBorder(new javax.swing.border.MatteBorder(null));
+        aboutButton.setMaximumSize(new java.awt.Dimension(111, 45));
+        aboutButton.setMinimumSize(new java.awt.Dimension(111, 45));
+        aboutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutButtonActionPerformed(evt);
+            }
+        });
+
+        progressButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        progressButton.setText("INVENTARIO");
+        progressButton.setBorder(new javax.swing.border.MatteBorder(null));
+        progressButton.setMaximumSize(new java.awt.Dimension(111, 45));
+        progressButton.setMinimumSize(new java.awt.Dimension(111, 45));
+        progressButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                progressButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRolAdminLayout = new javax.swing.GroupLayout(panelRolAdmin);
+        panelRolAdmin.setLayout(panelRolAdminLayout);
+        panelRolAdminLayout.setHorizontalGroup(
+            panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRolAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRolAdminLayout.createSequentialGroup()
+                        .addComponent(progressButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRolAdminLayout.createSequentialGroup()
+                        .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TopProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRolAdminLayout.setVerticalGroup(
+            panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRolAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SalesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(TopProductsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(aboutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(progressButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel1.setText("CATEGORIAS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TopProductsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TopProductsButtonActionPerformed
+       
+    }//GEN-LAST:event_TopProductsButtonActionPerformed
+
+    private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
+     
+    }//GEN-LAST:event_aboutButtonActionPerformed
+
+    private void progressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progressButtonActionPerformed
+       
+    }//GEN-LAST:event_progressButtonActionPerformed
+
+    private void SalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalesButtonActionPerformed
+       
+    }//GEN-LAST:event_SalesButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SalesButton;
+    private javax.swing.JButton TopProductsButton;
+    private javax.swing.JButton aboutButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panelRolAdmin;
+    private javax.swing.JButton progressButton;
     // End of variables declaration//GEN-END:variables
 }
