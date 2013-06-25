@@ -209,12 +209,12 @@ public class QueryGui extends javax.swing.JPanel {
 
         if (producto != null) {
             cadena = producto.getNombreProducto() + "\n"
-                    + " Disponible en: " + LoginControl.usuarioActivo.getIdDrogueria() + "\n"
-                    + "Presentación: " + producto.getIdPresentacion() + "\n"
-                    + "Tipo de Producto: " + producto.getIdTipoProducto() + "\n"
+                    + " Disponible en: " + buscontrol.searchDrogueriaById(LoginControl.usuarioActivo.getIdDrogueria()).getNombreDrogueria() + "\n"
+                    + "Presentación: " + buscontrol.searchPresentacionById(producto.getIdPresentacion()).getTipoPresentacion() + "\n"
+                    + "Tipo de Producto: " + buscontrol.searchTipoProductoById(producto.getIdTipoProducto()).getTipo() + "\n"
                     + "Precio: $" + producto.getPrecioProducto() + "\n"
                     + "Posologia: " + producto.getPosologiaProducto() + "\n"
-                    + "Proveedor: " + producto.getIdProveedor()+ "\n"
+                    + "Proveedor: " + buscontrol.searchProveedorById(producto.getIdProveedor()).getNombreProveedor() + "\n"
                     + "Cantidad en stock: " + producto.getCantidadProducto();
         }
 

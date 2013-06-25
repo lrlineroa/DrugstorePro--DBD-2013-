@@ -42,8 +42,9 @@ public class ViewProductoFactura implements Serializable {
     public ViewProductoFactura() {
     }
 
-    public ViewProductoFactura(int idProducto) {
+    public ViewProductoFactura(int idProducto, Integer cantidadVendida) {
         this.idProducto = idProducto;
+        this.cantidadVendida = cantidadVendida;
     }
 
     public int getIdFactura() {

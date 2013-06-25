@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ViewFactura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Basic(optional = false)
     @Column(name = "ID_FACTURA")
     private Integer idFactura;

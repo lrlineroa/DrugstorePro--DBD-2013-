@@ -594,6 +594,13 @@ go
 
 if exists (select 1
             from  sysobjects
+            where  id = object_id('VIEW_FACTURA_TOTAL')
+            and   type = 'V')
+   drop view VIEW_FACTURA_TOTAL
+go
+
+if exists (select 1
+            from  sysobjects
             where  id = object_id('VIEW_INVENTARIORPT')
             and   type = 'V')
    drop view VIEW_INVENTARIORPT
@@ -1487,6 +1494,15 @@ go
 /*==============================================================*/
 create view VIEW_FACTURA as
 select * from FACTURA
+go
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                           */
+/*==============================================================*/
+create view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM view_factura F, view_producto_factura PF, view_medicamento P
+WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
 go
 
 /*==============================================================*/

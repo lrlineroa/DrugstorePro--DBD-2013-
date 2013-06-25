@@ -13,12 +13,12 @@ import javax.swing.table.AbstractTableModel;
  * @author MAURO
  */
 public class ReportTableModel extends AbstractTableModel {
-    private List<RegInventary> products= new ArrayList<RegInventary>();
-    private String[] labels={"IdProducto", "Nombre de Producto","Cantidad"};
+    private List<RegReport> products= new ArrayList<RegReport>();
+    private String[] labels={"IdProducto", "Nombre de Producto   ","Cantidad"};
     
     int i=0;
     
-    public void add(RegInventary ri){
+    public void add(RegReport ri){
         getProducts().add(ri);
     }
     
@@ -44,7 +44,7 @@ public class ReportTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        RegInventary r= getProducts().get(rowIndex);
+        RegReport r= getProducts().get(rowIndex);
         switch (columnIndex){
             case 0:
             return r.getId();
@@ -61,7 +61,7 @@ public class ReportTableModel extends AbstractTableModel {
     /**
      * @return the products
      */
-    public List<RegInventary> getProducts() {
+    public List<RegReport> getProducts() {
         return products;
     }
     

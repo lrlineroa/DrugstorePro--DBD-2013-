@@ -41,7 +41,11 @@ public class DAOFactory {
     public ViewFacturaDAO getViewFacturaDAO() {
         return new ViewFacturaDAO(emf);
     }
-
+    
+    public ViewFacturaTotalDAO getViewFacturaTotalDAO() {
+        return new ViewFacturaTotalDAO(emf);
+    }
+    
     public ViewInventariorptDAO getViewInventariorptDAO() {
         return new ViewInventariorptDAO(emf);
     }
@@ -56,6 +60,10 @@ public class DAOFactory {
     
     public ViewPresentacionDAO getViewPresentacionDAO() {
         return new ViewPresentacionDAO(emf);
+    }
+    
+    public ViewProductoFacturaDAO getViewProductoFacturaDAO() {
+        return new ViewProductoFacturaDAO(emf);
     }
     
     public ViewProductosDrogueriaDAO getViewProductosDrogueriaDAO() {

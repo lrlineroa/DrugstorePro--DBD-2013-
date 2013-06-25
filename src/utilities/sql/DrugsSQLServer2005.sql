@@ -594,6 +594,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('VIEW_FACTURA_TOTAL')
+            and   type = 'V')
+   drop view VIEW_FACTURA_TOTAL
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('VIEW_INVENTARIORPT')
             and   type = 'V')
    drop view VIEW_INVENTARIORPT
@@ -2591,6 +2598,33 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    'Esta vista muestra informacion acerca de las facturas',
    'user', @CurrentUser, 'view', 'VIEW_FACTURA'
+go
+
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                           */
+/*==============================================================*/
+create view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM view_factura F, view_producto_factura PF, view_medicamento P
+WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('VIEW_FACTURA_TOTAL') and minor_id = 0)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.',
+   'user', @CurrentUser, 'view', 'VIEW_FACTURA_TOTAL'
 go
 
 /*==============================================================*/

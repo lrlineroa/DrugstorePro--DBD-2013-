@@ -5,11 +5,16 @@
 package Control_Package;
 
 import DAOS.DAOFactory;
+import Entities.Views.ViewDrogueria;
 import Entities.Views.ViewFactura;
 import Entities.Views.ViewMedicamento;
 import Entities.Views.ViewPedido;
+import Entities.Views.ViewPresentacion;
+import Entities.Views.ViewProductoFactura;
 import Entities.Views.ViewProductosDrogueria;
-import java.util.Date;
+import Entities.Views.ViewProveedor;
+import Entities.Views.ViewTipoProducto;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -102,13 +107,41 @@ public class BussinesControl {
         return "0";
     }
 
-    public void newFactura(Integer idPersona, float total) throws Exception {
+    public Integer newFactura(Integer idPersona, float total, List<ViewProductoFactura> productos) throws Exception {
         ViewFactura factura = new ViewFactura();
         factura.setIdPersona(idPersona);
         factura.setTotal(total);
-        factura.setFechaFactura(new Date());
+        Calendar d = Calendar.getInstance();
+        factura.setFechaFactura(d.getTime());
+        String s = String.valueOf(d.get(Calendar.DAY_OF_MONTH)) + String.valueOf(d.get(Calendar.MONTH) + 1)
+                + String.valueOf(d.get(Calendar.HOUR_OF_DAY)) + String.valueOf(d.get(Calendar.MINUTE));
+        s = s.concat(String.valueOf(idPersona).substring(String.valueOf(idPersona).length() - 2));
+        factura.setIdFactura(new Integer(s));
 
         DAOFactory.getInstance().getViewFacturaDAO().create(factura);
 
+        for (ViewProductoFactura vpf : productos) {
+            vpf.setIdFactura(factura.getIdFactura());
+            DAOFactory.getInstance().getViewProductoFacturaDAO().create(vpf);
+        }
+
+        return factura.getIdFactura();
+
+    }
+
+    public ViewDrogueria searchDrogueriaById(Integer idDrogueria) {
+        return DAOFactory.getInstance().getViewDrogueriaDAO().findViewDrogueria(idDrogueria);
+    }
+
+    public ViewPresentacion searchPresentacionById(Integer idPresentacion) {
+        return DAOFactory.getInstance().getViewPresentacionDAO().findViewPresentacion(idPresentacion);
+    }
+
+    public ViewTipoProducto searchTipoProductoById(Integer idTipoProducto) {
+        return DAOFactory.getInstance().getViewTipoProductoDAO().findViewTipoProducto(idTipoProducto);
+    }
+
+    public ViewProveedor searchProveedorById(Integer idProveedor) {
+        return DAOFactory.getInstance().getViewProveedorDAO().findViewProveedor(idProveedor);
     }
 }

@@ -299,6 +299,9 @@ drop view VIEW_FABRICANTE
 drop view VIEW_FACTURA
 /
 
+drop view VIEW_FACTURA_TOTAL
+/
+
 drop view VIEW_INVENTARIORPT
 /
 
@@ -1309,6 +1312,19 @@ select * from FACTURA
 
  comment on table VIEW_FACTURA is
 'Esta vista muestra informacion acerca de las facturas'
+/
+
+/*==============================================================*/
+/* View: VIEW_FACTURA_TOTAL                                     */
+/*==============================================================*/
+create or replace view VIEW_FACTURA_TOTAL as
+SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*pf.cantidad_vendida AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
+FROM view_factura F, view_producto_factura PF, view_medicamento P
+WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
+/
+
+ comment on table VIEW_FACTURA is
+'Esta vista muestra la informacion completa acerca de las facturas, asi como todos los productos que incluye.'
 /
 
 /*==============================================================*/
