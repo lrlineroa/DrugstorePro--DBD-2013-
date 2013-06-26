@@ -48,8 +48,9 @@ public class ViewFactura implements Serializable {
     @Column(name = "FECHA_FACTURA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFactura;
-
+    
     public ViewFactura() {
+        
     }
 
     public ViewFactura(Integer idFactura) {

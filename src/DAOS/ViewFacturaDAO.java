@@ -7,14 +7,18 @@ package DAOS;
 import DAOS.exceptions.NonexistentEntityException;
 import DAOS.exceptions.PreexistingEntityException;
 import Entities.Views.ViewFactura;
+import Entities.Views.ViewPersona;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 
 /**
  *
@@ -139,5 +143,65 @@ public class ViewFacturaDAO implements Serializable {
             em.close();
         }
     }
+
+    public List findTotalSalesForMonth(Integer year) {
+        EntityManager em=getEntityManager();
+        try {
+                 
+            String query="Select FUNC('MONTH',vf.fechaFactura) ,SUM(vf.total) from ViewFactura vf "
+                    + "where FUNC('YEAR',vf.fechaFactura)=:year group by FUNC('MONTH',vf.fechaFactura)";
+            
+            Query q = em.createQuery(query);
+            
+                    q.setParameter("year",year);
+            
+            return q.getResultList();
+            
+                    
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     
+    public List findTotalSalesForYear(Integer yearInit,Integer yearEnd) {
+        EntityManager em=getEntityManager();
+        try {
+                 
+            String query="Select FUNC('YEAR',vf.fechaFactura) ,SUM(vf.total) from ViewFactura vf "
+                    + "where FUNC('YEAR',vf.fechaFactura)>=:yearInit AND FUNC('YEAR',vf.fechaFactura)<=:yearEnd "
+                    + "GROUP BY FUNC('YEAR',vf.fechaFactura)";
+            
+            Query q = em.createQuery(query);
+            
+                    q.setParameter("yearInit",yearInit);
+                    q.setParameter("yearEnd",yearEnd);
+            
+            return q.getResultList();
+            
+                    
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Integer findSalesForWeek(Date dayInitWeek,Date dayEndWeek){
+        EntityManager em=getEntityManager();
+        try {
+                 
+            String query="Select SUM(vf.total) from ViewFactura vf "
+                    + "where vf.fechaFactura >=:dayInit AND vf.fechaFactura<=:dayEnd";
+            
+            Query q = em.createQuery(query);
+            
+                   
+                    q.setParameter("dayInit", dayInitWeek);
+                    q.setParameter("dayEnd", dayEndWeek);
+            
+            return (Integer) q.getSingleResult();
+            
+                    
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

@@ -4,7 +4,11 @@
  */
 package Boundary_Package;
 
+import Control_Package.BalanceControl;
 import Control_Package.BussinesControl;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,12 +18,14 @@ public class BalanceGui extends javax.swing.JPanel {
     BussinesControl buscon=new BussinesControl();
     private String[] labels={"Id Factura","Id persona","total"};
 ////    private TableM
+    private BalanceControl balanceControl=new BalanceControl();
     
     /**
      * Creates new form BalanceGui
      */
     public BalanceGui() {
         initComponents();
+        initialization();
     }
 
     /**
@@ -32,12 +38,13 @@ public class BalanceGui extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        panelRolAdmin = new javax.swing.JPanel();
+        categoriesPanel = new javax.swing.JPanel();
         SalesButton = new javax.swing.JButton();
         TopProductsButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         progressButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        viewResultsPanel = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,7 +59,8 @@ public class BalanceGui extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("BALANCE"));
 
-        panelRolAdmin.setPreferredSize(new java.awt.Dimension(553, 300));
+        categoriesPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        categoriesPanel.setPreferredSize(new java.awt.Dimension(553, 300));
 
         SalesButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         SalesButton.setText("VENTAS");
@@ -98,62 +106,78 @@ public class BalanceGui extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout panelRolAdminLayout = new javax.swing.GroupLayout(panelRolAdmin);
-        panelRolAdmin.setLayout(panelRolAdminLayout);
-        panelRolAdminLayout.setHorizontalGroup(
-            panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRolAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRolAdminLayout.createSequentialGroup()
-                        .addComponent(progressButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRolAdminLayout.createSequentialGroup()
-                        .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TopProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel1.setText("CATEGORIAS");
+
+        javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
+        categoriesPanel.setLayout(categoriesPanelLayout);
+        categoriesPanelLayout.setHorizontalGroup(
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(categoriesPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                                .addComponent(progressButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                                .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TopProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(categoriesPanelLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelRolAdminLayout.setVerticalGroup(
-            panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRolAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        categoriesPanelLayout.setVerticalGroup(
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SalesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(TopProductsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(panelRolAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(aboutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(progressButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel1.setText("CATEGORIAS");
+        viewResultsPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout viewResultsPanelLayout = new javax.swing.GroupLayout(viewResultsPanel);
+        viewResultsPanel.setLayout(viewResultsPanelLayout);
+        viewResultsPanelLayout.setHorizontalGroup(
+            viewResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        viewResultsPanelLayout.setVerticalGroup(
+            viewResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 18, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel1)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(categoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelRolAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(categoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewResultsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,16 +194,40 @@ public class BalanceGui extends javax.swing.JPanel {
     }//GEN-LAST:event_progressButtonActionPerformed
 
     private void SalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalesButtonActionPerformed
-       
+//        this.balanceControl.findTotalSalesForMonth(2011);
+        setViewResultPanel(new BalanceSalesGUI());
+//        this.balanceControl.findSalesForYear(2000,2013);
+        this.balanceControl.findSalesForWeek(6, 2013);
     }//GEN-LAST:event_SalesButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SalesButton;
     private javax.swing.JButton TopProductsButton;
     private javax.swing.JButton aboutButton;
+    private javax.swing.JPanel categoriesPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel panelRolAdmin;
     private javax.swing.JButton progressButton;
+    private javax.swing.JPanel viewResultsPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void initialization() {
+        this.viewResultsPanel.setVisible(false);
+    }
+
+    private void setViewResultPanel(JPanel panel) {
+        this.categoriesPanel.setVisible(false);
+        this.viewResultsPanel.removeAll();
+        this.viewResultsPanel.add(panel, BorderLayout.CENTER);
+        this.viewResultsPanel.setMinimumSize(panel.getPreferredSize());
+        this.viewResultsPanel.setPreferredSize(panel.getPreferredSize());
+        this.viewResultsPanel.setVisible(true);
+        Dimension d = new Dimension(panel.getPreferredSize().width, panel.getPreferredSize().height + 100);
+        this.setMinimumSize(d);
+        this.setPreferredSize(d);
+        
+               
+    }
+
+    
 }
