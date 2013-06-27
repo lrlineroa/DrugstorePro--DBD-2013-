@@ -403,7 +403,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_inventaryButtonActionPerformed
 
     private void balanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceButtonActionPerformed
-        setMainPanel(new BalanceGui());
+        setMainPanel(new BalanceGui(this));
         CloseSesionButton.setText("MENU PRINCIPAL");
         AdjustToCenter();
     }//GEN-LAST:event_balanceButtonActionPerformed

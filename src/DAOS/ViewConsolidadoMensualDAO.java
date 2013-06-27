@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -20,9 +21,9 @@ import javax.persistence.criteria.Root;
  *
  * @author User
  */
-public class ViewConsolidadoMensualJpaDAO implements Serializable {
+public class ViewConsolidadoMensualDAO implements Serializable {
 
-    public ViewConsolidadoMensualJpaDAO(EntityManagerFactory emf) {
+    public ViewConsolidadoMensualDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -138,6 +139,26 @@ public class ViewConsolidadoMensualJpaDAO implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public List<ViewConsolidadoMensual> findViewConsolidadoMensualEntities(int year){
+         EntityManager em=getEntityManager();
+        try {
+                 
+            String query="ViewConsolidadoMensual.findByAño";
+            
+            Query q = em.createNamedQuery(query);
+            
+                    q.setParameter("año",year);
+                    
+            
+            return q.getResultList();
+            
+                    
+        } catch (NoResultException e) {
+            return null;
+        }
+        
     }
     
 }

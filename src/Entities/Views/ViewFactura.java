@@ -19,6 +19,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.Direction;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQueries;
+import org.eclipse.persistence.annotations.NamedStoredProcedureQuery;
+import org.eclipse.persistence.annotations.StoredProcedureParameter;
 
 /**
  *
@@ -31,6 +35,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ViewFactura.findAll", query = "SELECT v FROM ViewFactura v"),
     @NamedQuery(name = "ViewFactura.findByIdFactura", query = "SELECT v FROM ViewFactura v WHERE v.idFactura = :idFactura"),
     @NamedQuery(name = "ViewFactura.findByTotal", query = "SELECT v FROM ViewFactura v WHERE v.total = :total")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "ViewFactura.actualizarConsolidadoAnual", procedureName = "lrlineroa.ACTUALIZAR_CONSOLIDADO_ANUAL",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false
+            ),
+    @NamedStoredProcedureQuery(name = "ViewFactura.actualizarConsolidadoMensual", procedureName = "lrlineroa.ACTUALIZAR_CONSOLIDADO_MENSUAL",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false),
+        
+    @NamedStoredProcedureQuery(name = "ViewFactura.actualizarConsolidadoSemanal", procedureName = "lrlineroa.ACTUALIZAR_CONSOLIDADO_SEMANAL",
+            resultClass = void.class, resultSetMapping = "", returnsResultSet = false,
+            parameters = {
+        @StoredProcedureParameter(name = "succes", queryParameter = "succes", direction = Direction.OUT, type = Integer.class)
+    })    
+})
 public class ViewFactura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
