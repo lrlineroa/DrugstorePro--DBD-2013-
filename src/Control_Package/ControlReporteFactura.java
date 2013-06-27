@@ -61,9 +61,14 @@ public class ControlReporteFactura {
         }
         documento.add(tabla);
         documento.add(new Paragraph(" "));
-
-        float sumWithoutIVA = factura.get(0).getTotalFactura() * 0.84f;
-        float IVA = factura.get(0).getTotalFactura() * 0.16f;
+        
+        float IVA = 0;
+        
+        for (ViewFacturaTotal prod : factura){
+            IVA += prod.getIva() * prod.getCantidadVendida();
+        }
+        float sumWithoutIVA = factura.get(0).getTotalFactura() - IVA;
+        
         final Paragraph psub = new Paragraph("SubTotal: " + sumWithoutIVA);
         psub.setAlignment(2);
         documento.add(psub);

@@ -305,9 +305,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QueryButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
-//        setMainPanel(new ModifyDataGui());
-//        CloseSesionButton.setText("MENU PRINCIPAL");
-//        AdjustToCenter();
+        setMainPanel(new ModifyDataGui());
+        CloseSesionButton.setText("MENU PRINCIPAL");
+        AdjustToCenter();
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
@@ -317,9 +317,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
-        //        setMainPanel(new AboutGui());
-        //        CloseSesionButton.setText("MENU PRINCIPAL");
-        //        AdjustToCenter();
+              setMainPanel(new AboutGui());
+              CloseSesionButton.setText("MENU PRINCIPAL");
+              AdjustToCenter();
     }//GEN-LAST:event_aboutButtonActionPerformed
 
     public void setMainPanel(JPanel panel) {
@@ -390,8 +390,8 @@ public class MainFrame extends javax.swing.JFrame {
         /*
          * Create and display the form
          */
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenGraphiteGlassSkin");
+//        JFrame.setDefaultLookAndFeelDecorated(true);
+//        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenGraphiteGlassSkin");
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

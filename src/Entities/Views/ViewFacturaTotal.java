@@ -59,6 +59,8 @@ public class ViewFacturaTotal implements Serializable {
     @Basic(optional = false)
     @Column(name = "TOTAL_FACTURA")
     private float totalFactura;
+    @Column(name = "IVA")
+    private Integer iva;
 
     public ViewFacturaTotal() {
     }
@@ -125,6 +127,14 @@ public class ViewFacturaTotal implements Serializable {
 
     public void setTotalFactura(float totalFactura) {
         this.totalFactura = totalFactura;
+    }
+
+    public Integer getIva() {
+        return iva;
+    }
+
+    public void setIva(Integer iva) {
+        this.iva = iva;
     }
     
 }

@@ -81,6 +81,8 @@ public class ViewMedicamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "VENTA_LIBRE")
     private short ventaLibre;
+    @Column(name = "IVA")
+    private Integer iva;
 
     public ViewMedicamento() {
     }
@@ -140,6 +142,14 @@ public class ViewMedicamento implements Serializable {
 
     public void setVentaLibre(short ventaLibre) {
         this.ventaLibre = ventaLibre;
+    }
+
+    public Integer getIva() {
+        return iva;
+    }
+
+    public void setIva(Integer iva) {
+        this.iva = iva;
     }
 
     @Override

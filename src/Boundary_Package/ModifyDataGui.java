@@ -5,24 +5,24 @@
 package Boundary_Package;
 
 import Boundary_Package.SellGui;
-import Entities.TipoProducto;
-import Helpers.RegexFormatter;
-import Helpers.RegularExpression;
-import boundary_package.EditionAdvance;
-import control_package.AutoCompleteControl;
-import control_package.BussinesControl;
+import Entities.Views.ViewTipoProducto;
+import utilities.helpers.RegexFormatter;
+import utilities.helpers.RegularExpression;
+//import boundary_package.EditionAdvance;
+import Control_Package.AutoCompleteControl;
+import Control_Package.BussinesControl;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import services.TipoProductoServices;
+//import services.TipoProductoServices;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.BadLocationException;
 
 public class ModifyDataGui extends javax.swing.JPanel {
      private String[] labels={"IdProducto", "Nombre de Producto","Precio", "Tipo"};
-     private TipoProductoServices tBS=new TipoProductoServices();
+     //private TipoProductoServices tBS=new TipoProductoServices();
      private DefaultComboBoxModel TipoComboboxModel=new DefaultComboBoxModel();
      private DefaultTableModel tableModel =new DefaultTableModel(labels, 1);
      private BussinesControl buscon=new BussinesControl();
@@ -238,9 +238,9 @@ public class ModifyDataGui extends javax.swing.JPanel {
 public void TipoComboBoxModelFill(){
      
             this.TipoComboboxModel.addElement("Seleccione");
-           for(TipoProducto tip:tBS.readAll()){
-           this.TipoComboboxModel.addElement(tip.getTipo());
-           }
+           //for(TipoProducto tip:tBS.readAll()){
+           //this.TipoComboboxModel.addElement(tip.getTipo());
+           //}
        TipojComboBox.setModel(TipoComboboxModel);
  }
     
@@ -256,8 +256,9 @@ public void TipoComboBoxModelFill(){
         this.setVisible(false);
         this.removeAll();
         this.setLayout(new BorderLayout());
-        this.add(new EditionAdvance(), BorderLayout.CENTER);
+        //this.add(new EditionAdvance(), BorderLayout.CENTER);
         this.setVisible(true);
+        JOptionPane.showMessageDialog(null, "Hola como estas?", "ERROR", JOptionPane.ERROR_MESSAGE);
         
         
         
@@ -265,12 +266,12 @@ public void TipoComboBoxModelFill(){
 
     private void IdjFormattedTextFieldMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdjFormattedTextFieldMouseMoved
         if (!this.IdjFormattedTextField.getText().isEmpty()){
-            String s=buscon.SearchNameById(Long.parseLong(this.IdjFormattedTextField.getText()));
+            Object s=buscon.searchProductById(Long.parseLong(this.IdjFormattedTextField.getText()));
             
             if(NamejFormattedTextField.getText().isEmpty()){
-                this.NamejFormattedTextField.setText(s);
-            }else if(!NamejFormattedTextField.getText().equals(s)){
-                this.NamejFormattedTextField.setText(s);    
+                this.NamejFormattedTextField.setText(s+"");
+            }else if(!NamejFormattedTextField.getText().equals(s+"")){
+                this.NamejFormattedTextField.setText(s+"");    
             }
         }
     }//GEN-LAST:event_IdjFormattedTextFieldMouseMoved
@@ -287,7 +288,7 @@ public void TipoComboBoxModelFill(){
     }//GEN-LAST:event_NamejFormattedTextFieldKeyReleased
 
     private void NamejFormattedTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NamejFormattedTextFieldFocusLost
-        Object Id=buscon.SearchIdByName(NamejFormattedTextField.getText());        
+        Object Id=buscon.searchProductByName(NamejFormattedTextField.getText());        
         if(!Id.equals(-1)){
            IdjFormattedTextField.setText(""+Id);
         }else{

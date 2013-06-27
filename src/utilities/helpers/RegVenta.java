@@ -19,16 +19,18 @@ public class RegVenta {
      private int quantity;
      private float priceUnit;
      private float priceAll;
+     private float iva;
     
      private VentaTableModel Model;
 
-    public RegVenta(Long id, String Name, int quantity, float priceUnit, float priceAll, JButton details, JButton remove ,VentaTableModel vTbM) {
+    public RegVenta(Long id, String Name, int quantity, float priceUnit, float priceAll, JButton details, JButton remove ,VentaTableModel vTbM, float iva) {
         this.id = id;
         this.Name = Name;
         this.quantity = quantity;
         this.priceUnit = priceUnit;
         this.priceAll = priceAll;
         this.Model= vTbM;
+        this.iva = iva;
     }
 
    
@@ -102,6 +104,18 @@ public class RegVenta {
         this.priceAll = priceAll;
     }
 
-   
-     
+    /**
+     * @return the iva
+     */
+    public float getIva() {
+        return iva;
+    }
+
+    /**
+     * @param iva the iva to set
+     */
+    public void setIva(float iva) {
+        this.iva = iva;
+    }
+    
 }

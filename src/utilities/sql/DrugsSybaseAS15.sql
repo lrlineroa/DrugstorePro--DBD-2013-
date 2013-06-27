@@ -1150,6 +1150,7 @@ create table MEDICAMENTO (
    ID_TIPO_PRODUCTO     int                            not null,
    ID_PROVEEDOR         int                            not null,
    VENTA_LIBRE          smallint                       not null,
+   IVA					int                            null,
    constraint PK_MEDICAMENTO primary key nonclustered (ID_PRODUCTO)
 )
 go
@@ -1598,8 +1599,8 @@ go
 /*==============================================================*/
 create view VIEW_FACTURA_TOTAL as
 SELECT F.ID_FACTURA, F.FECHA_FACTURA, P.ID_PRODUCTO, P.NOMBRE_PRODUCTO, P.PRECIO_PRODUCTO, PF.CANTIDAD_VENDIDA, P.PRECIO_PRODUCTO*PF.CANTIDAD_VENDIDA AS TOTAL_PRODUCTO , F.TOTAL AS TOTAL_FACTURA
-FROM view_factura F, view_producto_factura PF, view_medicamento P
-WHERE f.id_factura = pf.id_factura AND pf.id_producto = p.id_producto
+FROM VIEW_FACTURA as F, VIEW_PRODUCTO_FACTURA as PF, VIEW_MEDICAMENTO as P
+WHERE F.ID_FACTURA = PF.ID_FACTURA AND PF.ID_PRODUCTO = P.ID_PRODUCTO
 go
 
 /*==============================================================*/

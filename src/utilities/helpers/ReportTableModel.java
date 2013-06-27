@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ReportTableModel extends AbstractTableModel {
     private List<RegReport> products= new ArrayList<RegReport>();
-    private String[] labels={"IdProducto", "Nombre de Producto   ","Cantidad"};
+    private String[] labels={"IdProducto", "Nombre de Producto ","Cantidad"};
     
     int i=0;
     

@@ -8,6 +8,7 @@
     <class>Entities.Views.ViewDrogueria</class>
     <class>Entities.Views.ViewFabricante</class>
     <class>Entities.Views.ViewFactura</class>
+    <class>Entities.Views.ViewFacturaTotal</class>
     <class>Entities.Views.ViewInventariorpt</class>
     <class>Entities.Views.ViewMedicamento</class>
     <class>Entities.Views.ViewPedido</class>
@@ -18,7 +19,6 @@
     <class>Entities.Views.ViewProveedor</class>
     <class>Entities.Views.ViewTipoProducto</class>
     <class>Entities.Views.ViewUsoMedic</class>
-    <class>Entities.Views.ViewFacturaTotal</class>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
   </persistence-unit>
 </persistence>

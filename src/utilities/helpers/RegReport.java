@@ -11,14 +11,15 @@ package utilities.helpers;
 //Clase reg inventary para manejar el inventario mediante busqueda de facturas
 
 public class RegReport {
-    private Long id;
+    private long id;
      private String Name;
      private int quantity;
+    
      
     
      private ReportTableModel Model;
 
-    public RegReport(Long id, String Name, int quantity, ReportTableModel Model) {
+    public RegReport(long id, String Name, int quantity, ReportTableModel Model) {
         this.id = id;
         this.Name = Name;
         this.quantity = quantity;
@@ -26,10 +27,12 @@ public class RegReport {
         this.Model = Model;
     }
 
+    
+
     /**
      * @return the id
      */
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
