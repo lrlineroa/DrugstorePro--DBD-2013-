@@ -258,6 +258,7 @@ public void TipoComboBoxModelFill(){
         this.setLayout(new BorderLayout());
         //this.add(new EditionAdvance(), BorderLayout.CENTER);
         this.setVisible(true);
+        JOptionPane.showMessageDialog(null, "Hola como estas?", "ERROR", JOptionPane.ERROR_MESSAGE);
         
         
         
