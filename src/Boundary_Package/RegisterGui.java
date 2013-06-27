@@ -263,7 +263,7 @@ public class RegisterGui extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void borrarButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButton2ActionPerformed
-        cleanFields();
+        //cleanFields();
 
     }//GEN-LAST:event_borrarButton2ActionPerformed
 
@@ -287,8 +287,9 @@ public class RegisterGui extends javax.swing.JPanel {
             String cargo = (String) this.RolComboBox.getSelectedItem();
             System.out.println(RolComboBox.getSelectedItem());
             pers.setIdCargo(regcon.traerCargo(cargo));
-            JOptionPane.showMessageDialog(null, regcon.makeRegister(pers), "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            cleanFields();
+            String retorno = regcon.makeRegister(pers);
+            JOptionPane.showMessageDialog(null, retorno , "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            cleanFields(retorno);
 
         }
 
@@ -356,17 +357,32 @@ public class RegisterGui extends javax.swing.JPanel {
 
     }
 
-    private void cleanFields() {
-        this.nameFormattedTextField.setText("");
-        this.LNameFormattedTextField.setText("");
-        this.IdentificationJTFField.setText("");
-        this.AdressJTFField.setText("");
-        this.PhoneJTF.setText("");
-        this.mailNameFormattedTextField.setText("");
-        this.mailHostFormattedTextField.setText("");
-        this.passwordJTFField.setText("");
-        this.pass2Field.setText("");
-        this.RolComboBox.setSelectedIndex(0);
+    private void cleanFields(String ret) {
+        
+        if(ret.equals("Registro Hecho")){
+            this.nameFormattedTextField.setText("");
+            this.LNameFormattedTextField.setText("");
+            this.IdentificationJTFField.setText("");
+            this.AdressJTFField.setText("");
+            this.PhoneJTF.setText("");
+            this.mailNameFormattedTextField.setText("");
+            this.mailHostFormattedTextField.setText("");
+            this.passwordJTFField.setText("");
+            this.pass2Field.setText("");
+            this.RolComboBox.setSelectedIndex(0);
+        }
+        if(ret.equals("Cédula ya registrada")){
+            this.IdentificationJTFField.setText("");
+        }
+        if(ret.equals("nombre de usuario ya existente")){
+            this.nameFormattedTextField.setText("");
+            this.LNameFormattedTextField.setText("");
+        }
+        if(ret.equals("contraseña inválida")){
+            this.passwordJTFField.setText("");
+            this.pass2Field.setText("");
+        }
+        
 
 
 

@@ -37,18 +37,18 @@
                   <Group type="102" attributes="0">
                       <Component id="CloseSesionButton" min="-2" pref="183" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="LoggedLabel1" pref="372" max="32767" attributes="0"/>
+                      <Component id="LoggedLabel1" pref="495" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="MainPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="panelRolSellAndAdmin" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelRolAdmin" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelRolSellAndAdmin" alignment="0" pref="676" max="32767" attributes="0"/>
+                          <Component id="panelRolAdmin" alignment="0" pref="676" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -113,15 +113,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="sellButton" min="-2" pref="220" max="-2" attributes="0"/>
-                  <EmptySpace pref="93" max="32767" attributes="0"/>
-                  <Component id="inventaryButton" pref="220" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="sellButton" min="-2" pref="237" max="-2" attributes="0"/>
+                          <EmptySpace pref="167" max="32767" attributes="0"/>
+                          <Component id="inventaryButton" min="-2" pref="252" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="QueryButton" min="-2" pref="233" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="QueryButton" min="-2" pref="220" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,9 +136,9 @@
                       <Component id="inventaryButton" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="sellButton" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="63" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="QueryButton" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace pref="107" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -210,16 +213,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="modifyButton" pref="220" max="-2" attributes="0"/>
-                      <Component id="registerButton" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="aboutButton" pref="237" max="32767" attributes="0"/>
+                      <Component id="registerButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="modifyButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="93" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="balanceButton" alignment="1" min="-2" pref="220" max="-2" attributes="0"/>
-                      <Component id="aboutButton" alignment="1" min="-2" pref="220" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="ModifyBT" pref="254" max="32767" attributes="0"/>
+                      <Component id="balanceButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -233,12 +237,14 @@
                       <Component id="modifyButton" alignment="0" pref="80" max="-2" attributes="0"/>
                       <Component id="balanceButton" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="83" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="registerButton" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="aboutButton" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="registerButton" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="ModifyBT" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="aboutButton" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -346,6 +352,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registerButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="ModifyBT">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="14" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icons/Edit-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Eliminar y Modificar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModifyBTActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

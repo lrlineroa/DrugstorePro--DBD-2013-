@@ -532,6 +532,7 @@ public class SellGui extends javax.swing.JPanel {
     private void Integrity() {
         new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install(IdFormattedTextField);
         new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install(QuantyFormattedTextField3);
+        
 //        new RegexFormatter(RegularExpression.WORDS_AND_NUMBERS).install(NameTextField1);
     }
 }
