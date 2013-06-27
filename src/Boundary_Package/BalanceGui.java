@@ -6,6 +6,7 @@ package Boundary_Package;
 
 import Control_Package.BalanceControl;
 import Control_Package.BussinesControl;
+import Entities.Views.ViewConsolidadoAnual;
 import Entities.Views.ViewConsolidadoMensual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -37,7 +38,8 @@ public class BalanceGui extends javax.swing.JPanel {
         initComponents();
         initialization();
         this.frame=frame;
-        this.viewResultsPanel.setVisible(false);
+        this.viewResultsPanel.setVisible(true);
+        this.jPanel2.setVisible(true);
     }
 
     /**
@@ -50,18 +52,10 @@ public class BalanceGui extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        categoriesPanel = new javax.swing.JPanel();
-        SalesButton = new javax.swing.JButton();
-        TopProductsButton = new javax.swing.JButton();
-        aboutButton = new javax.swing.JButton();
-        progressButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         viewResultsPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         SettingsPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        monthCombo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         yearCombo = new javax.swing.JComboBox();
@@ -82,103 +76,10 @@ public class BalanceGui extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("BALANCE"));
 
-        categoriesPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        categoriesPanel.setPreferredSize(new java.awt.Dimension(553, 300));
-
-        SalesButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        SalesButton.setText("VENTAS");
-        SalesButton.setBorder(new javax.swing.border.MatteBorder(null));
-        SalesButton.setMaximumSize(new java.awt.Dimension(111, 45));
-        SalesButton.setMinimumSize(new java.awt.Dimension(111, 45));
-        SalesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalesButtonActionPerformed(evt);
-            }
-        });
-
-        TopProductsButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        TopProductsButton.setText("USUARIOS");
-        TopProductsButton.setBorder(new javax.swing.border.MatteBorder(null));
-        TopProductsButton.setMaximumSize(new java.awt.Dimension(111, 45));
-        TopProductsButton.setMinimumSize(new java.awt.Dimension(111, 45));
-        TopProductsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TopProductsButtonActionPerformed(evt);
-            }
-        });
-
-        aboutButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        aboutButton.setText("PRODUCTOS");
-        aboutButton.setBorder(new javax.swing.border.MatteBorder(null));
-        aboutButton.setMaximumSize(new java.awt.Dimension(111, 45));
-        aboutButton.setMinimumSize(new java.awt.Dimension(111, 45));
-        aboutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutButtonActionPerformed(evt);
-            }
-        });
-
-        progressButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        progressButton.setText("INVENTARIO");
-        progressButton.setBorder(new javax.swing.border.MatteBorder(null));
-        progressButton.setMaximumSize(new java.awt.Dimension(111, 45));
-        progressButton.setMinimumSize(new java.awt.Dimension(111, 45));
-        progressButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                progressButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel1.setText("CATEGORIAS");
-
-        javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
-        categoriesPanel.setLayout(categoriesPanelLayout);
-        categoriesPanelLayout.setHorizontalGroup(
-            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(categoriesPanelLayout.createSequentialGroup()
-                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(categoriesPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(categoriesPanelLayout.createSequentialGroup()
-                                .addComponent(progressButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(categoriesPanelLayout.createSequentialGroup()
-                                .addComponent(SalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TopProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(categoriesPanelLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        categoriesPanelLayout.setVerticalGroup(
-            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(categoriesPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SalesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(TopProductsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(aboutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(progressButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         viewResultsPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         title.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         title.setText("VENTAS");
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel2.setText("Mes");
-
-        monthCombo.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Año");
@@ -190,7 +91,7 @@ public class BalanceGui extends javax.swing.JPanel {
         yearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2011", "2012", "2013" }));
 
         visualizationCombo.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        visualizationCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semanal", "Mensual", "Anual" }));
+        visualizationCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mensual", "Anual" }));
         visualizationCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 visualizationComboItemStateChanged(evt);
@@ -207,11 +108,7 @@ public class BalanceGui extends javax.swing.JPanel {
         SettingsPanelLayout.setHorizontalGroup(
             SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SettingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(160, 160, 160)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,8 +120,6 @@ public class BalanceGui extends javax.swing.JPanel {
         SettingsPanelLayout.setVerticalGroup(
             SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel2)
-                .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel3)
                 .addComponent(jLabel4)
                 .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,15 +171,17 @@ public class BalanceGui extends javax.swing.JPanel {
         viewResultsPanel.setLayout(viewResultsPanelLayout);
         viewResultsPanelLayout.setHorizontalGroup(
             viewResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewResultsPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(viewResultsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         viewResultsPanelLayout.setVerticalGroup(
             viewResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewResultsPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 355, Short.MAX_VALUE))
+                .addContainerGap(358, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -292,60 +189,55 @@ public class BalanceGui extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(categoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(viewResultsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(categoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewResultsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 169, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TopProductsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TopProductsButtonActionPerformed
-       
-    }//GEN-LAST:event_TopProductsButtonActionPerformed
-
-    private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
-     
-    }//GEN-LAST:event_aboutButtonActionPerformed
-
-    private void progressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progressButtonActionPerformed
-       
-    }//GEN-LAST:event_progressButtonActionPerformed
-
-    private void SalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalesButtonActionPerformed
-//        this.balanceControl.findTotalSalesForMonth(2011);
-        setViewResultPanel();
-//        this.balanceControl.findSalesForYear(2000,2013);
-        //this.balanceControl.findSalesForWeek(6, 2013);
-    }//GEN-LAST:event_SalesButtonActionPerformed
 
     private void visualizationComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizationComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_visualizationComboActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        int month= monthCombo.getSelectedIndex();
-        List<ViewConsolidadoMensual> SalesFotMonth;
+        //int month= monthCombo.getSelectedIndex();
+        List<ViewConsolidadoMensual> SalesForMonth;
+        List<ViewConsolidadoAnual> SalesForYear;
         int year= Integer.parseInt(""+yearCombo.getSelectedItem());
         if(this.visualizationCombo.getSelectedItem().equals("Anual")){
-            this.monthCombo.setEnabled(false);
-            this.yearCombo.setEnabled(false);
+            SalesForYear=balanceControl.getSalesForYear();
+            DefaultCategoryDataset dataset= new DefaultCategoryDataset();
+            String Sales = "ventas";
+            String[][] years={{"2011","n","0"},{"2012","n","0"},{"2013","n","0"}};
+            for (ViewConsolidadoAnual va:SalesForYear){
+                if (va.getAño()==2011){
+                     years[1][1]="y";
+                     years[1][2]=""+va.getTotal();
+                }else if (va.getAño()==2012){
+                     years[2][1]="y";
+                     years[2][2]=""+va.getTotal();
+                }else if (va.getAño()==2013){
+                     years[2][1]="y";
+                     years[2][2]=""+va.getTotal();
+                }     
+            }
+            for (int i = 0; i < 3; i++) {
+                Double SalesTotal = Double.parseDouble(years[i][2]);
+                dataset.setValue(SalesTotal, Sales, years[i][0]);
+            }
+            createPlot(dataset);
         }else if(this.visualizationCombo.getSelectedItem().equals("Mensual")){
-            SalesFotMonth = balanceControl.getSalesForMonth(year);
+            SalesForMonth = balanceControl.getSalesForMonth(year);
             DefaultCategoryDataset dataset= new DefaultCategoryDataset();
             String Sales = "ventas";
             String[][] months={{"","n","0"},{"Enero","n","0"},{"Febrero","n","0"},{"Marzo","n","0"},{"Abril","n","0"},{"Mayo","n","0"},{"Junio","n","0"},
                 {"Julio","n","0"},{"Agosto","n","0"},{"Septiembre","n","0"},{"Octubre","n","0"},{"Noviembre","n","0"},{"diciembre","n","0"}};
-            for(ViewConsolidadoMensual vm:SalesFotMonth){
+            for(ViewConsolidadoMensual vm:SalesForMonth){
                months[vm.getMes()][1]="y";
                months[vm.getMes()][2]=""+vm.getTotal();
             }
@@ -353,9 +245,9 @@ public class BalanceGui extends javax.swing.JPanel {
                 Double SalesTotal = Double.parseDouble(months[i][2]);
                 dataset.setValue(SalesTotal, Sales, months[i][0]);
             }
-            Plot(dataset,""+year);
+            createPlot(dataset,""+year);
         }else{
-            this.monthCombo.setEnabled(true);
+           // this.monthCombo.setEnabled(true);
             this.yearCombo.setEnabled(true);
         }
 
@@ -363,33 +255,25 @@ public class BalanceGui extends javax.swing.JPanel {
 
     private void visualizationComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizationComboItemStateChanged
         if(this.visualizationCombo.getSelectedItem().equals("Anual")){
-            this.monthCombo.setEnabled(false);
+           // this.monthCombo.setEnabled(false);
             this.yearCombo.setEnabled(false);
         }else if(this.visualizationCombo.getSelectedItem().equals("Mensual")){
-            this.monthCombo.setEnabled(false);
+           // this.monthCombo.setEnabled(false);
         }else{
-            this.monthCombo.setEnabled(true);
+           // this.monthCombo.setEnabled(true);
             this.yearCombo.setEnabled(true);
         }
         
     }//GEN-LAST:event_visualizationComboItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SalesButton;
     private javax.swing.JButton SearchButton;
     private javax.swing.JPanel SettingsPanel;
-    private javax.swing.JButton TopProductsButton;
-    private javax.swing.JButton aboutButton;
-    private javax.swing.JPanel categoriesPanel;
     private javax.swing.JPanel chartPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JComboBox monthCombo;
-    private javax.swing.JButton progressButton;
     private javax.swing.JLabel title;
     private javax.swing.JPanel viewResultsPanel;
     private javax.swing.JComboBox visualizationCombo;
@@ -401,8 +285,9 @@ public class BalanceGui extends javax.swing.JPanel {
     }
 
     private void setViewResultPanel() {
-        this.categoriesPanel.setVisible(false);
+        
         this.viewResultsPanel.setVisible(true);
+        this.jPanel2.setVisible(true);
                 
 //        this.categoriesPanel.removeAll();
 //        this.categoriesPanel.add(panel,new BorderLayout());
@@ -424,17 +309,35 @@ public class BalanceGui extends javax.swing.JPanel {
                
     }
 
-    private void Plot(DefaultCategoryDataset dataset,String year) {
+    private void createPlot(DefaultCategoryDataset dataset,String year) {
         JFreeChart barChart = ChartFactory.createBarChart(
-         "Uso de los Taxis",        //Título de la gráfica
-         "Ventas totales ($)",           //leyenda Eje horizontal
-         "Meses",      //leyenda Eje vertical
+         year,        //Título de la gráfica
+         "Meses",           //leyenda Eje horizontal
+         "Ventas totales ($)",      //leyenda Eje vertical
          dataset,                   //datos
          PlotOrientation.VERTICAL,  //orientación
          true,                      //incluir leyendas
          true,                      //mostrar tooltips
          true); 
+         graficarDatos(barChart);
         
+    }
+    
+    private void createPlot(DefaultCategoryDataset dataset) {
+        JFreeChart barChart = ChartFactory.createBarChart(
+         "historia",        //Título de la gráfica
+         "Años",           //leyenda Eje horizontal
+         "Ventas totales ($)",      //leyenda Eje vertical
+         dataset,                   //datos
+         PlotOrientation.VERTICAL,  //orientación
+         true,                      //incluir leyendas
+         true,                      //mostrar tooltips
+         true); 
+         graficarDatos(barChart);
+        
+    }
+    
+    private void graficarDatos(JFreeChart barChart){
         ChartPanel chart=new ChartPanel(barChart);
         
         this.chartPanel.setVisible(false);       
@@ -448,6 +351,7 @@ public class BalanceGui extends javax.swing.JPanel {
         chart.repaint();
         this.repaint();
     }
+    
 
     
 }

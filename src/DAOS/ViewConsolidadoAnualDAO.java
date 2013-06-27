@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -140,4 +141,13 @@ public class ViewConsolidadoAnualDAO implements Serializable {
         }
     }
     
+    public List<ViewConsolidadoAnual> findAll(){
+        EntityManager em=getEntityManager();
+        try {
+            Query q= em.createNamedQuery("ViewConsolidadoAnual.findAll");
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }
