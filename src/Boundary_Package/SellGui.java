@@ -292,7 +292,9 @@ public class SellGui extends javax.swing.JPanel {
 
         if (QuantyFormattedTextField3.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Tienes que llenar Cantidad", "advertencia", JOptionPane.OK_OPTION);
-        } else if (IdFormattedTextField.getText().equals("") && NameTextField1.getText().equals("")) {
+        } else if (QuantyFormattedTextField3.getText().equals("0")) {
+            JOptionPane.showMessageDialog(null, "Se debe ingresar por lo menos un producto", "advertencia", JOptionPane.OK_OPTION);
+        }else if (IdFormattedTextField.getText().equals("") && NameTextField1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Faltan Datos por llenar", "advertencia", JOptionPane.OK_OPTION);
         } else if (IdFormattedTextField.getText().equals("") && !NameTextField1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Faltan Datos por llenar", "advertencia", JOptionPane.OK_OPTION);

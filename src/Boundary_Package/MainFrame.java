@@ -390,8 +390,8 @@ public class MainFrame extends javax.swing.JFrame {
         /*
          * Create and display the form
          */
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenGraphiteGlassSkin");
+//        JFrame.setDefaultLookAndFeelDecorated(true);
+//        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenGraphiteGlassSkin");
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

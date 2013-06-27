@@ -336,7 +336,12 @@ public class InvGui extends javax.swing.JPanel {
             Long identi = Long.parseLong(this.IdjFormattedTextField.getText());
 
             if (!ProductNamejFormattedTextField.getText().equals("")) {
-                tableModel.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
+                try {
+                    tableModel.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Cantidad Invalida", "advertencia", JOptionPane.OK_OPTION);
+                    return;
+                }
                 TableInv.updateUI();
                 cleanFields();
 
