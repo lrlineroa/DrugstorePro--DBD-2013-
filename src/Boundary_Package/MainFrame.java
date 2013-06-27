@@ -450,10 +450,10 @@ public class MainFrame extends javax.swing.JFrame {
         BussinesControl control = new BussinesControl();
         List<ViewBitacora> bitacora = control.getAllBitacora();
         Object[] row = new Object[5];
-        SimpleDateFormat format = new SimpleDateFormat("");
+        SimpleDateFormat format = new SimpleDateFormat("MMMM d HH:mm:ss yyyy");
         for (ViewBitacora registroB : bitacora) {
             row[0] = registroB.getIdBitacora().toString();
-            row[1] = registroB.getFecha();
+            row[1] = format.format(registroB.getFecha());
             row[2] = registroB.getTipoAccion();
             row[3] = registroB.getTabla();
             row[4] = registroB.getUsuario();
