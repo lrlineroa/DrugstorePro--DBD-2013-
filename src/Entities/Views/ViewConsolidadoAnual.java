@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ViewConsolidadoAnual.findAll", query = "SELECT v FROM ViewConsolidadoAnual v"),
     @NamedQuery(name = "ViewConsolidadoAnual.findByIdConsAnual", query = "SELECT v FROM ViewConsolidadoAnual v WHERE v.idConsAnual = :idConsAnual"),
-    @NamedQuery(name = "ViewConsolidadoAnual.findByA\u00f1o", query = "SELECT v FROM ViewConsolidadoAnual v WHERE v.a\u00f1o = :a\u00f1o"),
+    @NamedQuery(name = "ViewConsolidadoAnual.findByAño", query = "SELECT v FROM ViewConsolidadoAnual v WHERE v.año = :año"),
     @NamedQuery(name = "ViewConsolidadoAnual.findByTotal", query = "SELECT v FROM ViewConsolidadoAnual v WHERE v.total = :total")})
 public class ViewConsolidadoAnual implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class ViewConsolidadoAnual implements Serializable {
     @Column(name = "ID_CONS_ANUAL")
     private Integer idConsAnual;
     @Basic(optional = false)
-    @Column(name = "A\u00d1O")
+    @Column(name = "AÑO")
     private int año;
     @Basic(optional = false)
     @Column(name = "TOTAL")

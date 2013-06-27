@@ -85,6 +85,18 @@ public class DAOFactory {
     public ViewCargoDAO getViewCargoDAO() {
         return new ViewCargoDAO(emf);
     }
+    
+    public ViewConsolidadoAnualDAO getViewConsolidadoAnualDAO(){
+        return new ViewConsolidadoAnualDAO(emf);
+    }
+    
+    public ViewConsolidadoMensualDAO getViewConsolidadoMensualDAO(){
+        return new ViewConsolidadoMensualDAO(emf);
+    }
+    
+    public ViewConsolidadoSemanalDAO getViewConsolidadoSemanalDAO(){
+        return new ViewConsolidadoSemanalDAO(emf);
+    }
 
     public void newConection(String rdbms, String user, String pass) throws DataBaseException {
         String PU = "DrugstorePro--DBD-2013-PU";
