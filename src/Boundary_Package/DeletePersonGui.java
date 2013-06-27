@@ -11,6 +11,10 @@ import Entities.Views.ViewPersona;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import utilities.helpers.RegexFormatter;
+import utilities.helpers.RegularExpression;
 
 /**
  *
@@ -26,8 +30,14 @@ public class DeletePersonGui extends javax.swing.JPanel {
     public DeletePersonGui() {
         initComponents();
         ComboBoxFill();
+        Integrity();
         DataPanel.setVisible(false);
         ModifyPanel.setVisible(false);
+        nombreTF.setEditable(false);
+        apellidoTF.setEditable(false);
+        telefonoTF.setEditable(false);
+        cargoTF.setEditable(false);
+        
     }
 
     /**
@@ -42,7 +52,6 @@ public class DeletePersonGui extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         DeletePerson = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        CedulaTF = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         DataPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,13 +59,13 @@ public class DeletePersonGui extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         eliminarBT = new javax.swing.JButton();
-        nombreTF = new javax.swing.JTextField();
-        apellidoTF = new javax.swing.JTextField();
-        cargoTF = new javax.swing.JTextField();
-        telefonoTF = new javax.swing.JTextField();
+        nombreTF = new javax.swing.JFormattedTextField();
+        apellidoTF = new javax.swing.JFormattedTextField();
+        cargoTF = new javax.swing.JFormattedTextField();
+        telefonoTF = new javax.swing.JFormattedTextField();
+        CedulaTF = new javax.swing.JFormattedTextField();
         ModifyPerson = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        McedulaTF = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         ModifyPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -66,21 +75,16 @@ public class DeletePersonGui extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         MListRol = new javax.swing.JComboBox();
-        MnombreTF = new javax.swing.JTextField();
-        MapellidoTF = new javax.swing.JTextField();
-        MtelTF = new javax.swing.JTextField();
-        MdireccionTF = new javax.swing.JTextField();
-        McorreoTF = new javax.swing.JTextField();
         MActualizarBT = new javax.swing.JButton();
+        MnombreTF = new javax.swing.JFormattedTextField();
+        MapellidoTF = new javax.swing.JFormattedTextField();
+        MtelTF = new javax.swing.JFormattedTextField();
+        MdireccionTF = new javax.swing.JFormattedTextField();
+        McorreoTF = new javax.swing.JFormattedTextField();
+        McedulaTF = new javax.swing.JFormattedTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("CEDULA");
-
-        CedulaTF.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                CedulaTFFocusLost(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
@@ -108,28 +112,22 @@ public class DeletePersonGui extends javax.swing.JPanel {
         DataPanelLayout.setHorizontalGroup(
             DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DataPanelLayout.createSequentialGroup()
+                .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DataPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DataPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(telefonoTF))
-                    .addGroup(DataPanelLayout.createSequentialGroup()
-                        .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apellidoTF)
-                            .addComponent(cargoTF))))
-                .addGap(0, 119, Short.MAX_VALUE))
+                    .addComponent(nombreTF)
+                    .addComponent(apellidoTF)
+                    .addComponent(cargoTF)
+                    .addComponent(telefonoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(DataPanelLayout.createSequentialGroup()
                 .addGap(201, 201, 201)
                 .addComponent(eliminarBT)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         DataPanelLayout.setVerticalGroup(
             DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,6 +153,12 @@ public class DeletePersonGui extends javax.swing.JPanel {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        CedulaTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CedulaTFFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout DeletePersonLayout = new javax.swing.GroupLayout(DeletePerson);
         DeletePerson.setLayout(DeletePersonLayout);
         DeletePersonLayout.setHorizontalGroup(
@@ -166,7 +170,7 @@ public class DeletePersonGui extends javax.swing.JPanel {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DeletePersonLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CedulaTF)))
                 .addContainerGap())
         );
@@ -186,13 +190,8 @@ public class DeletePersonGui extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Eliminar", DeletePerson);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("CEDULA");
-
-        McedulaTF.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                McedulaTFFocusLost(evt);
-            }
-        });
 
         jLabel7.setText("Nombre");
 
@@ -232,16 +231,16 @@ public class DeletePersonGui extends javax.swing.JPanel {
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(ModifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MtelTF)
-                    .addComponent(MnombreTF)
-                    .addComponent(MapellidoTF)
-                    .addComponent(MdireccionTF)
-                    .addComponent(McorreoTF)
                     .addGroup(ModifyPanelLayout.createSequentialGroup()
                         .addComponent(MListRol, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                        .addComponent(MActualizarBT)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(MActualizarBT))
+                    .addComponent(MnombreTF)
+                    .addComponent(MapellidoTF)
+                    .addComponent(MtelTF)
+                    .addComponent(MdireccionTF)
+                    .addComponent(McorreoTF))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ModifyPanelLayout.setVerticalGroup(
             ModifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,6 +276,12 @@ public class DeletePersonGui extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        McedulaTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                McedulaTFFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout ModifyPersonLayout = new javax.swing.GroupLayout(ModifyPerson);
         ModifyPerson.setLayout(ModifyPersonLayout);
         ModifyPersonLayout.setHorizontalGroup(
@@ -288,7 +293,8 @@ public class DeletePersonGui extends javax.swing.JPanel {
                     .addGroup(ModifyPersonLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(McedulaTF))
+                        .addComponent(McedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 28, Short.MAX_VALUE))
                     .addComponent(ModifyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -336,8 +342,25 @@ public class DeletePersonGui extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_eliminarBTActionPerformed
 
+    private void MActualizarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MActualizarBTActionPerformed
+        //TODA LA LOGICA DE ACTUALIZAR
+        ViewPersona p = new ViewPersona();
+        p.setApellidoPersona(MapellidoTF.getText());
+        p.setDireccionPersona(MdireccionTF.getText());
+        p.setIdCargo(registerControl.traerCargo((String)MListRol.getSelectedItem()));
+        p.setIdDrogueria(1);
+        p.setMailPersona(McorreoTF.getText());
+        p.setNombrePersona(MnombreTF.getText());
+        p.setTelefonoPersona(Integer.valueOf(MtelTF.getText()));
+        p.setNombrePersona(person.getNombreDeUsuario());
+        p.setPassword(person.getPassword());
+        
+        registerControl.UpdatePerson(p);
+        
+        
+    }//GEN-LAST:event_MActualizarBTActionPerformed
+
     private void CedulaTFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CedulaTFFocusLost
-        // TODO add your handling code here:
         if(!this.CedulaTF.getText().isEmpty()){
              person = registerControl.searchById(Integer.parseInt(this.CedulaTF.getText()));
         
@@ -355,11 +378,13 @@ public class DeletePersonGui extends javax.swing.JPanel {
             
             
             }
+            else{
+            JOptionPane.showMessageDialog(null, "Cedula invalida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_CedulaTFFocusLost
 
     private void McedulaTFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_McedulaTFFocusLost
-        // TODO add your handling code here:
         if(!this.McedulaTF.getText().isEmpty()){
              person = registerControl.searchById(Integer.parseInt(this.McedulaTF.getText()));
         
@@ -379,26 +404,12 @@ public class DeletePersonGui extends javax.swing.JPanel {
                 this.McorreoTF.setText(correo);
                 
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Cedula invalida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
     }//GEN-LAST:event_McedulaTFFocusLost
-
-    private void MActualizarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MActualizarBTActionPerformed
-        //TODA LA LOGICA DE ACTUALIZAR
-        ViewPersona p = new ViewPersona();
-        p.setApellidoPersona(MapellidoTF.getText());
-        p.setDireccionPersona(MdireccionTF.getText());
-        p.setIdCargo(registerControl.traerCargo((String)MListRol.getSelectedItem()));
-        p.setIdDrogueria(1);
-        p.setMailPersona(McorreoTF.getText());
-        p.setNombrePersona(MnombreTF.getText());
-        p.setTelefonoPersona(Integer.valueOf(MtelTF.getText()));
-        p.setNombrePersona(person.getNombreDeUsuario());
-        p.setPassword(person.getPassword());
-        
-        registerControl.UpdatePerson(p);
-        
-        
-    }//GEN-LAST:event_MActualizarBTActionPerformed
 
     public void ComboBoxFill(){
         boxModel.addElement("Seleccione");
@@ -408,22 +419,24 @@ public class DeletePersonGui extends javax.swing.JPanel {
            MListRol.setModel(boxModel);
     }
     
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CedulaTF;
+    private javax.swing.JFormattedTextField CedulaTF;
     private javax.swing.JPanel DataPanel;
     private javax.swing.JPanel DeletePerson;
     private javax.swing.JButton MActualizarBT;
     private javax.swing.JComboBox MListRol;
-    private javax.swing.JTextField MapellidoTF;
-    private javax.swing.JTextField McedulaTF;
-    private javax.swing.JTextField McorreoTF;
-    private javax.swing.JTextField MdireccionTF;
-    private javax.swing.JTextField MnombreTF;
+    private javax.swing.JFormattedTextField MapellidoTF;
+    private javax.swing.JFormattedTextField McedulaTF;
+    private javax.swing.JFormattedTextField McorreoTF;
+    private javax.swing.JFormattedTextField MdireccionTF;
+    private javax.swing.JFormattedTextField MnombreTF;
     private javax.swing.JPanel ModifyPanel;
     private javax.swing.JPanel ModifyPerson;
-    private javax.swing.JTextField MtelTF;
-    private javax.swing.JTextField apellidoTF;
-    private javax.swing.JTextField cargoTF;
+    private javax.swing.JFormattedTextField MtelTF;
+    private javax.swing.JFormattedTextField apellidoTF;
+    private javax.swing.JFormattedTextField cargoTF;
     private javax.swing.JButton eliminarBT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -440,7 +453,16 @@ public class DeletePersonGui extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField nombreTF;
-    private javax.swing.JTextField telefonoTF;
+    private javax.swing.JFormattedTextField nombreTF;
+    private javax.swing.JFormattedTextField telefonoTF;
     // End of variables declaration//GEN-END:variables
+
+    private void Integrity() {
+        new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install( McedulaTF);
+        new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install( CedulaTF);
+        new RegexFormatter(RegularExpression.WORDS).install( MnombreTF);
+        new RegexFormatter(RegularExpression.WORDS).install( MapellidoTF);
+        new RegexFormatter(RegularExpression.NATURAL_NUMBERS).install( MtelTF);
+        new RegexFormatter(RegularExpression.EMAIL).install( McorreoTF);
+    }
 }
