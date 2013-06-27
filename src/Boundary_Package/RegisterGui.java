@@ -316,7 +316,7 @@ public class RegisterGui extends javax.swing.JPanel {
     }
 
     public boolean verifyPass() {
-        return this.passwordJTFField.getText().equals(this.pass2Field.getText());
+        return this.passwordJTFField.getPassword().equals(this.pass2Field.getPassword());
     }
 
     public boolean EmptyFields() {
@@ -341,10 +341,10 @@ public class RegisterGui extends javax.swing.JPanel {
         if (this.mailHostFormattedTextField.getText().equals("")) {
             return true;
         }
-        if (this.passwordJTFField.getText().equals("")) {
+        if (new String(this.passwordJTFField.getPassword()).equals("")) {
             return true;
         }
-        if (this.pass2Field.getText().equals("")) {
+        if (new String(this.pass2Field.getPassword()).equals("")) {
             return true;
         }
         if (this.RolComboBox.getSelectedItem().equals("Seleccione:")) {

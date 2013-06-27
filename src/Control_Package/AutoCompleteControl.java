@@ -26,7 +26,6 @@ public class AutoCompleteControl {
                 if (DatumtoSearch.equals(u.substring(0, DatumtoSearch.length()))) {
                     return Vector.indexOf(u);
                 }
-
             }
         } catch (NullPointerException exc) {
             String message = exc.getMessage();
