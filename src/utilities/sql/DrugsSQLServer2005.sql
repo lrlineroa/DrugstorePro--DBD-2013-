@@ -3372,3 +3372,40 @@ create trigger trg_upd_usoMedic ON USO_MEDICAMENTO AFTER UPDATE AS
     insert into BITACORA(FECHA,TIPO_ACCION,TABLA,USUARIO) values(GETDATE(),'UPDATE','USO_MEDICAMENTO',USER)
 go
 
+
+/*==============================================================*/
+/* Table: BITACORA RESPALDO                                     */
+/*==============================================================*/
+create table BITACORARESPALDO (
+   ID_BITACORARESPALDO  int                  identity,
+   FECHA                datetime             not null,
+   TIPO_ACCION          char(20)             not null,
+   USUARIO              varchar(25)          null,
+   constraint PK_BITACORARESPALDO primary key nonclustered (ID_BITACORARESPALDO)
+)
+go
+
+
+
+/*==============================================================*/
+/* View: VIEW_BITACORARESPALDO                                  */
+/*==============================================================*/
+create view VIEW_BITACORARESPALDO as
+select * from BITACORARESPALDO
+go
+
+
+create trigger trg_del_bit ON BITACORA AFTER DELETE 
+as
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(GETDATE(),'DELETE',USER)
+go
+
+create trigger trg_upd_bit ON BITACORA AFTER UPDATE
+as
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(GETDATE(),'UPDATE',USER)
+go
+
+create trigger trg_ins_bit ON BITACORA AFTER INSERT 
+as
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(GETDATE(),'INSERT',USER)
+go

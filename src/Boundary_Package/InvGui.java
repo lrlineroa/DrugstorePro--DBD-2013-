@@ -28,7 +28,6 @@ public class InvGui extends javax.swing.JPanel {
     private BussinesControl buscon = new BussinesControl();
     private BussinesControl buscontrol = new BussinesControl();
     private ViewMedicamento producto = new ViewMedicamento();
-    
     private AutoCompleteControl aCControl = new AutoCompleteControl();
     private String resultado;
 
@@ -41,7 +40,7 @@ public class InvGui extends javax.swing.JPanel {
      */
     public InvGui() {
         initComponents();
-        
+
         this.TableInv.setModel(tableModel);
         fillButtons();
         Integrity();
@@ -105,20 +104,18 @@ public class InvGui extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(378, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(acceptjButton)
-                        .addGap(116, 116, 116))))
+                        .addComponent(acceptjButton)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(acceptjButton)
                 .addContainerGap())
         );
@@ -129,8 +126,7 @@ public class InvGui extends javax.swing.JPanel {
             reportjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportjDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         reportjDialogLayout.setVerticalGroup(
             reportjDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +136,7 @@ public class InvGui extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", 0, 0, new java.awt.Font("Verdana", 0, 18))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 18))); // NOI18N
         setPreferredSize(new java.awt.Dimension(1240, 640));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -401,29 +397,30 @@ public class InvGui extends javax.swing.JPanel {
     private void ReportjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportjButtonActionPerformed
         // TODO add your handling code here:
         this.reportjTable.setModel(tablereport);
-        
-        
-       //tablereport.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
-         //reportjTable.updateUI();
+
+
+        //tablereport.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
+        //reportjTable.updateUI();
         reportjDialog.setVisible(true);
-        
-        reportjDialog.setTitle("reporte-inventario");
-        reportjDialog.setBounds(100, 100, 750, 429);
-        List<ViewProductosDrogueria> productos= buscontrol.getAllProducts();
-        
+
+        reportjDialog.setTitle("Reporte Inventario");
+        reportjDialog.setSize(reportjDialog.getPreferredSize());
+        reportjDialog.setLocationRelativeTo(null);
+        List<ViewProductosDrogueria> productos = buscontrol.getAllProducts();
+
         while (!tablereport.getProducts().isEmpty()) {
-         tablereport.delete(0);
-         reportjTable.updateUI();
-       
+            tablereport.delete(0);
+            reportjTable.updateUI();
+
         }
-        
-        for (ViewProductosDrogueria p:productos){
-        tablereport.add(new RegReport(p.getIdProducto(),p.getNombreProducto(),p.getCantidadProducto(),tablereport));
-        reportjTable.updateUI();
+
+        for (ViewProductosDrogueria p : productos) {
+            tablereport.add(new RegReport(p.getIdProducto(), p.getNombreProducto(), p.getCantidadProducto(), tablereport));
+            reportjTable.updateUI();
         }
-        
-        
-        
+
+
+
     }//GEN-LAST:event_ReportjButtonActionPerformed
 
     private void acceptjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptjButtonActionPerformed
@@ -432,12 +429,9 @@ public class InvGui extends javax.swing.JPanel {
         while (!tablereport.getProducts().isEmpty()) {
             tablereport.delete(0);
             reportjTable.updateUI();
-       
-              
         }
-        
-    }//GEN-LAST:event_acceptjButtonActionPerformed
 
+    }//GEN-LAST:event_acceptjButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantjFormattedTextField;
     private javax.swing.JFormattedTextField IdjFormattedTextField;
@@ -480,8 +474,6 @@ public class InvGui extends javax.swing.JPanel {
         tablecol.setPreferredWidth(40);
 
     }
-    
-    
 
     private void cleanFields() {
         this.IdjFormattedTextField.setText("");
