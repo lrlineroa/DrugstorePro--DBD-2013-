@@ -61,7 +61,7 @@ public class BalanceControl {
         }else if(DaysofMonths[month]==30){
             int i=1;
             while(i<30){
-               if(i!=25){
+               if(i!=22){
                    int[] days={i,i+6};
                    price=DAOFactory.getInstance().getViewFacturaDAO().findSalesForWeek(new Date(year,month, i),new Date(year,month, i+6));
                    week.setWeek(days);
