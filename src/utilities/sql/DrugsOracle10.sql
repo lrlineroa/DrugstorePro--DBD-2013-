@@ -748,7 +748,8 @@ create table MEDICAMENTO  (
    POSOLOGIA_PRODUCTO   VARCHAR2(25),
    ID_TIPO_PRODUCTO     INTEGER                         not null,
    ID_PROVEEDOR         INTEGER                         not null,
-   VENTA_LIBRE          SMALLINT                        not null
+   VENTA_LIBRE          SMALLINT                        not null,
+   IVA					INTEGER
 )
 /
 

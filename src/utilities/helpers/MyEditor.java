@@ -107,14 +107,18 @@ public class MyEditor extends AbstractCellEditor implements TableCellEditor,Acti
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        
+        RegVenta regElim = null;
         tableModel=(VentaTableModel) table.getModel();
-        sellgui.SumTotal(Float.parseFloat(tableModel.getValueAt(table.getEditingRow(), 4).toString()),false);
+        for (RegVenta rv : tableModel.getProducts()){
+            if (rv.getId() == Float.parseFloat(tableModel.getValueAt(table.getEditingRow(), 0).toString())){
+                regElim = rv;
+                break;
+            }
+        }
+        sellgui.SumTotal(regElim.getPriceUnit(), regElim.getQuantity(), regElim.getIva(), regElim.getPriceAll(),false);
         tableModel.delete(table.getEditingRow());
         table.updateUI();
-        
-        
-        
+    
     }
 
     

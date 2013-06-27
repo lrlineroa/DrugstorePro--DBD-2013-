@@ -1150,6 +1150,7 @@ create table MEDICAMENTO (
    ID_TIPO_PRODUCTO     int                            not null,
    ID_PROVEEDOR         int                            not null,
    VENTA_LIBRE          smallint                       not null,
+   IVA					int                            null,
    constraint PK_MEDICAMENTO primary key nonclustered (ID_PRODUCTO)
 )
 go

@@ -300,40 +300,45 @@ public class SellGui extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Faltan Datos por llenar", "advertencia", JOptionPane.OK_OPTION);
         } else if (!IdFormattedTextField.getText().equals("")) {
             Long identi = Long.parseLong(this.IdFormattedTextField.getText());
+            final int cantidad = Integer.parseInt(this.QuantyFormattedTextField3.getText());
 
             if (!NameTextField1.getText().equals("")) {
-                resultado = buscon.verifyProductToSell(identi, NameTextField1.getText(), Integer.parseInt(this.QuantyFormattedTextField3.getText()));
-                float price = buscon.searchProductByIdAndName(identi.intValue(), NameTextField1.getText()).getPrecioProducto();
-                float totalPrice = price * Integer.parseInt(this.QuantyFormattedTextField3.getText());
+                resultado = buscon.verifyProductToSell(identi, NameTextField1.getText(), cantidad);
+                final ViewMedicamento producto = buscon.searchProductByIdAndName(identi.intValue(), NameTextField1.getText());
+                float price = producto.getPrecioProducto();
+                float totalPrice = price * cantidad;
+                float iva = producto.getIva();
                 if (!resultado.equals("0")) {
                     JOptionPane.showMessageDialog(null, resultado, "advertencia", JOptionPane.OK_OPTION);
                     if (resultado.toCharArray()[0] == 'Q') {
-                        tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), Integer.parseInt(this.QuantyFormattedTextField3.getText()), price, totalPrice, new JButton(), new JButton(), tableModel));
-                        SumTotal(totalPrice, true);
+                        tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), cantidad, price, totalPrice, new JButton(), new JButton(), tableModel, iva));
+                        SumTotal(price, cantidad, iva, totalPrice, true);
                         TableProducts.updateUI();
                         cleanFields();
                     }
                 } else {
-                    tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), Integer.parseInt(this.QuantyFormattedTextField3.getText()), price, totalPrice, new JButton(), new JButton(), tableModel));
-                    SumTotal(totalPrice, true);
+                    tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), cantidad, price, totalPrice, new JButton(), new JButton(), tableModel, iva));
+                    SumTotal(price, cantidad, iva, totalPrice, true);
                     TableProducts.updateUI();
                     cleanFields();
                 }
             } else if (NameTextField1.getText().equals("")) {
-                resultado = buscon.verifyProductToSell(identi, Integer.parseInt(this.QuantyFormattedTextField3.getText()));
-                float price = buscon.searchProductById(identi).getPrecioProducto();
-                float totalPrice = price * Integer.parseInt(this.QuantyFormattedTextField3.getText());
+                resultado = buscon.verifyProductToSell(identi, cantidad);
+                final ViewMedicamento producto = buscon.searchProductByIdAndName(identi.intValue(), NameTextField1.getText());
+                float price = producto.getPrecioProducto();
+                float totalPrice = price * cantidad;
+                float iva = producto.getIva();
                 if (!resultado.equals("0")) {
                     JOptionPane.showMessageDialog(null, resultado, "advertencia", JOptionPane.OK_OPTION);
                     if (resultado.toCharArray()[0] == 'Q') {
-                        tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), NameTextField1.getText(), Integer.parseInt(this.QuantyFormattedTextField3.getText()), price, totalPrice, new JButton(), new JButton(), tableModel));
-                        SumTotal(totalPrice, true);
+                        tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), NameTextField1.getText(), cantidad, price, totalPrice, new JButton(), new JButton(), tableModel, iva));
+                        SumTotal(price, cantidad, iva, totalPrice, true);
                         TableProducts.updateUI();
                         cleanFields();
                     }
                 } else {
-                    tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), Integer.parseInt(this.QuantyFormattedTextField3.getText()), price, totalPrice, new JButton(), new JButton(), tableModel));
-                    SumTotal(totalPrice, true);
+                    tableModel.add(new RegVenta(Long.parseLong(this.IdFormattedTextField.getText()), this.NameTextField1.getText(), cantidad, price, totalPrice, new JButton(), new JButton(), tableModel, iva));
+                    SumTotal(price, cantidad, iva, totalPrice, true);
                     TableProducts.updateUI();
                     cleanFields();
                 }
@@ -505,20 +510,20 @@ public class SellGui extends javax.swing.JPanel {
     }
     //
 
-    public void SumTotal(float totalPrice, boolean isaAdding) {
+    public void SumTotal(float price, int quantity, float iva, float totalPrice, boolean isaAdding) {
         if (isaAdding) {
             float sum = Float.parseFloat(TotalTextField.getText()) + totalPrice;
-            float sumWithoutIVA = sum * 0.84f;
-            float IVA = sum * 0.16f;
-            float Tot = sumWithoutIVA + IVA;
+            float sumWithoutIVA = Float.parseFloat(SubTotalTextField.getText()) + (totalPrice - (iva * quantity));
+            float IVA = Float.parseFloat(IVATextField.getText()) + (iva * quantity);
+            float Tot = sum;
             this.SubTotalTextField.setText("" + sumWithoutIVA);
             this.IVATextField.setText("" + IVA);
             this.TotalTextField.setText("" + Tot);
         } else {
             float sum = Float.parseFloat(TotalTextField.getText()) - totalPrice;
-            float sumWithoutIVA = sum * 0.84f;
-            float IVA = sum * 0.16f;
-            float Tot = sumWithoutIVA + IVA;
+            float sumWithoutIVA = Float.parseFloat(SubTotalTextField.getText()) - (totalPrice - (iva * quantity));
+            float IVA = Float.parseFloat(IVATextField.getText()) - (iva * quantity);
+            float Tot = sum;
             this.SubTotalTextField.setText("" + sumWithoutIVA);
             this.IVATextField.setText("" + IVA);
             this.TotalTextField.setText("" + Tot);
