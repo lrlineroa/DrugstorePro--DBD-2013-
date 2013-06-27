@@ -9,7 +9,9 @@ import Boundary_Package.SellGui;
 import Control_Package.AutoCompleteControl;
 import Control_Package.BussinesControl;
 import Entities.Views.ViewMedicamento;
+import Entities.Views.ViewProductosDrogueria;
 import java.awt.FlowLayout;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -17,20 +19,16 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import javax.swing.text.BadLocationException;
-import utilities.helpers.InventaryTableModel;
-import utilities.helpers.ReportTableModel;
-import utilities.helpers.MyEditor;
-import utilities.helpers.MyRender;
-import utilities.helpers.RegInventary;
-import utilities.helpers.RegReport;
-import utilities.helpers.RegexFormatter;
-import utilities.helpers.RegularExpression;
+import utilities.helpers.*;
 
 public class InvGui extends javax.swing.JPanel {
 
     private InventaryTableModel tableModel = new InventaryTableModel();
     private ReportTableModel tablereport = new ReportTableModel();
     private BussinesControl buscon = new BussinesControl();
+    private BussinesControl buscontrol = new BussinesControl();
+    private ViewMedicamento producto = new ViewMedicamento();
+    
     private AutoCompleteControl aCControl = new AutoCompleteControl();
     private String resultado;
 
@@ -404,11 +402,26 @@ public class InvGui extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.reportjTable.setModel(tablereport);
         
+        
        //tablereport.add(new RegInventary(identi, this.ProductNamejFormattedTextField.getText(), Integer.parseInt(CantjFormattedTextField.getText()), tableModel));
          //reportjTable.updateUI();
         reportjDialog.setVisible(true);
+        
         reportjDialog.setTitle("reporte-inventario");
         reportjDialog.setBounds(100, 100, 750, 429);
+        List<ViewProductosDrogueria> productos= buscontrol.getAllProducts();
+        
+        while (!tablereport.getProducts().isEmpty()) {
+         tablereport.delete(0);
+         reportjTable.updateUI();
+       
+        }
+        
+        for (ViewProductosDrogueria p:productos){
+        tablereport.add(new RegReport(p.getIdProducto(),p.getNombreProducto(),p.getCantidadProducto(),tablereport));
+        reportjTable.updateUI();
+        }
+        
         
         
     }//GEN-LAST:event_ReportjButtonActionPerformed
@@ -416,6 +429,13 @@ public class InvGui extends javax.swing.JPanel {
     private void acceptjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptjButtonActionPerformed
         // TODO add your handling code here:
         reportjDialog.setVisible(false);
+        while (!tablereport.getProducts().isEmpty()) {
+            tablereport.delete(0);
+            reportjTable.updateUI();
+       
+              
+        }
+        
     }//GEN-LAST:event_acceptjButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
