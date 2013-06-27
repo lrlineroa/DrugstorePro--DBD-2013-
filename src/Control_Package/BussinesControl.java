@@ -5,6 +5,7 @@
 package Control_Package;
 
 import DAOS.DAOFactory;
+import Entities.Views.ViewBitacora;
 import Entities.Views.ViewDrogueria;
 import Entities.Views.ViewFactura;
 import Entities.Views.ViewMedicamento;
@@ -143,5 +144,9 @@ public class BussinesControl {
 
     public ViewProveedor searchProveedorById(Integer idProveedor) {
         return DAOFactory.getInstance().getViewProveedorDAO().findViewProveedor(idProveedor);
+    }
+
+    public List<ViewBitacora> getAllBitacora() {
+        return DAOFactory.getInstance().getViewBitacoraDAO().findViewBitacoraEntities();
     }
 }

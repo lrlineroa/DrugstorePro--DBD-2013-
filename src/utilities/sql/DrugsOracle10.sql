@@ -1941,4 +1941,73 @@ begin
     end;
 /
 
- 
+                                                                     
+ /*--------*/                                                                    
+                                                                     
+                                             
+create table BITACORARESPALDO  (
+   ID_BITACORARESPALDO  INTEGER                         not null,
+   FECHA                DATE                            not null,
+   TIPO_ACCION          CHAR(20)                        not null,
+   USUARIO              VARCHAR2(25)
+)
+/
+
+alter table BITACORARESPALDO
+   add constraint PK_BITACORARESPALDO primary key (ID_BITACORARESPALDO)
+/
+
+
+create or replace view VIEW_BITACORARESPALDO as
+select * from BITACORARESPALDO
+/
+
+create sequence SEQUENCE2
+increment by 1
+start with 1
+/ 
+
+create trigger TIB_BITACORARESPALDO before insert
+on BITACORARESPALDO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+
+begin
+    --  Column "ID_BITACORA" uses sequence SEQUENCE
+    select SEQUENCE2.NEXTVAL INTO :new.ID_BITACORARESPALDO from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+
+
+create trigger trg_del_bit AFTER DELETE ON BITACORA
+begin
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(SYSDATE,'DELETE',USER);
+end;
+/
+
+
+
+create trigger trg_ins_bit AFTER INSERT ON BITACORA
+begin
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(SYSDATE,'INSERT',USER);
+end;
+/
+
+
+create trigger trg_upd_bit AFTER UPDATE ON BITACORA
+begin
+    insert into BITACORARESPALDO(FECHA,TIPO_ACCION,USUARIO) values(SYSDATE,'UPDATE',USER);
+end;
+/

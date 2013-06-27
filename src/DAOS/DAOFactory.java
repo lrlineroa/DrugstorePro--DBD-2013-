@@ -29,6 +29,10 @@ public class DAOFactory {
     public ViewPersonaDAO getViewPersonaDAO() {
         return new ViewPersonaDAO(emf);
     }
+        
+    public ViewBitacoraDAO getViewBitacoraDAO() {
+        return new ViewBitacoraDAO(emf);
+    }
 
     public ViewDrogueriaDAO getViewDrogueriaDAO() {
         return new ViewDrogueriaDAO(emf);
