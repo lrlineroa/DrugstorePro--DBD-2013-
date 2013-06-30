@@ -214,6 +214,7 @@
             <Component class="javax.swing.JFormattedTextField" name="CedulaTF">
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CedulaTFFocusLost"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTFKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -422,6 +423,7 @@
             <Component class="javax.swing.JFormattedTextField" name="McedulaTF">
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="McedulaTFFocusLost"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="McedulaTFKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>

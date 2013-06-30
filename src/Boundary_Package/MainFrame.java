@@ -237,7 +237,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         modifyButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         modifyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/lapiz.png"))); // NOI18N
-        modifyButton.setText("<html><p>MODIFICAR</p><p>DATOS</p></html>");
+        modifyButton.setText("<html><p>MODIFICAR</p><p>Producto</p></html>");
         modifyButton.setBorder(new javax.swing.border.MatteBorder(null));
         modifyButton.setMaximumSize(new java.awt.Dimension(111, 45));
         modifyButton.setMinimumSize(new java.awt.Dimension(111, 45));

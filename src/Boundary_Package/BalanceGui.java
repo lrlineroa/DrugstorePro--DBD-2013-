@@ -259,6 +259,7 @@ public class BalanceGui extends javax.swing.JPanel {
             this.yearCombo.setEnabled(false);
         }else if(this.visualizationCombo.getSelectedItem().equals("Mensual")){
            // this.monthCombo.setEnabled(false);
+             this.yearCombo.setEnabled(true);
         }else{
            // this.monthCombo.setEnabled(true);
             this.yearCombo.setEnabled(true);

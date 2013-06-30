@@ -126,14 +126,11 @@ public class RegisterControl {
 
     }
 
-    public boolean UpdatePerson(ViewPersona person) {
+    public boolean UpdatePerson(ViewPersona person) throws Exception {
         if (person != null) {
-            try {
-                DAOFactory.getInstance().getViewPersonaDAO().edit(person);
-                return true;
-            } catch (Exception ex) {
-                Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            DAOFactory.getInstance().getViewPersonaDAO().edit(person);
+            return true;
 
         }
         return false;
